@@ -14,6 +14,52 @@ import { sendDailyEmail } from "./send-email.js";
 import { sendEmail } from "../lib/resend.js";
 import type { Story } from "../types.js";
 
+// Logs a safe fingerprint of each required env var (length + non-ASCII positions, never
+// the value itself). Added after a corrupted paste in Railway's Variables UI put literal
+// bullet characters (U+2022) inside a key — this makes runtime state visible in the logs
+// so UI-vs-runtime mismatches can't hide.
+function checkEnvVars(): void {
+  const required = [
+    "ANTHROPIC_API_KEY",
+    "EXA_API_KEY",
+    "SUPABASE_URL",
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "RESEND_API_KEY",
+    "RESEND_FROM_EMAIL",
+    "MY_EMAIL",
+    "GITHUB_TOKEN",
+    "GITHUB_REPO",
+    "PUBLIC_BASE_URL",
+  ];
+  let corrupted = false;
+  for (const name of required) {
+    const value = process.env[name];
+    if (!value) {
+      console.log(`env check: ${name} — MISSING`);
+      corrupted = true;
+      continue;
+    }
+    const badIndexes: number[] = [];
+    for (let i = 0; i < value.length; i++) {
+      const code = value.charCodeAt(i);
+      if (code < 0x20 || code > 0x7e) badIndexes.push(i);
+    }
+    if (badIndexes.length > 0) {
+      console.log(
+        `env check: ${name} — ${value.length} chars, CORRUPTED: non-ASCII at index ${badIndexes.slice(0, 5).join(", ")}${badIndexes.length > 5 ? ` (+${badIndexes.length - 5} more)` : ""} (char code ${value.charCodeAt(badIndexes[0])})`,
+      );
+      corrupted = true;
+    } else {
+      console.log(`env check: ${name} — ${value.length} chars, OK`);
+    }
+  }
+  if (corrupted) {
+    throw new Error(
+      "One or more environment variables are missing or contain corrupted (non-ASCII) characters — see the env check lines above. Fix them in Railway's Variables tab and redeploy.",
+    );
+  }
+}
+
 function todayISO(): string {
   // Server runs in UTC; SGT is UTC+8 with no DST, so "today" in Singapore at the
   // 6:30am SGT run time is UTC date + 1 day relative to when the run kicks off in UTC
@@ -23,6 +69,8 @@ function todayISO(): string {
 }
 
 async function runPipeline(): Promise<void> {
+  checkEnvVars();
+
   const date = todayISO();
   const baseUrl = process.env.PUBLIC_BASE_URL;
   if (!baseUrl) throw new Error("PUBLIC_BASE_URL is not set");
