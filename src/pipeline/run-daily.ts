@@ -49,11 +49,11 @@ async function runPipeline(): Promise<void> {
 
   console.log(`[${date}] Rendering pages...`);
   const renderable: RenderableStory[] = await Promise.all(
-    stories.map(async (s) => ({ ...s, related: await getRelatedLinks(s, date) })),
+    stories.map(async (s) => ({ ...s, related: await getRelatedLinks(s, date, baseUrl) })),
   );
-  const briefHtml = renderBriefHtml(renderable, date);
+  const briefHtml = renderBriefHtml(renderable, date, baseUrl);
   const archiveDays = await getArchiveIndex();
-  const archiveHtml = renderArchivePage(archiveDays);
+  const archiveHtml = renderArchivePage(archiveDays, baseUrl);
 
   console.log(`[${date}] Publishing to GitHub Pages...`);
   await publishBrief(briefHtml, archiveHtml, date);

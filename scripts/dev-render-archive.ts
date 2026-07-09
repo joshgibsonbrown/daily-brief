@@ -7,7 +7,7 @@ import { renderArchivePage } from "../src/pipeline/render-archive.js";
 
 async function main() {
   const days = await getArchiveIndex();
-  const html = renderArchivePage(days);
+  const html = renderArchivePage(days, process.env.PUBLIC_BASE_URL ?? "");
   await writeFile("dev-output/archive-preview.html", html);
   console.log(`Rendered ${days.length} day(s) to dev-output/archive-preview.html`);
 }

@@ -17,18 +17,19 @@ function formatDateLabel(dateISO: string): string {
 // Renders the /archive page — a simple reverse-chronological list of every past brief,
 // each story linking straight to its anchor on that day's page. Same vanilla, dark-mode,
 // mobile-first approach as the brief page itself — no framework, no external requests.
-export function renderArchivePage(days: ArchiveDay[]): string {
+// Links are absolute (baseUrl-prefixed) — see the note on renderBriefHtml for why.
+export function renderArchivePage(days: ArchiveDay[], baseUrl: string): string {
   const daysHtml = days
     .map((day) => {
       const storiesHtml = day.stories
         .map((s) => {
           const bucketLabel = BUCKETS.find((b) => b.id === s.bucket)?.label ?? s.bucket;
-          return `<li><span class="bucket-pill">${escapeHtml(bucketLabel)}</span> <a href="/briefs/${day.date}.html#${escapeHtml(s.anchor)}">${escapeHtml(s.headline)}</a></li>`;
+          return `<li><span class="bucket-pill">${escapeHtml(bucketLabel)}</span> <a href="${escapeHtml(baseUrl)}/briefs/${day.date}.html#${escapeHtml(s.anchor)}">${escapeHtml(s.headline)}</a></li>`;
         })
         .join("\n");
       return `
       <section class="day">
-        <h2><a href="/briefs/${day.date}.html">${escapeHtml(formatDateLabel(day.date))}</a></h2>
+        <h2><a href="${escapeHtml(baseUrl)}/briefs/${day.date}.html">${escapeHtml(formatDateLabel(day.date))}</a></h2>
         <ul>
           ${storiesHtml}
         </ul>
@@ -86,7 +87,7 @@ export function renderArchivePage(days: ArchiveDay[]): string {
 <div class="container">
   <header>
     <h1>Archive</h1>
-    <a href="/">&larr; Back to today's brief</a>
+    <a href="${escapeHtml(baseUrl)}/">&larr; Back to today's brief</a>
   </header>
   ${days.length > 0 ? daysHtml : `<div class="empty">No briefs archived yet.</div>`}
 </div>

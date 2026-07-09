@@ -91,7 +91,10 @@ function formatDateLabel(dateISO: string): string {
 
 // Renders the full day's brief as a single self-contained HTML page.
 // Vanilla HTML/CSS/JS only — no frameworks, no external requests, dark mode by default.
-export function renderBriefHtml(stories: RenderableStory[], dateISO: string): string {
+// Links must be absolute (built from baseUrl): the same HTML is published at both
+// /index.html and /briefs/{date}.html, and the site lives under a /daily-brief/ project
+// path on GitHub Pages — so neither root-relative nor document-relative paths work.
+export function renderBriefHtml(stories: RenderableStory[], dateISO: string, baseUrl: string): string {
   const bucketsPresent = BUCKETS.filter((b) => stories.some((s) => s.bucket === b.id));
   const allTags = Array.from(new Set(stories.flatMap((s) => s.tags ?? []))).sort();
 
@@ -228,7 +231,7 @@ export function renderBriefHtml(stories: RenderableStory[], dateISO: string): st
   </main>
 
   <footer>
-    <a href="/archive.html">Archive</a>
+    <a href="${escapeHtml(baseUrl)}/archive.html">Archive</a>
   </footer>
 </div>
 

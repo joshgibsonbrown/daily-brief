@@ -16,7 +16,7 @@ async function main() {
 
   const testStory = stories[0];
   console.log(`\nLooking up related links for: "${testStory.headline}" (should be empty — this is the first entry)`);
-  const related = await getRelatedLinks(testStory, date);
+  const related = await getRelatedLinks(testStory, date, process.env.PUBLIC_BASE_URL ?? "");
   console.log(related.length === 0 ? "(none found, as expected for a fresh archive)" : related);
 }
 

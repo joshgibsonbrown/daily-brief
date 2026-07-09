@@ -18,15 +18,18 @@ async function main() {
   const raw = await readFile("dev-output/latest-brief.json", "utf-8");
   const { date, stories } = JSON.parse(raw) as { date: string; stories: Story[] };
 
+  const baseUrl = process.env.PUBLIC_BASE_URL;
+  if (!baseUrl) throw new Error("PUBLIC_BASE_URL is not set");
+
   console.log(`Rendering brief for ${date}...`);
   const renderable: RenderableStory[] = await Promise.all(
-    stories.map(async (s) => ({ ...s, related: await getRelatedLinks(s, date) })),
+    stories.map(async (s) => ({ ...s, related: await getRelatedLinks(s, date, baseUrl) })),
   );
-  const briefHtml = renderBriefHtml(renderable, date);
+  const briefHtml = renderBriefHtml(renderable, date, baseUrl);
 
   console.log("Rendering archive page...");
   const archiveDays = await getArchiveIndex();
-  const archiveHtml = renderArchivePage(archiveDays);
+  const archiveHtml = renderArchivePage(archiveDays, baseUrl);
 
   console.log("Publishing to GitHub Pages...");
   await publishBrief(briefHtml, archiveHtml, date);

@@ -11,11 +11,12 @@ async function main() {
   const raw = await readFile("dev-output/latest-brief.json", "utf-8");
   const { date, stories } = JSON.parse(raw) as { date: string; stories: Story[] };
 
+  const baseUrl = process.env.PUBLIC_BASE_URL ?? "";
   const renderable: RenderableStory[] = await Promise.all(
-    stories.map(async (s) => ({ ...s, related: await getRelatedLinks(s, date) })),
+    stories.map(async (s) => ({ ...s, related: await getRelatedLinks(s, date, baseUrl) })),
   );
 
-  const html = renderBriefHtml(renderable, date);
+  const html = renderBriefHtml(renderable, date, baseUrl);
   await writeFile("dev-output/brief-preview.html", html);
   console.log(`Rendered ${stories.length} stories to dev-output/brief-preview.html`);
 }

@@ -20,7 +20,14 @@ interface StoryRow {
 // `stories` must be in the same order passed to renderBriefHtml — anchors are derived from
 // (headline, index) identically in both places (see src/lib/slug.ts) so "Related" links
 // resolve to the right in-page anchor.
+// Idempotent per date: re-running the same day (manual retry, crash re-run) replaces that
+// day's rows instead of stacking duplicates.
 export async function saveStories(stories: Story[], briefDate: string): Promise<void> {
+  const { error: deleteError } = await (getSupabase().from("stories") as any)
+    .delete()
+    .eq("brief_date", briefDate);
+  if (deleteError) throw new Error(`Failed to clear existing stories for ${briefDate}: ${deleteError.message}`);
+
   const rows: StoryRow[] = stories.map((s, i) => ({
     brief_date: briefDate,
     bucket: s.bucket,
@@ -51,7 +58,8 @@ function sanitizeTag(tag: string): string {
 // Finds prior stories that share a tag or bucket with the given story, most recent first.
 // Powers the "Related" links in the "Say more" section. Returns [] if the archive doesn't
 // have anything relevant yet (e.g. early days of the project) — that's expected, not an error.
-export async function getRelatedLinks(story: Story, briefDate: string, limit = 3): Promise<RelatedLink[]> {
+// URLs are absolute (baseUrl-prefixed) — see the note on renderBriefHtml for why.
+export async function getRelatedLinks(story: Story, briefDate: string, baseUrl: string, limit = 3): Promise<RelatedLink[]> {
   const tags = (story.tags ?? []).map(sanitizeTag).filter(Boolean);
 
   const conditions = [`bucket.eq.${story.bucket}`];
@@ -69,7 +77,7 @@ export async function getRelatedLinks(story: Story, briefDate: string, limit = 3
 
   return (data as { headline: string; brief_date: string; anchor: string }[]).map((row) => ({
     title: row.headline,
-    url: `/briefs/${row.brief_date}.html#${row.anchor}`,
+    url: `${baseUrl}/briefs/${row.brief_date}.html#${row.anchor}`,
   }));
 }
 
