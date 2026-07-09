@@ -1,5 +1,6 @@
 import { complete } from "../lib/anthropic.js";
 import { loadPrompt } from "../lib/prompts.js";
+import { extractJson, withJsonRetry } from "../lib/json.js";
 import { MODELS } from "../config/models.js";
 import { BUCKETS, type Bucket } from "../config/buckets.js";
 import type { BucketedCandidate } from "./fetch-candidates.js";
@@ -24,8 +25,7 @@ function formatBucketWeights(): string {
 }
 
 function parseJson(raw: string): { selections: Selection[] } {
-  const cleaned = raw.trim().replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/```$/, "");
-  return JSON.parse(cleaned) as { selections: Selection[] };
+  return extractJson<{ selections: Selection[] }>(raw);
 }
 
 // Picks 3-5 candidates worth writing up today. Runs on cheap metadata (title + excerpt),
@@ -36,13 +36,16 @@ export async function curate(items: BucketedCandidate[]): Promise<Selection[]> {
     candidates: formatCandidates(items),
     bucket_weights: formatBucketWeights(),
   });
-  const raw = await complete({
-    model: MODELS.writer,
-    system: "You are a discerning news editor with strong, opinionated judgment about what's worth covering.",
-    user: prompt,
-    maxTokens: 1200,
-  });
-  const { selections } = parseJson(raw);
+  const { selections } = await withJsonRetry(
+    () =>
+      complete({
+        model: MODELS.writer,
+        system: "You are a discerning news editor with strong, opinionated judgment about what's worth covering.",
+        user: prompt,
+        maxTokens: 1200,
+      }),
+    parseJson,
+  );
 
   // Guard against a hallucinated URL slipping through — only keep selections that
   // match a real candidate we actually fetched.

@@ -1,5 +1,6 @@
 import { complete } from "../lib/anthropic.js";
 import { loadPrompt } from "../lib/prompts.js";
+import { extractJson, withJsonRetry } from "../lib/json.js";
 import { MODELS } from "../config/models.js";
 import { BUCKETS, type Bucket } from "../config/buckets.js";
 import type { Candidate, Story } from "../types.js";
@@ -15,9 +16,7 @@ interface Shell {
 }
 
 function parseShellJson(raw: string): Shell {
-  // Strip stray markdown fences in case the model adds them despite instructions.
-  const cleaned = raw.trim().replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/```$/, "");
-  const parsed = JSON.parse(cleaned) as Partial<Shell>;
+  const parsed = extractJson<Partial<Shell>>(raw);
 
   // Defend against the model occasionally dropping a field — a missing tags/tldr array
   // shouldn't take down the whole pipeline over a cosmetic field.
@@ -54,8 +53,10 @@ export async function writeStory(bucketId: Bucket, candidates: Candidate[]): Pro
     source_material: sourceMaterial,
     take,
   });
-  const shellRaw = await complete({ model: MODELS.writer, system: SYSTEM, user: shellPrompt, maxTokens: 1700 });
-  const shell = parseShellJson(shellRaw);
+  const shell = await withJsonRetry(
+    () => complete({ model: MODELS.writer, system: SYSTEM, user: shellPrompt, maxTokens: 1700 }),
+    parseShellJson,
+  );
 
   return {
     bucket: bucketId,
