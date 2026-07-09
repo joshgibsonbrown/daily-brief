@@ -1,4 +1,4 @@
-import { getSupabase } from "../lib/supabase.js";
+import { restInsert, restDelete, restSelect } from "../lib/supabase.js";
 import { slugify } from "../lib/slug.js";
 import type { Story } from "../types.js";
 import type { RelatedLink } from "./render-html.js";
@@ -23,10 +23,7 @@ interface StoryRow {
 // Idempotent per date: re-running the same day (manual retry, crash re-run) replaces that
 // day's rows instead of stacking duplicates.
 export async function saveStories(stories: Story[], briefDate: string): Promise<void> {
-  const { error: deleteError } = await (getSupabase().from("stories") as any)
-    .delete()
-    .eq("brief_date", briefDate);
-  if (deleteError) throw new Error(`Failed to clear existing stories for ${briefDate}: ${deleteError.message}`);
+  await restDelete("stories", `brief_date=eq.${briefDate}`);
 
   const rows: StoryRow[] = stories.map((s, i) => ({
     brief_date: briefDate,
@@ -41,16 +38,12 @@ export async function saveStories(stories: Story[], briefDate: string): Promise<
     anchor: slugify(s.headline, i),
   }));
 
-  // supabase-js's untyped client resolves table row types to `never` rather than `any`
-  // (a known quirk without a generated-types Database generic) — cast at the boundary
-  // rather than fighting it; our own StoryRow type is the real source of truth here.
-  const { error } = await (getSupabase().from("stories") as any).insert(rows);
-  if (error) throw new Error(`Failed to save stories to archive: ${error.message}`);
+  await restInsert("stories", rows);
 }
 
-// Postgrest's `.or()` filter takes a raw string, so we strip characters that would
-// break its grammar out of tags before building one — tags are short model-generated
-// words, this is just a defensive floor, not expected to trigger in practice.
+// PostgREST's `or=` filter is a raw grammar string, so we strip characters that would
+// break it out of tags before building one — tags are short model-generated words, this
+// is just a defensive floor, not expected to trigger in practice.
 function sanitizeTag(tag: string): string {
   return tag.replace(/[{}(),]/g, "").trim();
 }
@@ -64,18 +57,18 @@ export async function getRelatedLinks(story: Story, briefDate: string, baseUrl: 
 
   const conditions = [`bucket.eq.${story.bucket}`];
   if (tags.length > 0) conditions.push(`tags.ov.{${tags.join(",")}}`);
+  const orFilter = encodeURIComponent(`(${conditions.join(",")})`);
 
-  const { data, error } = await (getSupabase().from("stories") as any)
-    .select("headline, brief_date, anchor")
-    .lt("brief_date", briefDate)
-    .or(conditions.join(","))
-    .order("brief_date", { ascending: false })
-    .limit(limit);
+  const query =
+    `select=headline,brief_date,anchor` +
+    `&brief_date=lt.${briefDate}` +
+    `&or=${orFilter}` +
+    `&order=brief_date.desc` +
+    `&limit=${limit}`;
 
-  if (error) throw new Error(`Failed to fetch related stories: ${error.message}`);
-  if (!data) return [];
+  const data = await restSelect<{ headline: string; brief_date: string; anchor: string }>("stories", query);
 
-  return (data as { headline: string; brief_date: string; anchor: string }[]).map((row) => ({
+  return data.map((row) => ({
     title: row.headline,
     url: `${baseUrl}/briefs/${row.brief_date}.html#${row.anchor}`,
   }));
@@ -88,16 +81,13 @@ export interface ArchiveDay {
 
 // Full archive index, newest day first — powers the /archive page.
 export async function getArchiveIndex(): Promise<ArchiveDay[]> {
-  const { data, error } = await (getSupabase().from("stories") as any)
-    .select("brief_date, headline, bucket, anchor")
-    .order("brief_date", { ascending: false })
-    .order("created_at", { ascending: true });
-
-  if (error) throw new Error(`Failed to fetch archive index: ${error.message}`);
-  if (!data) return [];
+  const data = await restSelect<{ brief_date: string; headline: string; bucket: string; anchor: string }>(
+    "stories",
+    "select=brief_date,headline,bucket,anchor&order=brief_date.desc,created_at.asc",
+  );
 
   const byDate = new Map<string, ArchiveDay["stories"]>();
-  for (const row of data as { brief_date: string; headline: string; bucket: string; anchor: string }[]) {
+  for (const row of data) {
     const list = byDate.get(row.brief_date) ?? [];
     list.push({ headline: row.headline, bucket: row.bucket, anchor: row.anchor });
     byDate.set(row.brief_date, list);
