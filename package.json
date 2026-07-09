@@ -1,0 +1,26 @@
+{
+  "name": "daily-brief",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/pipeline/run-daily.ts",
+    "dev:write-story": "tsx scripts/dev-write-story.ts",
+    "dev:curate": "tsx scripts/dev-curate.ts",
+    "dev:render-html": "tsx scripts/dev-render-html.ts",
+    "dev:archive-test": "tsx scripts/dev-archive-test.ts",
+    "dev:render-archive": "tsx scripts/dev-render-archive.ts",
+    "dev:send-email": "tsx scripts/dev-send-email.ts",
+    "dev:publish": "tsx scripts/dev-publish.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.68.0",
+    "@supabase/supabase-js": "^2.110.1",
+    "dotenv": "^17.2.3",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3"
+  }
+}
