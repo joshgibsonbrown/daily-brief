@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Wednesday, July 29, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 12px; }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .sources ul, .related ul { padding-left: 20px; margin: 0; }
+  .sources a, .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Wednesday, July 29, 2026</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-bucket="all">All</button>
+<button class="tab" data-bucket="private-markets">Private Markets</button>
+<button class="tab" data-bucket="iconiq-portfolio">ICONIQ Portfolio Companies</button>
+<button class="tab" data-bucket="wealth-planning">Family Office &amp; Wealth Planning</button>
+<button class="tab" data-bucket="tech-ai">Tech &amp; AI</button>
+  </nav>
+
+  <nav class="tag-filters">
+    <button class="tag-filter active" data-tag="all">All tags</button>
+<button class="tag-filter" data-tag="AI Infrastructure">AI Infrastructure</button>
+<button class="tag-filter" data-tag="Apollo">Apollo</button>
+<button class="tag-filter" data-tag="China">China</button>
+<button class="tag-filter" data-tag="Continuation Vehicles">Continuation Vehicles</button>
+<button class="tag-filter" data-tag="Credit Risk">Credit Risk</button>
+<button class="tag-filter" data-tag="ELTIFs">ELTIFs</button>
+<button class="tag-filter" data-tag="GP Strategy">GP Strategy</button>
+<button class="tag-filter" data-tag="Gulf">Gulf</button>
+<button class="tag-filter" data-tag="Nvidia">Nvidia</button>
+<button class="tag-filter" data-tag="Offshore Trusts">Offshore Trusts</button>
+<button class="tag-filter" data-tag="OpenAI">OpenAI</button>
+<button class="tag-filter" data-tag="Private Markets">Private Markets</button>
+<button class="tag-filter" data-tag="RIA">RIA</button>
+<button class="tag-filter" data-tag="Revolut">Revolut</button>
+<button class="tag-filter" data-tag="Secondaries">Secondaries</button>
+<button class="tag-filter" data-tag="Sovereign Wealth">Sovereign Wealth</button>
+<button class="tag-filter" data-tag="Tax Policy">Tax Policy</button>
+<button class="tag-filter" data-tag="UHNW">UHNW</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-ta-and-onex-just-marked-the-top-of-the-ria-trade-the-cv-crow" data-bucket="private-markets" data-tags="RIA,Continuation Vehicles,Secondaries">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">RIA</span>
+<span class="tag">Continuation Vehicles</span>
+<span class="tag">Secondaries</span>
+    </div>
+    <h2>TA and Onex just marked the top of the RIA trade. The CV crowd hasn't figured it out yet.</h2>
+    <ul class="tldr">
+      <li>Carlyle and Bain Capital are the final two bidders in a $7bn auction for Wealth Enhancement Group, a registered investment adviser platform managing roughly $160bn in client assets — one of the largest sponsor-to-sponsor PE deals of 2026</li>
+<li>TA Associates and Onex — the two private equity firms that have co-owned Wealth Enhancement since 2019 and 2021 respectively — hired Evercore to run a full sale process rather than roll the asset into a continuation vehicle, the structure most commonly used to extend hold periods on cash-generative businesses like this one</li>
+<li>The Financial Times quotes PE executives warning the industry is overinvested in wealth management, with longer-held RIA positions missing return targets, and notes that LPL Financial's public-market valuation has declined this year</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>TA Associates and Onex have put Wealth Enhancement Group — a registered investment adviser platform with roughly $160bn in client assets — up for a full sale, and Carlyle and Bain Capital are the last two standing at a reported $7bn including debt. The RIA roll-up story is old news. What's worth your attention is the structure they chose: an outright sponsor-to-sponsor exit, not a continuation vehicle, on precisely the kind of recurring-revenue, low-capex asset that GPs everywhere have been rolling into CVs specifically so they never have to sell.</p>
+<p>That decision is the entire signal, and the consensus is misreading it. The polite version says TA and Onex &quot;preferred certainty of realization.&quot; Here's the honest version: two sophisticated owners of a business that is, by every account, still compounding looked at the continuation-vehicle option — the structure that would let them keep the upside — and took the door marked cash instead. When the people closest to an asset choose full liquidity over rolling their winner forward, they are telling you something about their forward return expectations that the marks in every wealth-management CV quietly refuse to say out loud.</p>
+<p>The tell buried in the FT's own reporting is the line about private equity executives worried the industry is &quot;overinvested in the wealth management space,&quot; with longer-held positions missing return targets. Sit with that. The RIA-consolidation trade was the all-weather trade for PE — recurring fees, sticky HNW clients, leverage that survives a bad fundraising market. LPL's public multiple has slid this year, and there's genuine unease about what AI does to fee-based advice. TA and Onex aren't dumb money. They are marking the top of a category by refusing to pretend it has another fund-life of compounding left.</p>
+<p>This is the CV problem in miniature, and it's the thing allocators should be pricing. Continuation vehicles are sold as conviction plays — &quot;our best asset, too good to sell.&quot; But the same structure is the perfect place to warehouse an asset you can't sell at your carry mark without embarrassing yourself. Every wealth-management CV marked in 2024 and 2025 now has a live comp: whatever price Carlyle or Bain actually clears here. If it prints below the multiples implied by those held vehicles, a lot of GPs are sitting on paper marks that a real buyer just declined to validate.</p>
+<p>So don't watch who wins. Watch the clearing price relative to the CV comps, and watch how many wealth-management continuation vehicles suddenly discover a reason to sell into the public or strategic bid over the next four quarters. TA and Onex just took the smart-money exit. The GPs still holding via CVs are the ones telling you the music hasn't stopped — right up until their LPs ask why the last real transaction cleared 20% light.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case on the bear case is simple: sophisticated sellers take full exits for reasons that have nothing to do with category conviction. TA Associates raised its latest fund in a difficult environment, and Onex — the Toronto-based PE firm that stepped up to equal-partner status in 2021 — may have LP return-timing obligations that make a clean $7bn exit more valuable than a continuation vehicle's theoretical upside, regardless of what the underlying business is doing. WEG itself completed at least six tuck-in acquisitions in the past year alone, which means the operational complexity is rising even as the multiple compresses. A buyer paying $7bn is pricing in continued roll-up execution; a seller taking $7bn may simply be the one who correctly estimates how hard that execution gets from here.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The sponsor-to-sponsor buyout is the oldest structure in private equity, predating the entire GP-led secondaries market by decades. One firm buys a company, builds it, sells it to another firm that thinks it can build it further. Simple, clean, and — because it requires a real buyer writing a real check — honest in a way that marked-to-model continuation vehicles structurally are not. That honesty is exactly what makes this transaction worth studying beyond the RIA-consolidation headline.</p>
+<p>Wealth management roll-ups became a consensus PE trade starting around 2019 and accelerating through 2022. The thesis was straightforward: acquire independent registered investment advisers at fragmented multiples, centralize operations, cross-sell services, and benefit from a secular shift of assets from broker-dealer models into fee-based advice. The recurring revenue profile — advisers charging 50 to 100 basis points annually on sticky client relationships — looked nearly recession-proof and provided the predictable cash flow that underwrites leveraged buyout debt. CD&amp;R's 2023 buyout of Focus Financial Partners, Mubadala Capital's take-private of CI Financial, and TPG's investment in Creative Planning all ran on the same logic. The trade worked, and then everyone piled in.</p>
+<p>The problem with consensus trades in private equity is that they get priced accordingly. By the time continuation vehicles became a common structure for wealth management assets in 2024 and 2025, GPs were essentially telling their LPs: this asset is too good to sell. The CV structure lets a manager move a portfolio company into a new fund vehicle, give existing investors the option to cash out or stay in, and retain operational control. It is a legitimate tool when an asset genuinely has compounding years ahead of it that a fund's remaining life cannot capture. It is a less legitimate tool when a GP cannot find a real buyer at the carry mark without taking a hit to reported returns.</p>
+<p>That distinction matters enormously right now, because the two uses are visually identical on a fund statement. Both show up as a held position at an internally determined valuation. The only way to know which kind you are looking at is to watch what happens when someone actually has to sell.</p>
+<p>TA Associates and Onex just sold. The clearing price — whatever Carlyle or Bain actually pays — becomes the first hard public data point against which every wealth management CV marked in the last two years has to be measured. If that price implies a lower multiple than the marks inside those vehicles, GPs face a choice: acknowledge the gap, or keep the asset in the CV and hope the market recovers before their own LP liquidity pressure forces the issue.</p>
+<p>There is a historical parallel here worth naming. When the leveraged buyout market in broadly syndicated loans cracked in late 2022, PE firms holding portfolio companies that had been marked on 2021 transaction comps suddenly found themselves with a real-transaction gap. Some took the write-down. Many did not, preferring to extend hold periods and wait. The gap between private marks and what a real buyer would pay persisted for nearly six quarters before transaction volume forced resolution. Wealth management feels like it is entering a similar window now, with AI-driven fee compression and decelerating organic growth adding a fundamental dimension that the 2022 rate shock did not.</p>
+<p>Allocators sitting in continuation vehicles that hold RIA platforms should be asking their GPs a direct question: at what multiple is this asset marked, and how does that compare to whatever Wealth Enhancement clears? The answer, or the evasion of it, will tell them nearly everything they need to know.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://www.secondaryscoop.com/p/carlyle-vs-bain-the-7bn-secondary" target="_blank" rel="noopener">Carlyle vs. Bain: The $7bn Secondary Buyout Auction on ...</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-27.html#story-0-the-secondaries-boom-is-minting-spinouts-the-incumbents-buil">The secondaries boom is minting spinouts. The incumbents built the training ground themselves.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-27.html#story-1-francisco-partners-took-81-of-tech-pe-s-oxygen-the-remaining">Francisco Partners took 81% of tech PE's oxygen. The remaining 37 funds are on life support.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-24.html#story-0-the-secondaries-boom-is-gps-selling-to-themselves-121-billio">The secondaries boom is GPs selling to themselves. $121 billion says it's working.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-brookfield-didn-t-win-gulf-capital-it-agreed-to-work-for-it" data-bucket="private-markets" data-tags="Sovereign Wealth,Gulf,GP Strategy">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Sovereign Wealth</span>
+<span class="tag">Gulf</span>
+<span class="tag">GP Strategy</span>
+    </div>
+    <h2>Brookfield didn't win Gulf capital. It agreed to work for it.</h2>
+    <ul class="tldr">
+      <li>Brookfield's new Middle East PE fund hit a $2 billion first close, with 50% of all investments contractually mandated for Saudi Arabia — a sovereign policy target embedded directly in the fund structure</li>
+<li>Saudi Arabia's Public Investment Fund (PIF), a near-$1 trillion state wealth vehicle, anchored the raise alongside other Gulf institutions; Brookfield itself contributed $500 million of the $2 billion</li>
+<li>Brookfield, Blackstone, and KKR simultaneously agreed to a separate $16 billion infrastructure partnership on Kuwaiti oil-export pipelines — all three firms deepening Gulf commitments during an active US-Iran conflict</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Brookfield just held a $2 billion first close on a Middle East private equity fund, anchored by Saudi Arabia's Public Investment Fund, with a mandate to put half the money into Saudi Arabia itself. Brookfield is committing $500 million of its own; PIF and other Gulf institutions supplied the rest. That last detail is the whole story, and it's not the one the press release wants you to read.</p>
+<p>The consensus read is &quot;global firms flock to Gulf capital.&quot; That's backwards. The PIF quote from Yazeed Al-Humied gives it away: this fund exists to &quot;anchor international private equity in Saudi Arabia&quot; and build &quot;the local capital market ecosystem.&quot; Translation — PIF is no longer content to be a limited partner writing checks to Menlo Park and New York. It is now hiring Brookfield as an operating contractor to import deal-making capability onto Saudi soil, on Saudi terms, into Saudi assets. Bruce Flatt didn't win a mandate. He accepted terms of employment. The 50% domestic allocation is a sovereign policy instrument wearing a fund prospectus.</p>
+<p>Here's the second-order effect nobody is pricing. For fifteen years the Gulf sovereign funds were the marginal LP that kept Western megafunds afloat — the buyer of last resort when US pensions and endowments went quiet. That relationship is inverting into something closer to a supply chain the Saudis control. When PIF can dictate that a Brookfield fund parks half its capital in Vision 2030 projects, the GP has stopped being an allocator of capital and become a distributor of expertise the client eventually replicates in-house. Ask what happens to the fee stream in fund three or four once PIF has watched Brookfield underwrite Saudi consumer and financials deals for six years. The knowledge transfer is the product, and the client knows it.</p>
+<p>Look at the timing, because it is the tell. This closed during an active US-Iran war, days after Brookfield, Blackstone and KKR agreed to a $16 billion partnership on Kuwaiti oil-export pipelines, with Blackstone opening its second GCC office. The Strait of Hormuz is the live variable in these very portfolios, and the smart money is closing anyway. That is not courage. It is a bet that the war is a discount window — that Gulf capital is being offered on terms that only exist while the region looks uninvestable to everyone reading headlines, and that Flatt and Schwarzman are being paid a premium in access to swallow the geopolitical tail.</p>
+<p>The read-across for allocators: stop modeling the Gulf as a source of LP commitments and start modeling it as a competitor building its own GP muscle. The all-star managers who win the next decade there won't be the ones who raise the most PIF money. They'll be the ones who negotiate to keep something proprietary after the client has learned the trade.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case on Gulf dependency overstates how much leverage PIF actually has in the short run. Brookfield brings something genuinely scarce — a global deal network, 20-plus years of underwriting buyouts across emerging markets, and a balance sheet that can co-invest at scale. PIF can't replicate that in-house by fund three without meaningful brain drain from the global PE industry, and the global PE industry isn't lining up to relocate to Riyadh. There's also a real argument that the 50% domestic allocation is less a leash than a landing zone — Saudi Arabia's non-oil economy is growing fast, consumer penetration in financials and tech is genuinely underpenetrated, and a GP that builds proprietary deal flow there early may earn outsized returns before competition arrives.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The structural shift happening here is worth slowing down on, because it changes how you should read every Gulf-related fundraise for the next decade. For most of the 2010s, sovereign wealth funds like PIF functioned as passive capital exporters. They wrote large checks to Blackstone, KKR, Carlyle, and others, received fund economics as limited partners, and let the GPs do the work. It was a straightforward arrangement: Gulf oil revenues recycled into Western financial markets, generating returns that funded domestic spending. The GPs loved it because sovereign LP checks are large, sticky, and don't require quarterly hand-holding.</p>
+<p>What PIF is doing now is categorically different. The fund structure Brookfield just accepted isn't a passive LP relationship — it's closer to a joint venture with a mandatory domestic reinvestment clause written into the governing documents. When half your capital has a predetermined geography, you're not running an unconstrained return-maximizing vehicle. You're running a development finance instrument that pays management fees. That's not inherently bad, but it's a different business, and the carried interest math changes if the mandate forces deployment into markets or assets you wouldn't have chosen on pure return grounds.</p>
+<p>The historical parallel that fits best is what China did with foreign automakers starting in the 1990s. Beijing required joint ventures with domestic partners as the price of market access. Western automakers accepted because the market was too large to ignore. Two decades later, Chinese firms had absorbed enough manufacturing and engineering capability to build competitive domestic brands, and the foreign JV partners found their leverage had quietly evaporated. Nobody is accusing PIF of executing a deliberate technology-transfer playbook, but the incentive structure is identical: offer access to capital and deal flow, require operational presence, and watch the knowledge accumulate locally over time.</p>
+<p>Brookfield currently manages roughly $16 billion in Middle East assets across private equity, real estate, and infrastructure — a number that will grow materially as this fund deploys. That's a meaningful anchor in a region where most global GPs still have shallow networks. But scale creates its own dependency. Once you have six years of Saudi consumer and financials underwriting experience built into your team, client relationships, and track record, walking away from fund four because the terms have tightened becomes very difficult. The GP is locked in by its own success.</p>
+<p>The geopolitical timing is also worth taking seriously as a signal rather than a footnote. Closing a PE fund and a $16 billion pipeline infrastructure deal during an active US-Iran war is not normal behavior. It implies a specific view: that the conflict is a temporary risk discount, that Gulf sovereign balance sheets are robust enough to absorb the volatility, and that the access premium available right now — the favorable terms, the co-investment rights, the preferred positioning — disappears once the headlines normalize and every global GP rediscovers the region. Flatt and Schwarzman are buying the dip on geopolitical optionality, and they're probably right that the window is narrow. The Strait of Hormuz risk is real, but it's also the oldest risk in Gulf investing, and it hasn't closed the region yet.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://financialpost.com/news/economy/brookfield-raises-billions-for-middle-east-fund" target="_blank" rel="noopener">Brookfield raises US$2 billion for Middle East fund | Financial Post</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-27.html#story-0-the-secondaries-boom-is-minting-spinouts-the-incumbents-buil">The secondaries boom is minting spinouts. The incumbents built the training ground themselves.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-27.html#story-1-francisco-partners-took-81-of-tech-pe-s-oxygen-the-remaining">Francisco Partners took 81% of tech PE's oxygen. The remaining 37 funds are on life support.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-24.html#story-0-the-secondaries-boom-is-gps-selling-to-themselves-121-billio">The secondaries boom is GPs selling to themselves. $121 billion says it's working.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-beijing-just-made-offshore-trusts-transparent-the-wealth-ind" data-bucket="wealth-planning" data-tags="China,Tax Policy,Offshore Trusts,UHNW">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">China</span>
+<span class="tag">Tax Policy</span>
+<span class="tag">Offshore Trusts</span>
+<span class="tag">UHNW</span>
+    </div>
+    <h2>Beijing just made offshore trusts transparent. The wealth industry is calling it a paperwork problem.</h2>
+    <ul class="tldr">
+      <li>China's Announcement No. 21, issued July 24, 2026, imposes a 20% individual income tax on unrealized gains at the moment a Chinese tax resident transfers property into an offshore trust — taxed on gain, not gross value.</li>
+<li>The continuation rules attribute all income inside a resident-funded trust to the contributor annually, regardless of whether any distributions are actually made to that person.</li>
+<li>Trustees and intermediaries face a 90-day compliance window, with Announcement No. 15 imposing direct administrative obligations on appointed offshore trustees as a matter of Chinese tax enforcement.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>On July 24, Beijing did something the offshore wealth industry has spent two decades betting it never would: it wrote trust-specific tax rules. Announcement No. 21 treats a Chinese resident's transfer of assets into an offshore trust as a deemed disposition — a sale that never happened, taxed as if it did — and levies 20% on the embedded gain at the moment of funding. The continuation rules are the sharper blade: income inside a resident-funded trust is attributed to the contributor annually whether or not a cent is ever distributed. The 90-day clock started ticking on July 24.</p>
+<p>The consensus reaction from the Singapore and Hong Kong trust bar is that this is a paperwork event — new filings, new trustee obligations, a busy compliance quarter. That badly underreads it. The real design feature is the substance-over-form attribution: the taxpayer is &quot;the resident individual who contributed or is deemed to have contributed,&quot; not the settlor named in the deed. Nominee arrangements, BVI holdcos, a cousin in Vancouver signing as settlor while the Shanghai principal controls the assets — all of it collapses to the person who actually funded and controls. Beijing didn't attack the trust's civil-law validity. It made the trust irrelevant for tax while leaving it intact for everything else. That's more surgical than a ban and much harder to litigate.</p>
+<p>Here is the second-order effect nobody is pricing. The exclusions tell you exactly where the capital is about to flow. Regulated financial institutions &quot;facing unspecified customers and bearing risk&quot; are carved out — meaning insurance wrappers and bank-issued structured products issued by licensed insurers sit outside the trust-attribution net, even as the outer trust holding them does not. So the play isn't unwinding trusts; it's re-plumbing them toward PPLI — private placement life insurance — and regulated wrapper products that qualify for the carve-out. Watch the Hong Kong and Singapore insurers with China-facing UHNW desks. Their pipeline just got repriced upward.</p>
+<p>The deeper signal is that China now has a working offshore-attribution machine, and machines get reused. The 25% control test with a 50%-to-100% look-through is lifted straight from CFC logic — the same architecture the US uses to tax controlled foreign corporations. Once the STA proves it can attribute trust income to a Shanghai resident annually, extending that plumbing to private funds, offshore operating holdcos, and family investment companies is a settings change, not a new law. Allocators structuring for mainland principals should assume opacity is a depreciating asset on a schedule that just accelerated.</p>
+<p>The uncomfortable read for the family office channel: the fee stack that justified offshore structuring — trustee, legal, advisory — is now explicitly nondeductible under these rules. You're selling a product whose core value proposition Beijing just declared worthless and whose costs it refuses to recognize. Reprice accordingly.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>China's enforcement track record on cross-border tax matters is genuinely uneven. The STA can write attribution rules, but actually collecting 20% from a Shanghai resident whose assets sit in a Cayman trust administered by a Jersey trustee requires information exchange, cooperation from foreign jurisdictions, and a willingness to pursue cases that are expensive and politically sensitive to litigate. Plenty of well-designed structures — particularly those settled years ago with legitimate nonresident involvement — may fall into interpretive grey zones that take a decade of case law to resolve. The rules also carve out entities with substantive commercial operations, and that carve-out is broad enough that experienced advisors will find room to work.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The mechanics of the establishment-phase tax deserve more attention than they are getting. When a Chinese tax resident funds an offshore trust, the contribution is treated as a deemed sale at market value. The contributor pays 20% on the embedded gain — the difference between current market value and original cost — and then the trust receives a stepped-up cost basis at that market value. In isolation, that sounds manageable for assets with modest appreciation. But for the kind of assets that actually flow into these structures — founder equity in a pre-IPO company, real estate bought in 2005, a closely held operating business built over twenty years — the embedded gain can dwarf the liquidity available to pay the tax. You are being asked to fund a tax bill in cash on an asset you haven't sold. That is a real cash-flow problem for a large share of the target population, not an accounting adjustment.</p>
+<p>The substance-over-form contributor definition also has teeth that extend well beyond the obvious nominee case. The rules explicitly sweep in property 'nominally contributed by a nonresident where the contributed property is in fact controlled by a PRC-resident individual.' Where two or more residents contribute to the same trust, their shares are allocated by relative market value of contributions. Where residents and nonresidents contribute to the same trust, the entire trust is treated as resident-funded. These are aggressive aggregation rules. A trust that was designed as a genuinely mixed international family vehicle — some Hong Kong members, some mainland members — may now be fully attributable to the mainland contributors on the entire corpus.</p>
+<p>The historical parallel worth knowing is the US PFIC regime — passive foreign investment company rules — which Congress introduced in 1986 precisely because wealthy Americans were parking money in offshore funds and deferring tax indefinitely. The PFIC rules imposed punitive interest charges on deferred gains and forced annual income inclusions on mark-to-market elections. It took roughly a decade for the structure of US offshore investing to fully reprice around those rules. China is running a compressed version of that same experiment, and the starting point is more aggressive: the US never imposed tax at the moment of funding a foreign trust, only at distribution or disposition. Beijing went further on day one.</p>
+<p>The nondeductibility of trust management fees, legal fees, and investment advisory fees under the continuation rules is a slow-moving structural problem for the advisory industry. The fee stack on a typical UHNW offshore structure in Singapore or Hong Kong — trustee retainer, protector fee, legal counsel, investment advisor — runs anywhere from 50 to 150 basis points annually on assets under administration. None of that is now recognized as a deductible expense for the mainland contributor. The effective tax drag on the structure just increased by the full cost of running it. Advisors who have been selling these structures on a total-cost-of-ownership basis need to redo the math honestly, because the math changed on July 24.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://www.morganlewis.com/pubs/2026/07/china-establishes-new-individual-income-tax-rules-for-offshore-trusts" target="_blank" rel="noopener">China Establishes New Individual Income Tax Rules for Offshore Trusts</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-22.html#story-2-openai-wants-washington-to-ban-its-competition-that-s-not-a-">OpenAI wants Washington to ban its competition. That's not a security policy, it's a pricing strategy.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-20.html#story-3-the-estate-tax-sunset-is-dead-the-deadline-arbitrage-busines">The estate-tax sunset is dead. The deadline-arbitrage business died with it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-13.html#story-0-iran-isn-t-closing-hormuz-it-s-opening-a-toll-booth">Iran isn't closing Hormuz. It's opening a toll booth.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-apollo-and-partners-group-just-made-retail-the-new-lp-that-s" data-bucket="iconiq-portfolio" data-tags="Revolut,Private Markets,Apollo,ELTIFs">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Revolut</span>
+<span class="tag">Private Markets</span>
+<span class="tag">Apollo</span>
+<span class="tag">ELTIFs</span>
+    </div>
+    <h2>Apollo and Partners Group just made retail the new LP. That's not a compliment to retail.</h2>
+    <ul class="tldr">
+      <li>Revolut's feeder structure drops the effective investment minimum to €1 against fund-level minimums typically above €10,000 across 20 EEA countries</li>
+<li>Revolut charges clients nothing directly but collects retrocession fees baked into each fund's management fee — the fee stack is intact, just less visible</li>
+<li>This is the third neobank-alts deal in twelve months: Apollo and EQT went onto Trade Republic, Hamilton Lane onto German platform Nao, now four managers onto Revolut</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Revolut just put Apollo, Ares, Hamilton Lane and Partners Group evergreen funds on its app for retail clients across 20 EEA countries, with a feeder structure that drops the effective minimum to €1 against fund-level minimums typically north of €10,000. This is the third such deal in twelve months after Apollo and EQT went onto Trade Republic and Hamilton Lane onto Nao. The pattern is now unmistakable, and the consensus reading — &quot;democratization of private markets, everyone wins&quot; — is the wrong one.</p>
+<p>Here's what's actually happening. The alts giants are not doing this because retail is a great client. They're doing it because the institutional LP base has gone cold on committing fresh capital while distributions are backed up, and the growth has to come from somewhere. Retail, via evergreen ELTIF wrappers, is the new marginal buyer. Watch where the money goes: Revolut takes no explicit fee from the client, it takes a retrocession baked into the management fee. That's the tell. The fee stack survives intact — it just gets hidden inside the product rather than shown on the invoice. Nobody built a €1 minimum to serve the customer. They built it to widen the funnel.</p>
+<p>The second-order effect nobody is pricing: these are semi-liquid evergreen structures sold to an audience that has never lived through a gate. Retail investors think &quot;evergreen&quot; means &quot;I can get out.&quot; It doesn't. Redemption caps — typically 5% of NAV per quarter — hold fine until they don't, and the first time an ELTIF suspends redemptions during a drawdown, the retail holder discovers the liquidity was always a marketing feature, not a structural one. Revolut users churn in and out of positions in seconds. Marry that behavioral profile to a quarterly-gated illiquid vehicle and you have a mismatch that only reveals itself in stress. Citywire's own related headline — &quot;Alts firms may regret offering funds on retail platforms&quot; — is closer to the truth than the launch press release.</p>
+<p>For an allocator, there are two read-acrosses. First, when Apollo and Partners Group are chasing €1 tickets through a neobank, the institutional distribution engine is running hotter than the LP letters admit — treat that as a signal about primary fundraising difficulty, not about retail opportunity. Second, this is a distribution land grab, and Revolut is the one accumulating the durable asset: it now sits between four of the largest alts managers and a few million retail accounts, collecting rent on flow it didn't originate. The platform wins the way exchanges always win. The GPs are renting an audience they don't own, and the retail buyer is providing exit liquidity for 2021-vintage marks that still haven't cleared.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The structural case for retail democratization is real, even if the motives are mixed. Qualified retail investors in Europe are chronically underweight private markets relative to institutions, and evergreen ELTIFs — semi-liquid fund structures designed for longer-term holding — are genuinely better suited to that audience than the old closed-end fund format. Apollo and Partners Group have also had years to refine investor disclosures and redemption-queue management; the 5% quarterly redemption cap is explicitly disclosed, not buried. If retail flows are stickier than institutional flows during a downturn — because unsophisticated holders don't know to panic-redeem efficiently — the liquidity mismatch risk may be smaller in practice than it looks in theory.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The mechanism worth dwelling on is the feeder structure, because it does real work beyond lowering the headline minimum. Revolut sits on top of each underlying fund and aggregates thousands of small positions into a single institutional-scale ticket. The underlying fund sees one large LP; retail clients see a simple app interface. That abstraction layer is what makes €1 viable, but it also means the retail holder has no direct relationship with the fund manager, no seat at any advisory board, and no recourse path that differs from what the feeder vehicle's terms allow. The fund manager's fiduciary obligation runs to the feeder, not to the individual. That distinction matters when things get complicated.</p>
+<p>The distribution fee arrangement — called retrocessions in European market practice, where a fund manager pays a share of its management fee back to the distributor for placing the product — is worth naming clearly because it creates an incentive that runs counter to the client's interest. Revolut has no economic reason to flag underperformance, push for fee reductions, or recommend switching. The more assets sit in the product, the larger the retrocession. This isn't unique to Revolut; it's how most fund distribution in continental Europe has worked for decades. But pairing it with a platform whose core value proposition is frictionless, low-cost access creates some tension that the launch press release skips over.</p>
+<p>The historical parallel that fits here is the retail structured product boom in Europe in the mid-2000s, when banks packaged complex credit exposures into apparently safe, yield-bearing instruments and distributed them through the same retail channels that sold savings accounts. The products were disclosed. The risks were in the prospectus. The buyers didn't read the prospectus, and the banks had no reason to summarize it helpfully. The first real stress test — 2008 — revealed the mismatch. No one is suggesting private markets ELTIFs are the same instrument, but the distribution dynamic rhymes: sophisticated manufacturer, incentivized distributor, under-informed end buyer, and a liquidity promise that holds until it is tested.</p>
+<p>For the GPs involved — Apollo and Ares are among the largest alternative asset managers in the world, each managing hundreds of billions; Partners Group is a Swiss-listed private markets firm managing roughly $150 billion; Hamilton Lane is a Philadelphia-based alts specialist — the retail channel also creates a brand risk that the fundraising math doesn't capture. Institutional LPs, the pension funds and sovereign wealth funds that write the large checks, are watching how these firms handle their first retail redemption queue. If a gate gets triggered and retail holders are locked in during a drawdown, the press coverage will not distinguish between the feeder structure's mechanics and the GP's reputation. The GP owns the headline.</p>
+<p>Revolut, meanwhile, is building something more durable than a distribution fee stream. It is accumulating a position as the mandatory intermediary between major asset managers and several million European retail accounts. The neobank — a digital-only bank with no physical branches, operating across 45 countries — now has four of the world's largest alts firms effectively dependent on its platform for retail access. That is a toll road, and Revolut just got four large trucks to agree to use it. The asset managers are renting distribution they do not own and cannot easily replicate. That is the durable competitive advantage in this story, and it belongs entirely to the platform.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://citywire.com/wealth-manager/news/revolut-signs-on-apollo-and-partners-group-for-private-markets-offering/a2494963" target="_blank" rel="noopener">Revolut signs on Apollo &amp; Partners Group for private markets offering</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-24.html#story-2-openai-s-agent-hacked-a-real-company-to-pass-a-test-the-cont">OpenAI's agent hacked a real company to pass a test. The containment thesis just broke.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-24.html#story-3-revolut-is-pricing-itself-that-s-not-the-same-as-being-price">Revolut is pricing itself. That's not the same as being priced.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-22.html#story-1-stripe-is-buying-paypal-to-hedge-not-to-win-the-deal-structu">Stripe is buying PayPal to hedge, not to win. The deal structure gives it away.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-nvidia-is-financing-its-own-customers-to-buy-its-own-chips-t" data-bucket="tech-ai" data-tags="Nvidia,OpenAI,AI Infrastructure,Credit Risk">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">Nvidia</span>
+<span class="tag">OpenAI</span>
+<span class="tag">AI Infrastructure</span>
+<span class="tag">Credit Risk</span>
+    </div>
+    <h2>Nvidia is financing its own customers to buy its own chips. The credit market noticed before the equity market did.</h2>
+    <ul class="tldr">
+      <li>Nvidia is reportedly weighing guarantees on $250B in data center debt and financing for $350B in chip purchases — both for OpenAI, a company with no clear path to positive unit economics on its core inference business.</li>
+<li>Credit default swaps on Nvidia bonds — a form of insurance against the company defaulting on its debt — posted their single largest intraday spike since they began actively trading in November, even as equity markets only dipped 4.5%.</li>
+<li>The Ohio data center at the center of the deal is being built by a SoftBank subsidiary, and SoftBank quietly sold its entire Nvidia stake in late 2025 — before the debt structure was announced.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Nvidia is reportedly weighing two things at once: guaranteeing $250 billion in debt for an OpenAI data center in Ohio, and financing OpenAI's purchase of $350 billion of Nvidia chips. Combined, that's roughly $600 billion of Nvidia balance-sheet exposure pointed at a single customer that loses money on every token it serves. What makes this instance different from the usual &quot;circular financing&quot; hand-wringing isn't the reciprocity — it's that the debt market finally reacted. Credit default swaps on Nvidia bonds posted their largest intraday jump since they began actively trading in November. The equity crowd shrugged at 4.5% down; the credit crowd is the one that prices tail risk, and it just repriced.</p>
+<p>Here's what's actually going on. Nvidia isn't investing in OpenAI. It's underwriting demand for its own product using its own balance sheet, then booking the resulting chip sales as third-party revenue at a 75% margin. That's not a virtuous flywheel — it's vendor financing dressed up as strategic partnership, and we have seen this exact movie. Lucent did it into the CLECs in 1999, guaranteeing customer debt to keep switch orders flowing, and it worked beautifully until the customers couldn't pay and the receivables became write-offs. The tell is the SoftBank detail buried in the reporting: the Ohio developer is a SoftBank arm, and SoftBank dumped its entire Nvidia stake in late 2025. The people closest to the deal are selling the equity while structuring the debt. Read that twice.</p>
+<p>The consensus frame is that Jensen is simply deploying &quot;oodles of cash&quot; to seed the ecosystem, and that a $5 trillion company can afford to be patient capital. Wrong lens. A guarantee is not cash — it's a contingent liability that lives off the balance sheet until the moment it doesn't, at which point it lands all at once. If OpenAI's economics don't turn — and there is no line of sight to positive unit economics on frontier inference at current token pricing — Nvidia doesn't just lose a customer. It absorbs the customer's debt, its own stranded receivables, and a decommissioned uranium site with a $33 billion gas plant attached. The correlation everyone is ignoring is that Nvidia's revenue and Nvidia's credit risk are now the same bet.</p>
+<p>For allocators, the read-across is not &quot;short Nvidia.&quot; It's that the AI trade has quietly migrated from an equity story to a credit story, and the two are diverging. When the world's most profitable company starts guaranteeing its customers' debt to sustain its own order book, you are late in the cycle, not early. The Sutskever investment on the same day — buying &quot;rare access&quot; to a firm with no product — is the same impulse: manufacturing demand signals because organic ones are thinning. Watch the CDS spread, not the stock. The bond desk is telling you what the sell-side won't.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bull case here is not naive. Nvidia has a 75% profit margin and a $5 trillion market cap, which means it has genuine capacity to act as a strategic lender without putting the company at existential risk. More importantly, if these guarantees allow OpenAI to raise cheap debt and buy more chips, Nvidia wins twice — it collects the margin on hardware sales and positions itself as the indispensable infrastructure layer for the dominant AI application developer. Vendor financing has a long history of working when the underlying customer eventually generates real cash flows, and a reasonable person could look at ChatGPT's 500 million weekly active users and bet that monetization catches up to cost.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Lucent comparison in the take is the right historical frame, but it is worth spelling out the mechanism for readers who weren't tracking telecom in 1999. Lucent Technologies, then the dominant maker of telephone networking equipment, spent the late 1990s guaranteeing loans to small telecom startups — called CLECs, or competitive local exchange carriers — so those startups could afford to buy Lucent's switches. Lucent booked the equipment sales as revenue immediately, at healthy margins, while the loan guarantees sat quietly off the main financial statements. When the telecom bubble burst, the CLECs couldn't service their debt, the guarantees converted into real liabilities, and Lucent wrote down billions in a single quarter. The stock fell roughly 90% from peak to trough. The structure here is not identical, but the logic is the same: a hardware manufacturer using its own balance sheet to manufacture demand, then counting the resulting orders as organic revenue growth.</p>
+<p>What makes the current setup more fragile than the headline numbers suggest is the concentration risk. Lucent had dozens of CLEC customers. Nvidia is reportedly structuring $600 billion of exposure pointed at one counterparty — OpenAI — whose entire business model depends on token pricing that is actively compressing. Every major cloud provider is building or acquiring frontier models, open-weight alternatives are closing the capability gap, and the average price per token has fallen dramatically over the past eighteen months. OpenAI is not a bad company, but it is a company trying to monetize at scale a product whose marginal cost is high and whose competitive pricing pressure is relentless. There is no scenario where that math gets easier if Nvidia needs to call in its guarantees.</p>
+<p>The SoftBank detail deserves more attention than it has received. SoftBank is the developer on the Ohio site and one of the most aggressive AI infrastructure investors in the world — its Vision Fund has placed bets across the AI stack for years. When SoftBank quietly liquidated its Nvidia equity position in late 2025 and then turned around to structure a deal where Nvidia guarantees the debt on a SoftBank-developed data center, the incentives become visible. SoftBank gets cheap financing backstopped by Nvidia's balance sheet. Nvidia gets a large chip order it can book as revenue. OpenAI gets compute. Everyone wins on paper, and the contingent liability lives off the income statement until it doesn't.</p>
+<p>The Sutskever investment is the smaller but more revealing signal. Safe Superintelligence, the startup co-founded by former OpenAI chief scientist Ilya Sutskever, has no commercial product and has disclosed almost nothing about its research. Nvidia announced a partnership on the same day as the OpenAI financing news, framing it as gaining rare access to closely guarded work. What it actually is, almost certainly, is Nvidia paying for a future demand signal — locking in a relationship with a credible AI lab before that lab has proven it needs the chips. When a company with genuine organic demand cannot sustain your order book, you start buying options on speculative future demand. That is not ecosystem building. That is a company worried about what happens when the current wave of hyperscaler capex plateaus.</p>
+<p>For anyone watching AI infrastructure as an investment category, the relevant question is no longer whether GPU demand is real — it clearly is — but who is ultimately bearing the credit risk embedded in the demand. The answer, increasingly, is Nvidia itself.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://www.axios.com/2026/07/27/nvidia-openai-financing-ai-jensen-huang-ssi" target="_blank" rel="noopener">Nvidia reignites &quot;circular&quot; AI concerns as it weighs OpenAI financing guarantee</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-27.html#story-2-big-tech-s-open-weight-letter-is-a-margin-defense-dressed-as">Big Tech's open-weight letter is a margin defense dressed as principle. The absentees are the tell.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-27.html#story-3-the-ai-bottleneck-moved-from-chips-to-memory-the-market-hasn">The AI bottleneck moved from chips to memory. The market hasn't caught up.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-07-24.html#story-2-openai-s-agent-hacked-a-real-company-to-pass-a-test-the-cont">OpenAI's agent hacked a real company to pass a test. The containment thesis just broke.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+
+    function applyFilters() {
+      stories.forEach(function (el) {
+        var bucketMatch = currentBucket === "all" || el.dataset.bucket === currentBucket;
+        var tags = (el.dataset.tags || "").split(",");
+        var tagMatch = currentTag === "all" || tags.indexOf(currentTag) !== -1;
+        el.classList.toggle("hidden", !(bucketMatch && tagMatch));
+      });
+    }
+
+    document.querySelectorAll(".tab").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".tab").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentBucket = btn.dataset.bucket;
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll(".tag-filter").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".tag-filter").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentTag = btn.dataset.tag;
+        applyFilters();
+      });
+    });
+  })();
+</script>
+</body>
+</html>
