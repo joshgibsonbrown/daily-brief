@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Wednesday, August 12, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 12px; }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .sources ul, .related ul { padding-left: 20px; margin: 0; }
+  .sources a, .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Wednesday, August 12, 2026</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-bucket="all">All</button>
+<button class="tab" data-bucket="private-markets">Private Markets</button>
+<button class="tab" data-bucket="iconiq-portfolio">ICONIQ Portfolio Companies</button>
+<button class="tab" data-bucket="wealth-planning">Family Office &amp; Wealth Planning</button>
+<button class="tab" data-bucket="tech-ai">Tech &amp; AI</button>
+  </nav>
+
+  <nav class="tag-filters">
+    <button class="tag-filter active" data-tag="all">All tags</button>
+<button class="tag-filter" data-tag="Agentic AI">Agentic AI</button>
+<button class="tag-filter" data-tag="China">China</button>
+<button class="tag-filter" data-tag="Fintech">Fintech</button>
+<button class="tag-filter" data-tag="Fundraising">Fundraising</button>
+<button class="tag-filter" data-tag="GP Dynamics">GP Dynamics</button>
+<button class="tag-filter" data-tag="Greater China">Greater China</button>
+<button class="tag-filter" data-tag="Infrastructure">Infrastructure</button>
+<button class="tag-filter" data-tag="Nvidia">Nvidia</button>
+<button class="tag-filter" data-tag="Offshore Structures">Offshore Structures</button>
+<button class="tag-filter" data-tag="Open Source">Open Source</button>
+<button class="tag-filter" data-tag="Private Credit">Private Credit</button>
+<button class="tag-filter" data-tag="Secondaries">Secondaries</button>
+<button class="tag-filter" data-tag="Tax Policy">Tax Policy</button>
+<button class="tag-filter" data-tag="Wealth Channel">Wealth Channel</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-nvidia-is-guaranteeing-its-own-chips-value-that-s-not-confid" data-bucket="tech-ai" data-tags="Nvidia,Private Credit,Infrastructure">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">Nvidia</span>
+<span class="tag">Private Credit</span>
+<span class="tag">Infrastructure</span>
+    </div>
+    <h2>Nvidia is guaranteeing its own chips' value. That's not confidence — it's a confession.</h2>
+    <ul class="tldr">
+      <li>Nvidia signed letters of intent with Apollo, BlackRock, Blackstone, Brookfield, Goldman Sachs, and KKR to mobilize over $500 billion for AI data centers, chip factories, and power plants.</li>
+<li>To make the financing work, Nvidia is backstopping up to 25 percent of the residual value of its own installed chips on a project-by-project basis — meaning it covers part of the gap if hardware is worth less than expected when the financing term ends.</li>
+<li>Michael Burry has argued that GPU depreciation schedules are understated by roughly $176 billion between 2026 and 2028; Morgan Stanley projects hyperscaler capital spending of $3.5 trillion over the same period.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Nvidia just signed letters of intent with Apollo, BlackRock, Blackstone, Brookfield, Goldman, and KKR to mobilize over $500 billion for AI data centers, and to grease it, Nvidia is guaranteeing up to 25 percent of the residual value of its own chips inside those projects. The stock dropped 1.4 percent on the news, wiping out $70 billion. That reaction is the tell, and it's correct: the market just watched a chip vendor volunteer to eat the depreciation risk on its own product, and understood, correctly, that you only do that when the buyers won't take it themselves.</p>
+<p>Strip the &quot;productive infrastructure like power grids&quot; language and here's what the deal actually is. The whole bull case for financing GPUs like a utility rests on the chips holding value over a five-to-ten-year life. If that were true, the capital providers wouldn't need a residual-value backstop — they'd underwrite it the way they underwrite a gas turbine. The fact that $500 billion won't move without Nvidia personally standing behind a quarter of the resale value is a confession that the smartest balance sheets in the world — the ones who literally own the secondaries market — don't believe an H100 is worth what the depreciation schedules say in year six. Michael Burry priced the gap at roughly $176 billion of understated depreciation through 2028. Jensen just implicitly agreed with him and offered to plug part of the hole himself.</p>
+<p>Watch where the risk actually sits after the structuring. Nvidia keeps the revenue — every dollar of this $500 billion flows back through its order book — and offloads the customer credit assessment onto Apollo, Blackstone, and the rest, who then repackage it into private credit that the Bank of England already warned has &quot;limited visibility into indirect exposure.&quot; Nvidia takes a capped, project-by-project 25 percent second-loss position and calls it &quot;significantly lower than other arrangements.&quot; That's a vendor-financing flywheel dressed as infrastructure finance. The seller subsidizes the buyer's cost of capital to keep unit volume up. Lucent did exactly this into the CLECs in 2000. The revenue was real right up until the customers couldn't pay.</p>
+<p>The read-across for allocators is the residual-value curve, not the headline number. Huang's evidence that chips hold value is rising rental prices — H100 hours went from $1.70 to $2.35, B200s at $5.30 to $7.05. Those are spot-tight utilization prints in a supply-constrained moment, not a durable asset life. The moment training demand normalizes or a cheaper inference stack undercuts the rental economics, the residual guarantees convert from an unfunded footnote into a real liability on Nvidia's books, and the private credit tranches sitting on top reprice violently. If you're allocating into any of these six firms' AI infrastructure vehicles, the question isn't the yield — it's who is actually long the depreciation, and the answer is you.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Jensen Huang's case isn't purely rhetorical. The A100, Nvidia's flagship chip from 2020, is genuinely still in commercial deployment six years later, and H100 rental rates have risen — not collapsed — from $1.70 per GPU-hour in October 2025 to $2.35 by March 2026. If AI compute demand continues compounding and CUDA's software improvements keep older hardware economically relevant, the residual-value guarantees may never get called, and Nvidia will have unlocked a self-reinforcing infrastructure financing platform at minimal real cost to itself. The bull case is that this is less vendor subsidy and more a signaling mechanism — Nvidia putting skin in the game precisely because it knows the chips will hold.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Lucent comparison in the take is the right historical lens, but it's worth being precise about the mechanism, because the current structure is actually more complex and therefore harder to see clearly. Lucent Technologies, the telecom equipment giant, spent the late 1990s lending money to its own customers — the CLECs, or competitive local exchange carriers, small telecom startups trying to build out fiber networks — so those customers could buy Lucent gear. Revenue boomed. Then the CLECs went bankrupt, the loans went bad, and Lucent's income statement unwound almost in real time. The lesson wasn't that vendor financing is always fraud. It's that vendor financing masks the moment when end demand stops being organic and starts being credit-manufactured. That distinction matters here because Nvidia's structure is cleverer than Lucent's was. Nvidia isn't booking the loans itself in any direct sense. It is instead guaranteeing a slice of residual value while six of the most sophisticated capital allocators on earth — Apollo and KKR run hundreds of billions in private credit between them — do the actual underwriting. Nvidia gets to say the credit risk stays with the lenders, and technically that's true. The problem is that the guarantee means the lenders' underwriting is partly a function of Nvidia's own financial health, which is itself a function of the very order volume this financing is designed to generate. The circularity isn't hidden — Huang acknowledged it directly and argued the guarantees address it — but acknowledging a conflict and resolving it are different things. What the structure actually does is distribute the risk in ways that are hard to trace in aggregate. The Bank of England's July Financial Stability Report flagged exactly this: banks and private credit vehicles have limited visibility into their indirect exposure to AI infrastructure. When a pension fund buys into a Blackstone private credit vehicle that is partly backstopped by an Nvidia residual-value guarantee on H100s leased to a mid-tier cloud provider, the pension fund's actual exposure to GPU depreciation is real but essentially invisible on its own reporting. Multiply that across the six firms and $500 billion and you have a systemically significant concentration of depreciation risk that has been sliced, structured, and distributed into portfolios that don't disclose it as such. The rental-price data Huang cites as proof of durable chip value is also worth stress-testing. Spot GPU rental markets are tight right now because supply has been constrained and training demand from large model builders remains intense. But the economics of AI infrastructure are shifting from training — which requires massive short-burst compute — toward inference, which runs on cheaper, more efficient hardware and benefits from continued algorithmic improvements that reduce compute requirements per query. If inference economics continue improving the way they have over the last two years, the long-run demand for expensive H100 and B200 capacity is not obviously stable. A softer rental market in 2027 or 2028 would pressure the residual values that the entire financing stack is built on, and Nvidia's project-by-project guarantees would start converting from contingent footnotes into funded liabilities. At that point, the company is simultaneously trying to sell the next GPU generation and absorb losses on the last one — a position that would test even Nvidia's extraordinary balance sheet.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://the-decoder.com/nvidia-guarantees-its-own-chips-value-to-unlock-500-billion-in-ai-infrastructure-financing/" target="_blank" rel="noopener">Nvidia guarantees its own chips' value to unlock $500 billion in AI infrastructure financing</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-10.html#story-0-blackrock-just-sold-its-own-loan-book-at-a-discount-and-call">BlackRock just sold its own loan book at a discount and called it a win. The math explains everything.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-10.html#story-1-infrastructure-secondaries-is-the-exit-ramp-nobody-built-par">Infrastructure secondaries is the exit ramp nobody built. Partners Group just built it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-10.html#story-2-korea-just-locked-ai-memory-through-2033-the-us-is-funding-t">Korea just locked AI memory through 2033. The US is funding the wrong end of the pipeline.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-continuation-vehicles-hit-an-eight-year-high-gps-are-winning" data-bucket="private-markets" data-tags="GP Dynamics,Secondaries,Fundraising">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">GP Dynamics</span>
+<span class="tag">Secondaries</span>
+<span class="tag">Fundraising</span>
+    </div>
+    <h2>Continuation vehicles hit an eight-year high. GPs are winning, LPs are financing it.</h2>
+    <ul class="tldr">
+      <li>Global continuation funds raised $63 billion in 2025 — an eight-year record — across 105 closed vehicles, per Preqin data cited by S&amp;P Global Market Intelligence.</li>
+<li>LPs who signed up for 7- or 10-year funds are now sitting at year 12 or 14 with no exit in sight, according to STP Investment Services director David Goldstein.</li>
+<li>Paul O'Brien, trustee for the $13 billion Wyoming Retirement System, proposed that GPs refund 10% of management fees if they fail to return all capital within ten years — a fix the industry has not adopted.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Continuation vehicles just hit an eight-year high: $63 billion raised globally last year across 105 closed funds, per Preqin, with another $11.86 billion in twenty vehicles already done by early May. The industry frames this as an elegant liquidity solution for a broken exit market. It's worth writing about because the mechanism has quietly inverted — the CV was born as an LP rescue and has become a GP fee-extension machine, and one Wyoming trustee just said the quiet part out loud.</p>
+<p>Here's what's actually going on. When a GP moves a winning asset from an aging fund into a continuation vehicle, it isn't primarily solving your liquidity problem — it's resetting its own clock. New fund, new management fee, new carry hurdle, on an asset the GP already knows is good because it hand-picked which ones to roll. Paul O'Brien, the Wyoming Retirement System trustee, nailed the structural theft: LPs &quot;have given away a very valuable option&quot; by letting the GP decide when and what to sell. That option has real value, and right now LPs are handing it over for free. His proposed fix — GPs refund 10% of management fees if they don't return all capital in ten years — will never get adopted, and the fact that it sounds radical tells you how far the balance of power has tilted.</p>
+<p>The tell is the adverse selection nobody prices. A GP rolling its best asset into a CV is running the same trade a used-car dealer runs: they know something you don't about the car they're keeping. If the asset were truly going to compound at 20% for another five years, why offer you the exit at all? And if it's being sold into the CV at a &quot;fair&quot; mark, who set that mark? The GP, on both sides of the table, with the secondary buyer as the only genuine price discovery — and that buyer is demanding 10–20% discounts to NAV for a reason. When the seller, the buyer's counterparty, and the ongoing manager are the same firm, &quot;fair value&quot; is a negotiation with a mirror.</p>
+<p>The read-across for allocators is simpler than the II framing suggests. Mark Baumgartner at Florida's endowment is right that liquidity is expensive — but the deeper point is that CVs let GPs grow AUM without ever proving DPI, distributions to paid-in, the only metric that counts cash back in your account. A GP that keeps rolling winners into CVs never has to show you a clean realized track record. If you're an LP consenting to CVs on autopilot, you're financing your manager's next fundraise with your own trapped capital. Demand the option premium in cash, or don't roll.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The exit market is genuinely broken, and a GP forcing a discounted sale in year twelve to satisfy fund documents isn't serving anyone. Continuation vehicles, when used correctly, let a high-quality asset compound rather than getting liquidated into a thin M&amp;A market at 30 cents below fair value. Secondary buyers — specialized investors who purchase LP stakes or assets from existing funds — do provide real price discovery, and the discounts they demand are the market's honest signal, not a fiction the GP controls. If an LP doesn't like the terms, the whole structure of a CV gives them the explicit choice to cash out; that optional exit is worth something compared to a forced hold in an illiquid fund with no bid at all.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The structural story here runs deeper than a bad exit cycle. Continuation vehicles — funds that let a GP transfer select assets out of an aging fund into a fresh vehicle, often with new economics — were originally a niche tool for genuinely idiosyncratic situations: a company on the verge of a major catalyst that needed two more years of runway. The volume now, $63 billion in a single year, signals something different. This is no longer a surgical instrument. It has become standard operating procedure for managing fund life cycles in a market where the IPO window is mostly shut and strategic buyers are cautious.</p>
+<p>The fee math is what makes the incentive so durable. A typical buyout fund charges a management fee of 1.5 to 2% annually on committed or invested capital. When that fund ages out and the GP rolls a prized asset into a continuation vehicle, the fee clock resets on the rolled assets. Carry — the roughly 20% profit share GPs collect above a return threshold — also resets to a fresh hurdle on the new vehicle. So the GP is being paid again, on the same asset, with the same people doing the same work, because the paperwork changed. That is not a scandal, exactly, but it is a transfer of value from LP to GP that never appears as a line item on any fee disclosure.</p>
+<p>The adverse selection problem compounds this. A GP choosing which assets to roll into a CV is not making that decision neutrally. The assets staying in the old fund to be wound down are, on average, the ones the GP is less excited about. The assets going into the new vehicle are the hand-picked winners with perceived upside. LPs in the old fund who elect to cash out are therefore selling their share of the good stuff, often at a valuation the GP had significant influence over, while the GP retains full management control on the other side. Secondary buyers — the investors who provide liquidity to exiting LPs — understand this, which is why they consistently price these transactions at discounts of 10 to 20% to the GP's stated net asset value. That discount is the market pricing the information asymmetry directly.</p>
+<p>Mark Baumgartner, the CEO and CIO of the University of Florida Investment Corp., which manages roughly $8 billion in endowment assets, framed the LP dilemma honestly: liquidity is expensive, so paying for it through concentration and illiquidity in a CV is a known tradeoff. But the second-order consequence he gestured at is more corrosive than the first-order cost. GPs who can perpetually roll winning assets never have to produce a clean realized return record. DPI — distributions to paid-in capital, meaning actual cash returned relative to what LPs put in — is the only metric that cannot be massaged with a mark. A manager running a string of continuation vehicles can post strong unrealized multiples for a decade without ever showing you what the assets actually cleared in a sale. That makes the next fundraise easier to pitch and the historical record genuinely harder to audit.</p>
+<p>The LP community's leverage here is real but requires coordination it rarely achieves. Demanding GP-commits above the typical 1 to 2% of fund size into continuation vehicles, insisting on independent third-party valuations before a roll closes, or simply voting no more often would all shift the economics. O'Brien's fee-clawback proposal is unlikely to become market standard, but the logic behind it is sound: if you are going to hold my capital for fourteen years, your fee structure should reflect that obligation, not reward the extension.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://www.institutionalinvestor.com/article/continuation-vehicles-ease-pressure-managers-lps-question-tradeoff" target="_blank" rel="noopener">Continuation Vehicles Ease Pressure on Managers, But LPs Question the Tradeoff</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-10.html#story-0-blackrock-just-sold-its-own-loan-book-at-a-discount-and-call">BlackRock just sold its own loan book at a discount and called it a win. The math explains everything.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-10.html#story-1-infrastructure-secondaries-is-the-exit-ramp-nobody-built-par">Infrastructure secondaries is the exit ramp nobody built. Partners Group just built it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-07.html#story-0-gic-is-selling-kkr-and-eqt-stakes-the-liquidity-crisis-pe-wo">GIC is selling KKR and EQT stakes. The liquidity crisis PE won't name is the reason.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-alibaba-is-giving-away-its-best-model-the-pricing-tells-you-" data-bucket="tech-ai" data-tags="China,Open Source,Agentic AI">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">China</span>
+<span class="tag">Open Source</span>
+<span class="tag">Agentic AI</span>
+    </div>
+    <h2>Alibaba is giving away its best model. The pricing tells you exactly why.</h2>
+    <ul class="tldr">
+      <li>Qwen 3.8-Max is a 2.4 trillion parameter sparse mixture-of-experts model — meaning only about 95 billion parameters actually run per request — priced at API parity with OpenAI's GPT-5.6 at $2 per million input tokens and $6 per million output tokens.</li>
+<li>On the crowdsourced Arena.AI leaderboard, Qwen 3.8-Max ranked highest among Chinese models for text tasks and second globally for vision, while still trailing several Anthropic models in general rankings.</li>
+<li>A companion open-weights checkpoint, Qwen 3.8-27B, ships alongside the flagship — and for most developers running real workloads, the smaller model is the practically deployable one.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Alibaba is about to open-source a 2.4 trillion parameter frontier model, Qwen 3.8-Max, with the weights due to land this week. What makes this one worth reading isn't the parameter count — it's that Alibaba priced the hosted API at exact parity with GPT-5.6, $2 in and $6 out, and then said it would give the weights away anyway. Read those two decisions together and the strategy is unmistakable.</p>
+<p>Every Chinese lab before this priced to undercut. DeepSeek still sells at a fraction of these rates because cheapness was the whole pitch. Alibaba is doing the opposite: it's telling the market this model is worth Western frontier prices, then destroying its own margin on that claim by handing you the weights for free. That is not a pricing mistake. It's a positioning move. The API price is there to establish the quality anchor — &quot;we're as good as OpenAI&quot; — and the open release is there to make sure nobody has to pay OpenAI to find out. You cannot do that if you're actually trying to make money on inference. You only do it if the product you're selling is the standard, not the tokens.</p>
+<p>The tell nobody is pricing is the compatibility layer. Alibaba shipped API compatibility with both the OpenAI and Anthropic interfaces, which means an enterprise running an existing agent stack can repoint it at Qwen with a config change. That is the quiet knife. The Western labs have spent two years assuming their moat is switching cost — the integration debt, the tooling, the fine-tuned workflows. Alibaba just wrote that debt down to near zero and attached it to a free, self-hostable model. The frontier labs will call this commoditization at the low end. It isn't. It's commoditization aimed squarely at the interface layer that was supposed to be sticky.</p>
+<p>For your purposes the sharper split is between the two products wearing the same name. Send prompts to the hosted API and your traffic sits under China's Cybersecurity and Data Security Laws — a non-starter for anyone regulated. Download the weights and run them on your own metal and that jurisdiction problem evaporates entirely. Alibaba knows exactly which half of that trade it's subsidizing. Self-hosting is the wedge that turns a Chinese model into a sovereign-safe one, and the free weights are how it gets into the building.</p>
+<p>Two caveats before anyone reallocates. Every benchmark here is vendor-reported, the 16-day autonomous coding run is an internal test with no external replication, and Alibaba's open timeline has already slipped once for compute reasons. Until files actually appear on Hugging Face this is an announcement. But if the weights land as described, the story isn't that China caught up. It's that the West's pricing premium now has to be re-justified against something free that plugs into their own APIs.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Benchmark parity on vendor-reported tests and crowdsourced leaderboards is not the same as parity where enterprise decisions actually get made — on reliability over long agentic runs, on support contracts, on accountability when something breaks in production. OpenAI and Anthropic have compliance programs, indemnification structures, and enterprise sales relationships that took years to build. A free model with slipped release timelines and no external replication of its flagship demos does not automatically inherit that trust. The data jurisdiction risk on the hosted API is also real and non-negotiable for financial services, healthcare, and defense buyers, which together represent the highest-value segment of the enterprise market.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The parameter count is the headline, but the architecture is the actual news. Qwen 3.8-Max uses a sparse mixture-of-experts design — a method where the model is divided into many specialized sub-networks, and only a fraction of them activate for any given input. The result is a model that advertises 2.4 trillion parameters but runs the compute equivalent of roughly 95 billion on each request. That gap between headline size and operational cost is why the API pricing at GPT-5.6 parity is even feasible. Alibaba is not eating the inference bill on a model that actually costs 25 times more to run than it charges.</p>
+<p>Still, the parity price is a deliberate signal aimed at a specific audience. Enterprise AI procurement is not primarily a cost-per-token decision for the highest-value use cases — it is a capability conversation. By refusing to undercut, Alibaba forces the conversation onto quality rather than letting buyers file it under 'cheap Chinese alternative.' That repositioning matters more than the dollar figure. DeepSeek, the Chinese AI lab that made waves in 2025 by releasing strong open models at a fraction of Western prices, succeeded in proving China could build competitive models. Alibaba is now arguing it can build the best ones, and pricing to match.</p>
+<p>The open-weights release then does something separately important: it removes the hosted API from the critical path entirely for buyers who care about data control. An enterprise that downloads the weights and runs them on its own servers never touches Alibaba's infrastructure. China's Cybersecurity Law and Data Security Law, which require companies operating in China to store and process certain data domestically and give Chinese authorities access under defined conditions, apply to the hosted product. They do not follow the weights onto a European hyperscaler or an on-premise data center in Ohio. Alibaba is effectively offering two products — one that is a compliance problem and one that is not — and subsidizing the safer one by making it free.</p>
+<p>The compatibility layer with OpenAI and Anthropic's developer interfaces is worth dwelling on. The major Western labs have built ecosystems around their APIs — toolkits, agent frameworks, fine-tuning pipelines, deployment integrations. The assumption has been that this ecosystem creates lock-in: once a team has built workflows on top of a particular interface, the cost of moving is high enough to keep them paying. Alibaba's decision to mirror those interfaces directly means the switching cost is now a configuration file, not a rewrite. That is a structural attack on the moat, not a feature addition.</p>
+<p>The agentic framing of the launch also deserves scrutiny separate from the benchmark debate. The 16-day autonomous coding run — 265 commits, 127 pull requests, described as a continuous self-directed development loop — is interesting not as verified evidence but as a product thesis. Alibaba is not positioning this as a better chatbot. It is positioning it as infrastructure for long-running autonomous work, the category where the next wave of enterprise software spend is likely to concentrate. Whether the internal demos hold up under independent testing is an open question. What is not open is that Alibaba is building toward the same target as every serious lab right now, and it is doing so with a model that anyone can download, inspect, and modify.</p>
+<p>The release timeline has slipped before — compute was reportedly redirected ahead of an earlier window — and until weights appear on Hugging Face or ModelScope, this remains an announcement. License terms also matter: open weights and open source are legally distinct, and restrictions on commercial use or fine-tuning can meaningfully limit what developers actually do with a model. Watch for both when the files land.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://optimisus.com/news/ai-news/alibaba-built-a-2-4-trillion-parameter-model-then-announced-it-would-give-the-weights-away/" target="_blank" rel="noopener">Alibaba Is Giving Away a 2.4 Trillion Parameter Model. The Weights Land This Week</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-10.html#story-2-korea-just-locked-ai-memory-through-2033-the-us-is-funding-t">Korea just locked AI memory through 2033. The US is funding the wrong end of the pipeline.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-07.html#story-2-beijing-ended-the-ambiguity-that-made-offshore-trusts-work-t">Beijing ended the ambiguity that made offshore trusts work. The 20% is a floor.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-07.html#story-3-every-frontier-lab-is-building-its-own-chip-that-s-a-distres">Every frontier lab is building its own chip. That's a distress signal, not a flex.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-coller-capital-isn-t-chasing-wealth-money-it-s-racing-to-own" data-bucket="iconiq-portfolio" data-tags="Secondaries,Wealth Channel,Fintech">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Secondaries</span>
+<span class="tag">Wealth Channel</span>
+<span class="tag">Fintech</span>
+    </div>
+    <h2>Coller Capital isn't chasing wealth money. It's racing to own the rails before someone else does.</h2>
+    <ul class="tldr">
+      <li>Titanbay's TradeEngine is the first software purpose-built to automate evergreen private markets fund subscriptions, redemptions, and allocations end-to-end at scale for the wealth channel</li>
+<li>Coller Capital, a London-based secondaries specialist with over 35 years in the market, is the first GP to distribute through the platform to European wealth managers</li>
+<li>Blackstone's BREIT — a flagship real estate evergreen fund — gated investor redemptions in late 2022 and spent roughly a year managing the fallout, a direct precedent for the structural risk being scaled here</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Titanbay, a London fintech that builds distribution plumbing for private markets, just partnered with Coller Capital to push Coller's evergreen secondaries funds into European wealth managers through a piece of software Titanbay calls TradeEngine. The pitch is operational: automate the subscriptions, redemptions and allocations that have historically made it a nightmare to sell an illiquid, decade-locked asset to an individual client who might want out in three years. That's the news. The more interesting thing is what it tells you about where the secondaries land grab is actually being fought.</p>
+<p>The consensus read is that Coller is chasing wealth because institutional secondaries fundraising is crowded and the private-wealth channel is the last big pool of undeployed capital. True, but shallow. The real move is that Coller is trying to lock in distribution rails before the rails commoditize. Whoever owns the operational layer between the wealth manager's book and the fund's subscription desk owns the customer relationship, and right now nobody does. Titanbay is betting it can be the Plaid of evergreen private markets — the connective software everyone routes through. That's a far more valuable position than being one more secondaries GP among Ardian, Lexington, HarbourVest and a dozen others.</p>
+<p>Here's the tell nobody's pricing. Evergreen structures are being sold as the solution to private markets illiquidity, but they don't remove the illiquidity — they mutualize it. When you let a wealth client &quot;redeem&quot; from a fund holding decade-locked secondary stakes, the redemption is only honored as long as inflows exceed outflows. That works beautifully in a rising market and fails precisely when clients want their money most. We have seen this movie: Blackstone's BREIT gated redemptions in late 2022 and spent a year fighting the narrative. The operational elegance of TradeEngine makes it trivially easy to subscribe and, on paper, to redeem. It does nothing about whether the cash is actually there on the other side of the button.</p>
+<p>So the second-order effect is a liquidity-mismatch machine being built at wealth-channel scale, wrapped in fintech convenience and marketed as democratization. The seasoned-portfolio pitch — secondaries are already diversified and mature, so they throw off distributions faster — is real and does cushion the mismatch better than a primary buyout fund would. That's why Coller, of all the GPs, is a sensible first mover here. But the structural risk migrates from the GP to the wealth manager who put the client in and the platform that made it one click.</p>
+<p>For an allocator, the read-across is simple: the value is accruing to the plumbing, not the product. Watch who owns TradeEngine's equity and who else plugs into it. The interesting question isn't whether Coller raises the money. It's whether Titanbay becomes infrastructure — or gets bought by the first GP that realizes owning the pipe beats renting it.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bearish read on evergreen structures generally misses how different secondaries are from the underlying assets they hold. Coller's funds buy stakes in funds that are already three to seven years into their lives, meaning the portfolio companies are more mature, distributions are already flowing, and the J-curve drag — the early-years performance dip typical of new private equity funds — is largely gone. That seasoning means cash flows back to the fund faster and more predictably than in a primary buyout vehicle, which genuinely reduces the gap between what investors expect in redemptions and what the fund can actually deliver. It doesn't eliminate liquidity mismatch, but it makes the mismatch materially more manageable, and that distinction matters when you're stress-testing whether BREIT 2022 is the right analogy.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The secondaries market has grown at a pace that would have looked implausible a decade ago. Total secondary transaction volume hit roughly $160 billion in 2023, and the buyer pool has shifted from a handful of specialists to a crowded field including Ardian, Lexington Partners, HarbourVest, and a growing list of GP-led continuation vehicles that blur the line between primary and secondary altogether. In that environment, differentiation on pure investment skill gets harder every cycle. The pitch that Coller is making here is essentially that access and convenience can be a moat where returns are converging.</p>
+<p>That's a bet on distribution infrastructure, and it's worth taking seriously on its own terms. The analogy to Plaid — the fintech that became the invisible connection layer between bank accounts and financial apps, eventually attracting a $5.3 billion acquisition offer from Visa before antitrust killed the deal — is more than rhetorical. Plaid won not because it had a better product than any one bank, but because it sat between every bank and every app that needed to talk to one. TradeEngine is attempting the same positioning: not to be the best fund, but to be the pipe every fund has to use to reach the wealth channel. If it gets there first and builds enough switching costs, the question of which GP product flows through it becomes secondary.</p>
+<p>The mechanism by which switching costs build is operational entrenchment. Wealth managers hate replatforming. Once a firm's compliance workflows, client reporting, and back-office reconciliation are running through a single system, the cost of migrating to a competitor is measured in months of pain and meaningful operational risk. That's the same logic that locked the advisory industry into Orion or Black Diamond for portfolio reporting long after newer tools existed. Titanbay is betting that being first to solve this specific problem — end-to-end automation for evergreen private markets — creates the same kind of stickiness.</p>
+<p>The historical parallel worth keeping in mind is not just BREIT. It's also the experience of Irish and Luxembourg UCITS fund platforms in the early 2000s, which became the default plumbing for distributing long-only funds across European retail wealth channels. The firms that built that infrastructure — clearinghouses, transfer agents, fund administrators — extracted durable economics from the market for twenty years, largely independent of how well any individual fund performed. Nobody who invested in those platforms in 2003 cared which equity manager was hot that year.</p>
+<p>The second-order risk that deserves more attention than it's getting is regulatory. European regulators have been watching the democratization-of-private-markets narrative closely, and ESMA — the EU's securities watchdog — has already flagged concerns about liquidity mismatch in alternative UCITS and ELTIF structures. An ELTIF, or European Long-Term Investment Fund, is a regulatory vehicle designed to let retail investors access infrastructure and private equity. The newest ELTIF rulebook, updated in 2023, allows limited redemption windows specifically to manage this mismatch. If a platform like TradeEngine makes it trivially easy for wealth managers to onboard clients into structures that carry this risk, the regulatory response in a stress scenario is unlikely to be gentle — and it will land on the distributor, not just the GP.</p>
+<p>For anyone tracking ICONIQ's portfolio, the practical read is this: Titanbay's value is not being priced as infrastructure yet, but the partnership with Coller is the kind of anchor relationship that starts the clock on that rerating. Watch for the next GP announcement on the platform. If two or three names sign on, the pipe thesis becomes real. If Coller stays the only tenant, it's a distribution deal, not a platform.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://funds-europe.com/titanbay-and-coller-capital-partner-to-expand-access-to-evergreen-secondaries/" target="_blank" rel="noopener">Titanbay and Coller Capital partner to expand access to evergreen secondaries</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-10.html#story-0-blackrock-just-sold-its-own-loan-book-at-a-discount-and-call">BlackRock just sold its own loan book at a discount and called it a win. The math explains everything.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-10.html#story-1-infrastructure-secondaries-is-the-exit-ramp-nobody-built-par">Infrastructure secondaries is the exit ramp nobody built. Partners Group just built it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-10.html#story-3-openai-s-safety-disclosure-is-a-product-launch-in-disguise-t">OpenAI's safety disclosure is a product launch in disguise. The market should read it that way.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-beijing-stopped-writing-tax-law-and-started-using-it-the-who" data-bucket="wealth-planning" data-tags="Greater China,Tax Policy,Offshore Structures">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">Greater China</span>
+<span class="tag">Tax Policy</span>
+<span class="tag">Offshore Structures</span>
+    </div>
+    <h2>Beijing stopped writing tax law and started using it. The whole offshore structuring industry is selling the wrong fix.</h2>
+    <ul class="tldr">
+      <li>China joined the Common Reporting Standard in 2018, giving authorities the data infrastructure to match offshore holdings against domestic filings — enforcement, not new legislation, is what changed</li>
+<li>PwC senior advisor John Wong now describes tax compliance as 'the entire game,' a framing the advisory industry has adopted to sell upgraded documentation on structures originally pitched as permanent solutions</li>
+<li>Ultra-high-net-worth families across Greater China are increasingly multi-jurisdictional — members spread across Hong Kong, Singapore, Dubai, and beyond — but CRS data flows treat that dispersion as a map, not a shield</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>The consensus story out of Greater China wealth circles right now is that offshore trusts are &quot;under the microscope&quot; and families need to lawyer up harder. PwC's John Wong summarizes it as &quot;tax compliance is king,&quot; and the whole advisory industry is nodding along, selling defensibility upgrades on structures that were sold five years ago as bulletproof. What's actually notable here isn't the regulatory tightening — that's been telegraphed since China joined the Common Reporting Standard in 2018. It's that Beijing has quietly crossed from having tax law to enforcing it, using CRS data to match offshore holdings against domestic filings. That's the shift nobody is pricing correctly.</p>
+<p>Here's the tell everyone is glossing over. The advisors keep framing this as a compliance problem — follow the rules more carefully and you're fine. That's wrong, and it's a dangerous comfort. When a tax authority moves from &quot;written law&quot; to &quot;actively weaponized law,&quot; the risk isn't that you broke a rule. It's that the rule gets reinterpreted retroactively against the economic reality of a structure you set up a decade ago in perfect good faith. Chinese authorities are now looking through the legal form of a trust to who actually controls and benefits from the assets. Being technically compliant when you built the vehicle does not protect you when the substance test changes. That's not a compliance game. That's political risk masquerading as tax planning.</p>
+<p>The second-order effect is what this does to Hong Kong and Singapore's family office pitch. The industry line is that these are complementary hubs in a &quot;small United Nations&quot; family's puzzle — Hong Kong as the bridge to onshore Chinese wealth, Singapore and Dubai as diversifiers. That framing is already stale. Once CRS data flows and Beijing enforces against substance, proximity to onshore Chinese wealth becomes a liability, not a feature. Hong Kong's core selling point — that it's the linchpin connecting mainland capital to offshore capability — is precisely the exposure a rational UHNW family now wants to reduce. The &quot;bridge&quot; is also the surveillance corridor.</p>
+<p>For allocators, this reprices the entire Asian family office structuring market. The winning trade is not better trusts — it's genuine relocation of tax residency and control, real substance in jurisdictions with no data-sharing appetite toward Beijing, and family members who actually live where they claim to. That's expensive, slow, and irreversible, which is exactly why most families will keep buying the cheaper &quot;defensibility&quot; story instead. The demand you should be underwriting is orchestration across genuinely independent jurisdictions, not another layer of documentation on a Hong Kong vehicle. The families who treat this as a paperwork upgrade are the ones who'll be the case studies in 2028.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The substance-over-form argument cuts both ways. Chinese tax authorities have limited extraterritorial reach, and families with genuinely diversified residency, real economic activity in offshore jurisdictions, and clean compliance records have a credible defense. CRS is a data-sharing mechanism, not a seizure mechanism — and for families who built structures correctly and maintained them diligently, the scrutiny may produce noise but not necessarily liability. The advisory industry isn't entirely wrong that documentation and process matter; the risk is real but not uniformly distributed.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Common Reporting Standard, for readers unfamiliar with the plumbing, is a global framework under which participating countries automatically exchange financial account information with each other. When China signed on in 2018, it gave Beijing something it had never had before: a systematic feed of data on what mainland-connected individuals hold in offshore accounts across roughly 100 participating jurisdictions. The gap between having that data and acting on it aggressively took a few years to close. It is now closed.</p>
+<p>The deeper problem with the industry's compliance-first response is that it misdiagnoses the source of risk. Compliance assumes a stable rulebook. What Chinese enforcement is demonstrating is that the rulebook is being applied retroactively through a substance lens — meaning authorities are asking not what the legal documents say, but who actually controls the assets, who actually benefits, and whether the offshore structure has any economic reality independent of the mainland principal. A trust deed written by a top-tier law firm in 2015, in perfect conformity with the law at that time, offers limited protection if a 2025 enforcement action decides the settlor retained effective control. That is not a compliance failure. That is political and regulatory risk that was never properly priced into the product being sold.</p>
+<p>Historical parallel worth noting: this is structurally similar to what happened in Europe after the U.S. Foreign Account Tax Compliance Act, known as FATCA, forced global banks to report American account holders starting around 2014. American expatriates with entirely legitimate foreign accounts suddenly found themselves facing penalties for disclosure failures that predated clear guidance. The lesson from that episode was that when enforcement infrastructure catches up to existing structures, the retroactive exposure can be severe even for people who thought they were playing by the rules. Greater China is running the same sequence, compressed into a shorter window.</p>
+<p>On the Hong Kong question, the math is uncomfortable for an industry that has built significant revenue on the gateway pitch. Hong Kong's legal system and low-tax regime are real advantages, and the government's family office incentive program launched in recent years has attracted genuine capital. But the strategic positioning — that Hong Kong uniquely bridges mainland Chinese wealth to offshore markets — now describes a corridor that runs in both directions. Data, scrutiny, and enforcement interest flow outward through the same pipes that capital flows inward. A family office domiciled in Hong Kong, managing assets for a principal whose wealth originated in Shenzhen or Shanghai, is not meaningfully offshore from Beijing's enforcement perspective. Singapore and Dubai offer more distance, but only if the family has genuine presence there, not just a registered address and a nominee director.</p>
+<p>The families most exposed are those in the middle of the wealth distribution for this cohort — say, net worth in the $50 million to $300 million range — who have offshore structures but lack the resources or appetite for the full relocation play. Genuine tax residency change, real substance abroad, family members who actually relocated, investment activity that reflects the claimed domicile: all of that costs money, takes years, and is difficult to reverse. The compliance upgrade is cheaper and faster, which is why it will keep selling. But cheaper and faster is not the same as safe, and the families who discover that distinction in an enforcement context will have wished someone had told them the difference earlier.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://nbcogcbs.org/article/tax-transparency-and-offshore-wealth-planning-in-greater-china-an-expert-s-perspective" target="_blank" rel="noopener">Tax Transparency and Offshore Wealth Planning in Greater China: An Expert's Perspective (2026)</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-07.html#story-2-beijing-ended-the-ambiguity-that-made-offshore-trusts-work-t">Beijing ended the ambiguity that made offshore trusts work. The 20% is a floor.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-05.html#story-4-family-offices-aren-t-hedging-the-ai-bubble-they-re-the-bigg">Family offices aren't hedging the AI bubble. They're the biggest believers left.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-03.html#story-4-the-offshore-trust-is-losing-its-only-real-selling-point-gre">The offshore trust is losing its only real selling point. Greater China's UHNW industry hasn't told its clients yet.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+
+    function applyFilters() {
+      stories.forEach(function (el) {
+        var bucketMatch = currentBucket === "all" || el.dataset.bucket === currentBucket;
+        var tags = (el.dataset.tags || "").split(",");
+        var tagMatch = currentTag === "all" || tags.indexOf(currentTag) !== -1;
+        el.classList.toggle("hidden", !(bucketMatch && tagMatch));
+      });
+    }
+
+    document.querySelectorAll(".tab").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".tab").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentBucket = btn.dataset.bucket;
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll(".tag-filter").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".tag-filter").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentTag = btn.dataset.tag;
+        applyFilters();
+      });
+    });
+  })();
+</script>
+</body>
+</html>
