@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Wednesday, August 26, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 12px; }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .sources ul, .related ul { padding-left: 20px; margin: 0; }
+  .sources a, .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Wednesday, August 26, 2026</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-bucket="all">All</button>
+<button class="tab" data-bucket="private-markets">Private Markets</button>
+<button class="tab" data-bucket="iconiq-portfolio">ICONIQ Portfolio Companies</button>
+<button class="tab" data-bucket="wealth-planning">Family Office &amp; Wealth Planning</button>
+<button class="tab" data-bucket="financial-markets">Financial Markets &amp; Economic News</button>
+  </nav>
+
+  <nav class="tag-filters">
+    <button class="tag-filter active" data-tag="all">All tags</button>
+<button class="tag-filter" data-tag="AI">AI</button>
+<button class="tag-filter" data-tag="Anthropic">Anthropic</button>
+<button class="tag-filter" data-tag="Apollo">Apollo</button>
+<button class="tag-filter" data-tag="Asia">Asia</button>
+<button class="tag-filter" data-tag="China">China</button>
+<button class="tag-filter" data-tag="Evergreen Funds">Evergreen Funds</button>
+<button class="tag-filter" data-tag="Fed Policy">Fed Policy</button>
+<button class="tag-filter" data-tag="IPO">IPO</button>
+<button class="tag-filter" data-tag="Offshore Wealth">Offshore Wealth</button>
+<button class="tag-filter" data-tag="OpenAI">OpenAI</button>
+<button class="tag-filter" data-tag="Prediction Markets">Prediction Markets</button>
+<button class="tag-filter" data-tag="Rates">Rates</button>
+<button class="tag-filter" data-tag="Retail Access">Retail Access</button>
+<button class="tag-filter" data-tag="Secondaries">Secondaries</button>
+<button class="tag-filter" data-tag="Tax Policy">Tax Policy</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-apollo-is-selling-secondaries-to-main-street-it-picked-its-m" data-bucket="private-markets" data-tags="Secondaries,Retail Access,Apollo">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Secondaries</span>
+<span class="tag">Retail Access</span>
+<span class="tag">Apollo</span>
+    </div>
+    <h2>Apollo is selling secondaries to Main Street. It picked its moment carefully.</h2>
+    <ul class="tldr">
+      <li>Apollo's S3 fund posted 14.46% returns for the fiscal year ended March 2026 — strong performance built on early money, rising marks, and zero redemption pressure, before the commission channel opens.</li>
+<li>The new Class S2 share class drops the accredited-investor requirement and sets minimums of $2,500 for taxable accounts and $1,000 for IRAs, putting a GP-led secondaries fund within reach of any brokerage client.</li>
+<li>The fund's daily net asset value is priced on portfolio marks that are at least one quarter stale, while the amended prospectus now legally obligates quarterly repurchases of 5% to 25% of shares.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Apollo just amended the registration for its S3 Private Markets Fund to do two things at once: launch a broker-sold share class (Class S2, minimum $2,500, or $1,000 in an IRA) and convert its liquidity promise from discretionary tenders to a mandatory quarterly repurchase of 5% to 25% of shares at net asset value. The quieter change is the one that matters — the prospectus no longer conditions purchase on accredited-investor status. A GP-led secondaries book that Apollo built for qualified private wealth is now something an advisor can open for a client with a few thousand dollars in a brokerage account.</p>
+<p>Here's what's actually going on. This is the retailization of the least retail asset in private markets. Secondaries, especially the &quot;non-traditional&quot; kind that make up the bulk of this book — continuation vehicles, single-asset GP-leds, preferred fund finance — are the most information-asymmetric corner of the whole industry. The value is entirely in the mark, and the fund itself admits its daily net asset value &quot;rests on information at least a quarter old.&quot; So Apollo is now selling continuously-priced daily liquidity on a portfolio it can only value with a one-quarter lag. That is a duration mismatch dressed up as an interval fund, and it is the exact structure that blew up on Blackstone with BREIT in late 2022 when redemption requests outran the liquidity sleeve.</p>
+<p>The tell is the sequencing. Class I carried the fund from its October 2024 launch and is now closed to the public. Performance has been strong — 14.46% for the fiscal year — precisely because early money bought into rising, lagged marks with no redemption pressure. Apollo is opening the commission channel at the top of that curve, not the bottom. The 0.85% annual servicing fee plus up to 3.5% in intermediary placement charges tells you who this vehicle is really built to compensate: the broker, not the client. When a GP drops the accreditation gate and adds a 12b-1 plan in the same filing, it is optimizing for distribution velocity, not portfolio quality.</p>
+<p>The read-across for allocators is uncomfortable, because this is the DPI story from Example 3 running in reverse. Institutional LPs stopped believing paper marks and voted with their wire transfers toward realized distributions. Apollo's answer is not to generate more distributions — it's to find a buyer who still believes the marks. Retail is that buyer. The private wealth channel is being sold &quot;access to secondaries&quot; at the precise moment institutions have concluded secondaries pricing is where the honest discovery happens.</p>
+<p>Watch the first two or three repurchase cycles after S2 money lands. A fund legally obligated to hold liquid assets equal to 100% of each repurchase offer, funded from a 20% liquid sleeve against stale-marked illiquids, only works while flows are net positive. The structure is a promise it can keep in every quarter except the one that matters.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case on retailization ignores what interval funds actually are: a structurally constrained vehicle with mandatory liquidity reserves, regular SEC reporting, and board-level oversight that most institutional secondaries funds never face. Apollo's S3 team — Steve Lessar, Veena Isaac, and Konnin Tam, veterans of the secondaries businesses at BlackRock, Goldman Sachs, and Pantheon — has run this book conservatively, with no leverage outstanding and a 2.84% portfolio turnover rate. The 20% liquid sleeve, combined with a legally enforceable 100% liquidity reserve requirement against each repurchase offer, gives the fund meaningful shock absorption. And broadening access to secondaries — an asset class that has historically been available only to endowments and large institutions — may simply be the right call for advisors building diversified long-term portfolios for clients who can accept the illiquidity risk.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Blackstone BREIT situation in late 2022 is the cleanest precedent here, and it is worth understanding precisely why it broke down. BREIT — Blackstone's non-traded real estate income trust, which similarly targeted the private wealth channel — hit its redemption gates when net flows turned negative almost simultaneously across its investor base. The problem was not that the underlying real estate was bad. The problem was that a vehicle priced daily on assets that reprice quarterly cannot honor that implicit promise of continuous liquidity once enough investors decide to leave at once. The liquid sleeve, which looks generous in good times, gets consumed faster than it can be replenished when sentiment shifts. Apollo's S3 fund has a 20% liquid allocation in normal conditions — roughly the same design principle — and is now legally committed to quarterly repurchase offers at whatever size the board sets within the 5% to 25% band.</p>
+<p>What makes the GP-led secondaries corner of the market especially sensitive to this dynamic is the valuation methodology itself. Traditional secondaries — buying LP stakes in diversified private equity funds from sellers who need liquidity — at least have the benefit of a portfolio of marks across many underlying positions. Non-traditional secondaries, which include continuation vehicles (where a GP moves a single company or handful of assets into a new fund rather than selling them outright) and single-asset GP-led deals, concentrate the valuation risk. You are often buying one company, marked by the same GP who structured the deal, at a price that reflects the GP's incentive to show a clean transaction rather than a distressed one. The information asymmetry is not incidental to the asset class; it is the asset class. The arbitrage that secondaries buyers historically earned came precisely from knowing something the seller didn't, or being willing to accept a discount for providing liquidity to an LP who needed out. Retail investors coming in through a brokerage account with a $2,500 check are not doing that analysis.</p>
+<p>The fee structure also deserves a clearer read than the prospectus headline numbers suggest. The 1.50% management fee at the fund level is just the first layer. Underlying funds in the portfolio charge their own fees — typically 0.75% to 1.50% on committed or invested capital — plus carried interest of 10% to 20% on gains. Then Class S2 investors pay a 0.85% annual servicing fee, and their advisors may collect up to 3.5% in placement charges on top of that. The after-waiver expense ratio for Class I ran 2.28% for the fiscal year. For S2 investors at full load, the total cost of ownership before underlying fund carry is meaningfully higher. That is not disqualifying, but it is the context a retail investor receiving a pitch about 14.46% annual returns needs to have.</p>
+<p>The accreditation question is the one regulators will eventually revisit. Accredited-investor status — currently set at $1 million in net worth excluding a primary residence, or $200,000 in annual income — has always been a crude proxy for sophistication. Dropping it here, without replacing it with any alternative suitability screen beyond what a broker must apply under Regulation Best Interest rules, means the gate is now the advisor's judgment and the $2,500 minimum. That is a significant policy choice dressed up as a registration amendment. Whether the SEC views it that way, once assets scale, may be the longest-duration risk in this filing.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://sqxalts.com/apollos-secondaries-fund-adds-a-broker-sold-class-and-mandatory-quarterly-liquidity/" target="_blank" rel="noopener">Apollo's Secondaries Fund Adds a Broker-Sold Class and Mandatory Quarterly Liquidity - SQX Alts</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-24.html#story-0-lpac-consent-is-dead-the-gp-led-secondary-market-already-kno">LPAC consent is dead. The GP-led secondary market already knows it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-24.html#story-1-invesco-bought-itself-two-years-to-avoid-a-real-price-the-cl">Invesco bought itself two years to avoid a real price. The clock is running.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-21.html#story-4-the-ipo-is-dead-as-a-default-exit-the-secondary-market-is-th">The IPO is dead as a default exit. The secondary market is the real clearing mechanism now.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-azalea-s-evergreen-fund-is-a-distribution-win-the-liquidity-" data-bucket="private-markets" data-tags="Secondaries,Asia,Evergreen Funds">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Secondaries</span>
+<span class="tag">Asia</span>
+<span class="tag">Evergreen Funds</span>
+    </div>
+    <h2>Azalea's evergreen fund is a distribution win. The liquidity promise is the part that should worry you.</h2>
+    <ul class="tldr">
+      <li>Azalea raised US$350 million into Azalea All Access, its first evergreen PE fund, which offers monthly subscriptions and quarterly redemptions — unusual flexibility for an asset class known for decade-long lockups</li>
+<li>Global PE fundraising ran at just 73% of 2024's pace through the first three quarters of 2025, per data platform Preqin, making any billion-dollar close noteworthy on its face</li>
+<li>The Altrium Private Equity Fund III, one of two existing vehicles in the raise, closed at US$526 million with investors from Hong Kong, Taiwan, South Korea, Malaysia, and the UK — a deliberately broadened Asian base</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Azalea, the private-markets arm sitting under Temasek's Seviora holding company, just pulled in north of US$1 billion across three vehicles — including US$350 million into Azalea All Access, its first evergreen PE fund aimed at family offices and high-net-worth individuals, not just institutions. In a fundraising market where Preqin has PE at 73% of last year's pace, raising a billion isn't the headline. The launch of an evergreen retail-adjacent product with monthly subscriptions and quarterly redemptions is.</p>
+<p>Here's what's actually going on. The consensus reads this as &quot;well-connected Temasek shop raises money in a hard market&quot; — a demand story. It's a supply story. Azalea's whole franchise, from the Astrea PE bonds to the Altrium co-invest funds, is about repackaging institutional private-equity exposure into wrappers ordinary balance sheets can hold. All Access is the logical endpoint: a fully paid-in, globally diversified book of secondaries and co-investments sold to the private-bank channel. That is the same democratization trade Apollo, Blue Owl and KKR are running in the US with interval funds and semi-liquid BDCs. Azalea is bringing it to Asian family offices, and it's doing it with Temasek's brand covering the trust deficit.</p>
+<p>The tell is the liquidity mismatch, and nobody selling these products wants to discuss it. You cannot own an illiquid asset class — PE secondaries with multi-year holding periods — and promise quarterly redemptions unless one of three things is true: you hold a fat cash-and-liquid sleeve that drags returns, you gate redemptions the moment the queue gets crowded, or you're marking the book to smooth models rather than clearing prices. Every evergreen structure resolves to some blend of those three. In a benign market it looks like magic. In a stressed one it looks like the UK property funds that froze in 2016 and 2022, or Blackstone's BREIT hitting its redemption cap in late 2022 and spending a year explaining why that was a feature.</p>
+<p>For an allocator the read-across is sharper than &quot;buy Azalea.&quot; The evergreen wrapper is becoming the dominant on-ramp for private markets in Asia, and the ones with a sovereign-linked sponsor — Temasek here, GIC-adjacent structures next — will win the shelf space at DBS, UOB and the private banks by default. That's a distribution moat, not an alpha moat. The returns inside the box are still just secondaries and co-invest, a beta you can access more cheaply and with cleaner liquidity terms directly if you have the ticket size.</p>
+<p>So the question to ask before your clients get sold this at the next relationship-manager meeting: what happens to the quarterly redemption promise the first quarter everyone wants out at once? If the honest answer is a gate, then you're not buying liquid PE. You're buying illiquid PE with a liquidity story attached — and paying a wrapper fee for the story.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The strongest case for evergreen structures is that the liquidity problem is manageable by design, not a hidden flaw. Sophisticated managers like Apollo and KKR have run semi-liquid vehicles in the US for years with redemption queues that cleared without a crisis, precisely because they size the liquid sleeve conservatively and scale redemption windows to realistic secondary-market depth. Azalea's use of PE secondaries — where underlying assets are already seasoned fund stakes that can be sold to other secondaries buyers — gives the portfolio more genuine exit optionality than a direct PE fund would. And Temasek's balance sheet standing behind the brand means a liquidity crunch could, in theory, be cushioned in ways it couldn't be for a standalone manager.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The democratization of private markets has been the defining structural trade in global asset management for roughly five years, and Asia is simply the last major region where it hasn't fully landed yet. In the US, Apollo has raised tens of billions through its ARIS interval fund and similar vehicles, Blue Owl — a credit-focused alternative asset manager — has built an entire distribution franchise around insurance and wealth channels, and Blackstone's perpetual-capital vehicles now account for a majority of the firm's fee-earning assets under management. The template is proven: take institutional-quality exposure, wrap it in something a private bank can put on a client statement, and charge a layer of fees that the direct institutional market wouldn't tolerate. Azalea All Access is that playbook executed for Singapore and the broader Asian private-bank corridor.</p>
+<p>What makes the Asian version structurally different is the trust deficit. A wealthy family in Jakarta or Taipei deciding whether to commit to a PE vehicle run by a manager they've never met is making a different calculation than a US endowment allocating to a known brand. Temasek — Singapore's sovereign investment firm with roughly US$300 billion in net portfolio value — functions as a proxy for institutional credibility in a market where it otherwise takes years to build. That's not a subtle advantage. DBS and UOB private-banking clients who would never wire money to a standalone GP in the Caymans will write checks into an Azalea product because the lineage is legible. The distribution moat flows directly from the sovereign parentage, and it is probably worth more than whatever edge Azalea actually has in picking secondaries.</p>
+<p>The secondaries market itself is worth contextualizing here. PE secondaries involve buying existing stakes in private-equity funds from investors who want early liquidity, typically at a discount to the fund's reported net asset value. In normal markets, those discounts narrow and the strategy looks smart. In stressed markets, sellers demand steeper discounts to transact, which means either the buyer accepts dilution or the transaction volume dries up. An evergreen fund that is continuously deploying into secondaries is exposed to exactly that dynamic: the quarters when redemptions are highest — market stress — are the same quarters when deploying the cash raised to meet redemptions looks worst on paper. That correlation is the core mechanical risk every evergreen secondaries manager has to manage, and it is not fully solvable.</p>
+<p>The UK open-ended property fund freezes of 2016 and 2022 are the closest historical analogue. Those funds promised daily liquidity over assets — commercial real estate — that required months to sell. When redemptions spiked, managers gated, and the gates themselves triggered more redemption requests as investors realized the liquidity they thought they had wasn't there. PE secondaries are more liquid than UK commercial property, but the basic mismatch between asset duration and promised redemption frequency is structurally identical. Quarterly is better than daily, but it is still a promise that depends on market conditions outside the manager's control.</p>
+<p>For allocators sitting in the wealth channel, the practical question is what you are actually buying when you write into one of these vehicles. The secondaries and co-investment exposure inside the box is real and can compound meaningfully over time. But the quarterly redemption feature is a contingent claim, not a guarantee, and the fee load on a packaged evergreen product almost always exceeds what a large family office could negotiate by accessing the same underlying managers directly. If your client has the ticket size to go direct — generally north of US$5 to 10 million per commitment — the wrapper is a convenience they are paying a premium for. If they don't, the wrapper is genuinely additive access. The honest conversation with a relationship manager is figuring out which situation applies before the product gets sold as something it isn't.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://www.businesstimes.com.sg/companies-markets/temaseks-azalea-raises-over-us1-billion-despite-challenging-environment-private-equity" target="_blank" rel="noopener">Temasek's Azalea raises over US$1 billion despite 'challenging' environment for private equity - The Business Times</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-24.html#story-0-lpac-consent-is-dead-the-gp-led-secondary-market-already-kno">LPAC consent is dead. The GP-led secondary market already knows it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-24.html#story-1-invesco-bought-itself-two-years-to-avoid-a-real-price-the-cl">Invesco bought itself two years to avoid a real price. The clock is running.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-21.html#story-4-the-ipo-is-dead-as-a-default-exit-the-secondary-market-is-th">The IPO is dead as a default exit. The secondary market is the real clearing mechanism now.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-beijing-found-1-2tn-it-can-see-it-will-not-stop-at-trusts" data-bucket="wealth-planning" data-tags="China,Tax Policy,Offshore Wealth">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">China</span>
+<span class="tag">Tax Policy</span>
+<span class="tag">Offshore Wealth</span>
+    </div>
+    <h2>Beijing found $1.2tn it can see. It will not stop at trusts.</h2>
+    <ul class="tldr">
+      <li>In late July, China imposed a 20% tax on offshore trust appreciation and annual income, with a 90-day window to report unpaid taxes dating back to January 2023.</li>
+<li>More than half of China's super-rich use offshore family trusts per KPMG, putting hundreds of billions of dollars directly in the crosshairs of the new rules.</li>
+<li>Bank of America analysts are already flagging overseas employment income as the next likely target, following last year's move to tax offshore stock trading gains.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>In late July, Beijing overhauled its tax code to slap 20% on offshore trusts — both on the appreciation of assets moved into them and on their annual income — and gave the wealthy 90 days to report unpaid tax on anything settled since January 2023. Within two weeks, tax offices in Beijing and Hangzhou started taxing offshore insurance income too. This matters because roughly $1.2tn of mainland UHNW capital, more than half of it held through offshore family trusts per KPMG, has been sitting in Hong Kong and Singapore in what was, until a month ago, a comfortable grey area. That grey area is gone.</p>
+<p>The consensus read is &quot;compliance event&quot; — clients lawyer up, pay the bill, restructure, move on. That badly underprices what's happening. The tell is in the timing: the trust tax and the insurance tax landed two weeks apart, and Bank of America is already flagging overseas employment income as the next target. This is not a rule; it's the opening move of a fiscal regime shift. Provincial governments have lost land-sale revenue to the property collapse, and Beijing has found $1.2tn of offshore capital it can now see through the Common Reporting Standard cross-referenced against Golden Tax Phase Four. When a state discovers a taxable base that large during a fiscal emergency, it does not stop at 20% on trusts.</p>
+<p>Here's the part nobody in the Singapore MAS-approved family office marketing deck wants to say out loud: the real exposure isn't the tax bill, it's the question that comes with it. As one Shanghai family office partner admitted, clients fear that declaring offshore assets invites a probe into how the money left China in the first place. That is the trap. Comply, and you hand Beijing a signed confession about capital-control circumvention. Don't comply — the path a lawyer advising 50-plus trust clients says roughly half his clients are weighing — and you're now unwinding structures and liquidating A-shares into a volatile market to stay dark. Both doors lead to forced selling. Gavekal is right that this &quot;easily merges&quot; with capital-control enforcement, because it was always the same project.</p>
+<p>For allocators in Singapore, the second-order effect is what to price. Southbound flows into Hong Kong slow, yes — but the sharper move is a bifurcation in the mainland client base. The declared, tax-paying cohort becomes lower-margin and heavily documented; the undeclared cohort goes to smaller, opaque asset managers and away from anything that touches CRS reporting. If your book is built on Chinese trust structures, your AUM just became a political liability with a 90-day clock. The winners are jurisdictions and structures that offer genuine, defensible separation from the mainland — real residency, real substance, not a Cayman shell with a Shenzhen phone number. The lazy offshore trust is dead. What replaces it is expatriation, priced in and paid for.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>China has announced sweeping offshore tax enforcement before and struggled to follow through — the Common Reporting Standard has been live since 2017, yet enforcement was negligible for nearly a decade. Wealthy individuals have deep incentives and capable advisers to find compliant workarounds, and Beijing's own interest in keeping Hong Kong functional as a financial centre creates a real political brake on how far enforcement actually goes. If the crackdown spooks too much capital into genuine flight rather than orderly compliance, the fiscal gain could be offset by the damage to Hong Kong's role as China's offshore funding window — a trade Beijing has historically been unwilling to make.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The mechanism that makes this different from prior enforcement cycles is the data infrastructure. The Common Reporting Standard, which requires financial institutions across participating jurisdictions to share account information with clients' home tax authorities, gave Beijing a map of offshore holdings it simply did not have before 2017. Golden Tax Phase Four — China's domestic tax surveillance system that cross-references income, corporate filings, and banking data — lets authorities match that offshore map against what was declared onshore. For most of the past decade, wealthy mainland investors assumed the gap between what Beijing could see in theory and what it would actually pursue in practice was wide enough to park capital comfortably in Hong Kong or Singapore. That assumption is now the liability.</p>
+<p>The fiscal pressure driving this is not incidental context — it is the engine. Land sales, which historically funded roughly a third of local government revenue in China, have collapsed alongside the property market. Provincial governments are running structural deficits they cannot paper over with bond issuance alone. When a government in that position discovers a taxable base of $1.2 trillion that its data systems can now actually identify and document, enforcement stops being optional. It becomes a budget line.</p>
+<p>The two-week gap between the trust tax and the insurance income tax is the tell that this is a sequential rollout, not a one-off measure. Sequencing like that is deliberate — it tests compliance rates, generates data on who declares and who doesn't, and gives authorities a live roster of the wealth base before the next instrument gets targeted. Bank of America flagging overseas employment income as a likely next step is not speculative; it is the logical extension of a regime that has already demonstrated it will move instrument by instrument.</p>
+<p>For wealth managers and family offices servicing mainland Chinese clients, the practical problem is that no restructuring fully solves the dilemma the new rules create. The client who declares gets a tax bill they may not have liquid assets to pay — one Hong Kong family office executive noted that borrowing to fund the liability is a real scenario because so much wealth is tied up in illiquid real estate and private equity stakes. The client who does not declare and instead unwinds their trust is liquidating into a volatile market under time pressure, which is its own form of forced selling. The adviser who recommended the trust structure in the first place is now explaining why both exits are painful.</p>
+<p>The longer-term bifurcation in the client base is what allocators need to price now. The cohort that complies, documents, and stays in formal structures becomes a lower-margin, higher-scrutiny business where CRS reporting is a permanent feature of the relationship. The cohort that goes dark moves to smaller, less regulated managers specifically because those managers sit outside the reporting infrastructure. That second group is not a growth market anyone with a regulated Singapore or Hong Kong license should be chasing. The structures that hold value going forward are those built around genuine legal separation from mainland jurisdiction — real residency changes, real substance requirements met, not nominee arrangements with a Shenzhen phone number routing decisions. The offshore trust was valuable because it was ambiguous. Beijing has now priced that ambiguity out of existence.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://www.gulf-times.com/article/731761/business/china-tax-crackdown-forces-wealthy-investors-to-assess-their-offshore-trusts" target="_blank" rel="noopener">China tax crackdown forces wealthy investors to assess their offshore trusts - Gulf Times</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-21.html#story-2-four-western-banks-just-put-a-chinese-affiliated-ai-model-in">Four Western banks just put a Chinese-affiliated AI model inside their FX operations. The provenance is the story.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-19.html#story-4-the-family-office-market-isn-t-growing-it-s-going-dark">The family office market isn't growing. It's going dark.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-17.html#story-4-beijing-s-trust-tax-clarification-is-the-enforcement-not-the">Beijing's trust tax 'clarification' is the enforcement, not the relief.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-anthropic-is-pulling-away-openai-is-paying-852-billion-to-pr" data-bucket="iconiq-portfolio" data-tags="AI,IPO,Anthropic,OpenAI">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">AI</span>
+<span class="tag">IPO</span>
+<span class="tag">Anthropic</span>
+<span class="tag">OpenAI</span>
+    </div>
+    <h2>Anthropic is pulling away. OpenAI is paying $852 billion to pretend it isn't.</h2>
+    <ul class="tldr">
+      <li>Anthropic's annualized revenue run rate hit $65 billion at end of July — a 7x increase year-over-year — versus OpenAI's $40 billion run rate on just 18% quarter-over-quarter growth</li>
+<li>OpenAI CFO Sarah Friar held an all-hands meeting to pre-warn staff that Anthropic might file for IPO first, in September, before OpenAI does</li>
+<li>Three senior OpenAI executives departed in quick succession: revenue chief Denise Dresser after eight months, eight-year veteran Brad Lightcap, and product chief Fidji Simo — all while the company carries an $852 billion valuation into a public offering</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Anthropic told investors over the weekend that its annualized revenue run rate hit $65 billion at the end of July, a sevenfold jump in a year, off $11.5 billion in preliminary Q2 revenue. OpenAI's Q2 was $6.7 billion, up 18% from Q1, for a run rate past $40 billion. Both are enormous. Only one is accelerating — and the tell that matters isn't the gap, it's that OpenAI's own CFO, Sarah Friar, felt she had to pre-warn staff at an all-hands that Anthropic might file first and go public in September. You don't reassure people who aren't worried.</p>
+<p>Here's what the consensus is misreading. The market treats these as the same asset — two frontier labs racing to IPO, differentiated by model benchmarks and vibes. They are not the same asset. Anthropic is compounding because it won the enterprise coding and agentic-workflow layer, where revenue is contracted, recurring, and sticky. OpenAI's growth is increasingly consumer-weighted, which is why Friar's slides had to lean on &quot;enterprise run rate up 50%&quot; as the flattering cut rather than the headline number. When management reaches for the sub-segment growth rate instead of the aggregate, the aggregate is the story. OpenAI's aggregate says 18% quarter-over-quarter into an $852 billion valuation. That is a valuation priced for compounding by a company that just printed a decelerating quarter.</p>
+<p>The executive exodus is the second tell nobody's pricing correctly. Revenue chief gone after eight months, Brad Lightcap out after eight years, Fidji Simo stepping back. Brockman calls it &quot;not actually that atypical.&quot; People do not leave the winning ticket eight months in. They leave when they've seen the internal numbers and concluded the equity is marked to a growth curve the business can't hit. That's insider signal, and it's more honest than any slide.</p>
+<p>Now watch the data-retention split, because it's the real fork for allocators. Anthropic just told enterprises it will require 30-day retention on its top models, admitting in its own risk report the move is &quot;unpopular&quot; and poses &quot;real risks to our business success.&quot; OpenAI went the opposite way with zero-retention &quot;Private Safety Processing.&quot; Anthropic is willing to spend goodwill because it already owns the enterprise relationship and can afford to. OpenAI is defending a privacy promise because privacy is one of the few things it can still sell against a competitor eating its lunch on capability-per-dollar. The company with pricing power is the one raising friction. The company without it is the one competing on terms.</p>
+<p>The read-across: if you're underwriting the OpenAI IPO at $852 billion, you're paying an Anthropic multiple for OpenAI growth. Price the two separately, or you're funding the wrong race on faith — the same faith Alibaba holders just tested, and lost, on Monday.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>OpenAI's consumer scale is an asset, not a liability — 20 million weekly active users on coding products alone represents a distribution moat that enterprise-first companies historically struggle to build after the fact. Consumer revenue is also higher-margin at scale than enterprise contracts, which carry implementation costs, procurement cycles, and renewal risk. And Anthropic's 30-day data-retention mandate on its top models could hand OpenAI a genuine opening in regulated industries where privacy guarantees aren't a marketing preference but a compliance requirement.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The revenue gap between Anthropic and OpenAI is striking enough on its own, but the more important number is the direction of the curve. Anthropic went from roughly $9 billion annualized a year ago to $65 billion today. OpenAI went from $5.6 billion in Q1 to $6.7 billion in Q2 — real growth, but not compounding growth. At the current trajectory, these two companies are not converging; they are diverging. That matters enormously for anyone trying to underwrite an IPO valuation, because public market investors price on growth rate sustainability, not on absolute scale.</p>
+<p>The mechanism behind Anthropic's acceleration is not mysterious. Enterprise customers — large companies buying AI to automate internal workflows, generate code, and run so-called agentic tasks where software takes sequences of actions rather than just answering a single question — buy on annual contracts, expand usage predictably, and churn slowly. That is the kind of revenue that compounds. Anthropic built its early enterprise relationships through Claude's reputation for reliability and instruction-following on long, complex tasks, and it has been harvesting that installed base ever since. OpenAI's ChatGPT business, by contrast, is largely consumer subscription revenue — more volatile, more price-sensitive, and more exposed to competition from free or cheaper alternatives.</p>
+<p>The data-retention policy divergence that emerged last week is a direct expression of this underlying difference in leverage. Anthropic is telling its biggest enterprise customers that the top models — Claude Fable 5 and Mythos 5 — will now retain conversation data for 30 days, reversing the zero-retention default those customers were sold on. Anthropic's own internal risk assessment acknowledged this is unpopular and could cost business. A company that is worried about losing customers does not voluntarily impose friction on them. A company that has already won the relationship, and needs the data to defend against sophisticated multi-session attacks, absorbs the complaint and moves on. That is what pricing power looks like in practice.</p>
+<p>OpenAI's counter-move — announcing zero-retention Private Safety Processing, where misuse detection happens on customer infrastructure or with customer-held encryption keys — is technically creative. But read it charitably and it still reveals a company competing on terms rather than setting them. When you are the category leader, you change the policy and your customers adjust. When you are the challenger, you find a way to preserve what competitors are taking away.</p>
+<p>The historical parallel worth keeping in mind is the AWS versus Azure race between roughly 2018 and 2022. Amazon Web Services had a commanding early lead in cloud infrastructure, and Microsoft Azure was widely dismissed as a distant second. Azure's enterprise sales motion — selling into companies already running Microsoft Office and Windows — turned out to be a structural advantage that compounding made irreversible. By 2023, Azure's growth rate was consistently above AWS's. The company with the stickier customer base, not the shinier product, won the long game. Anthropic is making exactly that bet.</p>
+<p>What the OpenAI executive departures add to this picture is a ground-level confirmation of what the aggregate numbers already suggest. Equity compensation at a private company valued at $852 billion only makes sense if you believe the growth rate justifies the valuation. People who have seen the internal forecasts and decided to leave anyway are telling you something the slide deck is not. That signal is worth weighting seriously before the IPO roadshow begins.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://ghost.genaicrib.com/anthropics-revenue-grew-7x-openais-grew-18/" target="_blank" rel="noopener">Anthropic's Revenue Grew 7x. OpenAI's Grew 18%.</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-24.html#story-2-rillet-hit-a-billion-dollar-valuation-in-48-hours-the-real-b">Rillet hit a billion-dollar valuation in 48 hours. The real bet is on regulators, not the product.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-21.html#story-0-rillet-just-raised-100mn-to-make-corporate-accounting-softwa">Rillet just raised $100mn to make corporate accounting software irrelevant. The incumbents haven't noticed yet.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-21.html#story-1-anthropic-s-profitability-is-real-and-fragile-at-the-same-ti">Anthropic's profitability is real and fragile at the same time. Know the difference before you buy the IPO.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-polymarket-says-hike-futures-say-hold-the-gap-is-the-story" data-bucket="financial-markets" data-tags="Fed Policy,Rates,Prediction Markets">
+    <div class="story-meta">
+      <span class="bucket-pill">Financial Markets &amp; Economic News</span>
+      <span class="tag">Fed Policy</span>
+<span class="tag">Rates</span>
+<span class="tag">Prediction Markets</span>
+    </div>
+    <h2>Polymarket says hike, futures say hold. The gap is the story.</h2>
+    <ul class="tldr">
+      <li>Polymarket's September Fed hike odds jumped from 28.5% to 53% in seven days on $36.9M in matched volume — with no major new economic data driving the move</li>
+<li>SOFR futures (the instruments institutions use to hedge real rate exposure) price the same September hike at just 32%, a 21-point gap that is the widest prediction-market-to-futures divergence on this contract all year</li>
+<li>The July FOMC vote split 9-3 in favor of holding rates, with three regional Fed presidents — Hammack (Cleveland), Kashkari (Minneapolis), and Logan (Dallas) — dissenting for an immediate hike, tying a 2016 record for same-direction dissents</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Here's the setup: Polymarket is now pricing a September Fed *hike* — not a hold, not a cut — at 53%, on $36.9M of matched volume, up from 28.5% a week ago. SOFR futures, where actual institutions hedge real rate exposure, put the same outcome at 32%. That 21-point gap is the widest prediction-market-to-futures divergence on this contract all year, and the Reddit crowd is calling it a live arbitrage window ahead of Warsh's Jackson Hole debut on August 28. The consensus among the sharper macro desks is that Polymarket is wrong and the futures are right. That's the lazy read, and it's only half correct.</p>
+<p>Yes, Polymarket at 53% is overpriced as a point estimate. Nine of twelve July voters wanted to hold, three same-direction dissents don't make a majority, and Warsh — an inflation hawk on paper — has every institutional reason to project calm rather than blow up his first Jackson Hole as chair. The real probability is somewhere in the high 30s. Fine. But everyone fixating on which venue has the &quot;right&quot; number is missing what the divergence itself is telling you. When a directional-bet market and a hedging market disagree by 21 points, that's not a mispricing to be arbitraged away — it's a measurement of how much conviction is trapped on one side of a binary event with a known catalyst three days out.</p>
+<p>Here's the structural point nobody is pricing. SOFR futures are dominated by institutions laying off risk, not expressing view — CryptoBriefing said this outright, and it's why futures cluster near the &quot;no change&quot; prior and move slowly. Polymarket is pure directional money with no hedging ballast, which makes it the more sensitive instrument, not the less accurate one. It reacts first and overshoots. The 71%-hold-to-47%-hold collapse in seven days on no new economic data isn't noise — it's the crowd repricing tail risk that the futures curve is structurally too sluggish to reflect until the print actually lands. Treating the futures number as &quot;truth&quot; because it's institutional is exactly the Intel-versus-ARM error: mistaking incumbency for signal.</p>
+<p>The trade isn't betting on the hike or fading it. The trade is realized volatility around August 28, September's jobs print, and the September 10 CPI. A neutral Warsh flushes 10-15 points out of the hike contract in minutes; a hot CPI pushes it past 60. That's a 25-point range on a single binary, which means the interesting position is optionality on the repricing, not a directional call on the outcome. For an allocator, the read-across is broader: prediction markets are becoming the fast-twitch layer that front-runs the rates curve, and if you're still treating Polymarket as a curiosity rather than a leading indicator with $37M of skin in it, you're reading yesterday's tape.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Prediction markets are still thin enough that a few large directional bettors can move the price without it meaning anything about the underlying probability — $36.9M sounds significant, but it is a rounding error compared to the notional outstanding in SOFR futures, where the discipline of real hedging cost keeps numbers honest. Warsh, the Fed Chair who delivers his first Jackson Hole speech August 28, is a known inflation hawk, but hawkishness as a philosophical disposition is not the same as a majority coalition for an immediate hike — and nine of twelve July voters just said wait. If the Polymarket crowd is simply extrapolating Warsh's rhetoric into a binary outcome, the futures market's 32% may not be sluggish; it may just be correct.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The deeper issue is structural, and it has been hiding in plain sight for two years. SOFR futures — the market where banks, asset managers, and corporate treasurers actually lay off interest rate risk — are not designed to express a view. They are designed to offset an existing exposure. That institutional mandate creates a systematic bias toward the prior: no change. It takes a very large, very confident flow to move the SOFR strip meaningfully, which is why it tends to lag sharp turns in the rate narrative and then catch up violently once the data is in. Polymarket works the opposite way. Every dollar on the platform is a directional bet with no hedging motive behind it, which means the price is a live read of conviction, not a weighted average of risk management departments protecting their books. Neither instrument is &quot;truth.&quot; They are measuring different things, and the 21-point spread is what you get when those two measurement systems diverge sharply ahead of a known binary catalyst.</p>
+<p>The Jackson Hole context makes this specific divergence more interesting than most. Kevin Warsh — appointed Fed Chair and making his debut at the annual central banking conference in Wyoming on August 28 — has told Congress directly that there is no soft inflation target, an unusually explicit on-record position for a sitting chair. That comment is doing real work in the Polymarket pricing. But debut speeches at Jackson Hole carry their own political economy: incoming chairs almost universally use the platform to project steadiness, not to shock. Alan Greenspan did not use his early Jackson Hole appearances to detonate markets. Ben Bernanke used the 2010 conference to signal QE2, but that came after two years in the chair, not two months. The base case for August 28 is a carefully worded speech that neither fully validates the hawks nor gives the doves a victory lap — which is precisely the kind of outcome that flushes 10 to 15 points out of an overpriced hike contract within the hour.</p>
+<p>But here is the second-order implication that matters for allocators who do not trade prediction markets directly: if Polymarket is systematically faster than the futures curve at incorporating tail-risk repricing, then a sustained 20-plus point divergence between the two is an early warning signal, not a mispricing to fade. The right analogy is credit default swaps in 2007, which were pricing mortgage stress months before the underlying bond indices moved — not because the CDS market was smarter in some abstract sense, but because its structure allowed faster price discovery. Prediction markets are starting to occupy that role in the rates space, particularly around binary events like FOMC decisions, where the outcome is discrete and the catalyst date is known.</p>
+<p>The calendar from here is clean and brutal. Warsh speaks August 28. The August jobs report lands in early September. August CPI prints around September 10. Three data points, each capable of moving the hike contract by double digits in either direction, all arriving before the September 15-16 FOMC meeting. An allocator positioned for realized volatility across those dates — rather than taking a side on the hike itself — is playing the right game. The prediction market is not the trade; it is the instrument that tells you how much the market thinks is at stake. Right now, it is saying quite a lot.</p>
+        <div class="sources">
+          <h4>Sources</h4>
+          <ul>
+            <li><a href="https://www.lines.com/polymarket-prices-september-fed-hike-at-53" target="_blank" rel="noopener">Polymarket September Fed Hike Odds Hit 53% — Lines Analysis</a></li>
+          </ul>
+        </div>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-24.html#story-4-wall-street-just-discovered-the-debt-crisis-the-numbers-have">Wall Street just discovered the debt crisis. The numbers haven't changed in two years.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-21.html#story-3-the-fed-wants-to-hike-treasury-is-buying-bonds-anyway-pick-o">The Fed wants to hike. Treasury is buying bonds anyway. Pick one.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-08-07.html#story-4-warsh-is-killing-forward-guidance-on-purpose-the-bond-market">Warsh is killing forward guidance on purpose. The bond market is already charging him for it.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+
+    function applyFilters() {
+      stories.forEach(function (el) {
+        var bucketMatch = currentBucket === "all" || el.dataset.bucket === currentBucket;
+        var tags = (el.dataset.tags || "").split(",");
+        var tagMatch = currentTag === "all" || tags.indexOf(currentTag) !== -1;
+        el.classList.toggle("hidden", !(bucketMatch && tagMatch));
+      });
+    }
+
+    document.querySelectorAll(".tab").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".tab").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentBucket = btn.dataset.bucket;
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll(".tag-filter").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".tag-filter").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        currentTag = btn.dataset.tag;
+        applyFilters();
+      });
+    });
+  })();
+</script>
+</body>
+</html>
