@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Wednesday, September 23, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Wednesday, September 23, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="private-markets" aria-pressed="false">Private Markets</button>
+<button type="button" class="tab" data-bucket="wealth-planning" aria-pressed="false">Family Office &amp; Wealth Planning</button>
+<button type="button" class="tab" data-bucket="tech-ai" aria-pressed="false">Tech &amp; AI</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="AI" aria-pressed="false">AI</button>
+<button type="button" class="tag-filter" data-tag="APAC" aria-pressed="false">APAC</button>
+<button type="button" class="tag-filter" data-tag="Asia" aria-pressed="false">Asia</button>
+<button type="button" class="tag-filter" data-tag="China" aria-pressed="false">China</button>
+<button type="button" class="tag-filter" data-tag="Chips" aria-pressed="false">Chips</button>
+<button type="button" class="tag-filter" data-tag="Europe" aria-pressed="false">Europe</button>
+<button type="button" class="tag-filter" data-tag="Family Office" aria-pressed="false">Family Office</button>
+<button type="button" class="tag-filter" data-tag="Geopolitical Risk" aria-pressed="false">Geopolitical Risk</button>
+<button type="button" class="tag-filter" data-tag="Infrastructure" aria-pressed="false">Infrastructure</button>
+<button type="button" class="tag-filter" data-tag="Open Source" aria-pressed="false">Open Source</button>
+<button type="button" class="tag-filter" data-tag="Pricing" aria-pressed="false">Pricing</button>
+<button type="button" class="tag-filter" data-tag="Private Credit" aria-pressed="false">Private Credit</button>
+<button type="button" class="tag-filter" data-tag="Secondaries" aria-pressed="false">Secondaries</button>
+<button type="button" class="tag-filter" data-tag="Sovereign Wealth" aria-pressed="false">Sovereign Wealth</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-gic-and-kic-are-both-selling-1-billion-in-pe-stakes-through-" data-bucket="private-markets" data-tags="Sovereign Wealth,Secondaries,Asia">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Sovereign Wealth</span>
+<span class="tag">Secondaries</span>
+<span class="tag">Asia</span>
+    </div>
+    <h2>GIC and KIC are both selling $1 billion in PE stakes through the same banker in the same week.</h2>
+    <div class="story-source"><a href="https://theedgemalaysia.com/node/813372" target="_blank" rel="noopener" title="GIC seeks to sell US$1 bil in private equity fund stakes — Bloomberg">theedgemalaysia.com</a></div>
+    <ul class="tldr">
+      <li>Korea Investment Corp., which manages $232 billion with alternatives as a minority of that book, has hired PJT Partners to sell more than $1 billion in PE stakes — the same adviser running GIC's near-identical process announced days earlier.</li>
+<li>KIC's alternatives sleeve represents less than 22% of its total portfolio, meaning this sale comes from a fund that was never overweight private equity to begin with.</li>
+<li>Secondaries LP-side supply hit $121 billion in H1 2026, up 19% year-over-year per Evercore, with large repeat sovereign funds explicitly identified as the dominant sellers.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>The GIC $1 billion sale is old news to this brief — we covered it on September 7, twice. The genuinely new fact from the last 48 hours is Korea Investment Corp., which manages $232 billion, hiring the same adviser, PJT Partners, to run the same size process — a $1 billion-plus PE stake sale. Two Asian sovereigns, same banker, same week. That's the update worth writing.</p>
+<p>When one $1.16 trillion fund sells $1 billion of stakes, you can call it portfolio hygiene. When a second sovereign fund shows up at the same bank running the identical playbook within a fortnight, you're looking at a coordinated repricing of what sovereigns think their private books are worth. PJT running both isn't a coincidence — it's a signal that the buyer universe is tight enough that sellers are funneling through the same handful of intermediaries who know where the bid actually is. That matters because the price you clear at is set by the marginal buyer, and both sellers are fishing the same pond at once.</p>
+<p>Look at what KIC is actually carrying. More than 78% of its $232 billion sits in traditional equities and fixed income; the alternatives sleeve is the minority. Selling $1 billion off a book that's already light on privates isn't rebalancing toward liquidity — it's a fund deciding that even its modest PE allocation is worth less held than sold. That's a more damning verdict on 2021-vintage marks than GIC's, because GIC at least has a return problem it's publicly named. KIC is trimming from a position that was never overweight to begin with.</p>
+<p>The mechanism to watch is discount contagion. Evercore has H1 secondaries at $121 billion, up 19%, and explicitly attributes the LP-side supply to large repeat sovereigns. Every sovereign that prints a transaction establishes a comparable — a real clearing price on EQT, TPG Asia, and KKR vintages that every other LP's auditor can now point to. GIC and KIC transacting near-simultaneously don't just sell their own billion each; they mark the reference book for everyone still holding the same funds at par. The endowments and pensions carrying those vehicles at 2021 valuations are about to get two fresh data points they'd rather not have.</p>
+<p>The buy-side read is less obvious than &quot;secondaries are booming, buy the GPs.&quot; When supply is this concentrated among sovereigns dumping through the same adviser, the pricing power sits entirely with the capital that can write $500 million-plus checks and close fast — Lexington, the Ardian-scale funds, the CVC secondaries vehicle that just hit $10 billion. Those platforms are the counterparty to a structural, sovereign-sized wave of forced-ish selling, and they're setting terms. If you're allocating fresh capital, the return isn't in the funds being sold. It's in the balance sheets doing the buying at discounts that two simultaneous sovereign auctions will only widen.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case on the bear case: sovereign wealth funds transact in secondaries routinely, and two processes landing in the same week may reflect nothing more than calendar coincidence and the fact that PJT is simply one of the best-positioned advisers in the space. KIC's alternatives book is small relative to its total AUM precisely because the fund has always run conservative, and trimming $1 billion from a $232 billion portfolio is a rounding error in allocation terms — not a distress signal. If the secondaries market is clearing at $121 billion in a single half-year, the bid is clearly there, which means sellers are getting reasonable prices, not dumping at panic discounts.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The detail that makes the KIC transaction more telling than the GIC one is the starting position. GIC has publicly named its problem: a 3.6% five-year annualized return, the worst in over a decade, and a CEO who has gone on record describing the fund as actively recycling capital out of private markets. That's a fund with a diagnosed return shortfall selling to fix it. KIC hasn't offered that kind of public explanation, and structurally it didn't need to be in this position — more than 78% of its $232 billion sits in traditional equities and fixed income, so the alternatives sleeve was already modest. Selling $1 billion from a book that was never overweight privates suggests the motivation isn't rebalancing; it's a judgment that the marks on those holdings are higher than what a real buyer will pay today.</p>
+<p>The PJT overlap is worth dwelling on. Investment banking advisory in large secondaries is not a commodity — the adviser's value is knowing which buyers can actually close at scale and what discount they'll require. PJT running both processes simultaneously means both sellers are fishing the same buyer pool at the same moment. That's not inherently disqualifying, but it does compress the competitive tension in each auction. Buyers who know they're the marginal bid for two sovereign processes at once have less reason to sharpen their pencils on either one.</p>
+<p>The pricing mechanism that follows from this is what should concern LPs still sitting on 2021-vintage marks. Every secondaries transaction in a named fund — EQT, TPG Asia, KKR vehicles — establishes a real clearing price that auditors and fund administrators can reference. GIC and KIC transacting near-simultaneously in overlapping fund families don't just monetize their own positions; they create comparable data points for every other LP holding the same assets at par or near-par. Endowments and pension funds that haven't yet moved to sell now have two fresh sovereign-level prints to contend with at their next valuation cycle. The marks will follow the transactions, not the other way around.</p>
+<p>On the buy side, the opportunity is more specific than a generic secondaries-market tailwind. When supply is this concentrated — large sovereigns moving through a small number of capable advisers — pricing power sits with the platforms that can write $500 million-plus checks and close without a financing contingency. Lexington Partners, Ardian, and CVC's secondaries vehicle, which closed at $10 billion earlier this month, are the natural counterparties to this kind of supply. They are setting terms in a market where the sellers are motivated and the buyer universe is genuinely narrow. The return in this environment accrues to the balance sheets doing the buying, not to the funds being sold.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-21.html#story-0-morgan-stanley-s-private-credit-gate-is-entering-its-fourth-">Morgan Stanley's private credit gate is entering its fourth quarter with the queue still growing.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-18.html#story-0-blackstone-is-running-a-secondary-on-its-own-11-billion-real">Blackstone is running a secondary on its own $11 billion real estate fund to clear the redemption queue.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-11.html#story-1-peterson-kept-the-winner-nobody-will-say-what-it-s-worth">Peterson kept the winner. Nobody will say what it's worth.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-partners-group-is-building-an-off-ramp-across-its-entire-leg" data-bucket="private-markets" data-tags="Private Credit,Secondaries,Europe">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Private Credit</span>
+<span class="tag">Secondaries</span>
+<span class="tag">Europe</span>
+    </div>
+    <h2>Partners Group is building an off-ramp across its entire legacy book at once.</h2>
+    <div class="story-source"><a href="https://www.privateequitywire.co.uk/partners-group-explores-e800m-private-credit-continuation-vehicle/" target="_blank" rel="noopener" title="Partners Group explores €800m private credit continuation vehicle">privateequitywire.co.uk</a></div>
+    <ul class="tldr">
+      <li>Partners Group is exploring an ~€800m continuation vehicle to roll loans out of its 2018 and 2020 Private Markets Credit Strategies funds plus its fifth through seventh Multi-Asset Credit vintages.</li>
+<li>On September 8 — within the same fortnight — the firm's London-listed equity vehicle proposed a dual-share-class restructuring where realisation demand above 40% triggers a board vote on full wind-down.</li>
+<li>The credit CV is the fourth such structure covered this month, following Bridgepoint's €1.2bn deal and Pantheon-led vehicles for Crescent Capital and Benefit Street Partners assets.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Fourth private credit continuation vehicle we've covered this month, after Bridgepoint's €1.2bn and the Pantheon-led Crescent and Benefit Street deals. Partners Group is exploring roughly €800m to roll loans out of its 2018 and 2020 Private Markets Credit funds plus its fifth through seventh Multi-Asset Credit vintages. On its own, one more CV in a wave of them. What makes this one worth a paragraph is what's sitting next to it in the same week.</p>
+<p>On September 8, the London-listed Partners Group Private Equity vehicle proposed a dual-share-class restructuring — investors can stay put or move into a &quot;realisation&quot; class that returns capital in stages, and if realisation demand crosses 40%, the board goes to shareholders for an orderly wind-down of the whole portfolio. So within a fortnight the same firm is offering exits on the credit book through a CV and offering exits on the equity book through a wind-down option. That is not a firm managing two separate liquidity questions. That is a firm building an off-ramp across its legacy portfolio because too many of its investors want out at once.</p>
+<p>The mechanism is worth being honest about. A continuation vehicle sold as &quot;extending the holding period to maximise value&quot; on 2018- and 2020-vintage loans is, in plain terms, a book that hasn't been paying itself back on schedule. Healthy direct lending returns capital as borrowers refinance or get sold. When the manager has to construct a bespoke structure to hand liquidity to the LPs who want it while keeping the assets on the platform, the loans aren't refinancing on their own. Fitch flagged a record private credit default rate in Q2 2026 — that's the backdrop these European middle-market books are trying to exit into, and they can't.</p>
+<p>Here's the part the sponsors won't underline. The CV isn't clearing the liquidity backlog; it's terming it out and re-pricing who bears it. The LP who rolls stays exposed to the same loans for a few more years, now inside a vehicle where the GP has reset its own economics and secondaries buyers have set a mark that may be well below par. The LP who takes liquidity gets out at that mark. Either way the manager keeps the fee-earning assets and buys time. This is the same trade Blackstone is running on its $11bn BPP real estate fund and the same pressure Morgan Stanley is gating against on North Haven — the sponsor organising the exit rather than the market delivering one.</p>
+<p>The read for anyone holding open-ended or legacy private credit: the CV is no longer an opportunistic tool for winners like Peterson keeping Kelso. It is becoming the standard release valve for vintages that can't self-liquidate, and Partners Group doing it across both credit and equity in one September tells you the liquidity problem in private markets is now a portfolio-wide condition, not a fund-specific one. Price the roll option at the secondaries mark, not the reported NAV.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Continuation vehicles on performing credit books are not inherently distress signals — extending duration on well-underwritten loans can genuinely improve outcomes versus forcing sales into a thin exit market. Partners Group may be making a rational portfolio management call: if middle-market borrowers can't refinance today at acceptable terms, holding for two more years and capturing the full coupon beats selling at a discount to a secondaries buyer. The dual-share-class move on the equity side similarly gives investors optionality rather than forcing anyone's hand, and a 40% realisation threshold is a high bar that may never be crossed.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The two moves happening in the same two-week window are what make this worth examining carefully. Taken separately, a credit continuation vehicle and an equity restructuring proposal are both defensible portfolio management decisions. Taken together, they describe a firm that has concluded its legacy investor base — across both asset classes — contains enough sellers that it needs formal, structured mechanisms to absorb them. That is a different diagnosis than routine housekeeping.</p>
+<p>The credit side of this is the more mechanically revealing piece. Partners Group's 2018 and 2020 Private Markets Credit Strategies funds are now six and eight years old respectively. Direct lending funds of that vintage were typically structured with five-to-six-year investment periods and expected to be returning capital by now through borrower refinancings and sponsor-backed exits. The fact that loans from those vintages are instead being bundled into a new vehicle — one that explicitly extends the holding period — means the refinancing cycle those funds were underwritten against hasn't arrived. Fitch recorded a record private credit default rate in Q2 2026, and European middle-market borrowers in particular have found the refinancing window narrow. That is the environment these books are trying to exit into.</p>
+<p>The equity side adds a layer that the credit story alone wouldn't reveal. Partners Group Private Equity Ltd. is a London-listed vehicle — a permanent capital structure that Partners Group manages — and the dual-share-class proposal it put to shareholders on September 8 is structurally unusual. Investors who elect the realisation class receive capital returned in stages rather than staying in the existing strategy. The 40% threshold for triggering a full wind-down vote is the detail worth watching: it is high enough that the board can present this as an orderly option rather than a distress signal, but low enough that it becomes a real governance question if a meaningful minority of shareholders want out.</p>
+<p>The pattern across the broader market is now consistent enough to describe as a structural condition rather than a series of isolated events. Blackstone organised a secondary buyer process for its own $11 billion BPP real estate fund rather than waiting for the market to deliver exits. Morgan Stanley's North Haven Private Income Fund has capped redemptions for three consecutive quarters, with the queue compounding because completed repurchases haven't kept pace with withdrawal demand. Bridgepoint transferred €1.2bn of loans from its 2017-vintage direct lending fund into a continuation vehicle that was oversubscribed. In each case, the sponsor is constructing the exit mechanism because the underlying market isn't producing one organically.</p>
+<p>What the CV structure does in practice is redistribute who bears the remaining duration risk, and at what price. Secondaries buyers who anchor the transaction set a mark — typically at a discount to reported NAV — and that mark becomes the exit price for LPs who want liquidity. LPs who roll into the new vehicle stay exposed to the same loans, now inside a structure where the GP has effectively reset its economics and the secondaries buyer has established a reference price. The manager retains fee-earning assets and buys time to work through the book. None of that is fraudulent; it is the mechanics of how illiquid markets clear when they can't clear through normal channels. But investors in open-ended or legacy private credit vehicles should be valuing their roll option at the secondaries mark being set in these transactions, not at the NAV on the most recent capital account statement.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-21.html#story-0-morgan-stanley-s-private-credit-gate-is-entering-its-fourth-">Morgan Stanley's private credit gate is entering its fourth quarter with the queue still growing.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-18.html#story-0-blackstone-is-running-a-secondary-on-its-own-11-billion-real">Blackstone is running a secondary on its own $11 billion real estate fund to clear the redemption queue.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-11.html#story-1-peterson-kept-the-winner-nobody-will-say-what-it-s-worth">Peterson kept the winner. Nobody will say what it's worth.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-apac-family-offices-booked-the-best-returns-in-the-world-alm" data-bucket="wealth-planning" data-tags="APAC,Family Office,AI,Geopolitical Risk">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">APAC</span>
+<span class="tag">Family Office</span>
+<span class="tag">AI</span>
+<span class="tag">Geopolitical Risk</span>
+    </div>
+    <h2>APAC family offices booked the best returns in the world. Almost all of it was the index.</h2>
+    <div class="story-source"><a href="https://www.businesstimes.com.sg/companies-markets/asia-pacific-family-offices-lead-global-peers-returns-most-bullish-ai-investments-citi" target="_blank" rel="noopener" title="Asia-Pacific family offices lead global peers in returns, most bullish on AI investments: Citi - The Business Times">businesstimes.com.sg</a>, <a href="https://financialpost.com/pmn/business-wire-news-releases-pmn/citi-wealths-2026-global-family-office-report-reveals-clients-are-shifting-their-focus-towards-public-equities-while-becoming-more-deliberate-and-resilient-amid-uncertainty" target="_blank" rel="noopener" title="Citi Wealth's 2026 Global Family Office Report Reveals Clients Are Shifting Their Focus Towards Public Equities While Becoming More Deliberate and Resilient Amid Uncertainty | Financial Post">financialpost.com</a>, <a href="https://news.bloomberglaw.com/international-trade/inflation-tops-family-offices-worries-citi-survey-finds" target="_blank" rel="noopener" title="Inflation Tops Family Offices’ Worries, Citi Survey Finds">news.bloomberglaw.com</a>, <a href="https://www.scmp.com/business/money/article/3368416/some-family-offices-eyeing-chinese-investments-us-china-tensions-ease-report" target="_blank" rel="noopener" title="Some family offices eyeing Chinese investments as US-China tensions ease: report | South China Morning Post">scmp.com</a></div>
+    <ul class="tldr">
+      <li>26% of APAC family offices reported year-to-date gains above 15% — double the global figure — with Citi attributing the outperformance directly to strong regional public equity markets</li>
+<li>80% of APAC family offices name AI as a primary sector for direct investment, the highest of any region, yet 29% report zero internal AI adoption — the highest no-adoption share globally</li>
+<li>Nearly two-thirds of family offices globally now cite inflation as their top concern, a sharp reversal from 2025 when trade disputes and tariffs led the worry list</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Citi's 2026 Global Family Office Report, out Tuesday, hands us the usual buffet — inflation is the new top worry, public equities are back, AI is everywhere in the pitch and almost nowhere in the operations. Skip most of it. The number worth sitting with is that APAC family offices reported the strongest returns of any region: 26% of them booked year-to-date gains above 15%, double the global figure, and 22% are targeting 15%-plus going forward.</p>
+<p>Here is the uncomfortable part. Citi tells you exactly why those returns happened — &quot;strong public equity markets in the region.&quot; That is not skill. That is beta. When a quarter of your regional cohort clears 15% because the index did the work, and then a fifth of them extrapolate that into a forward return target, you are watching people mistake a bull market for an investment process. We flagged the same crowd a week ago buying hedge funds at 10-25% allocations to redeploy exactly these profits. Now Citi confirms the source of the profits was directional equity exposure they didn't hedge into.</p>
+<p>Watch the mismatch between what they say and what they do. APAC family offices report the highest active-management adoption (62%) and hedging (49%) in the world, far above the 34% and 27% global averages. They also posted the highest raw returns. Those two facts sit awkwardly together — heavy hedging is a drag in a market that only goes up, so either the hedges are cosmetic or the returns came from the unhedged sleeve. My read is the latter: the hedging is a story told to the principal while the actual gains ride long equity and, increasingly, an 80%-of-them AI thematic bet. That is a barbell of maximum conviction and maximum insurance, and it usually means the middle — genuine risk-adjusted positioning — is missing.</p>
+<p>The forward number is where the mispricing lives. Global family offices are targeting 7-10% (41% of them), which is a sane real-return goal in a world where inflation is the stated top concern. APAC's 22% chasing 15%-plus is targeting a number that requires either persistent equity beta or leverage or concentration into the AI trade. Any of the three works until the Strait of Hormuz oil blockade Citi itself cites — 85% of Asia's oil transits it — reprices energy and the regional indices with it. The same report names stability of the financial system (53%) and market volatility (52%) as APAC's dominant fears, well above other regions. So they are simultaneously the most worried about a shock and the most aggressive on forward return. That combination doesn't resolve gracefully.</p>
+<p>If you sit across the table from these families, the value-add over the next eighteen months is not another AI direct deal or another long-short allocation. It is anchoring the return expectation back toward the global 7-10% before a volatility event does it involuntarily and at a worse price. The offices that survived 2022 in Asia are the ones that treated a beta year as luck. The ones extrapolating it are writing next year's cautionary case study.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bull case for APAC family offices is that beta capture is itself a skill — knowing when to stay long, resisting the urge to hedge into underperformance, and concentrating into a structural theme like AI before it becomes consensus. The 62% active-management adoption rate and 49% hedging rate may reflect genuine tactical discipline rather than window dressing: offices that actively managed through the Strait of Hormuz volatility and still cleared 15% arguably earned those returns. And a 22% forward target isn't irrational if you believe the AI buildout in the region is still early innings and that regional equity markets have structural tailwinds that global averages don't capture.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Citi report covers 351 family offices across more than 40 countries, surveyed in June and July 2026, with 22% of respondents from APAC. That sample is large enough to take seriously, and the regional divergence it surfaces is stark enough to demand an explanation beyond noise.</p>
+<p>Start with the AI enthusiasm gap. APAC family offices are the most bullish on AI as an investment theme globally — 80% name it a primary sector for direct investment — but they also post the highest share of offices with zero internal AI adoption at 29%. That is not a contradiction you can explain away with lag time. What it describes is a cohort that is comfortable writing checks into AI companies while running their own operations on spreadsheets and relationship calls. The Citi report notes that globally only 10% of family offices classify themselves as in the advanced adoption phase, and just 2% say AI has become transformational to their decision-making. APAC is not an outlier on those figures. The implication is that the AI allocation is a thematic bet, not an informed operational judgment — these offices are buying the trend from the outside rather than living it from the inside.</p>
+<p>The digital assets comfort level adds texture. Citi reports that APAC family offices have the highest overall comfort with digital assets, with half reporting no significant barriers to adoption. Pair that with the 80% AI allocation enthusiasm and the above-average equity returns, and a picture emerges of a regional cohort that is systematically tilted toward high-conviction, high-volatility growth exposures. That works in a bull market. It is a specific kind of fragile in a risk-off one.</p>
+<p>The geopolitical overlay Citi provides is worth taking literally rather than treating as boilerplate. The report explicitly links APAC's elevated concern about financial system stability — cited by 53% of regional respondents, well above other regions — to the oil blockade in the Strait of Hormuz, noting that 85% of oil destined for Asian markets transits that channel. That is not a tail risk; it is a live structural vulnerability sitting underneath the same equity markets that generated the 15%-plus returns. The offices most exposed to a Hormuz disruption repricing regional energy and transport costs are, by the report's own data, the ones most aggressively extrapolating recent gains into forward targets.</p>
+<p>The succession finding in the global data deserves a mention here because it compounds the return-expectation problem. Roughly one-third of respondents globally anticipate leadership transitions in their family, family office, or family business within five years, and the report flags unclear succession plans and insufficient next-generation readiness as significant challenges. An office navigating a principal transition is structurally less likely to push back on an aggressive return target — the incoming generation wants to prove itself, and a 15%-plus bogey feels like ambition rather than recklessness when the last two years delivered it. That dynamic makes the forward target stickier and harder to reset before a drawdown forces the conversation.</p>
+<p>Finally, the EMEA data point on China is worth noting as a counterweight. Twenty-nine percent of EMEA respondents plan to increase exposure to Chinese markets — the highest of any region — as US-China tensions ease. APAC offices, sitting closer to that risk, are not leading that trade. Whether that reflects local knowledge or home-market concentration bias is an open question, but it suggests the China re-rating story is being driven by distance rather than proximity.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-21.html#story-1-amodei-published-a-3-800-word-slowdown-plea-eight-days-befor">Amodei published a 3,800-word slowdown plea eight days before his company considered speeding up.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-18.html#story-2-databricks-is-spending-1-billion-across-asia-to-solve-a-prob">Databricks is spending $1 billion across Asia to solve a problem its software can't solve alone.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-16.html#story-4-apac-family-offices-are-buying-hedge-funds-at-the-top-their-">APAC family offices are buying hedge funds at the top. Their advisers are thrilled.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-alibaba-s-20-gigawatt-bet-is-an-import-substitution-plan-wea" data-bucket="tech-ai" data-tags="China,Chips,Infrastructure">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">China</span>
+<span class="tag">Chips</span>
+<span class="tag">Infrastructure</span>
+    </div>
+    <h2>Alibaba's 20-gigawatt bet is an import-substitution plan wearing a chip announcement.</h2>
+    <div class="story-source"><a href="https://news.bloomberglaw.com/capital-markets/alibaba-unveils-ai-chip-to-drive-20gw-of-data-centers-by-2032" target="_blank" rel="noopener" title="Alibaba Unveils AI Chip to Drive Global Data Center Buildout (1)">news.bloomberglaw.com</a>, <a href="https://www.cnbc.com/2026/09/22/alibaba-ai-alibabacloud-zhenwu-v900-.html" target="_blank" rel="noopener" title="Alibaba shares jump as new AI chip, data center buildout plans unveiled">cnbc.com</a>, <a href="https://fortune.com/2026/09/22/alibaba-powerful-ai-chip-xi-trump-us/" target="_blank" rel="noopener" title="Alibaba says it built the 'most powerful AI chip in China' as the country races with the U.S. | Fortune">fortune.com</a></div>
+    <ul class="tldr">
+      <li>The Zhenwu V900 — Alibaba's new AI accelerator from its T-Head division — delivers three times the performance of the M890 shipped in May and can be clustered in groups of up to 500,000 units for frontier model training.</li>
+<li>Alibaba plans to expand global data center capacity to more than 20 gigawatts by 2032, against SpaceX's roughly 1.4GW mid-year and Meta's single-gigawatt Alberta facility costing approximately $9 billion over three years.</li>
+<li>Alibaba's next model, Qwen 4, is currently in training, with a subsequent roadmap targeting 5 to 10 trillion parameters — compared to its current Qwen3.8-Max at 2.4 trillion.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Alibaba used its Apsara conference to do two things at once: announce the Zhenwu V900, which it calls China's most powerful AI chip at three times the performance of the M890 it shipped in May, and commit to more than 20 gigawatts of global data center capacity by 2032. The timing is the actual message — this landed the day before Xi arrives in Washington to sit across from Trump on AI, trade and tariffs.</p>
+<p>Ignore the &quot;most powerful in China&quot; framing; that's a domestic marketing line and unverifiable from outside. Two numbers are worth your attention. The first is 500,000 units in a cluster. Nobody clusters half a million accelerators because each one is great — they do it because each one isn't, and you brute-force around a per-chip deficit with scale and power. Wu said it plainly in the same speech: global supply-chain shortages &quot;are currently limiting the speed at which we can scale.&quot; Counterpoint's read is the same — extra compute to paper over chip limits. So the V900 is not a Blackwell substitute. It's a workaround Beijing can manufacture, or wants to be able to manufacture, without ASML and without Nvidia's top SKUs.</p>
+<p>The second number is the 20 gigawatts by 2032. Put it against what the source itself offers: SpaceX is at roughly 1.4GW mid-year targeting 10GW in 2027, Meta's Alberta build is a single gigawatt at ~$9bn over three years. Alibaba is announcing an order of magnitude more capacity on a six-year clock, and the binding constraint it named isn't money — it's transformers, optics and fab output. We've walked through that chokepoint before: transformers already sit in a 15% shortage, and Chinese firms supply two-thirds of the world's optical transceivers. Which means Alibaba is announcing demand for exactly the gear China dominates the supply of. That is not a coincidence, it's a vertically integrated import-substitution plan with a compute number bolted on the front.</p>
+<p>Here's the part the Hong Kong tape (up ~3%) is mispricing. This is the mirror image of Amodei's deceleration campaign, which I flagged last week as incumbent protection. While US labs lobby to slow down and Nvidia gets blocked from selling its best silicon into China, Alibaba's answer is to build worse chips in enormous quantities and lock in a training roadmap — Qwen 4 now, then a 5-to-10 trillion parameter model against its current 2.4T Max. The capability gap on task-horizon benchmarks is already down to 4.4 months. The question was never whether China matches Nvidia per-chip. It's whether &quot;good enough silicon at national scale, powered by gear China already controls&quot; clears the bar for training frontier models. Wu is betting it does, and he timed the bet to hand Xi leverage at the table.</p>
+<p>For anyone underwriting Nvidia's China revenue as a recoverable line once export rules loosen: that market is being engineered not to need you. The chip is mediocre on purpose. The strategy isn't.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The cluster-at-scale argument cuts both ways: if you can coordinate 500,000 chips efficiently, the per-chip performance gap matters less than the aggregate throughput, and Alibaba already has more than 650 paying customers running its existing Zhenwu silicon across automotive, finance, energy and manufacturing. More importantly, the 20-gigawatt target is a six-year commitment, and the binding constraint Alibaba's own CEO named is supply chain — transformers, optics, fab output — not capital or demand. If those bottlenecks persist, the announced capacity stays on a slide deck rather than coming online, and the strategic leverage Wu is handing Xi in Washington evaporates before 2032.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The conference timing was deliberate in a way the chip specs alone don't capture. Xi Jinping arrived in Washington the day after the Apsara announcements, with AI, trade and tariffs all on the agenda. Alibaba handed him a concrete data point: China has a domestically manufactured frontier-training chip, a half-million-unit cluster architecture, and a roadmap to more compute capacity than any single Western hyperscaler has publicly committed to on a comparable timeline. That is negotiating material, not just a product launch.</p>
+<p>The 500,000-unit cluster figure deserves more scrutiny than it has received. Nvidia's highest-end systems are clustered in the tens of thousands of GPUs for the largest training runs — the jump to half a million units is not a sign of chip superiority, it is an engineering acknowledgment that the V900's per-chip performance requires massive parallelism to reach the same effective throughput. Alibaba's CEO said directly that supply-chain shortages are limiting how fast the company can scale compute. Counterpoint Research's Neil Shah framed it the same way: extra compute compensates for chip constraints. The V900 is a chip China can manufacture at scale without Nvidia's export-controlled top SKUs and without ASML's most advanced lithography equipment — that is its strategic value, not its benchmark score.</p>
+<p>The 20-gigawatt capacity target becomes more legible when you map it against the supply chain the take has already traced. Transformers are in a 15% market shortage globally in 2026. Chinese firms supply roughly two-thirds of global optical transceiver units, and Western rivals cannot absorb that volume within 24 months per Counterpoint's own analysis. Alibaba is announcing demand for exactly the infrastructure components China already dominates. The data center buildout is not just a cloud revenue play — it is a demand anchor for Chinese-controlled supply chains, creating a self-reinforcing loop where domestic chip output, domestic optical components and domestic transformer capacity all get pulled forward by a single committed buyer with a six-year horizon.</p>
+<p>The model roadmap sits on top of this. Qwen 4 is in training now. The subsequent target of 5 to 10 trillion parameters would put it well above the current Qwen3.8-Max at 2.4 trillion, and above Moonshot AI's Kimi K3 — released in July and described in prior coverage as the world's largest open-weight model at 2.8 trillion parameters. The capability gap between top US closed models and Chinese open-weight alternatives already sits at 4.4 months on task-horizon benchmarks, per Mozilla's State of Open Source AI report. A training run at 5 to 10 trillion parameters, powered by domestically manufactured silicon in domestically controlled infrastructure, is a direct attempt to close what remains of that gap without depending on any component the US can embargo.</p>
+<p>The Hong Kong share reaction — roughly 3% up on the day — priced this as a cloud infrastructure story. The more consequential read is geopolitical: Alibaba is building the physical and silicon stack that would allow China to train frontier models entirely outside the reach of US export controls. Whether the V900 is competitive with Nvidia's best is almost beside the point. The question is whether it is good enough, at sufficient scale, to keep the Qwen training roadmap moving. Wu's bet, timed to land on Xi's desk before Air Force One touched down, is that the answer is yes.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-21.html#story-3-xi-showed-up-to-waic-for-the-first-time-in-eight-years-he-ca">Xi showed up to WAIC for the first time in eight years. He came to build a distribution network, not win a benchmark.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-18.html#story-3-amodei-s-deceleration-call-protects-the-incumbents-who-are-m">Amodei's deceleration call protects the incumbents who are making it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-18.html#story-4-trump-repriced-the-taiwan-option-in-public-the-allies-are-pa">Trump repriced the Taiwan option in public. The allies are panicking about the wrong thing.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-xiaomi-trained-the-world-s-best-open-weight-ai-model-in-six-" data-bucket="tech-ai" data-tags="China,Open Source,Pricing">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">China</span>
+<span class="tag">Open Source</span>
+<span class="tag">Pricing</span>
+    </div>
+    <h2>Xiaomi trained the world's best open-weight AI model in six days for $2.62 million and published the recipe.</h2>
+    <div class="story-source"><a href="https://thenextweb.com/news/xiaomi-mimo-v2-6-open-weight-model-anthropic-distillation" target="_blank" rel="noopener" title="A phone maker now has the world’s top open-weight AI model">thenextweb.com</a></div>
+    <ul class="tldr">
+      <li>MiMo-V2.6-Pro scores 46 on Artificial Analysis's Intelligence Index — first among 114 open-weight models — at $0.13 per task, the cheapest model the firm tracks.</li>
+<li>The full training run covered 750,000 trajectories across 30 steps; Xiaomi published the reward design, hyperparameters, data mixtures, and 7,000 task environments alongside the weights.</li>
+<li>Anthropic cut Claude Opus 5.5 pricing to $4 input and $20 output on the same day MiMo launched — a reactive move, not a planned one.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Eighth time on the Chinese open-weight story since September 2, and the pattern has now reached its logical endpoint: the top open-weight model on the Artificial Analysis index belongs to a company that sells phones and electric cars. Xiaomi's MiMo-V2.6-Pro scores 46, first in its class of 114, trained in under six days for $2.62 million. The number to sit with is that last one. Not the benchmark — benchmarks turned over three times this quarter, DeepSeek in August, Kimi K3 in July, now this. The cost.</p>
+<p>$2.62 million is not a frontier training budget. It is a rounding error on a single Anthropic compute lease — recall the $175 billion in commitments Anthropic locked across four deals earlier this month. The story the US labs have been telling to justify blended frontier pricing at $11.25 per million tokens is that capability requires capital at a scale only a handful of firms can muster. Xiaomi just published the reward design, the hyperparameters, the data mixtures, 7,000 task environments, and the bill, and invited anyone to reproduce it. That is not a model release. That is an attack on the unit economics of the entire closed-lab thesis.</p>
+<p>Here is what actually moved. Xiaomi didn't just undercut on price — Flash at $0.14 in, $0.28 out, a third of Pro and roughly a hundredth of Opus 5.5's $20 output. It open-sourced the method. A well-funded research team that previously needed nine figures to attempt a frontier RL run now has a working recipe that ran on 750,000 trajectories in six days. The moat was never the weights; it was the belief that reproducing them was prohibitively expensive. That belief is now empirically false, and Xiaomi handed out the receipt.</p>
+<p>Watch the timing on the same-day Opus 5.5 price cut to $4/$20. Anthropic did not cut price because it wanted to. It cut because a consumer electronics company published a trillion-parameter multimodal model under MIT license that runs at a fifth of its cost and trails it by twelve index points — a gap that matters for terminal-bench agentic work and does not matter at all for the document pipelines and coding assistants that account for most enterprise token spend. Flash trails Pro by four points or fewer on Xiaomi's own agent benchmarks. For the workloads companies actually run, the capability delta is inside the price delta by an order of magnitude.</p>
+<p>The Anthropic distillation allegation — Xiaomi named among seven Chinese labs accused of harvesting Claude output — is the incumbents' tell that they've lost the framing. If your competitive response to a $2.62 million reproduction is a threat report rather than a price you can defend, you are managing decline. The question worth underwriting is what happens to closed-lab gross margin when the marginal enterprise buyer has a free, self-hostable, sovereign alternative that is 90% as good. That number is falling, and it is falling faster than the equity raises assume.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Xiaomi leads the open-weight field, not the overall field — Artificial Analysis scores Opus 5.5 at 58 against MiMo-V2.6-Pro's 46, and on Terminal Bench 4.0 the gap is stark: Claude at 49.0, MiMo at 34.9, with GPT-6 Astra at 59.6. For agentic workloads that require sustained reliability over long task horizons, that twelve-point gap is real and consequential. Regulated enterprise buyers in financial services, healthcare, and defense also face non-trivial procurement risk sourcing from a lab that Anthropic named in a September 10 threat report alleging Claude output harvesting — and that allegation, unresolved, gives compliance teams a reason to stay with closed vendors regardless of price.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The benchmark number will age out within weeks — DeepSeek held the cheapest-to-run title in August, Moonshot's Kimi K3 held the open-weight crown in July, and now Xiaomi holds both simultaneously. What does not age out as fast is the cost structure Xiaomi just made public.</p>
+<p>The $2.62 million figure deserves to be read against the infrastructure context this brief has already established. Anthropic locked in roughly $175 billion in compute commitments across four deals — Lambda, Nscale, Fluidstack, SpaceX — within a matter of weeks earlier this month. The closed-lab argument for frontier pricing has always rested on the premise that capability at this level requires capital at a scale only a handful of institutions can deploy. Xiaomi ran a single large reinforcement learning job, streamed it live, and came out the other side with the top open-weight score on a 114-model index. The training cost is a rounding error on one of those compute leases.</p>
+<p>What Xiaomi published alongside the weights is the more durable competitive act. A standard open-weight release is weights plus a paper. Xiaomi shipped the end-to-end reinforcement learning framework, more than 7,000 task environments with automatic graders, composable mini-harnesses, and a distilled smaller model. The tasks span software development, cybersecurity, office work, web design, and roughly a thousand music composition environments. Any well-funded research team now has a working recipe — not a theoretical one — for a frontier-class RL run. The barrier was never the weights themselves; it was the widespread assumption that reproducing them required nine-figure budgets and years of institutional knowledge. That assumption is now testable, and Xiaomi handed out the test.</p>
+<p>The pricing arithmetic matters most for the workloads that actually drive enterprise token spend. MiMo-V2.6-Flash — the variant most companies will deploy in production — costs $0.14 per million input tokens and $0.28 per million output. On Xiaomi's own agent benchmarks, Flash trails Pro by four points or fewer across coding, automation, and job-completion tasks. Pro itself costs $0.87 per million output tokens against Opus 5.5's $20. For a document pipeline or coding assistant burning hundreds of thousands of tokens per job, that price gap decides procurement decisions in a way that a twelve-point index gap does not. The capability delta is inside the price delta by an order of magnitude for the median enterprise workload.</p>
+<p>Xiaomi is also one of seven Chinese labs Anthropic named in a September 10 threat report accusing them of routing requests through Claude to harvest its outputs. Xiaomi has not responded to the allegation. The timing is worth noting: the threat report landed twelve days before a $2.62 million reproduction of frontier-class capability shipped under MIT license with the full training code attached. If the competitive response to that is a legal and reputational threat rather than a price that can be defended on its own merits, the closed labs are signaling that they cannot win the cost argument directly.</p>
+<p>The question that follows is what happens to closed-lab gross margin as the marginal enterprise buyer gains access to a self-hostable, sovereign alternative that benchmarks within striking distance on the workloads they actually run. That margin is compressing, and the pace of compression is running ahead of what the equity raises and compute commitments priced in.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-21.html#story-3-xi-showed-up-to-waic-for-the-first-time-in-eight-years-he-ca">Xi showed up to WAIC for the first time in eight years. He came to build a distribution network, not win a benchmark.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-18.html#story-3-amodei-s-deceleration-call-protects-the-incumbents-who-are-m">Amodei's deceleration call protects the incumbents who are making it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-18.html#story-4-trump-repriced-the-taiwan-option-in-public-the-allies-are-pa">Trump repriced the Taiwan option in public. The allies are panicking about the wrong thing.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
