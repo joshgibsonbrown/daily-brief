@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Monday, October 12, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Monday, October 12, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="private-markets" aria-pressed="false">Private Markets</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+<button type="button" class="tab" data-bucket="geopolitics" aria-pressed="false">Geopolitics</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="Canva" aria-pressed="false">Canva</button>
+<button type="button" class="tag-filter" data-tag="GP Governance" aria-pressed="false">GP Governance</button>
+<button type="button" class="tag-filter" data-tag="GP-Led" aria-pressed="false">GP-Led</button>
+<button type="button" class="tag-filter" data-tag="IPO" aria-pressed="false">IPO</button>
+<button type="button" class="tag-filter" data-tag="Pensions" aria-pressed="false">Pensions</button>
+<button type="button" class="tag-filter" data-tag="Secondaries" aria-pressed="false">Secondaries</button>
+<button type="button" class="tag-filter" data-tag="Southeast Asia" aria-pressed="false">Southeast Asia</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-95-of-the-lps-who-know-these-assets-best-are-taking-the-exit" data-bucket="private-markets" data-tags="Secondaries,GP-Led,Pensions">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Secondaries</span>
+<span class="tag">GP-Led</span>
+<span class="tag">Pensions</span>
+    </div>
+    <h2>95% of the LPs who know these assets best are taking the exit. Buyers should ask why.</h2>
+    <div class="story-source"><a href="https://pitchbook.com/news/articles/cvs-if-they-are-trophy-assets-why-do-so-few-lps-want-to-roll-over" target="_blank" rel="noopener" title="CVs: If they are trophy assets, why do so few LPs want to ...">pitchbook.com</a></div>
+    <ul class="tldr">
+      <li>NBER's November 2025 working paper found the LP roll rate in continuation vehicles fell from 14-15% in 2018-19 to below 5% by 2025.</li>
+<li>Public pension funds rolled at just 2% in 2024, largely because CV investing falls outside most pension mandates and a roll triggers full IC approval — impossible inside a 20-day window.</li>
+<li>Secondary transaction volume hit a record $121 billion in H1 2026, split between $65 billion in GP-led deals and $56 billion in LP-led deals, per PitchBook's Global Private Market Fundraising Report.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>The continuation vehicle pitch has always rested on one word: trophy. GPs keep their best asset, existing LPs get the choice to ride along, everyone wins. The data just blew up the premise. NBER's November working paper puts the LP roll rate below 5% by 2025, down from 14-15% in 2018-19. Jefferies' methodology is more generous at 15%, but both point the same direction — the people who own these assets, and know them best, are overwhelmingly taking the exit, often at a discount to the GP's own carrying mark.</p>
+<p>Strip away the governance hand-wringing about fairness opinions and conflicts of interest, and the mechanical reason is the one worth pricing. Public pensions rolled at 2% in 2024. Not because they ran the numbers and sold — because they can't say yes. CV investing sits outside most pension mandates, and a roll gets treated as a new primary investment requiring full IC approval. ILPA says LPs should get 30 calendar days; the June 2026 draft wants 30 business days. Either way, if your investment committee doesn't convene inside the election window, your &quot;choice&quot; is to cash out by default. That's not an informed seller. That's a structural seller with a gun to the clock.</p>
+<p>Here's what that does to the asset-quality story. If the genuine trophy is the one where conviction holds and the holder rolls, then a sub-5% roll rate means the secondaries buyer pool — CVC's $10 billion Fund VI, Ardian's $30 billion, the $40 billion of evergreen and retail money we flagged last week — is funding its deal flow almost entirely from forced or constrained sellers. The incoming LPs are underwriting assets the outgoing LPs were allowed to keep and chose, en masse, not to. Some of that is pure liquidity need in a market starved of distributions. But when 95% of informed owners decline the same offer, the buyer should ask whether the GP's mark is the right price or just the GP's price. The GP sets valuation, controls the information, runs the timeline, and commissions the fairness opinion. The one party with no skin-in-the-game incentive to flatter the number is the selling LP — and that party is sprinting for the door.</p>
+<p>The structural fix already appearing in deal terms tells you where this goes. Rights of transfer — buy now, decide later, sell the CV interest to a third party once you've actually had time to diligence it — are a tacit admission that the 20-day election was never a real decision. So is the push for screening algorithms to speed LP underwriting. Both exist to convert a coerced cash-out into a genuine choice.</p>
+<p>Until they're standard, treat the record $121 billion in H1 volume for what it is: a market clearing at prices the most informed participants won't take. CV pricing discovers the GP's mark, not the asset's value. The gap between those two is the whole trade, and right now the buyers are paying as if there isn't one.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Low roll rates may reflect structural constraints more than informed skepticism about asset quality — if 2% of public pensions roll because their mandates literally prohibit it, that tells you about pension governance, not about whether the asset is worth holding. Jefferies puts average LP rollover at 15% in 2025, up from 11% in 2023, which at least suggests the trend is moving in the right direction as LPs build out CV-specific infrastructure and rights-of-transfer provisions become more common. A market that is actively developing better process — longer decision windows, screening algorithms, transfer rights — may be correcting the structural distortions rather than entrenching them.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The governance debate around continuation vehicles tends to focus on fairness opinions and GP conflicts of interest, and those are real. But the more actionable problem is simpler: the election window is not actually an election for most LPs. ILPA's 2023 guidance set a floor of 30 calendar days or 20 business days; the June 2026 draft update would extend that to 30 business days. Neither number is enough for an institution whose investment committee meets monthly and treats a roll as a new primary commitment requiring full underwriting. Reed Smith partner Brendan Gallen put it plainly — cashing out at a discount to the GP's carrying value is still the more common outcome, and the discount makes that choice actively painful. When LPs are accepting a haircut to get out, the exit is not a preference. It is a concession.</p>
+<p>Railpen — which administers roughly £36 billion in UK railway pension assets — offers the more sophisticated framing: rolling can make sense when the asset fits your strategy, the process has been run fairly, and you are comfortable with continued illiquidity. That is a reasonable standard. The problem is that most LPs cannot evaluate all three criteria inside the election window, so the standard becomes aspirational rather than operational.</p>
+<p>The rights-of-transfer structure now appearing in CV deal terms is the clearest acknowledgment that the market knows this. Allowing an LP to roll into the CV and then sell that interest to a third-party buyer later — once they have had time to actually diligence the asset — converts a coerced binary into a genuine optionality. It is a meaningful improvement. It is also an admission that the original structure was broken.</p>
+<p>The screening algorithms emerging to help LPs do faster initial assessments point the same direction. Both innovations exist to patch a process that was never designed with the selling LP's decision-making capacity in mind. GPs built CVs around their own timeline and their own information advantage; the governance layer is now trying to retrofit LP agency into a structure that did not originally leave room for it.</p>
+<p>What this means for the buyers funding the other side of these transactions is worth sitting with. CVC's secondaries fund, Ardian's pool, and the roughly $40 billion of evergreen and retail capital that entered the LP-led buyer pool in H1 2026 are all, in aggregate, buying from sellers who are disproportionately constrained rather than conviction-driven. That is not the same as buying from motivated sellers who have done the work and decided to exit — it is buying from sellers who could not say yes even if they wanted to. The GP's carrying mark is the reference price in these transactions, and the GP controls the valuation, the information flow, and the timeline. The one party structurally incentivized to push back on that mark — the selling LP — is the one with the least time and the least mandate flexibility to do so. Until transfer rights and extended windows are standard rather than negotiated exceptions, the price discovery in CV transactions reflects the GP's assessment of value more than the market's.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-09.html#story-1-icg-launches-the-exact-product-its-ceo-warned-institutional-">ICG launches the exact product its CEO warned institutional LPs to avoid.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-07.html#story-2-meridiam-s-4-5-billion-continuation-vehicle-is-a-45-year-tol">Meridiam's $4.5 billion continuation vehicle is a 45-year toll road, not a delayed exit.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-02.html#story-1-software-secondaries-are-finally-clearing-but-only-after-sel">Software secondaries are finally clearing, but only after sellers abandoned the fiction of 2021 valuations.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-canva-s-southeast-asia-expansion-is-real-growth-doing-valuat" data-bucket="iconiq-portfolio" data-tags="Canva,Southeast Asia,IPO">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Canva</span>
+<span class="tag">Southeast Asia</span>
+<span class="tag">IPO</span>
+    </div>
+    <h2>Canva's Southeast Asia expansion is real growth doing valuation repair work simultaneously.</h2>
+    <div class="story-source"><a href="https://www.businesstimes.com.sg/international/asean/canva-appoints-ex-bukalapak-ceo-lead-its-south-east-asia-operation" target="_blank" rel="noopener" title="Canva appoints ex-Bukalapak CEO to lead its South-east Asia operation - The Business Times">businesstimes.com.sg</a></div>
+    <ul class="tldr">
+      <li>Blackbird and Airtree marked Canva down to US$34.9 billion in August — 17% below the US$42 billion valuation assigned in 2025, with T. Rowe Price and Franklin Templeton also cutting.</li>
+<li>Southeast Asia ARR has more than trebled since 2022 and monthly active users more than doubled, but Canva declined to disclose absolute revenue or user figures.</li>
+<li>Education partnerships across Thailand, Indonesia, and the Philippines account for at least 60 million monthly active users — a segment that monetizes at close to zero.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Canva just put Willix Halim, Bukalapak's co-founder and former CEO, in charge of Southeast Asia, a region where Indonesia sits in its global top three for monthly active users and the Philippines hosts its second-largest campus. The hire reads as routine executive bench-building. It isn't. It's a tell about where Canva thinks its next billion of revenue has to come from, and the geography is unforgiving.</p>
+<p>The number that matters is the one Blackbird and Airtree put on the table in August: a mark of US$34.9 billion, down 17% from US$42 billion in 2025, with T. Rowe Price and Franklin Templeton also cutting. That's a company getting repriced in real time while management talks up a 2027 IPO window. Canva's own executives won't commit to the listing, and Adams's &quot;we're very happy being private&quot; line is the sound of a team that knows the public market would not pay 2025's price today.</p>
+<p>So the Southeast Asia push is doing double duty. Canva is pointing at a market where enterprise revenue is growing over 100% year-on-year and regional ARR has trebled since 2022 — real growth, off a small base, in economies compounding at 5% GDP. But look at the mix it's leaning on: SMEs, solopreneurs, and 60 million monthly education users across Thailand, Indonesia and the Philippines. Education users monetize at close to zero, and mobile-first users in developing markets pay developing-market prices. This is user growth that looks spectacular in a deck and dilutes revenue-per-user in a model.</p>
+<p>The harder problem is the one Adams is waving away. Canva's entire wedge since 2013 was making design cheaper and simpler than Adobe. Generative AI collapses that moat from below — when GPT and Claude-grade tools let anyone generate a passable social graphic from a prompt, the &quot;simpler than Adobe&quot; pitch stops being a product and starts being a feature. Adams says 300 people work on AI, a third on in-house models. For context, that is a rounding error against what OpenAI and Anthropic spend on frontier training, and Canva is not going to out-model the labs. Its defense has to be distribution and workflow lock-in, not model capability.</p>
+<p>Which is exactly why Halim makes sense, and exactly why he can't fix the core issue. He can win the mobile-first, localize-for-Jakarta land grab better than an Australian expat ever could. What he can't do is make Southeast Asian ARPU look like North American ARPU, and the valuation that gets Canva out at anything near US$35 billion in 2027 depends on enterprise seats in rich markets holding against AI-native competitors.</p>
+<p>The repricing isn't finished. A company monetizing 60 million education users at near-zero while its design moat erodes is not a 2025-multiple business. The Halim hire is a good move in the one region that's genuinely working — and a reminder that the parts that justify the valuation are the parts under the most pressure.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case on Southeast Asia ARPU is real, but it assumes the region stays at developing-market pricing indefinitely. GDP compounding at 5% annually across Indonesia, the Philippines, and Vietnam means the addressable enterprise market is materially larger in three years than it is today, and Canva's education footprint is a pipeline, not a cost center — students who learn design on Canva become SME owners who pay for it. Halim's Bukalapak experience is precisely the playbook for converting a massive free base into a paying one as incomes rise, and Canva's 100%-plus year-on-year enterprise revenue growth in the region suggests the conversion is already happening.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Halim appointment is structurally interesting because of how it was staged. He spent roughly a year advising Canva before converting to a full-time role three months ago — a trial period that suggests Canva was testing regional fit before committing, not filling a vacancy in a hurry. Bukalapak, the Indonesian e-commerce platform Halim co-founded, built its user base in exactly the fragmented, mobile-first, price-sensitive environment Canva is now trying to navigate. The operational translation is direct: how do you build retention and eventual monetization in markets where the first device most users ever owned was an Android phone and desktop software is largely irrelevant?</p>
+<p>The mobile usage data Canva disclosed makes the point sharply. One in two presentations in Southeast Asia starts on mobile. In Indonesia that rises to two in three; in the Philippines, three in five. Those are not edge-case behaviors — they describe the primary use pattern for the majority of Canva's regional user base. A design platform built around a desktop canvas, even one with a capable mobile app, has real product surface area to close before it can fully capture that behavior. Halim's explicit mandate includes pushing a mobile-first product mentality into Canva's roadmap, which implies the current product still has gaps the company acknowledges.</p>
+<p>The education partnerships deserve scrutiny as a growth metric. Sixty million monthly active users across Thailand, Indonesia, and the Philippines sounds like a dominant regional position, and in engagement terms it may be. But education licensing deals with government regulators typically carry heavily subsidized or zero pricing — they are brand-building and pipeline development, not revenue. When Canva's chief product officer Cameron Adams cites Indonesia as a consistent top-three market for monthly active users globally, the relevant follow-up question is what fraction of those users are on paid plans versus free or institutionally subsidized access. Canva declined to break that out.</p>
+<p>The valuation pressure is the context that makes all of this legible. Blackbird and Airtree are Australian venture funds (Blackbird is one of Canva's earliest backers) whose marks carry weight precisely because they know the business well — these are not passive index holders remarking a position. A 17% cut from US$42 billion to US$34.9 billion, confirmed by separate markdowns from T. Rowe Price and Franklin Templeton, represents a broad-based reassessment rather than one firm's outlier view. Adams's comment that a 2027 IPO window is 'good' while simultaneously emphasizing the virtues of staying private is a careful hedge: it keeps the option open without committing to a price discovery event that would be uncomfortable at current marks.</p>
+<p>The AI competitive pressure Adams acknowledges is not abstract. Canva's original value proposition — design simple enough for non-designers, cheaper than Adobe — is being replicated as a feature inside tools users already have. When a marketing team can generate a serviceable social graphic inside their existing productivity suite via a text prompt, the switching cost to Canva drops toward zero for that use case. Canva's response — 300 people on AI, a third on in-house models — is a credible defensive investment, but the company has said explicitly it is trying to keep pace with AI-native competitors, not lead them. Distribution and workflow integration are the durable advantages; model capability is not a race Canva can win against labs spending orders of magnitude more on frontier training.</p>
+<p>Halim can accelerate the regional land grab. What the Southeast Asia push cannot do, on its own, is close the gap between where Canva's valuation sits today and where it needs to be for a 2027 IPO to satisfy investors who marked it at US$42 billion twelve months ago.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-07.html#story-1-rain-filed-for-a-federal-trust-charter-three-days-after-bank">Rain filed for a federal trust charter three days after bankers sued to kill the program.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-02.html#story-0-broadcom-will-lend-anthropic-42-billion-to-lease-broadcom-s-">Broadcom will lend Anthropic $42 billion to lease Broadcom's own chips — and can take equity if Anthropic can't pay.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-30.html#story-1-anthropic-s-ipo-prospectus-locks-in-518-billion-of-fixed-cos">Anthropic's IPO prospectus locks in $518 billion of fixed costs against revenue it admits it cannot guarantee.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-hormuz-flows-are-40-below-normal-and-the-calendar-guarantees" data-bucket="geopolitics" data-tags="">
+    <div class="story-meta">
+      <span class="bucket-pill">Geopolitics</span>
+      
+    </div>
+    <h2>Hormuz flows are 40% below normal and the calendar guarantees three more weeks of it.</h2>
+    <div class="story-source"><a href="https://www.aljazeera.com/news/2026/10/11/hormuz-attacks-intensify-as-efforts-to-end-war-on-iran-stall" target="_blank" rel="noopener" title="Hormuz attacks intensify as efforts to end war on Iran stall | US-Israel war on Iran News | Al Jazeera">aljazeera.com</a></div>
+    <ul class="tldr">
+      <li>Crude throughput in the Strait of Hormuz averaged 8.5 million barrels per day for the week ended October 7 — roughly 40% below the pre-war normal — even after briefly recovering past pre-war levels at the start of the month.</li>
+<li>At least a dozen ships were attacked in the week ending October 5, the highest weekly count since the war began in February, with one strike reaching as far north as Qatar's coastline.</li>
+<li>US Vice President Vance publicly dropped Washington's seven-month zero-enrichment demand, signaling Iran can retain some nuclear enrichment capacity as part of any settlement.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Ninth time on this conflict since August, and the physical market has now caught up to what the paperwork war forecast. Crude through Hormuz is running at 8.5 million barrels per day for the week ended October 7 — roughly 40% below normal — even though flows had briefly climbed past pre-war levels at the start of the month. A dozen ships hit the week ending October 5, the most since February. The strait is not open or closed. It is a managed war zone with a toll booth, which is exactly the state Iran engineered.</p>
+<p>Two things actually changed. First, Vance's demand that Iran make a &quot;meaningful&quot; reduction in enrichment, dropping the zero-enrichment line Washington held for seven months. That is the US conceding the core principle it started the war over, and doing it out loud. Second, the attack off the north coast of Qatar — the violence is no longer confined to the chokepoint, which means the risk premium can no longer be ringfenced to a 90-mile passage.</p>
+<p>Here is what the price tape is missing. Both sides have now agreed, through the calendar, not to settle before November 3. Messages go through mediators, no breakthrough is expected, and Israel votes October 27. That means another three weeks of minimum of mines, projectiles, and CENTCOM disabling vessels with zero diplomatic offset. The market is treating the current flow disruption as a spot shock that mean-reverts. It is a floor, not a spike. Nobody reopens the strait while a US administration and an Israeli government are both campaigning on toughness.</p>
+<p>The structural shift worth holding onto is the enforcement symmetry. CENTCOM has disabled four commercial vessels, turned around 135 ships, and destroyed 10 tankers to keep Iranian oil in the ground. Iran mines and fires on tankers to keep everyone else's oil from moving. Both navies are now running blockades in the same water, and the finalised Iran-Oman coordinated-entry deal — which Iran wants Washington to bless as a condition of any settlement — is the only agreed mechanism for sorting friendly traffic from targets. Washington keeps refusing to underwrite the one framework that would let legitimate cargo transit, because endorsing it reads as endorsing Iranian administration of the strait. So the lane stays lethal by default.</p>
+<p>For anyone carrying energy or freight exposure, the mistake is modeling this as a binary — deal or no deal, open or closed. The realistic base case through mid-November is neither: flows stuck 30-40% below normal, insurance war-risk premiums structurally repriced, and Gulf state infrastructure inside the blast radius after Riyadh and the Qatar-adjacent strikes. The teapot-refinery sanctions and the blockade mean Iran's barrels aren't coming back online even if a ceasefire lands. The supply that's offline is offline for the medium term. That's the number to carry, not the headline odds of a handshake that the calendar has already priced out.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The calendar pressure cuts both ways. A US administration heading into November 3 midterms and an Israeli government facing an October 27 election both have domestic incentives to show strength, but they also have incentives to avoid a visible economic shock — and 8.5 million barrels per day through Hormuz, sustained, is a shock that shows up in gasoline prices before voters go to the polls. If the economic pain lands fast enough, the political calculus flips: a deal framed as 'we won enough' becomes more attractive than a continued blockade that voters feel at the pump. Vance's public concession on enrichment may be the first move in exactly that reframe, not a sign of drift.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Qatar-adjacent strike is the detail that deserves more weight than it has received. Every prior Iranian-aligned attack tracked in this brief targeted assets inside the immediate Hormuz passage or US military infrastructure across Bahrain, Kuwait, and Qatar's American bases. A strike off Qatar's north coast is different in kind: it signals that Iran is willing to threaten the commercial infrastructure of Gulf states that have been positioning themselves as neutral brokers. That changes the insurance calculus for the entire Gulf of Oman, not just the 90-mile chokepoint, and it puts pressure on Doha at a moment when Qatar has been one of the few active diplomatic channels still open.</p>
+<p>The enforcement symmetry running in both directions through the same water is the structural fact that makes a quick resolution nearly impossible even if political will existed. CENTCOM has disabled four commercial vessels, turned around 135 ships, and destroyed 10 tankers since reimposing its naval blockade in mid-July. Iran, simultaneously, is mining unauthorized routes and firing on tankers transiting without IRGC clearance. The result is two overlapping blockades with incompatible rules of passage. The only agreed mechanism for resolving that overlap — the Iran-Oman coordinated-entry deal, which designates temporary joint transit routes — is finalized on paper but unactivated, because Washington refuses to endorse it. Endorsing it would mean accepting Iranian co-administration of the world's most important oil corridor, which is a concession the US is not prepared to make publicly, especially not before a midterm vote.</p>
+<p>Iran's conditions for reopening have been consistent: end the US naval blockade, release frozen assets, and achieve a broader regional ceasefire. Washington's position has shifted — Vance's 'meaningful reduction' language is a real concession from the zero-enrichment line held since February — but the gap between 'meaningful reduction' and Iran's stated position that enrichment is non-negotiable as a sovereign right remains wide. Iran's nuclear chief said on Sunday that 'the achievements of our indigenous nuclear industry cannot be stopped,' which is not the language of a side preparing to make rapid concessions.</p>
+<p>The flow disruption that looked like a spike when it first appeared in August is now behaving like a structural floor. Flows briefly recovered past pre-war levels at the start of October, then fell back sharply as attacks intensified — which suggests the market's instinct to buy the recovery was wrong. The correct model is a range: flows oscillate between roughly 8 and 12 million barrels per day depending on weekly attack intensity, with the lower end of that range becoming more probable as both sides dig in ahead of their respective electoral deadlines. War-risk insurance premiums, once repriced for that range rather than for a binary open-or-closed outcome, do not come back down quickly even after a ceasefire, because underwriters need multiple incident-free months before they revise the actuarial baseline. The supply disruption and the freight cost premium are therefore likely to persist well past any political settlement, whenever that arrives.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-28.html#story-3-trump-rejected-iran-s-seven-day-hormuz-offer-the-midterm-cal">Trump rejected Iran's seven-day Hormuz offer. The midterm calendar explains why.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-25.html#story-4-a-phased-hormuz-swap-is-on-the-table-the-clocks-on-each-side">A phased Hormuz swap is on the table. The clocks on each side run in opposite directions.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-21.html#story-4-houthi-missiles-hit-riyadh-the-gulf-states-just-became-the-f">Houthi missiles hit Riyadh. The Gulf states just became the front line.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-continuation-vehicles-are-clearing-at-record-volume-because-" data-bucket="private-markets" data-tags="Secondaries,GP Governance,Pensions">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Secondaries</span>
+<span class="tag">GP Governance</span>
+<span class="tag">Pensions</span>
+    </div>
+    <h2>Continuation vehicles are clearing at record volume because existing LPs are structurally forced to sell, not because they want to.</h2>
+    <div class="story-source"><a href="https://www.buyoutsinsider.com/private-equitys-newest-transaction-the-dpi-trade/" target="_blank" rel="noopener" title="Private equity's newest transaction: the 'DPI trade'">buyoutsinsider.com</a>, <a href="https://pitchbook.com/news/articles/cvs-if-they-are-trophy-assets-why-do-so-few-lps-want-to-roll-over" target="_blank" rel="noopener" title="CVs: If they are trophy assets, why do so few LPs want to ...">pitchbook.com</a></div>
+    <ul class="tldr">
+      <li>Secondary transaction volume hit a record $121 billion in H1 2026, with $65 billion coming from GP-led deals including continuation vehicles — but LP rollover rates tell the opposite story from the trophy-asset pitch.</li>
+<li>Jefferies puts average LP rollover at 15% in 2025; an NBER working paper measuring the same phenomenon differently puts it below 5%, with public pension funds rolling at just 2% in 2024.</li>
+<li>ILPA's current guidance gives LPs 20 business days to decide whether to roll or cash out — a window so short that most institutional investment committees don't have a scheduled meeting inside it, making the election a default exit in practice.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>The continuation-vehicle pitch has always rested on one word: trophy. GPs hold their best assets past fund life, existing LPs get a free option to ride along, and everyone wins. The data just killed that story. PitchBook's reporting shows secondary volume hit a record $121 billion in the first half — $65 billion of it GP-led — but the rollover rates tell you the &quot;option&quot; is a fiction. Jefferies puts average LP rollover at 15% in 2025. The NBER working paper, measuring differently, puts it below 5%. Public pensions rolled at 2% in 2024. If these were genuinely the crown jewels, the owners who know them best would not be sprinting for the exit at a discount to the GP's own carrying mark.</p>
+<p>The reason they're running isn't conviction. It's mechanics, and the mechanics are rigged against rolling. ILPA's guidance gives LPs 20 business days to elect; the June 2026 draft wants to stretch it to 30. Either way, most institutional ICs don't even have a meeting scheduled inside that window, and a roll gets treated as a fresh underwrite that no 20-day clock can accommodate. So the &quot;election&quot; collapses into a default cash-out. The GP sets the price, controls the information, writes the timeline, and hands the LP a stopwatch. A fairness opinion built on the GP's own data numbers is not a check on that — it's a receipt.</p>
+<p>Here's what the record volume actually represents. New secondaries capital — CVC's $10 billion Fund VI, Ardian's $30 billion pool, the evergreen and retail money ICG and others are pulling in — is buying assets that the incumbent owners are structurally forced to sell at NAV discounts. That's not a liquidity market clearing willing buyers and sellers. It's a wealth transfer from LPs who can't process the paperwork to secondary buyers who've industrialized the paperwork. The gap between the GP's mark and the clearing price is the trade. Someone is capturing it, and it isn't the pension fund that owned the asset for seven years.</p>
+<p>Two things follow. First, the &quot;trophy asset&quot; marks on GP books are now contradicted by the behavior of the only people with full information — the existing LPs voting to sell below those marks. When 95% of informed holders decline to roll at the GP's price, the mark is the aspiration and the secondary clearing price is the truth. Every allocator still carrying CV-eligible positions at sponsor NAV should assume a haircut is already embedded and unrecognized.</p>
+<p>Second, watch the &quot;buy now, decide later&quot; structures and transferable rights the article flags. GPs are inventing them precisely because the honest version of the election — read the asset, take 30 days, make a real decision — produces a roll rate near zero. That's the admission. The product only works when the seller doesn't have time to think. Fix the clock and the whole GP-led engine seizes. Which is exactly why the clock won't get fixed fast enough to matter.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bearish read on rollover rates ignores a straightforward alternative explanation: many LPs are genuinely liquidity-constrained after years of distribution drought, and cashing out of a good asset at a modest discount is a rational portfolio decision, not evidence the asset is mispriced. Railpen's investment manager says explicitly that rolling can make sense when conviction is high and the process is fair — and the rising rollover rate Jefferies documents, from 11% in 2023 to 15% in 2025, suggests LP sophistication and willingness to stay is actually increasing over time, not collapsing. If the structural complaint were the dominant force, you'd expect rollover rates to be flat or falling, not rising.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The conflict-of-interest problem at the center of continuation vehicles is not new, but the scale at which it now operates is. When $65 billion of GP-led secondary volume clears in a single half-year, the governance gaps that were once edge cases become systemic. The GP controls the asset valuation, selects the timing, manages the information flow to existing LPs, and simultaneously sponsors the incoming vehicle that buys from those same LPs. Fairness opinions are the designated check on that process, but as Oliver Crowley of DLA Piper notes in the source material, even a well-prepared opinion is necessarily built on information the GP has provided — it is a receipt for a process the GP designed, not an independent audit of whether the price is right.</p>
+<p>The discount problem compounds this. Brendan Gallen of Reed Smith points out that cashing out often means accepting a price below the GP's own carrying value — the NAV on the fund's books. LPs are being asked to make a 20-business-day decision about whether to sell below the mark set by the person on the other side of the trade. The ones best positioned to absorb that decision quickly — large, well-staffed secondaries buyers with industrialized due diligence — are the incoming investors, not the incumbents. The process systematically advantages the buyer the GP has already chosen over the seller the GP is trying to move out.</p>
+<p>Public pension funds are the clearest illustration of how mandate constraints, not asset quality, drive the cash-out decision. Their 2% rollover rate in 2024 reflects the fact that CV investing simply falls outside what many public pensions are authorized to do. A roll would require board approval as a new investment, legal review of the new vehicle's terms, and often a fresh allocation decision — none of which fits inside a 20-day window. The election is nominal. The outcome is predetermined by institutional architecture.</p>
+<p>The 'buy now, decide later' structures now appearing in the market — transferable rights that let LPs sell their CV interest to a third party after the initial close — are a tacit acknowledgment of this problem. GPs are engineering workarounds because the honest version of the process, one with adequate time and information, produces near-zero rollover. That is a meaningful data point about what the market actually thinks of these assets at the GP's stated price. The workarounds preserve the form of LP optionality while the substance remains constrained by the same information asymmetry and timeline pressure.</p>
+<p>The NBER working paper's title — 'Selling to Yourself: Continuation Funds in Private Equity' — captures the structural reality more precisely than the trophy-asset marketing does. The GP is effectively transferring an asset from one pool it manages to another pool it manages, at a price it sets, on a timeline it controls, with existing LPs as the liquidity provider of last resort. Record secondary volume is the output of that machine running at full speed, not evidence that the market is efficiently allocating capital to its highest-conviction holders.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-09.html#story-1-icg-launches-the-exact-product-its-ceo-warned-institutional-">ICG launches the exact product its CEO warned institutional LPs to avoid.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-07.html#story-2-meridiam-s-4-5-billion-continuation-vehicle-is-a-45-year-tol">Meridiam's $4.5 billion continuation vehicle is a 45-year toll road, not a delayed exit.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-02.html#story-1-software-secondaries-are-finally-clearing-but-only-after-sel">Software secondaries are finally clearing, but only after sellers abandoned the fiction of 2021 valuations.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
