@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Wednesday, October 14, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Wednesday, October 14, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="private-markets" aria-pressed="false">Private Markets</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+<button type="button" class="tab" data-bucket="wealth-planning" aria-pressed="false">Family Office &amp; Wealth Planning</button>
+<button type="button" class="tab" data-bucket="geopolitics" aria-pressed="false">Geopolitics</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="AI" aria-pressed="false">AI</button>
+<button type="button" class="tag-filter" data-tag="APAC" aria-pressed="false">APAC</button>
+<button type="button" class="tag-filter" data-tag="Auto Insurance" aria-pressed="false">Auto Insurance</button>
+<button type="button" class="tag-filter" data-tag="Defense" aria-pressed="false">Defense</button>
+<button type="button" class="tag-filter" data-tag="Europe" aria-pressed="false">Europe</button>
+<button type="button" class="tag-filter" data-tag="Fintech" aria-pressed="false">Fintech</button>
+<button type="button" class="tag-filter" data-tag="GP Dynamics" aria-pressed="false">GP Dynamics</button>
+<button type="button" class="tag-filter" data-tag="LBO" aria-pressed="false">LBO</button>
+<button type="button" class="tag-filter" data-tag="Late Stage" aria-pressed="false">Late Stage</button>
+<button type="button" class="tag-filter" data-tag="NATO" aria-pressed="false">NATO</button>
+<button type="button" class="tag-filter" data-tag="Private Equity" aria-pressed="false">Private Equity</button>
+<button type="button" class="tag-filter" data-tag="Russia" aria-pressed="false">Russia</button>
+<button type="button" class="tag-filter" data-tag="Secondaries" aria-pressed="false">Secondaries</button>
+<button type="button" class="tag-filter" data-tag="Singapore" aria-pressed="false">Singapore</button>
+<button type="button" class="tag-filter" data-tag="Software" aria-pressed="false">Software</button>
+<button type="button" class="tag-filter" data-tag="Wealth Transfer" aria-pressed="false">Wealth Transfer</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-continuation-funds-hit-7-1-of-global-pe-exits-the-second-lap" data-bucket="private-markets" data-tags="Software,GP Dynamics,Secondaries">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Software</span>
+<span class="tag">GP Dynamics</span>
+<span class="tag">Secondaries</span>
+    </div>
+    <h2>Continuation funds hit 7.1% of global PE exits. The second lap is where the math breaks.</h2>
+    <div class="story-source"><a href="https://pitchbook.com/news/reports/q4-2026-the-continuation-of-continuation-funds" target="_blank" rel="noopener" title="Q4 2026 The Continuation of Continuation Funds - PitchBook">pitchbook.com</a></div>
+    <ul class="tldr">
+      <li>CV-related exits rose from under 1% of global PE exit value to a peak of 7.1% in 2025, per PitchBook's Q4 2026 analyst note.</li>
+<li>The emerging 'CV-squared' trend rolls a portfolio company into a second continuation fund — the same GP controlling both sides of the transaction, twice.</li>
+<li>Software assets are the primary driver of the new wave, as sponsors who bought at 2021 valuations refuse to crystallize losses at today's reset multiples.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Fourth time on continuation vehicles in two weeks, and PitchBook's Q4 note hands us the number that was missing: CV-related exits peaked at 7.1% of global PE exit value in 2025, up from under 1%. The new wrinkle is &quot;CV-squared&quot; — rolling a company into a second continuation fund — and software, where sponsors who bought at 2021 marks won't crystallize losses at today's 11.7x EV/EBITDA.</p>
+<p>We've already covered why existing LPs are structurally forced to sell into these things. CV-squared is the same mechanism pointed at the asset itself. Here is the problem it exposes. A first continuation vehicle is defensible: trophy asset, soft exit window, GP wants a few more turns. A second one, on the same company, is a confession. If the asset were genuinely compounding on the thesis, a trade sale or an IPO would have cleared it by the time the first CV ran its five-to-seven-year life. Rolling it again means the GP still can't find a third-party buyer who agrees with the mark — so it sells the asset to a new vehicle it also controls, and resets the clock.</p>
+<p>ECP's $834 million Next Wave deal shows the version that actually works and tells you why CV-squared mostly won't. Next Wave is a 40,000-barrel-a-day alkylation complex on long-term fixed-margin contracts. The anchors — GCM Grosvenor, Ardian, StepStone, Phoenix — are secondaries specialists pricing a known cash-flow stream, and ECP is reinvesting its own proceeds. That's an infrastructure asset with contracted economics where a 45-year hold is the point, the same logic as the Meridiam toll-road vehicle GIC anchored. Fixed-margin cash flow is exactly what secondaries capital wants right now.</p>
+<p>Software is the opposite trade wearing the same costume. There's no contracted margin to underwrite, the comps have already re-rated 40%, and the reason the asset hasn't sold is that the market disputes the valuation — not that the GP is holding for a 45-year annuity. When an energy complex goes into a CV, the buyer is pricing cash. When a 2021-vintage SaaS company goes into its second CV, the buyer is being asked to validate a mark that two prior processes failed to validate, financed by evergreen and retail money that doesn't do the asset-level work. Quality interests are already clearing around 90% of NAV; the stuff getting rolled twice is not the quality.</p>
+<p>The question PitchBook raises politely — durable value or deferred reckoning — has a cleaner answer by sector. In contracted infrastructure, durable value. In re-rated software, deferred reckoning, and the deferral now has its own product name. Watch whether 2027 CV-squared volume concentrates in tech. If it does, you're watching an industry refuse to take losses by selling assets to itself twice, and the eventual clearing price will be worse for the delay. The fee stream, meanwhile, compounds reliably at every roll — which is the one return in this structure nobody disputes.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case on CV-squared assumes the GP is simply buying time, but the structure can be legitimate when the underlying business is still compounding and the original fund's life expired before the value creation thesis played out. A SaaS company that was genuinely early in its growth curve in 2021 may need a decade-plus runway, not five years, and a second continuation vehicle gives patient capital the chance to capture that. The conflict-of-interest risk is real, but ILPA's updated 2026 draft guidance and the FCA's scrutiny of valuation conflicts are both pushing toward better disclosure and independent pricing — which, if enforced, would make the structure more defensible, not less.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The PitchBook note frames CV-squared as an open question — durable value or deferred reckoning — but the source material already contains the evidence to answer it by asset type, and the Energy Capital Partners deal is the clearest illustration of where the line sits.</p>
+<p>ECP's $834 million single-asset continuation vehicle for Next Wave Energy Partners, an alkylation complex on the Houston Ship Channel running roughly 40,000 barrels a day under long-term fixed-margin contracts, is the version of this structure that makes sense. The anchors — GCM Grosvenor, Ardian, StepStone, and Phoenix Insurance — are secondaries specialists. These are not generalist LPs being pitched a story; they are buyers who price cash-flow streams for a living, and they chose to anchor. ECP reinvesting its own proceeds alongside them is the additional signal: a GP that has already cashed out its Fund IV investors and still wants exposure is not a GP that is hiding from a mark. The logic is identical to the Meridiam North America Core Fund, where GIC anchored a 45-year extension of toll-road and social infrastructure assets — the long hold is the investment thesis, not a workaround for a failed exit.</p>
+<p>Software is structurally different in every dimension that matters. There are no contracted margins to underwrite. The comparable-company multiples have already compressed sharply — median SaaS EV/EBITDA fell from 20.4x to 11.7x per the Forvis Mazars/PitchBook H1 2026 report, erasing roughly a decade of premium in a single cycle. And the reason a 2021-vintage software asset hasn't sold is not that the GP is holding for a long-dated annuity; it is that the market has repriced the category and the GP disagrees with where the market has landed. Rolling that asset into a first continuation vehicle is defensible if the exit window is genuinely soft. Rolling it into a second one, after the first CV's five-to-seven-year life has elapsed without a third-party buyer emerging, is a different claim entirely. It means two successive processes failed to find a buyer who agreed with the GP's valuation — and the proposed solution is to sell the asset to a new vehicle the same GP controls.</p>
+<p>The capital absorbing that risk is increasingly retail and evergreen money, which tends not to conduct asset-level diligence at the depth that institutional secondaries specialists do. Quality buyout interests are already clearing around 90% of NAV in the current market, per Evercore data cited in recent coverage. The assets getting rolled twice are not the quality tier. They are the assets where the GP's mark and the market's mark have not converged, and the continuation structure is the mechanism that allows that gap to persist without forcing a reconciliation.</p>
+<p>The fee dynamic compounds the concern. Every roll generates a new management fee stream and resets the carried-interest clock on the same underlying asset. That is the one return in the CV-squared structure that is not contingent on whether the asset ultimately clears at the GP's mark. If 2027 CV-squared volume concentrates in technology — which the PitchBook note's sector-shift section flags as the direction of travel — it will be worth watching whether the incoming LP base shifts further toward retail capital and away from the secondaries specialists who anchored the ECP deal. That shift in buyer composition would be the clearest signal that the structure is being used to defer a loss rather than extend a genuine compounding thesis.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-12.html#story-0-95-of-the-lps-who-know-these-assets-best-are-taking-the-exit">95% of the LPs who know these assets best are taking the exit. Buyers should ask why.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-12.html#story-3-continuation-vehicles-are-clearing-at-record-volume-because-">Continuation vehicles are clearing at record volume because existing LPs are structurally forced to sell, not because they want to.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-09.html#story-1-icg-launches-the-exact-product-its-ceo-warned-institutional-">ICG launches the exact product its CEO warned institutional LPs to avoid.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-gtcr-and-elliott-are-buying-ccc-because-the-public-market-go" data-bucket="iconiq-portfolio" data-tags="Private Equity,Auto Insurance,LBO">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Private Equity</span>
+<span class="tag">Auto Insurance</span>
+<span class="tag">LBO</span>
+    </div>
+    <h2>GTCR and Elliott are buying CCC because the public market got scared and left money on the table.</h2>
+    <div class="story-source"><a href="https://www.barrons.com/articles/ccc-intelligent-solutions-stock-software-takeover-0bd883b6" target="_blank" rel="noopener" title="CCC Intelligent Solutions Stock Pops on Buyout Talks, Defying AI Fears">barrons.com</a>, <a href="https://www.autobpa.com/2026/10/12/ccc-reportedly-in-advanced-acquisition-talks-with-gtcr-and-elliott/" target="_blank" rel="noopener" title="CCC Reportedly in Advanced Acquisition Talks with GTCR and Elliott – Automotive Body Parts Association (ABPA)">autobpa.com</a>, <a href="https://www.financial-news.co.uk/ccc-intelligent-solutions-surges-8-on-buyout-talks-report/" target="_blank" rel="noopener" title="CCC Intelligent Solutions surges 8% on buyout talks report - Financial News">financial-news.co.uk</a></div>
+    <ul class="tldr">
+      <li>CCC guided full-year 2026 revenue of $1.158–1.164 billion and adjusted EBITDA of $485–491 million at a 40% margin, against $1.27 billion of gross debt</li>
+<li>Shares jumped roughly 8–9% Monday to around $7.59 but remain more than 40% below their 2023 all-time high — no price per share has been disclosed and no 8-K has been filed</li>
+<li>Elliott built a stake in July, Copart circled in August, and GTCR joined Elliott in advanced talks by early October — a months-long process, not a sudden approach</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>CCC Intelligent Solutions — the Chicago software maker that sits between auto insurers, body shops, automakers and parts suppliers in the collision-claims chain — is reportedly days from a deal with GTCR and Elliott. The stock jumped roughly 8-9% Monday to around $7.59, and the clever framing is that this &quot;defies AI fears&quot;: here's a vertical software business getting bought even as the market frets that AI eats SaaS. That framing is backwards.</p>
+<p>Look at what a buyer is actually acquiring and the price gets interesting. CCC guided to $1.158-1.164 billion in 2026 revenue and $485-491 million of adjusted EBITDA — a 40% margin — against $1.27 billion of gross debt. Even after Monday's pop the stock sits more than 40% below its 2023 high. This isn't a growth company commanding a premium for AI leverage. It's a sub-10% grower with lumpy GAAP earnings — a $17.4 million loss in Q1 2025, a $21 million profit two quarters later — that an activist pried loose. Elliott built a stake in July, Copart kicked the tires in August, and now Elliott partners with GTCR to take it private. That's not the market pricing in AI-proof software. That's a cheap asset with a captive customer base getting bought because it's cheap.</p>
+<p>The financing math is the part worth sitting with. The 10-year was at 5.22% on October 8. Loading an LBO onto a business that already carries $1.27 billion of debt, at those rates, against EBITDA that converts to roughly $82 million of quarterly free cash flow, leaves very little room for the buyer to be wrong about the trajectory. GTCR can only make this work by underwriting that CCC's position in the claims workflow is genuinely durable — that insurers and body shops don't route around it. Which is precisely the thing AI threatens. The deal doesn't defy the AI fear; it monetizes the gap between where the public market, scared of exactly that, has repriced CCC and where a sponsor thinks the switching costs actually hold.</p>
+<p>Worth remembering the ownership loop here: Advent bought CCC in 2017, SPAC'd it public in 2021, and exited through secondaries in 2025. Now it rotates back to private equity after a sub-par public-market run. The round trip from PE to SPAC to PE in under a decade is the more honest read on what vertical SaaS of this profile is worth — not a compounder the public market mistreated, but a cash-generative utility that trades better away from quarterly scrutiny and the AI-disruption discount.</p>
+<p>One caution on the premium: no price per share has been disclosed, CCC hasn't filed an 8-K, and reports consistently warn a rival bidder could still surface. The 8% move prices in a modest takeout, not a bidding war. If the only live buyers are an activist and its sponsor partner, the shareholders sitting on a 40% drawdown are the ones setting the clearing price — and they are tired. That caps the premium more than the AI story does.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The AI-disruption discount the public market applied to CCC may not be wrong — it may just be early. Insurers and body shops are already piloting AI-native claims tools that could reduce their dependence on CCC's workflow software, and at 5.22% on the 10-year, GTCR has to service a heavily leveraged capital structure while that competitive pressure builds. If switching costs erode faster than the sponsors underwrite, the LBO math inverts quickly, and the $1.27 billion of existing debt leaves almost no cushion for a revenue miss.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The ownership history here is worth tracing carefully because it tells you something about the asset's actual profile. Advent International bought CCC in 2017, took it public via SPAC in 2021, and exited through secondary share offerings in 2025. The company has now spent roughly four years as a public company, underperformed badly relative to its SPAC-era implied valuation, and is heading back to private ownership. That round trip — PE to SPAC to PE in under a decade — is not the story of a misunderstood compounder. It is the story of a cash-generative utility that generates predictable revenue from a captive network of insurers, body shops, automakers, and parts suppliers, but does not have the growth profile that public equity markets reward.</p>
+<p>The financial trajectory in the source material makes this concrete. Quarterly revenue climbed steadily from $221.1 million in Q3 2023 to $285.9 million in Q2 2026 — roughly 9.8% year-over-year growth in the most recent quarter. That is not a bad business. But GAAP earnings swung from a $21.2 million net loss in Q3 2023 to a $21.4 million profit the following quarter, then back to a $17.4 million loss in Q1 2025, before returning to a $20.79 million profit in Q2 2026. Lumpy GAAP results against steady revenue growth is exactly the profile that frustrates public shareholders and attracts activists. Elliott's stake-building in July was less a bet on a turnaround than a recognition that the gap between the public market's AI-disruption discount and the actual switching-cost economics had grown wide enough to extract value.</p>
+<p>The financing environment is the constraint that makes this deal genuinely difficult to execute well. The 10-year Treasury yield stood at 5.22% on October 8, according to FRED data cited in the source material. Layering an LBO capital structure onto a business that already carries $1.27 billion of gross debt, at those rates, against quarterly free cash flow of roughly $82.4 million, leaves the sponsors with very little margin for error. GTCR's underwriting thesis has to be that CCC's position in the claims workflow — the connective tissue between insurers and the repair ecosystem — is durable enough to service that debt load while rates stay elevated. That is a bet on switching costs, not on growth.</p>
+<p>The short-covering pattern in the run-up to Monday's announcement adds a useful data point. FINRA's daily short-sale volume ratio for CCC fell from 0.602 on September 29 to 0.376 on October 12, consistent with short sellers unwinding positions as deal-talk momentum built. That means some of Monday's 8–9% move reflects shorts covering rather than new long conviction — which in turn suggests the market is pricing a modest takeout premium, not a competitive auction.</p>
+<p>The Copart angle is worth noting even though it did not result in a deal. Copart — a vehicle auction company — circling CCC in August suggested at least one strategic buyer saw value in owning the software layer that sits above the collision repair market. That Copart stepped back and an activist-sponsor pairing moved to the front of the queue implies either that the strategic logic did not survive due diligence, or that the price discipline of a financial buyer ultimately set the clearing level. Either way, the shareholders sitting on a 40% drawdown from the 2023 high are the ones determining what premium is acceptable — and after years of underperformance, their hurdle is lower than it would be in a healthier tape.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-12.html#story-1-canva-s-southeast-asia-expansion-is-real-growth-doing-valuat">Canva's Southeast Asia expansion is real growth doing valuation repair work simultaneously.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-07.html#story-1-rain-filed-for-a-federal-trust-charter-three-days-after-bank">Rain filed for a federal trust charter three days after bankers sued to kill the program.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-02.html#story-3-north-american-family-offices-turned-greedy-in-twelve-months">North American family offices turned greedy in twelve months. The exit data says they should not have.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-ramp-hits-60-billion-on-a-routing-tool-that-hasn-t-proven-it" data-bucket="iconiq-portfolio" data-tags="Fintech,AI,Late Stage">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Fintech</span>
+<span class="tag">AI</span>
+<span class="tag">Late Stage</span>
+    </div>
+    <h2>Ramp hits $60 billion on a routing tool that hasn't proven it can hold margin.</h2>
+    <div class="story-source"><a href="https://dealroom.co/news/162085-ramp-raises-1-85b-at-60b-valuation-up-16b-in-four-months/" target="_blank" rel="noopener" title="Ramp raises $1.85B at $60B valuation, up $16B in four months">dealroom.co</a>, <a href="https://fintech.global/2026/10/12/ramps-1-85bn-raise-widens-gap-over-spend-management-rivals/" target="_blank" rel="noopener" title="Ramp's $1.85bn raise widens gap over spend management rivals">fintech.global</a>, <a href="https://thepaypers.com/crypto-web3-and-cbdc/news/ramp-raises-usd-185-billion-at-usd-60-billion-pre-money-valuation" target="_blank" rel="noopener" title="Ramp lands USD 1.85 billion round at USD 60 billion valuation">thepaypers.com</a>, <a href="https://www.pymnts.com/news/investment-tracker/fintech-investments/2026/ramp-valued-at-60-billion-following-new-funding-round/" target="_blank" rel="noopener" title="Ramp Valued at $60 Billion Following New Funding Round">pymnts.com</a></div>
+    <ul class="tldr">
+      <li>Dragoneer and Thrive led a $1.85B round at a $60B pre-money valuation — Ramp's second raise in four months, following a $750M round at $44B in June</li>
+<li>Annualized revenue had passed $1.5B as of June, implying a revenue multiple above 40x on a figure that is now four months stale</li>
+<li>Brex, once Ramp's closest rival, was acquired by Capital One for $5.15B earlier this year — Ramp's valuation is now more than 11x that price</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Ramp raised $1.85 billion at a $60 billion pre-money valuation, led by Dragoneer and Thrive, with Founders Fund writing a large cheque. The number everyone is quoting is the velocity: $44 billion in June, $60 billion now, a 36% step-up in four months on a company that was marked at $32 billion as recently as November 2025. That's a near-doubling inside a year. ICONIQ sits on the cap table alongside Lightspeed, D1, Bessemer, Goldman Sachs Alternatives, and T. Rowe Price.</p>
+<p>The frame being sold is that Ramp is the uncontested winner because Brex got absorbed into Capital One for $5.15 billion, leaving Ramp as the lone independent at 11x that price. True, but that comparison flatters the valuation rather than explaining it. Brex sold into a bank because the standalone spend-management business is a thin-margin interchange play dressed up as software. Ramp is being priced as something else entirely, and the question is whether the something else is real yet.</p>
+<p>Look at what's actually underwriting the $60 billion. Annualized revenue passed $1.5 billion as of June. At that figure the company is trading north of 40x revenue — and that's the June revenue number against an October valuation, so the real multiple on current run-rate is lower but still rich. What closes the gap in the investors' heads isn't the corporate card. It's Router.com, the model-routing tool Ramp ran internally for three years before shipping it in August, and the disclosure that Ramp is now weighing training its own models. That is the pitch that moved $16 billion of paper value in sixteen weeks: not &quot;we sell cards,&quot; but &quot;we own the layer that decides where every enterprise's AI spend goes.&quot;</p>
+<p>Here's the problem with paying for that story today. Router is a cost-reduction tool — it cut Ramp's own AI bill by roughly 30%. Selling cost reduction to your customers is a real business, but it's a commoditizing one, and the moment model-routing becomes a standard feature inside every AI gateway and cloud provider, the margin in &quot;deciding which model gets picked&quot; compresses toward zero. The same logic that makes routing valuable — models are interchangeable and getting cheaper — is the logic that makes routing hard to defend. Ramp's actual moat is distribution: 70,000 businesses, 170% payment-volume growth, and the UK and Sweden payment licenses it picked up buying Billhop and Juno. That's worth a lot. It may not be worth 40x.</p>
+<p>What the round really tells you is where crossover capital is parking in a narrowing late-stage market. Dragoneer and Thrive aren't buying spend management; they're buying the best-distributed on-ramp to enterprise AI budgets that isn't already a frontier lab. If finance is genuinely reorganizing around AI the way Glyman claims, $60 billion looks early. If AI spend normalizes into just another SaaS line item, the step-up from June was the top tick, and the next mark is the one that hurts.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The 40x revenue multiple looks stretched until you account for what Ramp is actually selling at scale. Payment volume grew 170% year-over-year in March — the fastest rate in three years — on a base 20x larger than three years prior. That kind of growth on a large base is genuinely rare, and the UK and Sweden expansion, funded by the Billhop and Juno acquisitions, opens a European market that the June revenue figure doesn't yet reflect. If Ramp is becoming the financial operating system for AI-era businesses rather than a card issuer with good software, the addressable market is orders of magnitude larger than corporate spend management, and crossover investors pricing that outcome early have been right before.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The supplementary reporting adds one detail the main sources underplay: Ramp's valuation trajectory didn't start in June. The company was marked at $32 billion as recently as November 2025, meaning the move to $60 billion represents a near-doubling in under a year across three successive rounds. That pace is unusual even by late-stage AI-adjacent standards, and it tells you something about how competitive the allocation into this name has become among crossover funds.</p>
+<p>The investor list is worth reading carefully. ICONIQ, Lightspeed, D1, Bessemer, Goldman Sachs Alternatives, Morgan Stanley Investment Management, and T. Rowe Price are all on the cap table alongside the new entrants. That breadth — venture, crossover, and institutional asset managers together — signals that this round was not a quiet insider top-up. Multiple categories of capital competed to get in at $60 billion, which is itself a data point about where late-stage conviction is concentrating right now.</p>
+<p>The Router.com bet deserves more scrutiny than it has received. Ramp ran the tool internally for three years and found it cut AI costs by roughly 30%. That's a real result. But the product's value proposition rests on model fragmentation persisting — on enterprises continuing to use many models rather than consolidating onto one or two providers. The major cloud platforms and AI gateway vendors have every incentive to build routing natively, and if they do, the standalone routing layer becomes redundant. Ramp's answer to that risk is presumably distribution: 70,000 businesses already running their finances through Ramp are a natural install base for Router, and switching costs in financial infrastructure are high. But distribution is a defense against displacement, not a source of pricing power, and the margin profile of a routing tool sold as a cost-reduction product to existing customers is structurally different from the margin profile of a software platform.</p>
+<p>The geographic expansion is the underappreciated part of the story. Acquiring Billhop gave Ramp payment licenses in the UK and Sweden, and the company launched its platform to UK businesses in September 2026. That is Ramp's first material operation outside North America, and it happened between the June and October rounds. European corporate card and expense management is a fragmented market with no dominant independent player at scale, and Ramp is arriving with $2.6 billion in combined new capital — the June and October rounds together — to fund the push. Whether that translates into revenue fast enough to justify the current multiple is the open question, but the strategic logic of using the UK as a beachhead is sound.</p>
+<p>The customer count moving from 50,000 to 70,000 in the first half of 2026 — a 40% increase in six months — is the figure that probably matters most to the investors writing checks today. Revenue multiples compress as revenue grows; customer acquisition at that rate, if it continues, is what makes the $60 billion defensible on a two- to three-year horizon rather than a ten-year one. The risk is that the second half of 2026 shows deceleration, and the October valuation was set against the best half-year growth number Ramp has ever reported.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-12.html#story-1-canva-s-southeast-asia-expansion-is-real-growth-doing-valuat">Canva's Southeast Asia expansion is real growth doing valuation repair work simultaneously.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-09.html#story-3-anthropic-s-autonomy-claim-and-its-data-hygiene-claim-cannot">Anthropic's autonomy claim and its data-hygiene claim cannot both be true at once.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-07.html#story-1-rain-filed-for-a-federal-trust-charter-three-days-after-bank">Rain filed for a federal trust charter three days after bankers sued to kill the program.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-singapore-family-offices-fired-the-banker-and-kept-the-banke" data-bucket="wealth-planning" data-tags="Singapore,AI,APAC,Wealth Transfer">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">Singapore</span>
+<span class="tag">AI</span>
+<span class="tag">APAC</span>
+<span class="tag">Wealth Transfer</span>
+    </div>
+    <h2>Singapore family offices fired the banker and kept the banker's trade</h2>
+    <div class="story-source"><a href="https://www.straitstimes.com/business/family-offices-kept-captive-by-relationship-managers-turn-to-independent-advisers-direct-deals" target="_blank" rel="noopener" title="Singapore family offices turn to direct deals and AI | The Straits Times">straitstimes.com</a></div>
+    <ul class="tldr">
+      <li>Singapore had more than 2,000 tax-incentivised single-family offices as of end-2025, per the Monetary Authority of Singapore</li>
+<li>80% of APAC family offices name AI as a primary direct-investment sector — the highest of any region globally, per Citi's 2026 report</li>
+<li>JRT Partners' Yee Tuck Meng acknowledged an explicit asset-liability mismatch: most beneficiaries are in Asia, yet the office is overinvested in US tech across the board, including SpaceX</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Singapore crossed 2,000 tax-incentivised single-family offices at end-2025, and a new invitation-only club — the Private Family Society, founded in August — held its first summit on October 5 to pitch the theme every adviser in town is now selling: go direct, cut out the relationship manager, run the portfolio like a fund. The framing is that private banks are conflicted order-takers who &quot;monetise the next transaction,&quot; so families should source their own deals. That part is true and overdue. The part worth scrutinising is what these offices are actually buying once they're free of the banker.</p>
+<p>JRT Partners' Yee Tuck Meng said it plainly: most of his beneficiaries live in Malaysia, Singapore and Australia, he thinks there's better value in Asia and Europe, and he has &quot;overinvested in the US right across the entire tech spectrum&quot; anyway — SpaceX included — because the weight of money is in US dollars. That's not a family office freed from captivity. That's a family office that fired its banker and kept the banker's trade. The direct-deal movement was supposed to be about controlling your own risk; what it's producing is a cohort of APAC principals concentrating into the same US AI names, with an explicit asset-liability mismatch against where the family and its liabilities sit.</p>
+<p>Stack this against our own recent coverage and the picture sharpens. APAC's family offices are the most bullish on AI of any region — 80% name it as a primary direct-investment sector per Citi — yet 47% of North American offices couldn't exit a private-market position as planned this year, and 75% expect the AI bubble to burst within five years while almost none cut exposure. Yee says the quiet part: his US book is &quot;good, so far, and that is also very bad when the correction comes, and I don't know when.&quot; Going direct into illiquid private AI at the top of the cycle, without the bank's balance sheet to warehouse the position, means these families own both the sourcing and the exit problem. The RM at least had a secondary desk.</p>
+<p>The real repricing here isn't banks versus independent advisers. It's that &quot;institutionalising&quot; has been sold as a governance upgrade when half of it is a liquidity downgrade. A family running a $500m book like a fund — plausible in-range for the larger offices described, not a sourced figure — needs an exit function, a drawdown policy, and a currency-hedging mandate before it needs its own deal pipeline. Khaitan is right that pitch flow isn't intelligence. But swapping a conflicted banker for a conflicted summit sponsor, and calling the resulting pile of late-stage US AT equity &quot;control,&quot; solves the wrong problem.</p>
+<p>The firms that survive the next correction in this cohort won't be the ones with the best direct deals. They'll be the ones who kept a liquidity sleeve and a hedge against their own US dollar overweight while everyone else was congratulating themselves for firing the relationship manager.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The structural critique of private banks is legitimate and the move toward independent sourcing is not purely cosmetic. Relationship managers at private banks do face real conflicts — product shelf economics, capital-markets mandates, and transaction fee incentives that have nothing to do with a family's actual risk profile. Independent advisers and direct deal pipelines, even imperfect ones, at least surface the conflict rather than hiding it inside a bundled service. And for the largest offices — those running internal teams with discretionary mandates — the institutionalisation story is real: better governance, cleaner fee structures, and genuine investment discipline that a private bank relationship model structurally cannot deliver.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Private Family Society, an invitation-only group for family office principals and CIOs across Asia-Pacific, co-founded in August by Anupum Khaitan of advisory firm Sophatych and Sean Tan of business lifestyle firm Bespoke 81, held its inaugural AI and Family Office Summit on October 5. The event was explicitly organised around two themes: cutting out conflicted intermediaries and allocating more aggressively to AI. Both themes are real trends. The problem is that they are being pursued simultaneously, which compounds the risk rather than distributing it.</p>
+<p>Khaitan's framing — that information from private banks arrives as a pitch rather than intelligence — is accurate as far as it goes. But the summit itself is a pitch environment, and the deals being sourced through principal networks and invitation-only communities carry their own selection bias. The families most likely to get early access to a direct round in a US AI company are the ones already concentrated in US tech. The network reinforces the position.</p>
+<p>The scale dynamic that Yee Tuck Meng of JRT Partners and Andrew Khoo of MUI Group both described is important context here. Smaller family offices largely operate through private banks because they lack the internal infrastructure to do otherwise. Larger, institutionalised offices run internal teams with discretionary mandates. The direct-deal movement is mostly happening in the middle — offices large enough to feel the bank's conflicts but not yet large enough to have built a real exit function, a drawdown policy, or a currency-hedging framework. That is precisely the cohort most exposed when a concentrated, illiquid position needs to be unwound.</p>
+<p>Khoo noted that AI-related allocations across MUI Group and his family office have grown to around 10 to 20 percent of total allocation over the past five years, and he expects that figure could reach 30 percent. That trajectory — doubling or tripling a single-sector allocation into an asset class where 75 percent of North American family offices expect a bubble to burst within five years, per our earlier coverage — is the live tension the summit did not resolve.</p>
+<p>Yee's candour about the asset-liability mismatch is the most useful data point from the event. He knows his beneficiaries are in Malaysia, Singapore, and Australia. He believes there is better value in Asia and Europe. He has overinvested in US tech anyway, because dollar-denominated assets are where institutional capital flows. That is not an independent investment thesis — it is momentum dressed as conviction. The difference between that and what a private bank relationship manager would have recommended is narrower than the direct-deal narrative suggests.</p>
+<p>The liquidity dimension is what the institutionalisation story consistently underweights. A private bank, whatever its conflicts, has a secondary desk, a balance sheet, and structured products that can warehouse a position or provide interim liquidity. A family office that has fired its banker, concentrated into late-stage private US AI equity, and built its deal pipeline through a principal network now owns the sourcing problem and the exit problem with no intermediary buffer. The governance upgrade is real. The liquidity downgrade is equally real, and it is not being priced into the narrative.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-09.html#story-0-beijing-s-offshore-tax-probe-reaches-back-to-2000-and-enforc">Beijing's offshore tax probe reaches back to 2000 and enforcement is deliberately uneven</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-09.html#story-3-anthropic-s-autonomy-claim-and-its-data-hygiene-claim-cannot">Anthropic's autonomy claim and its data-hygiene claim cannot both be true at once.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-07.html#story-3-asia-s-wealth-transfer-is-on-schedule-the-heirs-are-not">Asia's wealth transfer is on schedule. The heirs are not.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-nato-s-top-general-just-made-american-absence-the-base-case-" data-bucket="geopolitics" data-tags="NATO,Russia,Europe,Defense">
+    <div class="story-meta">
+      <span class="bucket-pill">Geopolitics</span>
+      <span class="tag">NATO</span>
+<span class="tag">Russia</span>
+<span class="tag">Europe</span>
+<span class="tag">Defense</span>
+    </div>
+    <h2>NATO's top general just made American absence the base case, not the contingency.</h2>
+    <div class="story-source"><a href="https://www.politico.eu/article/natos-plans-against-russia-with-or-without-america/" target="_blank" rel="noopener" title="NATO’s top general lays out plan to fight Russia — with or without America – POLITICO">politico.eu</a></div>
+    <ul class="tldr">
+      <li>US Ambassador Whitaker ranked Europe fourth among Washington's strategic priorities — behind the Indo-Pacific, homeland, and Western Hemisphere — at the same Warsaw forum where Grynkewich spoke.</li>
+<li>The Pentagon has already cut contributions to NATO crisis forces and will release a European force-posture review by year-end.</li>
+<li>Moscow sent NATO a letter last month threatening nuclear use if the alliance attempted to isolate its Kaliningrad exclave — a direct test of whether the deterrent still holds.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>NATO's top commander, General Grynkewich, used the Warsaw Security Forum on Monday to unveil a &quot;Theory of Victory&quot; — block, blunt, break — and said the quiet part out loud: the plan &quot;absolutely&quot; assumes a scenario where the US is fighting elsewhere, &quot;and in fact, it must.&quot; That's the news. A four-star American general telling the Kremlin that Europe will fight Russia with or without Washington is not a reassurance speech. It's a planning assumption being made public.</p>
+<p>The reason it's public matters more than the rhetoric. You don't announce your fallback plan unless the fallback is becoming the base case. Whitaker, the US ambassador to NATO, stood in the same city and ranked Europe fourth among Washington's strategic concerns — behind the Indo-Pacific, the homeland, and the Western Hemisphere. The Pentagon has already cut contributions to NATO crisis forces and is dropping a force-posture review by year-end. Grynkewich isn't hedging against American absence as a tail risk. He's writing doctrine around it because the capital allocation decision in DC has already been made, and the uniform is catching up to the budget.</p>
+<p>Here's what the market in European defense spending hasn't absorbed. The Grand strategy — fight deep behind Russian lines, destroy the &quot;war machine,&quot; match any rung on the nuclear escalation ladder — is enormously capital-intensive precisely in the capabilities the US used to provide for free: strategic lift, ISR, suppression of air defenses, precision munitions at scale, and the nuclear umbrella. A &quot;block, blunt, break&quot; doctrine that reaches deep into Russian territory requires exactly the long-range strike and space-based sensing that European inventories don't have. Grynkewich just committed the alliance to a war it can't currently fight without the ally it's planning to fight without.</p>
+<p>That gap is the trade. Either Europe closes it with sustained procurement — which means German, Polish, and Nordic defense budgets staying elevated for a decade, not a cycle — or the doctrine is a bluff, and the Kremlin's letter threatening nuclear use over Kaliningrad is a test of which it is. Moscow sent that letter last month for a reason: it read the same POLITICO signals you did and concluded the American backstop is negotiable. Grynkewich's nuclear line — &quot;we could match any enemy move up the escalation ladder&quot; — is an attempt to re-anchor a deterrent that the US posture review is actively unwinding.</p>
+<p>For anyone positioned in European defense primes, the structural point is that this is no longer a NATO-subsidized-by-America story. It's a story where Europe funds the full stack itself, including the expensive top of it, or it doesn't deter at all. Rheinmetall, Saab, Leonardo and the munitions supply chain are being handed a multi-year demand floor not by a war scare but by an American reallocation that both sides have now said aloud. The risk isn't that Europe overspends. It's that it discovers, mid-crisis, that announcing independence and funding it are different line items.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Grynkewich is still a four-star American general, and the US nuclear umbrella remains formally intact regardless of what the force-posture review says about conventional troops. European defense spending has risen sharply since 2022, and countries like Poland are now at or above 4% of GDP — so the capability gap the take describes is real but narrowing. A public doctrine of autonomous European defense may actually strengthen deterrence by removing Moscow's ability to exploit ambiguity about American commitment, rather than signaling weakness.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The three-part doctrine Grynkewich outlined — block with land forces, blunt with autonomous systems and sensors, break with precision munitions deep inside Russian territory — is not a modest holding action. It is an offensive-reach strategy that historically required American-provided capabilities: strategic airlift, intelligence-surveillance-reconnaissance at scale, suppression of enemy air defenses, and long-range precision strike. European inventories are not currently built for the top of that stack. Grynkewich is committing the alliance to a warfighting concept that presupposes capabilities his European allies are still years away from fielding at the required depth.</p>
+<p>The nuclear dimension compounds this. His warning that NATO could 'match any enemy move up the escalation ladder' is directed at a Kremlin that sent a formal letter last month threatening nuclear use over Kaliningrad. That letter was not rhetorical noise — it was a structured probe of whether the American backstop is still credible after a year of Trump threatening to annex Greenland, infighting over the US-Israeli war in Iran, and the Pentagon's visible reallocation of resources toward the Indo-Pacific. Grynkewich's answer was to re-anchor the deterrent verbally. The question is whether verbal re-anchoring works when the budget signal runs the other direction.</p>
+<p>Camille Grand, NATO's former assistant secretary-general for defense investment, described the blueprint as a deliberate effort to signal readiness with or without large-scale US involvement. That framing is important: this is not a contingency plan being quietly war-gamed in Brussels. It is being announced publicly, at a major security forum, by the alliance's top uniformed commander. Public doctrine changes the political economy of European defense procurement in a way that classified planning does not. Parliaments can be shown the speech. Defense ministers can point to it when asking for budget increases. The announcement is itself a forcing function.</p>
+<p>The procurement implication runs directly to the European defense industrial base. Rheinmetall, Saab, Leonardo, and the broader munitions supply chain are not being asked to fill a temporary gap while Washington refocuses. They are being handed a structural demand signal for the full capability stack — including the expensive upper layers of long-range strike, space-based sensing, and air defense — that the US previously provided as an implicit subsidy to the alliance. Whether European governments sustain the fiscal commitment required to actually close that gap over a decade, rather than cycling through a burst of spending and then reverting, is the open question the doctrine cannot answer on its own.</p>
+<p>The Kremlin's Kaliningrad letter suggests Moscow has already done this analysis and concluded the American backstop is at least partially negotiable. Grynkewich's speech is an attempt to correct that read. Whether it succeeds depends less on the eloquence of the doctrine and more on whether the German Bundestag, the Polish Sejm, and Nordic parliaments keep signing procurement contracts when the immediate threat feels distant — which is precisely when they historically have not.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-12.html#story-2-hormuz-flows-are-40-below-normal-and-the-calendar-guarantees">Hormuz flows are 40% below normal and the calendar guarantees three more weeks of it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-09.html#story-1-icg-launches-the-exact-product-its-ceo-warned-institutional-">ICG launches the exact product its CEO warned institutional LPs to avoid.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-28.html#story-0-cvc-raised-10-billion-to-profit-from-private-equity-s-inabil">CVC raised $10 billion to profit from private equity's inability to return cash.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
