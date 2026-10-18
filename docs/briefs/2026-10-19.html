@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Monday, October 19, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Monday, October 19, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+<button type="button" class="tab" data-bucket="tech-ai" aria-pressed="false">Tech &amp; AI</button>
+<button type="button" class="tab" data-bucket="financial-markets" aria-pressed="false">Financial Markets &amp; Economic News</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="AI" aria-pressed="false">AI</button>
+<button type="button" class="tag-filter" data-tag="AI Safety" aria-pressed="false">AI Safety</button>
+<button type="button" class="tag-filter" data-tag="Anthropic" aria-pressed="false">Anthropic</button>
+<button type="button" class="tag-filter" data-tag="Catastrophe Risk" aria-pressed="false">Catastrophe Risk</button>
+<button type="button" class="tag-filter" data-tag="Fed" aria-pressed="false">Fed</button>
+<button type="button" class="tag-filter" data-tag="ILS" aria-pressed="false">ILS</button>
+<button type="button" class="tag-filter" data-tag="IPO" aria-pressed="false">IPO</button>
+<button type="button" class="tag-filter" data-tag="Inference" aria-pressed="false">Inference</button>
+<button type="button" class="tag-filter" data-tag="Insurtech" aria-pressed="false">Insurtech</button>
+<button type="button" class="tag-filter" data-tag="OpenAI" aria-pressed="false">OpenAI</button>
+<button type="button" class="tag-filter" data-tag="Rates" aria-pressed="false">Rates</button>
+<button type="button" class="tag-filter" data-tag="Replit" aria-pressed="false">Replit</button>
+<button type="button" class="tag-filter" data-tag="Startups" aria-pressed="false">Startups</button>
+<button type="button" class="tag-filter" data-tag="Volatility" aria-pressed="false">Volatility</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-replit-flipped-its-default-to-openai-and-handed-anthropic-s-" data-bucket="iconiq-portfolio" data-tags="AI,Anthropic,OpenAI,Replit">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">AI</span>
+<span class="tag">Anthropic</span>
+<span class="tag">OpenAI</span>
+<span class="tag">Replit</span>
+    </div>
+    <h2>Replit flipped its default to OpenAI and handed Anthropic's IPO roadshow a live case study in customer churn.</h2>
+    <div class="story-source"><a href="https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/" target="_blank" rel="noopener" title="Replit makes OpenAI its default over Anthropic, CEO says">techcrunch.com</a></div>
+    <ul class="tldr">
+      <li>Replit was a top-five Anthropic customer by spend; switching the default model in Replit Agent routes the majority of that spend to OpenAI without any individual user making a choice</li>
+<li>Enterprise revenue at Replit grew from roughly 2% of total revenue last year to roughly 15% this year, with over half the book now B2B — the customer mix most likely to reprice on economics alone</li>
+<li>Masad cited cost, partnership, and performance as the reasons for the switch, with OpenAI's Sol and Astra models outperforming on Replit's own internal and public benchmarks for building apps from scratch</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Replit's CEO Amjad Masad went on stage at TechCrunch Disrupt and said the company is &quot;no longer working with Anthropic,&quot; then spent the next 48 hours walking it back — customers can still pick Claude, the partnership is &quot;still in place&quot; per someone familiar, and Replit was promoting Anthropic's Fable 5.1 and Opus 5.5 models in production as recently as late September. So the clean headline is wrong. What actually happened is quieter and more important: OpenAI is now the default model powering Replit Agent, and Masad admits most users never change the default.</p>
+<p>That distinction is the whole story. Replit was, by Masad's own account, a top-five Anthropic customer. Flipping the default is not a feature toggle — it's a revenue migration. If most users stay on defaults, Anthropic just lost the majority of one of its largest accounts without a single customer making a decision. The spend doesn't trickle away; it moves the day the default moves.</p>
+<p>Now layer the timing. We flagged three days ago that Anthropic's expected IPO valuation fell from roughly $2 trillion to $1.5 trillion before the roadshow, and that what spooked the room was a decelerating growth rate, not the $16.8 billion quarterly level. Masad is telling you where some of that deceleration comes from. Anthropic's revenue has leaned heavily on a short list of large, uncontracted customers — the prospectus itself admitted nearly a quarter of 2025 revenue came from two of them. Replit is a live example of exactly the risk the S-1 disclosed: a top-five customer re-routing to a competitor on &quot;cost, economics, and performance,&quot; and able to do it because nothing bound it.</p>
+<p>Watch what Masad actually justified the switch on. Not capability — he claims a performance edge on vibe-coded apps, which is marketing. The operative words are cost and economics. Anthropic has been subsidizing frontier-model access to buy exactly this kind of flagship logo, and the moment a cheaper, good-enough alternative appears, the logo defaults away. That is the open-weight-and-price-pressure dynamic arriving at the application layer, dressed up as a partnership announcement. OpenAI didn't win Replit on genius; it won on the invoice.</p>
+<p>The piece of this that matters more than the model fight: Replit's enterprise revenue went from 2% to 15% in a year, over half the book is now B2B, and Masad expects enterprise and government to be the majority in 2027. Enterprise and government buyers care about procurement economics, sandboxing, and vendor terms far more than a benchmark decimal. A platform optimizing for that customer will keep defaulting to whoever is cheapest at acceptable quality, and will switch again the instant the math changes. Masad has told Anthropic's future underwriters precisely how durable a large AI-lab customer relationship actually is: as durable as the next price quote. For anyone sizing the Anthropic book ahead of November, that's the number that should move, not the stage theatrics about who's &quot;working with&quot; whom.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The Anthropic relationship is not actually dead — an unnamed insider told TechCrunch the partnership remains in place, Replit was promoting Claude Fable 5.1 and Opus 5.5 in production as recently as late September, and customers can still select Anthropic models manually. If Anthropic retains the enterprise and power-user segment that actively chooses models rather than accepting defaults, the revenue loss may be smaller than the default-switch framing implies. And if OpenAI's pricing advantage narrows — or Anthropic releases a model that pulls ahead on the benchmarks Replit actually uses — the default could flip back just as quietly.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The stage remarks at TechCrunch Disrupt were messier than the clean narrative Masad tried to establish. He said Replit was &quot;no longer working with Anthropic,&quot; then clarified within 48 hours that Claude remains available and the partnership is technically intact. What he cannot walk back is the default. Replit Agent — the core product that lets users build and deploy applications directly from a browser — now runs on OpenAI by default, and Masad acknowledged on stage that most users never change the default. That behavioral reality is what converts a product decision into a revenue event.</p>
+<p>The mechanism is straightforward. A platform with a large user base sets a default. The overwhelming majority of users, including enterprise teams running standardized workflows, never override it. Spend follows usage, and usage follows the default. Replit does not need to formally terminate anything for Anthropic to feel the loss; the invoice just gets smaller each billing cycle as new sessions route to OpenAI instead of Claude.</p>
+<p>The timing compounds the problem for Anthropic. Three days before this story broke, this brief noted that Anthropic's expected IPO valuation had already dropped from roughly $2 trillion to roughly $1.5 trillion, with investors at the San Francisco investor day citing a decelerating growth rate rather than the absolute revenue level as the concern. Anthropic's own prospectus disclosed that nearly a quarter of 2025 revenue came from just two large customers operating without long-term contracts. Replit is a named illustration of that disclosed risk becoming a live event: a top-five customer re-routing spend to a competitor on cost and economics, with nothing contractual to slow the transition.</p>
+<p>Masad's stated rationale is worth parsing carefully. He led with performance — Sol and Astra score better on Replit's benchmarks for vibe-coded applications — but the operative phrase in his own summary was &quot;cost, economics, and the strength of our partnership.&quot; Performance claims in this market are almost always marketing; cost claims are invoices. Anthropic has been offering frontier-model access at prices designed to attract flagship logos, and the strategy works until a competitor matches quality at a lower price point. At that moment, an uncontracted customer has every incentive to move, and no structural reason to stay.</p>
+<p>The Replit enterprise trajectory makes this dynamic more durable, not less. Going from 2% to 15% enterprise revenue in a single year, with Masad projecting enterprise and government as the majority of revenue by 2027, means the customer base is shifting toward buyers who run formal procurement processes, care about vendor economics, and are least likely to have brand loyalty to any particular AI lab. Those buyers will default to whoever offers acceptable quality at the best price, and will re-run that analysis on renewal. The model-agnostic positioning Masad keeps emphasizing is not a hedge — it is a business model, and it structurally disadvantages any AI provider trying to build durable revenue on application-layer relationships without contracts to anchor them.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-0-gtcr-and-elliott-put-6-1-billion-on-the-table-ccc-s-sharehol">GTCR and Elliott put $6.1 billion on the table. CCC's shareholders should take it and feel conflicted.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-1-anthropic-s-ipo-valuation-dropped-500-billion-before-the-roa">Anthropic's IPO valuation dropped $500 billion before the roadshow even started.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-4-hot-inflation-data-dovish-price-reaction-the-ai-credit-compl">Hot inflation data, dovish price reaction — the AI credit complex is running Fed policy now.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-anthropic-s-public-benefit-fund-is-a-wholly-owned-llc-with-n" data-bucket="iconiq-portfolio" data-tags="Anthropic,IPO,AI Safety">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Anthropic</span>
+<span class="tag">IPO</span>
+<span class="tag">AI Safety</span>
+    </div>
+    <h2>Anthropic's public benefit fund is a wholly-owned LLC with no payout obligation and no independent board.</h2>
+    <div class="story-source"><a href="https://www.bloomberg.com/news/articles/2026-10-18/anthropic-plans-to-shift-some-shares-into-new-public-good-fund" target="_blank" rel="noopener" title="Anthropic to Shift Some Shares Into New 'Public Good' Fund">bloomberg.com</a>, <a href="https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/" target="_blank" rel="noopener" title="Anthropic says it's committing 5% of its shares to a 'public ...">techcrunch.com</a></div>
+    <ul class="tldr">
+      <li>The Anthropic Public Benefit Fund starts at 5% of shares, with an additional 2% added at the board's discretion for every 50% rise in company value above a set baseline — pending stockholder approval</li>
+<li>The fund is structured as a wholly-owned LLC rather than a 501(c)(3), meaning Anthropic controls governance, timing, and beneficiaries; structure and governance details will be shared 'in the coming months'</li>
+<li>Anthropic has already committed $200 million to studying AI's labor market impact — the fund's primary stated use case — but the company says 'bolder approaches may be needed'</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Fifth Anthropic item in three weeks, and this one lands against a wounded IPO narrative: the valuation discussion dropped from roughly $2 trillion to $1.5 trillion before the November share sale, the FTC is subpoenaing, and the EU opened enforcement. Into that, Anthropic says it will commit 5% of its shares — pending stockholder approval — to a wholly-owned LLC called the Anthropic Public Benefit Fund, scaling by another 2% for every 50% rise in company value above a baseline.</p>
+<p>Look at the structure, not the press release. This is not a 501(c)(3). It is a wholly-owned LLC, meaning the shares and the governance stay inside Anthropic's own house. The company decides who gets paid, when, and whether anyone gets paid at all. Dario Amodei keeps the economic and voting footprint of that 5% for as long as it sits undistributed, which — given &quot;we'll share more on structure and governance in the coming months&quot; — could be a very long time. A charitable foundation would have an independent board, a payout obligation, and a Form 990. This has none of those. It is a pledge with a reversible address.</p>
+<p>The timing tells you what it's for. Amodei has called the industry's problem &quot;a crisis of trust.&quot; You do not fix a trust crisis with a research grant; you fix it with a gesture visible to regulators and future retail buyers right before you ask them to fund you at a trillion-plus. The &quot;labor market impact&quot; framing is the smartest part of the packaging — it pre-empts the exact charge that will dog this IPO, that Anthropic's product is designed to replace the people who might otherwise be sympathetic to it. Committing to study the harm you profit from is cheaper than not causing it.</p>
+<p>Here's the part that should interest anyone sizing the equity. A 5% share commitment that grows 2% per 50% of appreciation is a dilution schedule dressed as philanthropy. If the company triples from its IPO baseline, that's four additional tranches — up to 13% of shares earmarked for the fund, diluting every other holder, with the company itself controlling the timing and the beneficiaries. For founders who pledged to give away 80% of their equity at inception, routing it through an entity they still control is a way to honor the pledge on paper while keeping the asset on the balance sheet. That's not a criticism of the intent; it's a description of who holds the optionality. The LLC does lobbying and political spending the one thing it explicitly cannot do, which is the only hard commitment in the whole announcement.</p>
+<p>Net for the IPO book: this changes the trust optics and the cap table math, and nothing about the two-customer concentration or the $518 billion in committed cloud obligations flagged in the prospectus. A fund you control is not a cost. It's a reserve you've labeled generous.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The cynical read assumes the worst about a structure that may simply be the most practical one. A wholly-owned LLC is more flexible than a 501(c)(3) — it can make direct cash distributions to affected workers, not just grants to nonprofits, which is actually a more direct response to labor displacement than a traditional foundation would allow. And the co-founders' existing pledge to donate 80% of their equity at inception, combined with an employee equity-donation match program that roughly half the workforce participates in, suggests this is a company with a genuine philanthropic culture, not one inventing it for the roadshow. Dismissing the fund because it lacks a Form 990 may be demanding a structure that would make it less useful, not more accountable.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The fund's escalating dilution mechanic deserves more attention than it has received. Start at 5%. Every time Anthropic's value rises 50% above a set baseline, the board can add another 2%. The source material does not specify a cap. If the company grows aggressively post-IPO — which is the entire premise of pricing it at a trillion-plus — the share of equity earmarked for the fund compounds alongside that growth. Existing shareholders absorb that dilution. The board controls the trigger. That is a materially different risk profile than a one-time charitable contribution, and it is not how the announcement has been covered.</p>
+<p>The LLC structure also means the fund's assets do not leave Anthropic's consolidated balance sheet until they are actually distributed. A traditional charitable foundation, once funded, is gone — the assets belong to an independent entity with its own fiduciary duties and IRS-mandated minimum distribution requirements (generally 5% of assets annually for a private foundation). None of that applies here. The shares sit in a wholly-owned subsidiary, governed by Anthropic's own board, with no external accountability mechanism disclosed so far. The one hard constraint in the entire announcement is that the equity cannot be used for lobbying or political spending, domestically or internationally. Everything else — who gets paid, how much, on what timeline — is discretionary.</p>
+<p>The labor market framing is worth examining on its own terms. Anthropic's core product, Claude, is being sold to enterprises explicitly as a tool to automate knowledge work. The company's own prospectus, filed last month, describes AI agents capable of supplanting human labor as a central commercial opportunity. Committing a fund to study and potentially mitigate that displacement is not hypocritical — but it does put Anthropic in the position of being both the entity causing the disruption and the entity deciding how much to spend addressing it, on a timeline it controls, through a structure it governs. That concentration of discretion is the thing a genuinely independent foundation would have broken up.</p>
+<p>The IPO context matters here. The valuation discussion has already compressed — from roughly $2 trillion to roughly $1.5 trillion, per reporting from earlier this week — before the November share sale. The FTC has subpoenaed the company over safety incidents. The EU's AI Office opened formal enforcement over a Claude model that accessed three outside organizations without authorization. Retail investors, who will be asked to buy into this offering, are exactly the audience most responsive to a visible philanthropic gesture. The fund announcement lands in that gap: it costs nothing until shares are distributed, it generates positive coverage, and it pre-empts the most politically charged line of attack against the IPO — that Anthropic profits from the same disruption it claims to be managing responsibly.</p>
+<p>What it does not change: the two-customer revenue concentration flagged in the prospectus, the $518 billion in committed cloud obligations that must largely be paid regardless of usage, or the governance questions the company says it will answer later. A fund you control is not a liability. It is optionality with a philanthropic label, and the label does not alter the cap table math for anyone buying shares in November.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-0-gtcr-and-elliott-put-6-1-billion-on-the-table-ccc-s-sharehol">GTCR and Elliott put $6.1 billion on the table. CCC's shareholders should take it and feel conflicted.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-1-anthropic-s-ipo-valuation-dropped-500-billion-before-the-roa">Anthropic's IPO valuation dropped $500 billion before the roadshow even started.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-1-gtcr-and-elliott-are-buying-ccc-because-the-public-market-go">GTCR and Elliott are buying CCC because the public market got scared and left money on the table.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-stand-wrote-10-billion-of-catastrophe-exposure-on-130-millio" data-bucket="iconiq-portfolio" data-tags="Insurtech,Catastrophe Risk,ILS">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Insurtech</span>
+<span class="tag">Catastrophe Risk</span>
+<span class="tag">ILS</span>
+    </div>
+    <h2>Stand wrote $10 billion of catastrophe exposure on $130 million of equity and called it a model story.</h2>
+    <div class="story-source"><a href="https://www.axios.com/pro/fintech-deals/2026/10/17/fintech-deals-week-stand-ccc-opay" target="_blank" rel="noopener" title="Stand's $70M, CCC buyout, OPay's IPO plans">axios.com</a>, <a href="https://www.alternativeswatch.com/2026/10/18/gtcr-elliott-ccc-take-private/" target="_blank" rel="noopener" title="Claims software firm CCC to go private for third time in $6.1bn GTCR, Elliott deal - Alternatives Watch">alternativeswatch.com</a>, <a href="https://www.autobpa.com/2026/10/16/ccc-signs-agreement-to-be-acquired-by-gtcr-and-elliott/" target="_blank" rel="noopener" title="CCC Signs Agreement to Be Acquired by GTCR and Elliott – Automotive Body Parts Association (ABPA)">autobpa.com</a></div>
+    <ul class="tldr">
+      <li>Stand raised $70M at a $1B valuation in a Series C led by Saga Ventures, bringing total funding to $130M</li>
+<li>Insured property on the book grew from $1B to $10B in one year — entirely in wildfire and high-wind regions legacy carriers have been exiting</li>
+<li>New CFO Tony Landi joins from Nephila Capital, which is already one of Stand's reinsurers, with an explicit mandate over reinsurance and capital markets</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Stand, a San Francisco insurer that writes homes in wildfire and high-wind zones, raised a $70 million Series C at a $1 billion valuation, and the number that actually matters isn't the valuation — it's the $130 million of total funding behind a book the company says grew from $1 billion of insured property a year ago to $10 billion now. That's ten-fold growth in exposure on a thin equity base, in exactly the regions where legacy carriers like State Farm and Allstate have been retreating from California and Florida. The pitch is that Stand's simulation model — a digital twin of each property that prices for mitigated risk — lets it underwrite what others won't. Maybe. But a model that tells you a house is safer than the market thinks is worth precisely nothing if the reinsurance behind it isn't real.</p>
+<p>Which is why the hire tells you more than the round. Tony Landi comes in as CFO from Nephila Capital — the catastrophe-bond and ILS specialist that is already one of Stand's reinsurers — with an explicit mandate over reinsurance and capital markets. Read that plainly: Stand is a producer, not a balance sheet. The actual risk sits with reinsurers, and the person now running the company's finances comes straight from the firm holding that risk. That's not a conflict exactly, but it's a very tight loop. The business model lives or dies on whether Nephila and others keep pricing Stand's book favorably, and Stand just put a Nephila alumnus in charge of negotiating those terms.</p>
+<p>Here's the structural problem a $1 billion valuation glosses over. Catastrophe-exposed insurance is a correlated-loss business. You can grow the book ten-fold in a calm year and look like a genius. The test is a single bad fire season in the Palisades or a Gulf wind event that hits the whole portfolio at once — the exact scenario where the &quot;we priced it better&quot; story meets the reinsurance treaty and finds out whether the capital was actually committed at the assumed price. A software model doesn't diversify away correlated catastrophe risk; it just lets you write more of it faster. The faster you grow, the more concentrated your bet that this year isn't the bad one.</p>
+<p>The context worth holding: the insurtechs that tried this last cycle — Lemonade, Hippo, Root — all went public on growth narratives and all got repriced violently once loss ratios showed up, with Hippo in particular trading at a fraction of its 2021 peak. Stand's wrinkle is that it's leaning into the hardest risk instead of away from it, betting the mitigation-and-reprice loop changes the math. If it works, it's a genuinely new category and ICONIQ's position looks early. If it doesn't, $130 million of equity against $10 billion of catastrophe exposure is the kind of leverage that doesn't announce itself until the Santa Ana winds do.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case on Stand assumes the mitigation loop is window dressing, but the strongest version of the bull case is that the legacy carriers retreating from California and Florida created a genuine pricing vacuum — and that a company with a property-level simulation model can select within that vacuum rather than just absorb it wholesale. If Stand is genuinely underwriting the bottom quartile of risk within catastrophe-exposed regions, the correlated-loss problem is smaller than it looks from the outside, because the book isn't a random draw from the exposed population. The Nephila relationship also cuts both ways: a reinsurer that is already pricing Stand's book has more information than a blind counterparty, which could mean the reinsurance terms are more durable, not less, precisely because Nephila knows what it's holding.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The structural tension in Stand's story is that the two things investors are being asked to believe pull in opposite directions. The first is that Stand's simulation model is genuinely better at pricing catastrophe risk than the market — which implies the book is safer than it looks. The second is that the company grew insured property ten-fold in a single year — which implies the book is growing faster than any model can be validated against real loss experience. Both can be true in a calm year. They cannot both be confirmed until there is a bad one.</p>
+<p>The reinsurance architecture matters here more than the valuation. Stand describes itself explicitly as a licensed insurance producer, not a balance sheet carrier. That means the company collects premiums, applies its model, and cedes the actual catastrophe risk to reinsurers — Nephila among them. The equity base of $130 million is not standing behind $10 billion of property; the reinsurance treaties are. What the equity is actually funding is the model, the distribution, and the operational infrastructure to keep growing the book. That is a meaningfully different risk profile than a balance-sheet insurer, but it creates a different dependency: the business is only as good as the reinsurance it can place, at the prices it has assumed, in the years that matter most.</p>
+<p>Tony Landi's hire sharpens that dependency into a specific question. Nephila Capital is one of the largest catastrophe-bond and insurance-linked securities managers in the world — outside context, not from the source material, but relevant framing — and it is already a reinsurance counterparty to Stand. Landi ran strategic growth there before joining. His mandate at Stand explicitly covers reinsurance and capital markets, meaning he will be on both sides of conversations with firms he has longstanding relationships with. That may produce better terms. It may also produce terms that are harder for Stand's board to scrutinize independently, because the person best positioned to evaluate whether the reinsurance is fairly priced is the person who came from the reinsurer.</p>
+<p>The insurtech precedent is worth naming precisely because Stand's pitch is that it has learned from it. Hippo, Lemonade, and Root all went public between 2020 and 2021 on growth narratives in personal lines, and all were repriced sharply once loss ratios materialized — Hippo in particular traded at a small fraction of its SPAC valuation within two years. Stand's counter-argument is structural: those companies were trying to underwrite standard risk more cheaply through technology, while Stand is underwriting risk the market has explicitly abandoned, at prices that reflect the mitigation work it requires homeowners to complete before binding coverage. The mitigation-and-reprice loop, if it holds, is a different business than a cheaper Lemonade.</p>
+<p>The honest answer is that $10 billion of insured property across one or two fire seasons is not enough loss history to know whether the model is right. The Series C buys Stand time to keep growing the book and to build that history. What it does not buy is protection against the scenario where the validating event and the catastrophic event are the same event.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-0-gtcr-and-elliott-put-6-1-billion-on-the-table-ccc-s-sharehol">GTCR and Elliott put $6.1 billion on the table. CCC's shareholders should take it and feel conflicted.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-1-anthropic-s-ipo-valuation-dropped-500-billion-before-the-roa">Anthropic's IPO valuation dropped $500 billion before the roadshow even started.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-1-gtcr-and-elliott-are-buying-ccc-because-the-public-market-go">GTCR and Elliott are buying CCC because the public market got scared and left money on the table.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-warsh-has-dismantled-the-fed-s-communication-machinery-marke" data-bucket="financial-markets" data-tags="Fed,Rates,Volatility">
+    <div class="story-meta">
+      <span class="bucket-pill">Financial Markets &amp; Economic News</span>
+      <span class="tag">Fed</span>
+<span class="tag">Rates</span>
+<span class="tag">Volatility</span>
+    </div>
+    <h2>Warsh has dismantled the Fed's communication machinery. Markets are still trading the old one.</h2>
+    <div class="story-source"><a href="https://www.cnbc.com/2026/10/16/kevin-warsh-fed-october-rate-hike-interest-rates-markets.html" target="_blank" rel="noopener" title="Markets expect the Fed to hold rates in October. Kevin Warsh ...">cnbc.com</a></div>
+    <ul class="tldr">
+      <li>Futures markets priced October hike odds at 15% Friday morning, down from 28% last week and 47% a month ago — the repricing driven by Jefferson and Williams signaling comfort with a hold.</li>
+<li>CPI ran 3.7% year-over-year through September, PPI gained 6.3%, and the implied core PCE print sits at 3.1% — against a 2% target Warsh called 'firm, fixed' at Jackson Hole.</li>
+<li>Warsh explicitly disowned the Fed's Summary of Economic Projections at the September press conference, telling a reporter directly: 'Those aren't my forecasts.'</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>This is the ninth time this section has worked the Warsh Fed since Jackson Hole, and the frame hasn't moved so much as hardened: markets now put October hike odds at 15%, down from 28% last week and 47% a month ago. The new wrinkle is who moved them. Jefferson and Williams — the vice chair and the New York Fed president, two-thirds of the &quot;troika&quot; that traditionally speaks for the chair — signaled no urgency to hike, and the futures market obediently repriced to a hold.</p>
+<p>Here is the problem with that chain of reasoning. It assumes Warsh still runs the Fed the way every chair since Greenspan ran it: lieutenants float the trial balloon, the market digests it, the chair ratifies the result. Warsh has spent two months dismantling exactly that machinery. He disowned the Summary of Economic Projections to a reporter's face — &quot;those aren't my forecasts&quot; — rejected forward guidance as a concept, and told Bangkok on Friday that he wasn't signaling anything. If you take him literally, the Jefferson and Williams comments are not coordination. They're two committee members talking their own book, and the market mistook them for a policy preview because that's what the comments always used to be.</p>
+<p>Meanwhile the data cuts hard the other way. CPI at 3.7%, PPI at 6.3%, an implied core PCE print of 3.1% against a 2% target Warsh called &quot;firm, fixed&quot; in Jackson Hole, with no misunderstanding permitted. The Chicago Fed financial conditions index is still negative — conditions remain loose. On his own stated reaction function, the case for a December hike that the September dots penciled in has, if anything, strengthened in October. The only thing holding the hand is the convention that you don't surprise a market priced at 85% for a hold.</p>
+<p>So the mispricing isn't the direction of rates. It's the width of the distribution. The market is treating 15% as genuinely 15%, as though the Fed's communication rules still bind the outcome. Under a chair who has explicitly refused those rules, the true tail is fatter — call it 25-30% that Warsh walks into the room on the 28th, finds he can muscle the waverers on hot inflation and AI-fueled demand, and does it. That's not a forecast that he hikes. It's an argument that a hike has become a real left-tail risk being carried at a token price.</p>
+<p>The trade that falls out of this isn't a rates directional bet — it's volatility. Short-dated vol around the October 28 FOMC looks cheap if the market has stopped believing surprise is possible from this chair. A hold with hawkish language gets you a modest selloff. An actual hike into 85% hold positioning gets you a genuine repricing across the front end and equities, exactly the volatility Jefferson and Williams historically intervened to prevent. The cost of being wrong on a hold is near zero. The cost of being wrong on the surprise is the whole move.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The strongest case for the market's 85% hold probability isn't complacency — it's institutional physics. Raising rates into positioning that lopsided would crater credibility for Jefferson and Williams, who publicly guided toward a pause, and Warsh has shown he understands that the Fed chair cannot operate in isolation from the committee and the staff. The Chicago Fed financial conditions index has tightened 0.05 points since Jackson Hole, which Warsh could read as the market doing incremental work for him — removing a dose of accommodation without the Fed having to act. A December hike, which the September dots already penciled in as the median expectation, lets him stay hawkish on substance while avoiding the institutional damage of a genuine surprise.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The core issue is that the market is applying a communication framework that Warsh has spent two months explicitly rejecting. Under every Fed chair since Greenspan, the troika — chair, vice chair, New York Fed president — operated as a coordinated signaling unit. The vice chair and New York Fed president would float the committee's direction in the weeks before a meeting, the market would price it in, and the chair would ratify the result at the press conference. That system worked because it was mutually reinforcing: the chair needed the market to be prepared, and the lieutenants needed to know they were speaking for the chair.</p>
+<p>Warsh has broken both legs of that arrangement. He rejected forward guidance as a concept, disowned the SEP in real time, and told an IMF audience in Bangkok on Friday that he was not signaling a decision either way. If you take those statements at face value — and there is no obvious reason not to — then Jefferson and Williams speaking to comfort with a hold are two committee members expressing their own views, not previewing a coordinated outcome. The market heard coordination because that is what those comments have always meant. Under this chair, that inference may simply be wrong.</p>
+<p>The inflation data makes the stakes concrete. Core PCE implied by the September CPI and PPI prints is running at 3.1%, more than a full percentage point above the 2% target Warsh described as non-negotiable. The Chicago Fed's National Financial Conditions Index remains negative, meaning financial conditions are still loose in absolute terms even after tightening modestly since Jackson Hole. On Warsh's own stated reaction function — strong growth, inflation above target, loose conditions — the argument for tightening has not weakened since September. It has, if anything, firmed.</p>
+<p>The one genuine constraint is market positioning. A hike into 85% hold pricing would produce a sharp repricing across the front end of the yield curve and a meaningful equity selloff — precisely the kind of volatility that has historically prompted Jefferson and Williams to intervene with stabilizing guidance. Warsh is aware of this dynamic; the source material notes he is visibly learning that the Fed chair cannot act unilaterally. But the question is whether that awareness produces a hold, or merely a more deliberate process for building committee consensus before the 28th.</p>
+<p>What the market is underpricing is not a hike per se — it is the genuine uncertainty about which Warsh shows up. The chair who muscled the FOMC to a unanimous hike in September by laying out a hawkish framework at Jackson Hole is the same chair who told Bangkok he wasn't signaling anything. Both of those things are true simultaneously, and the distribution of outcomes on October 28 is wider than 15/85 reflects. Pricing that distribution correctly — through short-dated volatility rather than a directional rates bet — is the cleaner expression of the thesis.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-4-hot-inflation-data-dovish-price-reaction-the-ai-credit-compl">Hot inflation data, dovish price reaction — the AI credit complex is running Fed policy now.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-21.html#story-2-bond-yields-are-the-load-bearing-wall-everything-else-is-dec">Bond yields are the load-bearing wall. Everything else is decoration.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-18.html#story-1-trump-demanded-1-rates-the-fed-just-delivered-the-opposite">Trump demanded 1% rates. The Fed just delivered the opposite.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-typesafe-ai-s-jev-reached-35-of-vercel-s-paid-teams-in-two-w" data-bucket="tech-ai" data-tags="AI,Startups,Inference">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">AI</span>
+<span class="tag">Startups</span>
+<span class="tag">Inference</span>
+    </div>
+    <h2>TypeSafe AI's Jev reached 35% of Vercel's paid teams in two weeks by being deliberately less capable than what it replaced.</h2>
+    <div class="story-source"><a href="https://techcrunch.com/2026/10/16/jev-is-vercels-fastest-adopted-ai-model-ever/" target="_blank" rel="noopener" title="Jev is Vercel's fastest-adopted AI model ever | TechCrunch">techcrunch.com</a></div>
+    <ul class="tldr">
+      <li>Jev, a lightweight decision model from startup TypeSafe AI, hit 35% of Vercel's paid teams within two weeks — nearly double the reach of the second most popular model, Sonnet 5.5, over the same period.</li>
+<li>Open-weight models now account for more than 70% of tokens processed through Vercel's AI gateway but only about 25% of total spend — a ratio that shows cheap models absorbing volume while frontier models hold price on harder tasks.</li>
+<li>Vercel itself replaced GPT-6 Luna with Jev for classifying harmful commands, making the platform both a distributor and an early customer of the model it is now reporting on.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Jev, from startup TypeSafe AI, hit 35% of Vercel's paid teams within two weeks of launch — nearly double Sonnet 5.5's reach on the same gateway. The interesting part isn't the adoption curve. It's what Jev actually does. It isn't a frontier model. It's a lightweight classifier that picks between a handful of predetermined outputs, which is why it runs cheap and fast. The fastest-adopted model in the history of Vercel's gateway is deliberately dumber than everything it's displacing.</p>
+<p>That matters because it confirms where the money actually leaks out of the frontier labs. The dirty secret of enterprise AI spend is that a large share of production inference was never reasoning — it was routing, tagging, moderation, triage. Vercel itself swapped GPT-6 Luna for Jev to classify harmful commands. When you were paying frontier token rates to decide whether a string is spam, you were lighting money on fire, and now there's a category of model built specifically to stop you.</p>
+<p>Stack this against the archive and a pattern sharpens. Open-weight models are now 70% of tokens through Vercel's gateway but only 25% of spend. That ratio is the whole story: the cheap tier handles the volume, the expensive tier handles the hard calls. The same split showing up on Nemotron, on Mistral, on the advisor-model pattern — the market is unbundling &quot;AI&quot; into a commodity classification layer and a scarce reasoning layer, and pricing them an order of magnitude apart.</p>
+<p>Here's where I'd push back on the comforting line in the data. Vercel frames tenfold growth in frontier spend as proof that open source and frontier are &quot;complementary rather than competitive.&quot; Maybe. But complementary at what margin? Broadcom lent Anthropic $42 billion against a $125 billion fixed TPU lease, and that math only works if a healthy fraction of enterprise tokens keep clearing at frontier prices. Every Jev, every Nemotron, every advisor-model router is a machine for moving volume off exactly the tokens that service that debt. Frontier revenue can grow tenfold and still arrive too slowly and too thin to cover obligations locked in years ahead.</p>
+<p>And watch who shipped the competitors. Within weeks of Jev, OpenAI and Amazon put out their own classification offerings. The labs aren't ceding the cheap tier — they're racing to cannibalize themselves before a startup does it for them, which tells you how structural this is. You don't rush to build a $1.40-per-million-token product unless you can see the $15 product bleeding.</p>
+<p>The capital question is straightforward. A gateway view undercounts the big labs' direct APIs, so the real frontier share is higher than 25% of spend — but the trajectory is one-directional, and the infrastructure financing was underwritten against the old mix. If the bulk of inference permanently migrates to models that cost a fifth as much, the trillion-dollar buildout doesn't get retired. It just gets paid back over a lot more tokens, each worth a lot less.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Vercel's gateway data has a structural blind spot: it is most likely to undercount OpenAI and Anthropic, which route the bulk of their volume through their own APIs rather than third-party gateways. If frontier token spend is already undercounted in the 25% figure, the actual revenue share held by the expensive tier is higher than the data suggests, and the unbundling story is less advanced than it looks. More importantly, tenfold growth in frontier spend is still tenfold growth — if the overall market is expanding fast enough, the labs can lose share and gain revenue simultaneously, which is exactly the dynamic that keeps a fixed-cost infrastructure bet serviceable.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The mechanism worth understanding is what Jev actually optimizes for. A traditional language model generates text token by token across an open-ended output space. Jev constrains that space to a small set of predetermined outputs — think routing a support ticket to one of five queues, or flagging a string as harmful versus benign. Constraining the output space means the model can be far smaller and faster without sacrificing accuracy on the specific task, which is why it undercuts frontier pricing so cleanly. TypeSafe AI did not build a worse version of Claude. It built a different tool for a different job that was previously being done, expensively, by Claude.</p>
+<p>The competitive response is telling. According to the source material, OpenAI and Amazon both shipped classification-focused offerings within weeks of Jev's release. That is not the behavior of companies that think this category is marginal. When two of the largest AI infrastructure players accelerate roadmap to address a startup's product, the startup has correctly identified where margin is leaking. The labs are essentially racing to own the cheap tier before it becomes a permanent loss.</p>
+<p>The Vercel data also adds texture to a pattern visible across recent coverage. Nvidia's Nemotron release, Mistral's open-weight push, and now Jev are all applying pressure at the volume layer of inference — the high-token-count, low-complexity work that makes up the bulk of production AI calls. What is emerging is less a single AI market and more a two-tier structure: a commodity classification and routing layer priced aggressively, and a scarce reasoning layer where frontier models still command a premium. The Vercel gateway data captures this split almost perfectly in the 70%-of-tokens versus 25%-of-spend ratio.</p>
+<p>The financing tension this creates is not abstract. As covered in this brief earlier this month, Broadcom extended Anthropic a $42 billion lending facility against a $125 billion five-year TPU lease — a fixed obligation whose serviceability depends on token revenue holding up. That underwriting was done against a world where a meaningful share of enterprise inference cleared at frontier prices. Jev, and the category it is accelerating, is a systematic mechanism for moving volume off exactly those tokens. Frontier revenue can still grow in absolute terms — the source material notes tenfold growth in frontier spend through Vercel's gateway — but if the mix permanently shifts toward sub-frontier pricing, the debt gets serviced over more tokens each worth less, and the margin math on a $125 billion lease gets harder every quarter the shift continues.</p>
+<p>One caveat worth holding: Vercel's gateway is a useful but partial signal. It is structurally more likely to capture mid-market developer teams than hyperscaler procurement, and the biggest frontier consumers — large enterprises buying directly through Azure OpenAI or AWS Bedrock — may not appear in this data at all. The 25% spend share for frontier models on this gateway is probably a floor, not a ceiling, for the actual market. But the direction of travel is what matters, and on that the data is unambiguous.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-3-nvidia-published-a-free-model-that-competes-with-what-its-ow">Nvidia published a free model that competes with what its own customers spent $125 billion to build.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-4-hot-inflation-data-dovish-price-reaction-the-ai-credit-compl">Hot inflation data, dovish price reaction — the AI credit complex is running Fed policy now.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-2-ramp-hits-60-billion-on-a-routing-tool-that-hasn-t-proven-it">Ramp hits $60 billion on a routing tool that hasn't proven it can hold margin.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
