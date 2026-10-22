@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Friday, October 23, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Friday, October 23, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="private-markets" aria-pressed="false">Private Markets</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+<button type="button" class="tab" data-bucket="wealth-planning" aria-pressed="false">Family Office &amp; Wealth Planning</button>
+<button type="button" class="tab" data-bucket="tech-ai" aria-pressed="false">Tech &amp; AI</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="AI" aria-pressed="false">AI</button>
+<button type="button" class="tag-filter" data-tag="Advertising" aria-pressed="false">Advertising</button>
+<button type="button" class="tag-filter" data-tag="China" aria-pressed="false">China</button>
+<button type="button" class="tag-filter" data-tag="Europe" aria-pressed="false">Europe</button>
+<button type="button" class="tag-filter" data-tag="Export Controls" aria-pressed="false">Export Controls</button>
+<button type="button" class="tag-filter" data-tag="Frontier Models" aria-pressed="false">Frontier Models</button>
+<button type="button" class="tag-filter" data-tag="Fundraising" aria-pressed="false">Fundraising</button>
+<button type="button" class="tag-filter" data-tag="GP-Led" aria-pressed="false">GP-Led</button>
+<button type="button" class="tag-filter" data-tag="Governance" aria-pressed="false">Governance</button>
+<button type="button" class="tag-filter" data-tag="Healthcare" aria-pressed="false">Healthcare</button>
+<button type="button" class="tag-filter" data-tag="IPO Pipeline" aria-pressed="false">IPO Pipeline</button>
+<button type="button" class="tag-filter" data-tag="Infrastructure" aria-pressed="false">Infrastructure</button>
+<button type="button" class="tag-filter" data-tag="Legal AI" aria-pressed="false">Legal AI</button>
+<button type="button" class="tag-filter" data-tag="Open Source" aria-pressed="false">Open Source</button>
+<button type="button" class="tag-filter" data-tag="Private Equity" aria-pressed="false">Private Equity</button>
+<button type="button" class="tag-filter" data-tag="Secondaries" aria-pressed="false">Secondaries</button>
+<button type="button" class="tag-filter" data-tag="Succession" aria-pressed="false">Succession</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-continuation-fund-volume-dropped-50-in-a-year-and-the-buyers" data-bucket="private-markets" data-tags="Secondaries,GP-Led,Fundraising">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Secondaries</span>
+<span class="tag">GP-Led</span>
+<span class="tag">Fundraising</span>
+    </div>
+    <h2>Continuation fund volume dropped 50% in a year and the buyers are calling it a false narrative.</h2>
+    <div class="story-source"><a href="https://pitchbook.com/news/articles/secondary-buyers-dispute-the-notion-that-continuation-funds-are-a-fad" target="_blank" rel="noopener" title="Secondary buyers dispute the notion that continuation funds are a fad - PitchBook">pitchbook.com</a></div>
+    <ul class="tldr">
+      <li>PitchBook counted 95 continuation fund deals worth $47.4 billion in the year to September 30, down from 161 deals and $97.6 billion in the record year of 2025.</li>
+<li>Secondary funds raised a record $139.4 billion across 76 vehicles last year, sustaining buying power even as deal supply contracts.</li>
+<li>Median 2018-vintage single-asset continuation funds have distributed 2.2x committed capital versus 0.9x for the median buyout of the same vintage, per an Evercore and HEC Paris study — but that vintage priced when discounts were real.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>This is at least the sixth time this section has touched continuation vehicles in three weeks, and the first where the industry is actively defending the volume rather than explaining it. The data that prompted the defensiveness is PitchBook's: 95 CV deals worth $47.4 billion in the year to September 30, down from 161 deals and $97.6 billion in 2025. Roughly half the deal count and half the value gone in a single year. That is the number Pantheon's Amyn Hassanally and Adams Street's Jeff Akers were brought in to argue around.</p>
+<p>Read what they actually said. Hassanally's proof that secondaries grow independent of exit conditions is 2021 — a year when both the secondary market and traditional exits hit records simultaneously. That tells you the two move together on the way up. It says nothing about whether they move together on the way down, which is precisely the question PitchBook's 50% drop raises. Using the only year everything went up at once to prove that secondaries are uncorrelated to everything else is not evidence. It is a man pointing at a boom and calling it a hedge.</p>
+<p>The structural argument is stronger but concedes more than they intend. Akers is right that one or two years of better liquidity doesn't clear a backlog — dislocation takes several years of selling to work through. Fine. But that's an admission that CV volume is a function of how long exits stay broken, not an independent business line with its own demand curve. If M&amp;A is already eating into the numbers in the year to September, the recovery scenario they claim to be insulated from is the one currently printing in their own data.</p>
+<p>Hold that against the half of this section's recent coverage that the buyers didn't mention. LP roll rates below 5%, public pensions at 2%, a 20-day election window that functions as a forced exit. The people who know these assets best are cashing out at every opportunity, and the structure clears anyway because fresh evergreen and retail money is backfilling the buyer side at 90% of NAV. So the Evercore and Gottschalg DPI figures — 2.2x and 2.3x on 2018 single and multi-asset CVs against 0.9x for the median buyout — are measuring a vintage that priced when buyers were scarce and discounts were real. They are not describing what you buy today at nine-tenths of par with the selling LP sprinting for the door.</p>
+<p>The honest version of the buyers' case is narrower than &quot;not a fad.&quot; CVs are a permanent plumbing fixture — almost one in five sponsor-backed exits in 2025 — and that plumbing isn't going away. But a plumbing fixture is not a growth story, and the $50 billion that vanished from the deal count this year is the market telling you which one it is. Underwrite the fee stream and the structural floor. Do not pay for the 2.3x.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The structural case for continuation vehicles doesn't rest on exit markets staying broken — it rests on GP incentives that exist regardless of conditions. A PE manager who has spent five years building a company and believes it has three more years of compounding ahead has every reason to roll it into a new vehicle rather than sell at a cyclical trough, and secondary buyers have every reason to back that conviction at a negotiated price. The expansion of CVs into infrastructure, private credit, and real estate adds deal supply that has nothing to do with the PE exit backlog, and record secondary fundraising means the buyer base is deeper and more diversified than it was in any prior cycle.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The buyers' strongest argument is also their most carefully worded one. Adams Street's Jeff Akers — Adams Street manages $9.9 billion in secondary assets — says GP-led deals are a 'market-driven opportunity' that lets managers double down on businesses they already know well. That framing is deliberately agnostic about exit conditions. It positions the continuation fund not as a workaround for a broken IPO market but as a rational portfolio management tool that would exist even in a healthy one. There is something to that. White &amp; Case data from the supplementary material shows GP-led deal value climbed 35% year-over-year to $65 billion in just the first half of 2026, with North America generating roughly 70% of worldwide volume. If M&amp;A recovery were simply cannibalizing the CV market, you would expect that number to be falling, not setting records.</p>
+<p>But the composition of what's moving matters as much as the volume. PitchBook's own data, cited in the source material, shows that 44.4% of assets sold into continuation funds this year had been held for five to seven years — the sweet spot where a GP can credibly argue the asset still has runway. Only 6.3% had been held for more than a decade. That distribution is consistent with the trophy-asset pitch: managers holding their best businesses, not warehousing their worst. It is also consistent with a market that is getting more selective as conditions improve, which would explain the drop in deal count without requiring the structural-growth thesis to be wrong.</p>
+<p>The harder problem is on the buyer side, and it is one the buyers in this article did not address. As covered in this section over the past three weeks, LP rollover rates in continuation vehicles have collapsed — below 5% by some measures, with public pension funds rolling at roughly 2% in 2024. The people with the most information about these assets are taking the exit at every opportunity. The deals clear anyway because evergreen and retail capital has entered the buyer pool, pushing pricing on quality buyout interests to around 90% of NAV. Pantheon's Hassanally points to the 2.2x and 2.3x DPI figures from 2018-vintage deals as evidence the strategy works. Those returns were earned by buyers who purchased at genuine discounts when the market was thin and sellers were motivated. Buying at 90 cents on the dollar with a sprinting LP on the other side of the trade is a different underwriting exercise entirely.</p>
+<p>Pantheon's own fundraise is worth noting in this context: the firm raised $6 billion for its latest PE secondaries fund against an initial $3.5 billion target — a significant oversubscription that reflects genuine LP appetite for the asset class. But record fundraising into a contracting deal market means more capital chasing fewer transactions, which compresses the discounts that generated the historical returns being used to justify the fundraising. That is a circular dynamic, and it tends to resolve in one direction.</p>
+<p>The Goldman Sachs data point is the most honest signal in the piece: around a third of 225 institutional LPs surveyed said a lack of distributions was the biggest factor affecting their deployment plans. That is a liquidity problem, not a conviction trade. When the exit environment normalizes and distributions recover, that pressure eases — and with it, one of the primary forces pushing LP portfolios onto the secondary market. The structural floor for CVs is real. The growth story depends on conditions staying broken.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-2-clipway-and-netley-raised-6-6-billion-as-debut-funds-while-a">Clipway and Netley raised €6.6 billion as debut funds while all other European PE first-timers combined raised €1.5 billion.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-0-continuation-funds-hit-7-1-of-global-pe-exits-the-second-lap">Continuation funds hit 7.1% of global PE exits. The second lap is where the math breaks.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-12.html#story-0-95-of-the-lps-who-know-these-assets-best-are-taking-the-exit">95% of the LPs who know these assets best are taking the exit. Buyers should ask why.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-openevidence-is-a-pharma-ad-network-dressed-as-a-clinical-to" data-bucket="iconiq-portfolio" data-tags="Healthcare,AI,Advertising">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Healthcare</span>
+<span class="tag">AI</span>
+<span class="tag">Advertising</span>
+    </div>
+    <h2>OpenEvidence is a pharma ad network dressed as a clinical tool, valued at $15 billion on a drug discovery story that hasn't started.</h2>
+    <div class="story-source"><a href="https://www.ft.com/content/0ed17b79-47dd-4ad8-8dca-44eb35617edc?syn-25a6b1a6=1" target="_blank" rel="noopener" title="The $15bn 'viral' AI start-up changing how American ...">ft.com</a>, <a href="https://arstechnica.com/ai/2026/10/the-15-billion-ad-powered-ai-startup-your-doctor-may-already-be-using/" target="_blank" rel="noopener" title="The $15 billion ad-powered AI startup your doctor may already be using - Ars Technica">arstechnica.com</a></div>
+    <ul class="tldr">
+      <li>OpenEvidence raised $250 million in September at a $15 billion valuation, with nearly $1 billion raised in total over the past 18 months from a16z, Blackstone, Thrive Capital, Sequoia, and the Mayo Clinic</li>
+<li>Ad revenue is projected at $400–500 million by end-2026, up from $100 million in booked commitments at end-2025 — the entire business model is pharma and device companies paying to reach doctors at the moment of prescribing</li>
+<li>A June Nature paper found OpenEvidence underperforming both Gemini and GPT on clinical benchmarks, and the Mayo Clinic study — Mayo is an investor — found accurate answers but limited measurable impact on actual treatment decisions</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>OpenEvidence, a Miami AI search tool doctors use to query medical journals at the point of care, raised $250 million in September at a $15 billion valuation, with a16z, Blackstone, Thrive, Sequoia and the Mayo Clinic in the cap table. The claim driving the valuation: two-thirds of America's roughly one million physicians are using it, 42 million prompts last month, and $400–500 million of ad revenue projected by year-end against $100 million of booked ad commitments at the end of 2025.</p>
+<p>Strip the &quot;viral consumer app for healthcare&quot; framing and look at what actually generates the cash. This is an advertising business pointed at clinical decisions. Pharma and device companies pay to surface content in a tool a doctor consults while deciding what to prescribe. That is the most valuable ad inventory ever created, and also the most regulatory-exposed. The same positioning that justifies the revenue ramp is what makes it fragile: the FTC, the FDA's promotional-labeling rules, and a single malpractice case where a treatment decision traces back to a sponsored result all sit on the same surface. The company already withdrew from the EU and UK over the AI Act — it has shown it will exit a market rather than comply.</p>
+<p>Then there's the accuracy problem the bulls are waving past. A June paper in Nature found OpenEvidence underperforming Gemini and GPT on clinical benchmarks. The Mayo study — Mayo being an investor — found accurate answers but limited impact on actual treatment decisions. So the product that two-thirds of doctors supposedly rely on is not demonstrably better than the general-purpose models OpenAI and Anthropic are now aiming straight at the category, and worse on some tests. Its defense is incumbency and habit, not a capability moat. Habit is exactly what a free, already-installed ChatGPT or Claude erodes.</p>
+<p>The $15 billion mark is being underwritten on a story the founder told, not on the ad business in front of us. Nadler says the &quot;end game is literature-based drug discovery&quot; that will &quot;dwarf by orders of magnitude&quot; anything he could charge hospitals or advertisers. That is a tell about valuation support, not strategy — when a founder tells you the current business can't justify the price and the real value is a thing he hasn't built yet, he is pricing the option, and asking you to pay for it now. The Tarashansky hire from Anthropic's science team is a real signal of intent, but drug discovery is a decade and a different company.</p>
+<p>For a position here, the honest frame is a high-growth ad network with a toll booth on prescribing behavior, carrying regulatory tail risk that scales with the revenue, wrapped in a drug-discovery call option priced at parity with the core. Underwrite the ad business on its own at a defensible multiple and the number looks a long way from $15 billion. You're paying for the part that doesn't exist yet.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The incumbency argument is stronger than the bears admit. Two-thirds of US physicians using a single tool, generating 42 million prompts in a single month, is a distribution footprint that took years to build through word-of-mouth alone — and distribution in healthcare is genuinely hard to replicate. Wolters Kluwer, the Dutch IT group behind UpToDate, the dominant subscription-based clinical reference tool, didn't ship an AI version until October 2025, nearly two years after OpenEvidence entered the market. If OpenAI and Anthropic want this user base, they have to earn it one hospital IT integration at a time, and OpenEvidence is already embedded in the electronic health records at Mount Sinai, Memorial Sloan Kettering, and NYU Langone — the kind of institutional entrenchment that makes switching genuinely costly.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The ad model deserves more scrutiny than it is getting. OpenEvidence is free to physicians and funded entirely by what the company calls 'ad buys' — current and future commitments from pharma and medical device companies to surface content inside a tool doctors consult while deciding what to prescribe or which device to recommend. There is no more valuable advertising real estate in existence. There is also no more legally exposed one. The FDA's rules on promotional labeling for prescription drugs are strict and apply regardless of the medium; the FTC has been expanding its scrutiny of AI-generated content and undisclosed commercial influence; and a single malpractice case in which a plaintiff's attorney can show that a sponsored result shaped a treatment decision would be a different kind of regulatory event than anything the company has faced so far. OpenEvidence has already demonstrated its risk tolerance on regulation: it withdrew from the EU and UK earlier this year rather than comply with the EU AI Act. That is a defensible business decision, but it also cost the company two of the largest pharmaceutical markets in the world and signals a pattern — exit rather than adapt.</p>
+<p>The competitive picture is more complicated than the standard 'big tech will crush the startup' frame. OpenAI has launched ChatGPT for healthcare; Anthropic has released its own clinical tools and, in a notable twist, has also partnered with OpenEvidence to deploy the platform across 100 low- and middle-income countries. That partnership is a useful revenue and distribution story for OpenEvidence, but it also puts Anthropic inside the tent — learning the clinical use case, building relationships with health systems, and developing the institutional knowledge that currently gives OpenEvidence its edge. The company's response to frontier competition is to hire Alexander Tarashansky, who built Claude Science at Anthropic, and to announce clinical trials targeting cancer and rare diseases in the coming weeks. Those are real moves. But the pivot toward literature-based drug discovery — mining scientific literature computationally to generate novel hypotheses about drug candidates — is a field that requires a different regulatory pathway, a different commercial structure, and a timeline measured in years to a decade, not quarters.</p>
+<p>Founder Daniel Nadler's framing of drug discovery as the 'end game' that will 'dwarf by orders of magnitude' whatever the company earns from hospitals or advertisers is worth taking seriously as a statement of ambition. It is also an implicit acknowledgment that the current business, at its current trajectory, does not support a $15 billion valuation on its own terms. The ad revenue ramp from $100 million in commitments at end-2025 to a projected $400–500 million by end-2026 is genuinely impressive growth. But apply a reasonable multiple to an ad-funded clinical search tool carrying meaningful regulatory tail risk and no demonstrated capability advantage over general-purpose models, and the arithmetic does not reach $15 billion. The gap between that number and what the core business can support is being filled by the drug discovery option — which investors are being asked to price today, at full weight, for a product that does not yet exist.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-0-replit-flipped-its-default-to-openai-and-handed-anthropic-s-">Replit flipped its default to OpenAI and handed Anthropic's IPO roadshow a live case study in customer churn.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-1-anthropic-s-public-benefit-fund-is-a-wholly-owned-llc-with-n">Anthropic's public benefit fund is a wholly-owned LLC with no payout obligation and no independent board.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-2-stand-wrote-10-billion-of-catastrophe-exposure-on-130-millio">Stand wrote $10 billion of catastrophe exposure on $130 million of equity and called it a model story.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-legora-raised-at-8-8-billion-while-harvey-sits-at-15-5-billi" data-bucket="iconiq-portfolio" data-tags="Legal AI,IPO Pipeline,Europe">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Legal AI</span>
+<span class="tag">IPO Pipeline</span>
+<span class="tag">Europe</span>
+    </div>
+    <h2>Legora raised at $8.8 billion while Harvey sits at $15.5 billion on the same revenue line.</h2>
+    <div class="story-source"><a href="https://www.bloomberg.com/news/articles/2026-10-21/legal-ai-startup-legora-raises-funds-at-8-8-billion-valuation" target="_blank" rel="noopener" title="Legal AI Startup Legora Hits $8.8 Billion Valuation With ...">bloomberg.com</a>, <a href="https://techcrunch.com/2026/10/21/legal-ai-startup-legora-raises-550m-series-e-at-8-8b-valuation/" target="_blank" rel="noopener" title="Legal AI startup Legora raises $550M Series E at $8.8B valuation | TechCrunch">techcrunch.com</a></div>
+    <ul class="tldr">
+      <li>Legora closed a $550M Series E at an $8.8B post-money valuation, up from $5.6B in April — a 57% step-up in roughly six months</li>
+<li>ARR crossed $200M, with the second $100M taking under six months versus 18 months for the first — both milestones confirmed in the company's own release</li>
+<li>New investors include Fidelity, Capital Group, J.P. Morgan, and Glade Brook — crossover and mutual-fund names that typically enter 12–18 months ahead of a public offering</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Legora, the Stockholm-based legal AI company ICONIQ backs, just raised $550 million at an $8.8 billion post-money, up from $5.6 billion in April. ARR has gone from $100 million to over $200 million in roughly six months. By any normal standard this is a blistering outcome — $1 million to $100 million in under 18 months, the next $100 million in under six. The reason it's worth a paragraph isn't the growth. It's the price gap sitting right next to it.</p>
+<p>Harvey, the category leader, raised the identical $550 million a month ago — but at $15.5 billion, with ARR also cited above $200 million back in March. So you have two companies with roughly the same revenue, roughly the same raise, and a nearly 2x valuation spread. The market is pricing Harvey at a meaningful premium on the same top line. That premium is a bet on distribution and defaults, not product: Harvey went deep in US BigLaw first, Legora is still building the North American book it only started in spring 2025.</p>
+<p>Here's the mechanic that matters. More than 40% of Legora's Q3 customer adds were in-house legal teams, not law firms. That's the segment both companies actually want, because in-house counsel buy software to replace outside spend, which means every dollar Legora captures there is a dollar that eventually doesn't flow to an AmLaw firm — and more than half the AmLaw 50 are already Legora customers on the firm side. Legora is selling to both ends of a value chain it is quietly collapsing. The firm wins the tool today; the client uses the tool to buy less of the firm tomorrow. That tension is not priced into either round.</p>
+<p>The investor list is the part worth lingering on. Atreides led, but the new money is Fidelity, Capital Group, J.P. Morgan, Baron, Glade Brook — crossover and mutual-fund capital, the buyers who show up 12 to 18 months before an IPO to lock allocation. Legal AI is now being underwritten by the public-market pre-marketing crowd, at private marks, against a competitor carrying a visibly richer number. When two near-identical companies in one category both pull $550 million from that pool within four weeks, you are watching index-building: these funds don't know which one wins, so they own both and let the ARR curve sort it out.</p>
+<p>For a Singapore allocator the question isn't whether Legora is a good company — it plainly is. It's whether a 40x-plus forward revenue multiple on a book growing this fast survives contact with the first quarter where net revenue retention, not logo count, becomes the metric people demand. Legal services is a fixed-size pie being automated from inside. The firms paying for these seats are funding the thing that compresses their own billable hours. Someone absorbs that compression, and it won't be the software vendor — it'll be the partners whose leverage model the tool quietly dismantles.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Harvey's valuation premium over Legora is not obviously irrational. Harvey built its North American BigLaw relationships years earlier, and in enterprise software, distribution depth compounds — the firm that owns the default workflow at a Cravath or Skadden has a switching-cost moat that a newer entrant has to spend heavily to dislodge. Legora only established its first US office in spring 2025, which means its $200M ARR figure, while impressive in absolute terms, is weighted toward European markets where pricing power and contract scale may differ materially from US BigLaw. If Harvey's net revenue retention in US firms is meaningfully higher, the valuation gap reflects a real difference in business quality, not just a branding premium.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The growth arithmetic here is genuinely unusual. Legora went from $1 million to $100 million in ARR in under 18 months — a pace the company itself describes as faster than any other enterprise software company selling through a direct sales team. The next $100 million took less than six months. That kind of acceleration in a vertical software category typically signals one of two things: either the product is displacing a workflow that was already being paid for, or the market is in a land-grab phase where logo acquisition is outrunning retention. Legal AI is probably both simultaneously, which is what makes the revenue quality question so important and so unanswered by either company's disclosures.</p>
+<p>The geographic story adds texture. Legora is headquartered in Stockholm and built its European base first. Its US footprint — New York, Denver, Chicago, Houston, San Francisco, Toronto, Mexico City — was assembled starting in spring 2025, meaning the North American book is at most 18 months old. The company says the US is now its largest market by revenue, and that more than half of the AmLaw 50 are customers. That's a fast land-grab, but it also means the cohort data on US customer retention is thin. Investors are extrapolating a European retention curve onto a US market that has a different competitive structure, with Harvey deeply embedded in the same firms.</p>
+<p>The in-house legal team dynamic deserves more attention than it's getting. Legora disclosed that in-house counsel accounted for more than 40% of new customers signed in Q3. Corporate legal departments buy AI tools for a specific reason: to reduce their dependence on outside law firms. Every hour an in-house team handles internally using Legora is an hour that doesn't get billed by an AmLaw partner. Legora is simultaneously selling seats to the firms and selling efficiency to the firms' clients — a position that is commercially clever in the short run and structurally destabilizing to the law firm customer base over a longer horizon. The firms are, in effect, paying for a tool that trains their clients to need them less.</p>
+<p>The investor composition is the clearest forward signal in this round. Atreides Management, which led, is a long-duration growth fund comfortable with private marks. But the new entrants — Fidelity Management and Research, Capital Group, J.P. Morgan, Baron Capital, Glade Brook Capital Partners — are crossover investors, meaning they hold both public and private positions and use late-stage private rounds to secure IPO allocation. When this cohort shows up together in a single round, it is not a coincidence. They are pre-positioning. The fact that the same cohort was also present, implicitly or explicitly, in Harvey's round a month earlier confirms the index-building dynamic: these are not conviction bets on a single winner, they are category bets placed across both credible contenders before the public market forces a choice.</p>
+<p>The valuation gap between the two companies — $8.8 billion for Legora versus $15.5 billion for Harvey on roughly equivalent disclosed ARR — will either compress or widen depending on which metric the market decides to underwrite next. If logo growth and ARR trajectory remain the primary frame, Legora's acceleration argues for compression. If net revenue retention and average contract value by customer segment become the demanded disclosures, the gap could widen further, because Harvey's deeper US BigLaw entrenchment likely produces stickier, larger contracts. The round Legora just closed buys it the runway to find out which frame wins.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-0-replit-flipped-its-default-to-openai-and-handed-anthropic-s-">Replit flipped its default to OpenAI and handed Anthropic's IPO roadshow a live case study in customer churn.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-1-anthropic-s-public-benefit-fund-is-a-wholly-owned-llc-with-n">Anthropic's public benefit fund is a wholly-owned LLC with no payout obligation and no independent board.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-2-stand-wrote-10-billion-of-catastrophe-exposure-on-130-millio">Stand wrote $10 billion of catastrophe exposure on $130 million of equity and called it a model story.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-beijing-just-put-a-license-gate-on-the-weapon-that-was-actua" data-bucket="tech-ai" data-tags="China,Open Source,Export Controls,Frontier Models">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">China</span>
+<span class="tag">Open Source</span>
+<span class="tag">Export Controls</span>
+<span class="tag">Frontier Models</span>
+    </div>
+    <h2>Beijing just put a license gate on the weapon that was actually working</h2>
+    <div class="story-source"><a href="https://www.nytimes.com/2026/10/21/world/asia/china-exports-ai-controls.html" target="_blank" rel="noopener" title="China's Free A.I. Models Are Thrown Into Uncertainty">nytimes.com</a></div>
+    <ul class="tldr">
+      <li>China's draft rules, floated last week, would require government approval before its most advanced AI models can be exported — ending the frictionless global distribution that made Kimi K3, GLM, and DeepSeek effective competitive tools</li>
+<li>The proposed regime would bifurcate Chinese open weights into a commodity tier that stays free and a frontier tier that goes permission-only — the same segmentation Western labs have been selling as a pricing story, now enforced by the state</li>
+<li>Mistral's Le Chonk weights drop October 27, and European and American open-weight players now face a frontier landscape with one fewer major source of free, high-capability competition if Beijing follows through</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>China's draft export rules, floated last week, would require government permission to ship its most advanced AI models abroad. That matters because the entire premise of the Chinese open-weight strategy — Kimi K3, GLM, DeepSeek before them — has been frictionless global distribution. Beijing is now proposing a license gate on the one lever that was actually working against the United States.</p>
+<p>This brief has been tracking the cheap-open-weight trade for weeks: Jev on Vercel, Nvidia's Nemotron, Mistral's weights dropping October 27. The through-line has been that Western frontier pricing gets crushed from below by free Chinese models that enterprises self-host. These draft rules threaten that mechanism — and the interesting part is that China is doing it to itself.</p>
+<p>Think about why. Open weights were never charity. They were a strategy to set the default global standard, starve OpenAI and Anthropic of volume, and make Chinese inference ubiquitous before US export controls could matter. It worked embarrassingly well. The cost was that genuinely frontier capability — the stuff with dual-use military and cyber applications — walked out the door for free alongside the commodity models. Beijing has decided the security tax on giving away its best systems now exceeds the strategic return. That is a real admission: the models got good enough that China itself treats them as weapons-adjacent, not loss-leaders.</p>
+<p>Here's the part the China-doom crowd will miss. A licensing regime doesn't kill open weights — it bifurcates them. The commodity tier stays open to keep flooding global developer workflows and locking in standards. The frontier tier goes permission-only. That's precisely the segmentation story Western labs have been telling to justify their own pricing, except now China is enforcing it with state power rather than margin discipline. If the best Chinese models need an export license, the free-model price anchor that's been compressing Sonnet and GPT token economics loosens at exactly the capability tier where frontier labs make money. Anthropic, sitting on a $125 billion lease serviced by token pricing, just got an unexpected and unearned reprieve at the top end.</p>
+<p>The second thing to watch is whoever is left distributing frontier-grade open weights into the West. Mistral ships Le Chonk's weights on October 27 and openly admits it's not at the frontier. Reflection, Nvidia's Nemotron — European and American open-weight players suddenly have the field to themselves if Beijing pulls its best systems back behind a license. The scarcity China is manufacturing accrues to them.</p>
+<p>So the real question for anyone underwriting the AI capital stack: was the Chinese open-weight deluge a permanent structural feature, or a phase that ends the moment Beijing's models cross from embarrassing-to-America into dangerous-to-export? Last week's draft says it was always the latter. The firms that leased ten-figure compute obligations against a world of permanently collapsing token prices just watched the biggest source of that collapse ask for a permit.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Draft rules are not enacted rules, and Beijing has a long history of floating export-control language that gets softened or quietly shelved under industry pressure. Chinese AI companies — Moonshot AI, the makers of GLM, and others — built their global developer footprint on frictionless distribution, and that footprint is a strategic asset Beijing may be unwilling to actually sacrifice. If the final rules carve out broad exemptions for research use, open-source repositories, or partner-country access, the practical effect on global model availability could be close to zero while the domestic political optics of 'controlling AI exports' are fully achieved.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The source material frames this as a balancing act: China wants to outpace the United States while managing national security risk. That framing understates how much the open-weight strategy was always load-bearing for the competitive case. When Moonshot AI released Kimi K3 in July as a free download — described in the source as rivaling some of the best American systems — the distribution mechanism was the point. A model that rivals GPT-tier capability but costs nothing to run self-hosted is not a product. It is a standard-setting move. You flood developer workflows, you become the default inference layer in markets the US hasn't prioritized, and you make your architecture the one that future tooling gets built around. The license gate Beijing is now proposing would interrupt that flywheel at the exact moment it was gaining traction.</p>
+<p>The admission embedded in the draft rules is worth sitting with. China is effectively conceding that its frontier models have crossed a threshold where the security cost of giving them away exceeds the competitive benefit. That is a meaningful data point about where Chinese AI capability actually sits — not because American observers are saying it, but because the Chinese government is acting on it. When a state that has been using open weights as a geopolitical instrument decides those weights need an export license, it is telling you the weights got good enough to matter in ways that go beyond embarrassing American labs on benchmarks.</p>
+<p>For the Western AI capital stack, the timing is striking. This brief has tracked the pressure that free Chinese models have been applying to frontier token pricing: Jev displacing GPT-class models on Vercel, open-weight models absorbing more than 70% of tokens through Vercel's gateway at a fraction of the spend, Nvidia releasing Nemotron to convert inference revenue into GPU sales. The through-line has been that the price floor on AI inference keeps dropping because the best free alternatives keep getting better. A Chinese export licensing regime does not eliminate that pressure — commodity-tier Chinese models presumably stay open — but it removes the most capable tier from the free pool at exactly the capability level where Anthropic and OpenAI charge premium prices.</p>
+<p>Anthropics's position is the most interesting case. The company is servicing a $125.2 billion five-year TPU lease commitment, with Broadcom holding conversion rights on $42 billion of that as debt — a fixed cost structure that depends entirely on token pricing holding at the top end. The biggest structural threat to that pricing has been frontier-grade open weights available for free. If Beijing's best models go behind a license, that threat compresses. The reprieve is unearned in the sense that Anthropic did nothing to cause it, but it is real in the sense that the competitive dynamic actually shifts.</p>
+<p>The players to watch most closely are the Western and European open-weight labs. Mistral has Le Chonk scheduled for public weight release on October 27 — a trillion-parameter multimodal model — while openly acknowledging it has not reached the closed-model frontier. Reflection and Nvidia's Nemotron are in the same position: capable, free, but not claiming to match the absolute top tier. If Chinese frontier weights go permission-only, these labs inherit the open-weight field at the capability level that matters most to enterprise buyers. That is a competitive position they did not earn through better models. They may benefit from it anyway.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-4-typesafe-ai-s-jev-reached-35-of-vercel-s-paid-teams-in-two-w">TypeSafe AI's Jev reached 35% of Vercel's paid teams in two weeks by being deliberately less capable than what it replaced.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-3-nvidia-published-a-free-model-that-competes-with-what-its-ow">Nvidia published a free model that competes with what its own customers spent $125 billion to build.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-09.html#story-0-beijing-s-offshore-tax-probe-reaches-back-to-2000-and-enforc">Beijing's offshore tax probe reaches back to 2000 and enforcement is deliberately uneven</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-first-generation-family-offices-are-buying-into-the-exit-log" data-bucket="wealth-planning" data-tags="Private Equity,Succession,Governance,Infrastructure">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">Private Equity</span>
+<span class="tag">Succession</span>
+<span class="tag">Governance</span>
+<span class="tag">Infrastructure</span>
+    </div>
+    <h2>First-generation family offices are buying into the exit logjam they keep complaining about</h2>
+    <div class="story-source"><a href="https://www.blackrock.com/institutions/en-ca/insights/thought-leadership/americas-family-office-survey" target="_blank" rel="noopener" title="2026 Americas Family Office Survey">blackrock.com</a>, <a href="https://investingnews.com/blackrock-research-finds-generational-divide-among-family-offices-amid-124-trillion-wealth-transfer/" target="_blank" rel="noopener" title="BlackRock Research Finds Generational Divide Among Family Offices amid $124 Trillion Wealth Transfer | INN">investingnews.com</a></div>
+    <ul class="tldr">
+      <li>32% of the 206 offices surveyed plan to increase PE allocations over the next 12 months, up from 26% last year, even as 76% cite the exit environment as the main threat to returns</li>
+<li>Infrastructure posted the widest net-increase spread of any alternative surveyed — 30% planning to add versus 6% planning to cut — with newer offices driving nearly all of it at 38% versus 16% for established ones</li>
+<li>65% of offices report limited or no next-generation involvement in investment decisions, while 18% have no succession plan at all, against a backdrop of an estimated $124 trillion in wealth transferring between 2024 and 2048</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>BlackRock's new Americas survey of 206 single-family offices — roughly $491 billion in investable assets — lands the same finding three other surveys landed this quarter: governance now outranks returns as the top worry, 28% to 24%. What makes this one worth a second look isn't the governance headline. It's the generational split hiding inside the PE numbers, and what it tells you about how fresh money actually enters private markets.</p>
+<p>Start with the one line that cuts against the grain of everything else these families say. Appetite for PE is rising — 32% plan to increase, up from 26% — while 76% name the exit environment as the main threat to returns. We flagged the same contradiction on October 2: 47% of offices that tried to exit a private position this year couldn't. So these families are expanding into the asset class whose plumbing is visibly clogged. Fine. The interesting part is how the new entrants are doing it. 45% of newer offices prefer secondaries versus 28% of older ones; older offices prefer co-investments 75% to 60%.</p>
+<p>That divergence is a liquidity confession dressed as a style preference. Newer offices buying secondaries aren't making a clever J-curve call — they're buying positions off sellers who need out, which means the same exit logjam the survey frets about is quietly becoming the on-ramp for first-generation capital. The sellers are the established offices and the backed-up 2021-vintage funds. The buyers are families who were liquid five years ago and want exposure now without waiting a decade to see cash. That's a wealth transfer running through the secondary market before it ever runs through a will — new money financing old money's exit at whatever discount clears.</p>
+<p>The infrastructure number says the same thing louder. A 24-point net-increase spread, the widest of any alternative, with 38% of newer offices buying versus 16% of established ones. Freshly liquid families with 30-year horizons and no legacy book are reaching for long-duration cash yield. Established offices, already allocated, are sitting still. This isn't a conviction gap. It's a sequencing gap — where you are in the lifecycle of deploying a windfall.</p>
+<p>Hold that against the governance data and the picture sharpens. Only 30% of these offices run a highly structured governance process, and 65% report limited or no next-generation involvement in investment decisions. So the cohort most aggressively buying illiquid secondaries and infrastructure is also the cohort with the thinnest decision-making machinery and heirs who aren't in the room. The $124 trillion changing hands through 2048 won't be managed by the people building these positions. It'll be inherited by people who weren't consulted, into structures that 18% of offices haven't even started designing.</p>
+<p>The bottleneck in family-office private markets right now isn't deal access or manager quality. It's the handoff — illiquid books being assembled faster than the governance and the heirs to hold them. Whoever provides continuity capital and structuring into that gap is underpricing a very large, very patient flow.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The secondaries preference among newer offices may be smarter than it looks from the outside. Buying at a discount into a clogged exit market is not the same as buying at par into a new fund — the J-curve compression is real, the entry price reflects the illiquidity premium, and a family with a 30-year horizon can afford to wait out the distribution lag that is forcing the seller's hand. If the exit environment normalizes over three to five years, the newer offices that loaded up on discounted secondaries today will look prescient, not reckless. The governance deficit is a real risk, but thin governance is not unique to newer offices — 71% of older offices have highly or moderately structured governance, meaning nearly 30% of the most established names in the survey still don't.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The BlackRock survey, conducted with Preqin across 206 single-family offices representing an estimated $491 billion in investable assets, is the fourth major family-office study this quarter to put governance ahead of returns as the primary concern. The consistency across surveys is worth noting, but the more actionable signal is buried in the allocation mechanics rather than the headline ranking.</p>
+<p>The secondary market dynamic deserves more attention than it typically gets in these surveys. When 45% of newer offices say they prefer secondaries versus 28% of older ones, the framing is usually about J-curve management — newer offices want to skip the early years of capital calls and negative returns that come with committing to a new fund. That framing is accurate but incomplete. The secondary market is a two-sided transaction. For every newer office buying in, there is a seller who needs liquidity — and the survey itself tells you who those sellers are: established offices and the 2021-vintage funds sitting on unrealized positions in a market where 76% of respondents say the exit environment is the main threat to returns. The newer offices are not just managing their own J-curve. They are providing the exit that the older cohort cannot find through conventional distributions.</p>
+<p>This creates a structural dependency that runs in the opposite direction from how family-office relationships are usually described. Established offices are conventionally the mentors, the co-investment partners, the governance models. In the secondary market right now, they are the motivated sellers, and the newer offices with fresh liquidity are setting the clearing price. That price reflects the exit logjam — which means the discount is real, but so is the risk that the logjam persists longer than the buyer's models assume.</p>
+<p>The infrastructure data reinforces the lifecycle interpretation. A 24-percentage-point net-increase spread — 30% planning to add, 6% planning to cut — is the widest of any alternative in the survey. Newer offices account for nearly all of the momentum: 38% planning increases versus 16% of established offices. Long-duration infrastructure assets — toll roads, energy transition projects, digital infrastructure — suit a family that just crystallized a liquidity event and has a multi-decade horizon with no legacy book to manage around. Established offices are already allocated and have less room to add without rebalancing away from something else. The divergence is less about conviction in infrastructure as an asset class and more about where each cohort sits in its own deployment cycle.</p>
+<p>The governance gap makes both of these trends more fragile than they appear. Only 30% of the surveyed offices run a highly formalized governance process. Among first-generation offices specifically, 49% have highly or moderately structured governance — meaning just over half of the cohort most aggressively building illiquid positions is operating with informal or still-evolving decision-making structures. The succession data compounds this: 37% of first-generation offices have fully implemented succession plans, which sounds better than the 26% figure for second- and third-generation offices until you read the next line — 65% of all offices report limited or no next-generation involvement in investment decisions.</p>
+<p>The practical implication is that the illiquid books being assembled right now — secondaries, infrastructure, co-investments — will in many cases be inherited by heirs who had no role in building them, into governance structures that 18% of offices have not yet started designing. Private market positions require active management: capital calls, follow-on decisions, manager relationships, exit timing. These are not assets that can be handed off passively. The $124 trillion wealth transfer figure, drawn from Cerulli data cited in the survey materials, is usually discussed in terms of which asset managers will capture the flows. The more immediate question is whether the structures receiving those assets are built to hold them.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-1-gtcr-and-elliott-are-buying-ccc-because-the-public-market-go">GTCR and Elliott are buying CCC because the public market got scared and left money on the table.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-3-singapore-family-offices-fired-the-banker-and-kept-the-banke">Singapore family offices fired the banker and kept the banker's trade</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-09.html#story-0-beijing-s-offshore-tax-probe-reaches-back-to-2000-and-enforc">Beijing's offshore tax probe reaches back to 2000 and enforcement is deliberately uneven</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
