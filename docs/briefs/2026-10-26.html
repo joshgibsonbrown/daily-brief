@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Monday, October 26, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Monday, October 26, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="private-markets" aria-pressed="false">Private Markets</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+<button type="button" class="tab" data-bucket="wealth-planning" aria-pressed="false">Family Office &amp; Wealth Planning</button>
+<button type="button" class="tab" data-bucket="geopolitics" aria-pressed="false">Geopolitics</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="Credit" aria-pressed="false">Credit</button>
+<button type="button" class="tag-filter" data-tag="Energy" aria-pressed="false">Energy</button>
+<button type="button" class="tag-filter" data-tag="Enterprise Software" aria-pressed="false">Enterprise Software</button>
+<button type="button" class="tag-filter" data-tag="Family Office" aria-pressed="false">Family Office</button>
+<button type="button" class="tag-filter" data-tag="France" aria-pressed="false">France</button>
+<button type="button" class="tag-filter" data-tag="Iran" aria-pressed="false">Iran</button>
+<button type="button" class="tag-filter" data-tag="Middle East" aria-pressed="false">Middle East</button>
+<button type="button" class="tag-filter" data-tag="Nvidia" aria-pressed="false">Nvidia</button>
+<button type="button" class="tag-filter" data-tag="PE Exits" aria-pressed="false">PE Exits</button>
+<button type="button" class="tag-filter" data-tag="Private Equity" aria-pressed="false">Private Equity</button>
+<button type="button" class="tag-filter" data-tag="Secondaries" aria-pressed="false">Secondaries</button>
+<button type="button" class="tag-filter" data-tag="Succession" aria-pressed="false">Succession</button>
+<button type="button" class="tag-filter" data-tag="Valuations" aria-pressed="false">Valuations</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-stale-marks-zombie-holds-and-fifteen-year-cvs-are-three-name" data-bucket="private-markets" data-tags="Valuations,Secondaries,PE Exits">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Valuations</span>
+<span class="tag">Secondaries</span>
+<span class="tag">PE Exits</span>
+    </div>
+    <h2>Stale marks, zombie holds, and fifteen-year CVs are three names for the same problem.</h2>
+    <div class="story-source"><a href="https://www.bloomberg.com/news/newsletters/2026-10-23/private-equity-s-stale-marks-fuel-debate-over-fairness-trust" target="_blank" rel="noopener" title="Private Equity's Stale Marks Fuel Debate Over Fairness, Trust">bloomberg.com</a></div>
+    <ul class="tldr">
+      <li>A new study documents 'systematic' gaps between private equity NAV marks and actual exit prices — the first serious attempt to measure how large the deferred gap has become.</li>
+<li>Goldman Sachs and Evercore are actively sounding out ten-to-fifteen-year continuation vehicles in the same week Blackstone reported realization revenue down year on year.</li>
+<li>Hamilton Lane's Erik Hirsch stated publicly that the IPO market cannot rescue private equity exits, citing that the vast majority of sponsor-owned companies carry enterprise values below $1 billion — too small for public markets to absorb.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>This is the ninth time this section has touched the valuations-and-liquidity theme in a month, so skip the setup. What's new this week is a specific academic finding — a study documenting what the piece calls &quot;systematic&quot; gaps between carrying marks and actual exit prices — landing in the same seven-day window that Goldman Sachs and Evercore started sounding out ten-to-fifteen-year continuation vehicles, and Blackstone reported realization revenue down year on year. Those three things are the same fact wearing three costumes.</p>
+<p>Here is the costume change that matters. For two years the industry's answer to stalled distributions was &quot;the IPO window will reopen.&quot; Erik Hirsch of Hamilton Lane just said out loud that this is wishful thinking, and the arithmetic backs him: the vast majority of sponsor-owned companies carry enterprise values under $1 billion, and public markets have consolidated so hard around mega-caps that a $40 million EBITDA business has nowhere to list. The exit route that was supposed to validate the marks does not exist at the size where the inventory sits. So the marks never get tested by a public bid, which is exactly the condition under which a &quot;systematic&quot; NAV-to-exit gap can persist without anyone having to book it.</p>
+<p>Now watch what the solution set is converging on. Fifteen-year continuation vehicles are not a liquidity product. They are the opposite — a structure explicitly designed so the asset never has to meet a clearing price. When a bank pitches a GP on holding a company for a decade and a half, it is pitching permission to keep the fee stream running on an asset the market would reprice downward if forced to transact today. Hirsch named these managers directly: zombies extending hold periods to preserve management fees. The fifteen-year CV is the institutional-grade version of the zombie move, with Goldman arranging the paperwork.</p>
+<p>So the mechanism underneath all three headlines is the same. Value creation has reverted entirely to operating earnings growth now that cheap debt and multiple expansion are gone. That means the only honest mark is the one an operating business can actually support — and for a lot of 2021-vintage software and buyout paper, that number is below the carrying value. The industry has three ways to avoid printing the lower number: don't sell (extend the hold), sell to yourself (the CV and CV-squared loop we covered on the 14th), or sell a minority stake that reprices a sliver without forcing a full mark on the rest. All three are now in active use simultaneously. That is not a menu of exit innovation. It is a set of techniques for deferring price discovery, and the new study is the first serious attempt to measure how large the deferred gap has become.</p>
+<p>If you are writing checks into GP-led secondaries or evergreen vehicles priced off NAV, the question is no longer whether the discount is attractive. It is whether the NAV you are discounting from has ever been contested by a real buyer. Increasingly, the answer is no.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case on stale marks assumes the gap is uniformly negative, but some portion of the NAV-to-exit discount reflects forced selling by LPs who are structurally required to exit continuation vehicles regardless of price — meaning the clearing price understates intrinsic value rather than the carrying mark overstating it. Longer hold structures like fifteen-year continuation vehicles, if matched with genuinely compounding businesses, could produce better outcomes than a distressed sale into a thin secondary market. The study's 'systematic' framing may be capturing a distribution problem, not a fraud problem.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The study's timing matters because it arrives at the precise moment the industry's standard defense — 'marks will be validated when the exit window reopens' — has been publicly dismantled by one of the people who runs the plumbing. Hamilton Lane's Erik Hirsch, whose firm sits at the intersection of primary fund investing and secondaries, is not an outside critic. When he says the IPO market is a 'tiny, tiny, tiny portion' of the exit environment for private assets, he is describing his own deal flow. The arithmetic he cites is specific: a sponsor running a middle-market business at $40 million of EBITDA cannot file an S-1 and expect institutional equity buyers to show up. Public markets have consolidated around mega-cap names that offer the liquidity and scale institutional equity investors require. The inventory private equity needs to clear does not qualify.</p>
+<p>That structural mismatch is what makes the NAV gap sticky rather than temporary. If the public market bid were available, it would force a mark. Because it is not available at the size where most of the inventory sits, the carrying value can persist unchallenged. The new study is the first systematic attempt to measure how wide that unchallenged gap has grown — and the word 'systematic' in the headline is doing real work. A random gap would average out across vintages and sectors. A systematic one implies directional bias: marks that consistently run above what a real buyer would pay.</p>
+<p>The supplementary data from this week adds useful scale. The unrealized value of buyout and growth funds stood at roughly $4,759 billion at end-September 2025, per Preqin figures cited by Pantheon. If even a modest fraction of that carrying value reflects the kind of systematic overstatement the study describes, the absolute dollar magnitude of deferred price discovery is large enough to matter for anyone pricing assets off NAV — which is exactly what buyers in GP-led secondaries and evergreen vehicles are doing.</p>
+<p>The continuation fund data from Capstone adds another layer. U.S. continuation fund raises hit $12.6 billion in the first half of 2026, up 126% year on year. Goldman Sachs and Evercore are now discussing structures that would extend hold periods to ten or fifteen years — framed publicly as innovation in long-duration investing, but functioning mechanically as permission to avoid a clearing price for another decade. Hirsch's framing of 'zombie managers' extending holds to preserve management fee streams applies at the institutional level too: a fifteen-year continuation vehicle keeps the fee clock running on an asset that the market, if forced to transact today, would reprice downward.</p>
+<p>The three techniques now running simultaneously — extend the hold, sell to yourself via a continuation vehicle or CV-squared structure, or sell a minority stake that reprices a sliver without forcing a full mark on the remainder — are not independent innovations. They are variations on the same underlying move: keep the asset away from a contested price. The new study is the first to try to quantify the cost of that deferral. The answer, whatever the precise number turns out to be, is almost certainly larger than what is currently reflected in quarterly NAV statements.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-0-continuation-fund-volume-dropped-50-in-a-year-and-the-buyers">Continuation fund volume dropped 50% in a year and the buyers are calling it a false narrative.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-2-clipway-and-netley-raised-6-6-billion-as-debut-funds-while-a">Clipway and Netley raised €6.6 billion as debut funds while all other European PE first-timers combined raised €1.5 billion.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-0-continuation-funds-hit-7-1-of-global-pe-exits-the-second-lap">Continuation funds hit 7.1% of global PE exits. The second lap is where the math breaks.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-ilpa-s-cv-rulebook-normalizes-the-practice-it-was-meant-to-p" data-bucket="private-markets" data-tags="">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      
+    </div>
+    <h2>ILPA's CV rulebook normalizes the practice it was meant to police.</h2>
+    <div class="story-source"><a href="https://ilpa.org/wp-content/uploads/2026/10/ILPA-Continuation-Vehicles-Advancing-Alignment-Through-Best-Practices.pdf" target="_blank" rel="noopener" title="Continuation Vehicles">ilpa.org</a>, <a href="https://www.friedfrank.com/news-and-insights/ilpa-finalizes-updated-continuation-vehicle-guidance-key-takeaways-for-sponsors-13221" target="_blank" rel="noopener" title="ILPA Finalizes Updated Continuation Vehicle Guidance">friedfrank.com</a></div>
+    <ul class="tldr">
+      <li>CVs represented 14% of sponsor-backed exits globally in 2025, up from 5% in 2021, per Jefferies — the practice ILPA's guidance now governs has nearly tripled in share during the three years since the prior framework.</li>
+<li>The 'remain in place' option — letting LPs keep original fund terms while others cash out — was demoted from default to optional after GP practitioners called it unworkable, the single most LP-protective structural reform in the July draft.</li>
+<li>The 20-business-day election window, which the brief flagged on October 12 as too short for most pension investment committees to convene, survived the final guidance unchanged.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Ninth time on continuation vehicles this month, and this is the rulebook the prior eight were circling. ILPA finalized its updated CV guidance on October 23, and the headline change from the July draft is a retreat: &quot;remain in place&quot; — letting LPs keep original terms while sellers cash out — is now optional, not default. Practitioners complained it was unworkable. ILPA folded.</p>
+<p>Watch which demand got granted and which got softened. The 20-business-day election window survives untouched — the same window we flagged on October 12 as too short for any pension investment committee to convene, which is precisely why public pensions roll at 2% and why the median election is a default exit. ILPA had every chance to extend it to a full quarter and didn't. The one reform that would actually change roll rates — giving LPs enough time to get a roll through IC approval — was left in place, while the reform GPs hated got killed. That tells you who was in the room.</p>
+<p>The side-by-side modeling requirement is where the guidance quietly admits defeat. ILPA wants election materials to compare CV fees and carry against the selling fund's terms over a comparable hold. Fried Frank's own write-up says this &quot;may be difficult to implement in practice&quot; and that the output &quot;would depend on contestable assumptions.&quot; Translation: the standard is &quot;rolling LPs should generally be no worse off, applying good-faith reasonable assumptions.&quot; Good-faith reasonable assumptions, on a transaction where the GP sits on both sides, is not a standard. It's a liability shield. Every GP that runs a thin process will now point to this document and say it followed principles-based best practice.</p>
+<p>Here's the mechanism that matters. ILPA represents more than 600 LPs holding over $3 trillion. When the largest LP body in the world issues guidance this deferential at exactly the moment CV-related exits hit 14% of all sponsor exits globally — up from 5% in 2021 — it is not restraining the practice. It is normalizing it. A GP facing an LPAC can now check every box: competitive auction, fairness opinion, 20-day window, disclosure template — and still move a 2021 software asset at a defended mark into a vehicle it controls, with the blessing of the very group that supposedly polices the conflict.</p>
+<p>The structural read is that non-binding, principles-based guidance from a captured working group functions as a floor for GP behavior, not a ceiling. Once &quot;largely consistent with 2023 guidance&quot; is the verdict on three years of CV explosion, the regime is set. The 2018-vintage single-asset CVs that returned 2.2x did so because discounts were real and the practice was marginal. At 14% of exits with a rulebook this accommodating, the discipline that generated those returns is gone. The second lap — same GP, same asset, second CV — now has institutional cover. Price the buyer accordingly, because the referee just confirmed it works for the house.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>ILPA's principles-based approach may be the only realistic path to any market-wide standard at all. Prescriptive rules that don't account for deal-by-deal variation would either get ignored entirely or litigated into irrelevance — and a framework that sophisticated LPs and LPAC members can actually cite in negotiations is more durable than one that overreaches and collapses. The 20-day window, for instance, reflects real operational constraints on GP processes, not just LP convenience; extending it to a full quarter would raise execution risk and financing costs in ways that could reduce the net proceeds available to selling LPs.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The ILPA — the Institutional Limited Partners Association, the main global trade body for the pension funds, endowments, and sovereign wealth funds that invest in private equity — represents more than 600 organizations holding over $3 trillion in PE assets under management. That scale means its guidance functions less like a rulebook and more like a market norm: GPs don't have to follow it, but LPs and LPAC members will measure every CV process against it, and deviation requires explanation.</p>
+<p>The practical effect of this final guidance is to establish a compliance checklist that a GP can satisfy without changing the underlying economics of a conflicted transaction. Run a competitive auction. Get a fairness opinion. Send the ILPA disclosure template. Give LPs 20 business days. Document that rolling LPs are 'generally no worse off' under good-faith reasonable assumptions. Check every box, and the process is defensible — even if the asset being transferred is a 2021-vintage software company sitting at a defended mark, moving into a vehicle the same GP will continue to manage.</p>
+<p>The side-by-side modeling requirement illustrates the gap between the guidance's ambition and its enforceability. ILPA asks that election materials compare CV fee and carry terms against the selling fund's terms over a comparable hold period. Fried Frank's analysis of the final guidance notes this is structurally difficult: CV economics are negotiated around a specific asset with a lead investor in a competitive process, while the selling fund's fee and carry mechanics operate across a blind-pool portfolio. Any hypothetical comparison requires assumptions about hold period, exit timing, and return trajectory that are, by definition, contestable. The guidance's answer to this is 'good-faith, reasonable assumptions' scaled to deal complexity — which is a standard a GP's own advisers will set and a GP's own counsel will certify.</p>
+<p>The 'remain in place' retreat is worth dwelling on. The July draft treated it as a genuine structural alternative: LPs who wanted continued exposure to the asset could stay in the selling fund on existing terms, avoiding the fee and carry reset that a roll into the CV typically involves. Practitioners pushed back hard, arguing it created two parallel LP pools, two fund vehicles, and a second exit process for the retained stake — adding cost and execution risk that could weaken pricing for everyone. ILPA accepted that argument and demoted the option to situational. The practical alternative it endorses is a roll election designed so that rolling LPs are economically no worse off than staying put — a standard that depends entirely on the modeling assumptions just described.</p>
+<p>Zoom out and the trajectory is clear. In 2021, CVs were 5% of sponsor-backed exits. By 2025 they were 14%, per Jefferies data cited in the ILPA guidance itself. The LP roll rate over that same period fell from roughly 14-15% to below 5%, per NBER data covered in this brief's October 12 edition — meaning the practice scaled dramatically while LP participation in the upside collapsed. A guidance document described by ILPA's own executive as 'principles-based instead of prescriptive,' finalized at this moment, does not reverse that dynamic. It gives it institutional cover. The 2018-vintage single-asset CVs that generated strong returns did so in a market where the practice was marginal and discounts were real. At 14% of exits with a rulebook this accommodating, the conditions that produced those returns no longer apply — and the buyers absorbing the new supply should price that in.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-0-continuation-fund-volume-dropped-50-in-a-year-and-the-buyers">Continuation fund volume dropped 50% in a year and the buyers are calling it a false narrative.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-2-clipway-and-netley-raised-6-6-billion-as-debut-funds-while-a">Clipway and Netley raised €6.6 billion as debut funds while all other European PE first-timers combined raised €1.5 billion.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-0-continuation-funds-hit-7-1-of-global-pe-exits-the-second-lap">Continuation funds hit 7.1% of global PE exits. The second lap is where the math breaks.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-family-offices-are-levering-up-into-assets-they-already-cann" data-bucket="wealth-planning" data-tags="Family Office,Succession,Private Equity,Credit">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">Family Office</span>
+<span class="tag">Succession</span>
+<span class="tag">Private Equity</span>
+<span class="tag">Credit</span>
+    </div>
+    <h2>Family offices are levering up into assets they already cannot exit</h2>
+    <div class="story-source"><a href="https://www.cnbc.com/2026/10/23/next-generation-family-offices-likely-to-add-risk-debt-alternatives.html" target="_blank" rel="noopener" title="Next generation family offices likely to add risk, debt, ...">cnbc.com</a>, <a href="https://www.tokenpost.com/news/investing/39595" target="_blank" rel="noopener" title="Family Offices Expect More Alternatives Among Successors and Greater Next-Generation Credit Interest | TokenPost">tokenpost.com</a>, <a href="https://www.fundssociety.com/en/news/private-banking/ai-crowned-top-direct-investment-destination-for-global-ultra-high-net-worth-individuals/" target="_blank" rel="noopener" title="AI Top Direct Investment for Family Offices">fundssociety.com</a></div>
+    <ul class="tldr">
+      <li>84% of family offices with heirs aged 30–45 want to use credit to build wealth, per Bank of America's 2026 survey of 355 U.S. family-office decision-makers</li>
+<li>Private equity and venture capital are each cited by 41% of next-gen principals as top expansion categories, even as 47% of offices that tried to exit a private-markets position this year could not complete it</li>
+<li>Among offices with a potential next-generation principal, 84% say the outgoing principal stays involved after the transition — meaning the leverage mandate and the veto power sit in different hands</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>This is the seventh time this section has worked the generational-handoff theme, and the Bank of America study finally puts a number on the thing the earlier Citi and BlackRock surveys only gestured at: 84% of family offices with a next-gen principal say the current patriarch stays involved after the &quot;transition,&quot; and 84% of offices with heirs aged 30 to 45 want to lever up credit to build wealth. Put those two facts in the same sentence and you have the real story, which nobody is selling as a package.</p>
+<p>The marketing version is that a younger, bolder cohort is about to tilt $5 trillion toward private equity, venture, sports teams and leverage. Elizabeth Thiessen at BofA frames it as &quot;different risk tolerance.&quot; Fine. But look at what actually governs the balance sheet. The founder isn't leaving. He's handing his kids a mandate to add debt, add illiquidity, and add alternatives — PE and VC at 41% each as the top expansion categories — while he keeps a seat at the table and, in most cases, keeps the veto. That is not a succession. That is a leveraged bet placed by the outgoing generation on the incoming generation's appetite, with the outgoing generation still holding the controls.</p>
+<p>Now stack it against this section's own recent data. Forty-seven percent of family offices that tried to exit a private-markets position this year couldn't complete it. Seventy-six percent name the exit environment as the top threat to returns, and they're increasing PE anyway. The next-gen &quot;risk tolerance&quot; story is being written into a book that already can't sell what it owns. Adding credit on top of an illiquid, un-exitable alternatives stack isn't bold allocation — it's duration mismatch with a leverage multiplier, run by heirs who, per the Citi work, are 65% uninvolved in investment decisions today and whose offices are 83% unprepared for the handoff by their own admission.</p>
+<p>The BlackRock split is the one honest data point in the pile. Newer offices sit at 32% alternatives versus near-50% for the 20-year-plus crowd, because the new money is still liquid from a sale or IPO and hasn't locked itself up yet. That's the natural state — liquidity you can actually touch. The generational-transition narrative is a sales pitch to convert that liquidity into committed, levered, hard-to-exit paper precisely when the exit math is worst. The private banks pushing it earn on the alternatives and on the securities-based lending that funds them. Of course they're thrilled.</p>
+<p>What matters if you're structuring one of these: the governance gap is the exposure, not the asset mix. An 84% &quot;principal stays involved&quot; rate means the leverage decision and the liquidity decision are being made by two generations with different time horizons and no clean authority line. When a 2021-vintage mark gets tested against a margin call, &quot;complexity of family dynamics&quot; stops being a survey answer and becomes a forced seller. Price the family's decision latency, not its risk appetite.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bull case is that leverage deployed into private equity and venture at the right entry point is precisely how generational wealth compounds — and next-gen principals are inheriting offices with decades of relationship capital, co-investment access, and institutional infrastructure that first-generation founders built from scratch. The BlackRock data also shows that newer offices are still cash-heavy from recent exits, which means the credit they're reaching for is backed by real liquidity, not fantasy marks. If the patriarch stays involved, that could mean discipline rather than dysfunction — an experienced hand moderating the heir's risk appetite rather than rubber-stamping it.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Bank of America survey covered 355 U.S. family-office decision-makers managing between $25 million and more than $5 billion in assets, with most above $500 million — so the numbers reflect offices with genuine institutional scale, not boutique single-family shops. That makes the governance finding harder to dismiss. When 84% of offices report the outgoing principal stays involved post-transition, and the top governance challenge named is &quot;complexity of family dynamics,&quot; you have a structural problem dressed up as a cultural one. The authority line on a margin call is not a family meeting agenda item.</p>
+<p>The credit appetite data deserves more scrutiny than it's getting. Ninety-two percent of surveyed offices already use credit in some form, but only 27% describe leverage as a consistent part of long-term wealth planning. The next-gen number — 84% interested in levering up — represents a sharp expansion of that 27% into something much closer to a default posture. The instrument of choice, per the Citi data, is securities-based lending or margin facilities, which 57% of offices already use as their primary leverage tool. Securities-based lending is efficient until the collateral reprices; at that point the lender moves faster than any family governance process can.</p>
+<p>Stack the asset side against that. The BlackRock survey of 206 single-family offices — a separate dataset covering the Americas, with an estimated $491 billion in investable assets — found that 32% plan to increase private-equity allocations over the next 12 months. Growth equity is the preferred strategy within PE, per the Citi global survey of 351 offices across 41 countries, with venture and secondaries behind it. These are long-duration, illiquid instruments. Borrowing short against them to fund further illiquid commitments is a duration mismatch that works smoothly in a rising-mark environment and catastrophically in a redemption one.</p>
+<p>The BlackRock split between newer and older offices is the most structurally honest data point in the pile. Offices established more than 20 years ago run alternatives above 40% of the portfolio; offices established in the past decade sit at 32%, because the founding liquidity event — a business sale, an IPO — hasn't fully been redeployed yet. The generational transition narrative is, in practice, a pitch to accelerate that redeployment into committed, levered, hard-to-exit paper. The private banks and asset managers running these surveys earn fees on the alternatives and on the lending that funds them. The incentive to frame next-gen boldness as a virtue rather than a risk is not subtle.</p>
+<p>The succession readiness numbers from the Citi work — only 17% of offices feel well prepared for a leadership transition, and 29% lack a clear succession plan entirely — compound the asset-side problem. An office that is 65% uninvolved with its next-generation members on investment decisions today is not positioned to execute a coordinated response to a liquidity event. The decision latency in a family governance structure, where the outgoing patriarch retains informal veto power and the incoming heir holds the mandate to lever up, is measured in weeks or months. Margin calls are measured in days. That gap is the actual exposure — not the alternatives allocation percentage, and not the risk-tolerance survey answer.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-4-first-generation-family-offices-are-buying-into-the-exit-log">First-generation family offices are buying into the exit logjam they keep complaining about</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-1-gtcr-and-elliott-are-buying-ccc-because-the-public-market-go">GTCR and Elliott are buying CCC because the public market got scared and left money on the table.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-3-singapore-family-offices-fired-the-banker-and-kept-the-banke">Singapore family offices fired the banker and kept the banker's trade</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-pigment-raised-250-million-at-2-3-billion-and-didn-t-mention" data-bucket="iconiq-portfolio" data-tags="Enterprise Software,Nvidia,France">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Enterprise Software</span>
+<span class="tag">Nvidia</span>
+<span class="tag">France</span>
+    </div>
+    <h2>Pigment raised $250 million at $2.3 billion and didn't mention revenue once.</h2>
+    <div class="story-source"><a href="https://www.axios.com/pro/enterprise-software-deals/2026/10/24/deals-week-legora-pigment-boomi" target="_blank" rel="noopener" title="Legora's new valuation, Pigment nabs $250M, Boomi buys Elementary Data">axios.com</a></div>
+    <ul class="tldr">
+      <li>Pigment, a French enterprise business planning platform, closed a $250M round at a $2.3B valuation, led by Scaleup Europe Fund with ICONIQ, Greenoaks, IVP, Meritech, and Nvidia participating</li>
+<li>Nvidia's presence on the cap table raises a structural question: the same investor that benefits from Pigment scaling its model spend is helping set the valuation that pulls in the next round</li>
+<li>The company's announcement leads with sponsor names and a headline number — no ARR, no revenue growth rate, no customer count disclosed</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>We covered Legora on October 23, so skip the repeat and look at what the brief hasn't touched: Pigment, the French enterprise planning platform, raised $250 million at a $2.3 billion valuation, with ICONIQ in alongside Greenoaks, IVP, Meritech — and Nvidia.</p>
+<p>Pigment competes with Anaplan, which Thoma Bravo took private in 2022 at roughly $10.7 billion (outside context, for scale), and with the planning modules Workday and SAP already sell. Enterprise planning software is a mature category with incumbents who own the ERP data and the CFO relationship. A $2.3 billion mark on a pure-play planning vendor is a bet that AI agents rewrite the budgeting and forecasting workflow faster than the incumbents can bolt the same features onto the systems of record they already control. That bet is not obviously wrong, but it is far from decided, and the valuation is pricing the optimistic branch.</p>
+<p>The detail worth sitting with is Nvidia on the cap table. Nvidia's strategic investing has become a circular financing machine — it puts money into companies whose growth stories require buying Nvidia compute, and the investment itself validates the story that pulls in the next crossover round. When Nvidia shows up in a $250 million round for an FP&amp;A software company, the question isn't whether Pigment is a good planning tool. It's how much of this valuation is being underwritten by the same capital that benefits when Pigment scales its model spend. That's not fraud, it's vendor financing dressed as venture equity, and it inflates the apparent independent demand for the asset.</p>
+<p>The through-line connecting Pigment to Legora in the same ICONIQ fund, and to OpenEvidence and Anthropic in this section over the past week, is that crossover and strategic money — Fidelity, Capital Group, J.P. Morgan, Nvidia — is clustering into late-stage AI application layers at prices that assume the application layer captures durable margin. The open question for every one of these is whether the moat sits with the app or with the model and the system of record underneath it. Legora at least has $200 million of ARR and a verifiable curve. Pigment's release gives us a valuation and a sponsor list and no revenue figure at all, which tells you the revenue line isn't the headline the company wants to lead with.</p>
+<p>For ICONIQ specifically, Fund VII is running a concentrated enterprise-AI book where the markups are real on paper and the exits are theoretical. Legora's crossover investors are positioning 12 to 18 months ahead of a listing. Pigment's are not — this is a growth round into a competitive category with no obvious liquidity path and a strategic backer whose incentives are entangled with the spend. Both get carried at the new mark. Only one of them has told you why the mark is real.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Enterprise planning is genuinely broken for most mid-market and large companies — Anaplan's complexity drove customers away even before Thoma Bravo took it private, and Workday's planning module has never been the reason anyone bought Workday. A clean, AI-native interface that sits on top of existing ERP data without requiring a rip-and-replace could command real switching, and $2.3 billion is not an outlandish price if Pigment is already at scale in European enterprise and accelerating into North America. Nvidia's involvement could also reflect genuine conviction that FP&amp;A workflows are about to become compute-intensive in ways the market hasn't priced — not just circular vendor financing.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Pigment round lands in the same week as the Legora Series E, and the contrast between the two is more instructive than either deal on its own. Legora disclosed ARR above $200 million, a verifiable growth curve — the second $100 million of ARR came in under six months — and a competitive reference point in Harvey, which raised the same $550 million a month earlier at $15.5 billion. You could argue about the Legora multiple, but you were arguing with real numbers. Pigment's announcement gives you a valuation, a lead investor, and a list of co-investors. The revenue line is absent, which in a $250 million growth round is a choice, not an oversight.</p>
+<p>The category Pigment is competing in is not soft. Anaplan, before Thoma Bravo took it private in 2022 at roughly $10.7 billion — outside context, for scale — was the last pure-play planning vendor to reach that kind of valuation, and it spent years fighting the perception that its product was too complex to implement and too expensive to maintain. Workday and SAP already own the underlying financial data for most large enterprises, and both have been adding planning and forecasting modules directly into their platforms. The structural challenge for any standalone planning vendor is that the CFO relationship and the system-of-record data both sit with the incumbent, and AI features bolt onto incumbents just as easily as they power challengers.</p>
+<p>Nvidia's position on the cap table deserves more scrutiny than it typically gets in deal announcements. Over the past two years, Nvidia has built a strategic investment portfolio that functions partly as demand generation — companies it backs tend to be companies whose growth trajectories require buying more Nvidia compute. That dynamic is not unique to Pigment; Nvidia has shown up in rounds across the AI application stack. But when a GPU manufacturer takes a stake in an FP&amp;A software company, the investment implicitly underwrites a story in which Pigment's planning agents run on meaningful compute at scale. That story may be true. It also means the valuation is being partially set by a party with a direct financial interest in the spend assumptions embedded in that valuation.</p>
+<p>For ICONIQ's Strategic Partners VII fund, the portfolio is accumulating a pattern: concentrated late-stage bets on AI application companies at prices that assume the application layer, not the model or the system of record, is where durable margin lands. That assumption may prove correct in legal tech, where Legora's ARR trajectory suggests genuine workflow capture. In enterprise planning, where the data gravity sits with ERP vendors and the AI features are table stakes for every incumbent, the margin capture story is harder to tell — and Pigment hasn't told it yet, at least not publicly.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-1-openevidence-is-a-pharma-ad-network-dressed-as-a-clinical-to">OpenEvidence is a pharma ad network dressed as a clinical tool, valued at $15 billion on a drug discovery story that hasn't started.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-2-legora-raised-at-8-8-billion-while-harvey-sits-at-15-5-billi">Legora raised at $8.8 billion while Harvey sits at $15.5 billion on the same revenue line.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-0-replit-flipped-its-default-to-openai-and-handed-anthropic-s-">Replit flipped its default to OpenAI and handed Anthropic's IPO roadshow a live case study in customer churn.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-iran-is-selling-washington-an-exit-one-mediator-at-a-time-an" data-bucket="geopolitics" data-tags="Iran,Middle East,Energy">
+    <div class="story-meta">
+      <span class="bucket-pill">Geopolitics</span>
+      <span class="tag">Iran</span>
+<span class="tag">Middle East</span>
+<span class="tag">Energy</span>
+    </div>
+    <h2>Iran is selling Washington an exit one mediator at a time, and the brokers are getting expensive.</h2>
+    <div class="story-source"><a href="https://www.aljazeera.com/news/liveblog/2026/10/25/iran-war-live-trump-hints-at-possible-sunday-iran-attack-or-deal-reached" target="_blank" rel="noopener" title="Iran war live: Qatar mediators in Tehran as US attack threats continue | US-Israel war on Iran News | Al Jazeera">aljazeera.com</a>, <a href="https://apnews.com/article/mideast-news-october-25-2026-4779a3deeb1a23f59414164532d5c885" target="_blank" rel="noopener" title="Iran says messaging continues with the US, and other Mideast developments | AP News">apnews.com</a>, <a href="https://apnews.com/article/pakistan-iran-us-talks-hormuz-45161652890bf4f3d570347b8aae6b22" target="_blank" rel="noopener" title="Iran remains open to talks with US under Pakistan-brokered deal, envoy says">apnews.com</a></div>
+    <ul class="tldr">
+      <li>Pakistan has emerged as a named broker Iran will talk through — a new channel alongside Qatar, Saudi Arabia, and the UAE, all competing for a seat at the settlement table.</li>
+<li>Iran's parliament speaker publicly called the war a 'quagmire' Washington must extricate itself from — framing the exit as a concession Iran grants, not one it needs.</li>
+<li>Trump ruled out an immediate strike on Sunday within 24 hours of floating one, continuing a pattern that has now repeated across multiple weeks.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Ninth time on this war since late August, and the pattern now has a signature: Trump floats a Sunday strike, then rules it out within 24 hours, while Qatar shuttles to Tehran and Pakistan brokers a parallel channel. What's new this week is the mediator roster. It's no longer just the Gulf monarchies — Pakistan is now the named broker Iran is pointing to as the vehicle it will talk through, and Iran's parliament speaker is openly calling the war a &quot;quagmire&quot; Washington needs help &quot;extricating&quot; itself from.</p>
+<p>That language is the giveaway on where leverage actually sits. When the weaker party in a shooting war starts framing the exit as a favor it can grant, the pricing has flipped. Iran can't win the kinetic exchange — CENTCUM has been degrading IRGC tankers and running the blockade for two months, per our own earlier coverage. But it has figured out that the US wants out more than it wants a decisive outcome, and it's selling that exit back one mediator at a time.</p>
+<p>Watch who's doing the mediating, because that's the structural story. Qatar, Saudi, the UAE, and now Pakistan are all competing to be the channel. Each one that gets a seat at the table extracts something — security guarantees, reconstruction contracts, a claim on whatever Hormuz fee regime emerges, standing with Washington. The brokers aren't neutral postboxes; they're bidding for the franchise rights to the peace. Pakistan, a cash-strapped IMF client with its own reasons to want a Gulf patron, just bought itself relevance by owning the Iran back channel. That's a cheap option with an enormous payoff if a deal lands before the November 3 midterms.</p>
+<p>The thing being mispriced is the strike risk itself. Markets and the commentariat keep treating each &quot;possible Sunday attack&quot; as a live escalation. It isn't. Trump has now ruled out the immediate strike the same week he threatened it, repeatedly, for two months running. The threat is a negotiating instrument, priced to extract concessions on enrichment and Hormuz, not a plan. The actual tail risk isn't a US bombing campaign — it's that the mediator auction fails to converge, the war grinds past the midterms, and Hormuz throughput stays stuck 40% below normal indefinitely because nobody can assemble a deal that pays off four competing brokers at once.</p>
+<p>For anyone with Gulf exposure or energy-transit sensitivity, the relevant variable is no longer &quot;will the US strike.&quot; It's whether Pakistan or Qatar closes first, and what each wants in return — because the terms of this settlement are being written in side payments to intermediaries, not in the main agreement. The war ends when the brokerage fees clear, and right now there are too many brokers.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The strike threat may not be purely theatrical. Trump has genuine domestic political incentives to show force before the November 3 midterms, and a miscalculation — an Iranian provocation that crosses an unstated red line, or a mediator channel that publicly collapses — could force his hand in ways the current pattern doesn't capture. Iran's parliament speaker calling the war a quagmire could also be domestic posturing for a hardline audience rather than a genuine signal of flexibility, which would mean the leverage read is wrong and the exit is further away than the mediator activity implies.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The mediator roster is the most structurally significant development in this week's reporting, and it's being underread. Qatar has been the primary channel for months. Saudi Arabia and the UAE brokered the proposal Trump walked away from in late September — a moment that exposed, as we noted at the time, how thin Gulf leverage over Washington actually is. Pakistan is different in kind, not just in degree.</p>
+<p>Pakistan is a cash-strapped IMF borrower with no direct stake in Hormuz throughput and no military presence in the Gulf. What it has is a working relationship with Tehran and a desperate need for Gulf patronage — Saudi and Emirati financial support has been a recurring lifeline for Islamabad across multiple debt cycles. Buying into the Iran back channel is, from Pakistan's perspective, a nearly free option: the cost of hosting a diplomatic channel is low, and the payoff if a deal lands before November 3 is enormous. Islamabad gets standing with Washington, goodwill from Riyadh and Abu Dhabi for helping close a war that is costing them economically, and a claim on whatever reconstruction or transit architecture follows.</p>
+<p>That logic applies, with variations, to every broker in the auction. Qatar is protecting its position as the indispensable Gulf interlocutor — a role it has cultivated since the 2017 blockade left it needing its own foreign policy identity. Saudi Arabia wants a say in the Hormuz fee regime that Iran has been pushing, because any formalized transit toll on the strait is effectively a tax on Saudi oil exports. The UAE wants reconstruction contracts and security guarantees. None of these actors is a neutral postbox. Each one that gets a seat extracts something, and the terms of the final agreement will reflect those extractions whether or not they appear in the main text.</p>
+<p>The Hormuz throughput number is the variable that ties all of this to something measurable. As of the week ended October 7, crude flows through the strait were running roughly 40% below pre-war normal at around 8.5 million barrels per day, per our earlier coverage. That figure has been the ceiling on any recovery in Gulf energy economics for months. The brokers all have an interest in closing that gap — but they also have an interest in being the one who closes it, because the closer collects the franchise. Too many franchisees and the auction stalls.</p>
+<p>The enrichment question is the other live variable. Vice President Vance dropped Washington's zero-enrichment demand in mid-October — a significant concession that received less attention than it deserved. Iran retaining some enrichment capacity was the core sticking point for seven months. If that's now off the table as a dealbreaker, the remaining gap is about Hormuz governance and the sequencing of sanctions relief, which is exactly the kind of problem that a Pakistan-brokered side channel is well-suited to paper over with constructive ambiguity.</p>
+<p>The midterm clock is the forcing function. November 3 is eight days out. A deal before then gives Trump a foreign policy win to run on; a grinding stalemate hands Democrats a ready-made line about a war that was supposed to be over quickly. That asymmetry is what keeps the mediator auction moving even when the principals aren't talking directly — everyone in the room knows the American calendar, and they're pricing their asks accordingly.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-4-nato-s-top-general-just-made-american-absence-the-base-case-">NATO's top general just made American absence the base case, not the contingency.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-12.html#story-2-hormuz-flows-are-40-below-normal-and-the-calendar-guarantees">Hormuz flows are 40% below normal and the calendar guarantees three more weeks of it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-30.html#story-2-samsung-s-1-billion-helix-bet-is-a-vendor-contract-wearing-a">Samsung's $1 billion Helix bet is a vendor contract wearing an equity badge.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
