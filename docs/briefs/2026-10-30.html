@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Friday, October 30, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Friday, October 30, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+<button type="button" class="tab" data-bucket="wealth-planning" aria-pressed="false">Family Office &amp; Wealth Planning</button>
+<button type="button" class="tab" data-bucket="tech-ai" aria-pressed="false">Tech &amp; AI</button>
+<button type="button" class="tab" data-bucket="financial-markets" aria-pressed="false">Financial Markets &amp; Economic News</button>
+<button type="button" class="tab" data-bucket="geopolitics" aria-pressed="false">Geopolitics</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="AI" aria-pressed="false">AI</button>
+<button type="button" class="tag-filter" data-tag="Alternatives" aria-pressed="false">Alternatives</button>
+<button type="button" class="tag-filter" data-tag="Cybersecurity" aria-pressed="false">Cybersecurity</button>
+<button type="button" class="tag-filter" data-tag="Energy" aria-pressed="false">Energy</button>
+<button type="button" class="tag-filter" data-tag="Europe" aria-pressed="false">Europe</button>
+<button type="button" class="tag-filter" data-tag="Family Office" aria-pressed="false">Family Office</button>
+<button type="button" class="tag-filter" data-tag="Fed" aria-pressed="false">Fed</button>
+<button type="button" class="tag-filter" data-tag="Governance" aria-pressed="false">Governance</button>
+<button type="button" class="tag-filter" data-tag="IPO" aria-pressed="false">IPO</button>
+<button type="button" class="tag-filter" data-tag="Iran" aria-pressed="false">Iran</button>
+<button type="button" class="tag-filter" data-tag="Middle East" aria-pressed="false">Middle East</button>
+<button type="button" class="tag-filter" data-tag="Open Source" aria-pressed="false">Open Source</button>
+<button type="button" class="tag-filter" data-tag="Rates" aria-pressed="false">Rates</button>
+<button type="button" class="tag-filter" data-tag="Succession" aria-pressed="false">Succession</button>
+<button type="button" class="tag-filter" data-tag="Treasury" aria-pressed="false">Treasury</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-anthropic-s-s-1-asks-public-investors-to-fund-417-billion-in" data-bucket="iconiq-portfolio" data-tags="IPO,AI,Governance">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">IPO</span>
+<span class="tag">AI</span>
+<span class="tag">Governance</span>
+    </div>
+    <h2>Anthropic's S-1 asks public investors to fund $417 billion in compute they won't control.</h2>
+    <div class="story-source"><a href="https://www.businessinsider.com/anthropic-mints-record-gains-in-record-time-2026-10" target="_blank" rel="noopener" title="Anthropic Mints Record Gains in Record Time - Business Insider">businessinsider.com</a>, <a href="https://at-pulse.com/editions/2026-10-28/" target="_blank" rel="noopener" title="Anthropic files for IPO, labs report ETH refutation, GPT-6.1 Terra ships, Oracle adds TPUs · AT Pulse">at-pulse.com</a>, <a href="https://www.scottharvanek.com/anthropic-files-s1-nasdaq-ipo-openai-gpt-6-1-terra-google-deepmind-genie-4/" target="_blank" rel="noopener" title="Anthropic Files S-1 for Nasdaq IPO, OpenAI Ships GPT-6.1 Terra, Google DeepMind Previews Genie 4 World Model | Scott Harvanek">scottharvanek.com</a></div>
+    <ul class="tldr">
+      <li>H1 2026 revenue hit $16.3 billion against $4.6 billion for all of 2025, but contracted compute obligations total roughly $417 billion — more than twelve times the current annualized run-rate</li>
+<li>Broadcom CEO Hock Tan personally intervened to prevent lenders from walking on the $63 billion Project North Star financing, accepting higher interest rates to close it</li>
+<li>A single Class F share with no economic rights gives seven cofounders 50.1% of votes; the Long-Term Benefit Trust elects most directors — public shareholders get economic exposure and effectively no governance say</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>We've been on the Anthropic IPO three times this month. Since the October 16 note — when the San Francisco investor day repriced the deal from $2 trillion to roughly $1.5 trillion — the S-1 is now filed, listing on Nasdaq as ANT with a November target. The new numbers: H1 2026 revenue of $16.3 billion against $4.6 billion for all of 2025, an $80.7 billion net loss that's mostly accounting, and the figure that actually matters — roughly $417 billion in compute commitments.</p>
+<p>Put those two numbers next to each other and the whole equity story resolves. Anthropic is booking around $33 billion annualized in revenue while carrying $417 billion in contracted compute. That's not a company funding growth out of a visionary roadmap. That's a company that has already pre-committed to spending more than twelve times its current run-rate revenue on hardware it hasn't used yet, and is now selling public shares to service the gap. The Verge's Lopatto read it correctly: the S-1 is the financial justification for spending as much as physically possible, because at this fixed-cost base, slowing down is the thing that kills you. You are underwriting the belief that recursive self-improvement arrives fast enough to outrun the lease payments.</p>
+<p>The Broadcom detail is where the credit risk shows through. Hock Tan personally stepped in to keep lenders from walking on the $63 billion Project North Star financing, and accepted higher interest rates to do it. Lenders don't demand a wider spread on a deal they think is money-good. They demand it when the collateral is custom silicon leased to a pre-profit AI lab whose access to its own product was suspended worldwide by Commerce in June and only restored July 1. That political switch — on for a day, off for a day — is sitting in the risk factors because it's real optionality the government holds over the entire revenue line.</p>
+<p>Now look at the governance. A single Class F share with no economic rights hands seven cofounders 50.1% of the vote, and the Long-Term Benefit Trust elects most of the board. Pair that with the public benefit fund we flagged on the 19th — a wholly-owned LLC with no payout obligation and no independent board. Public shareholders are being asked to fund $417 billion of compute obligations while receiving economic exposure and essentially zero control, into a structure explicitly designed so that the people deciding whether to chase the machine god never have to answer to the people paying for the attempt.</p>
+<p>The bull case for Spark and the early rounds is genuine — first institutional money in spring 2023, now potentially worth tens of billions. That's a real outcome. But the entry you're being offered in November is the opposite trade: max fixed cost, max governance lockout, revenue decelerating from 45% sequential, and a valuation that already shed $500 billion between the investor day and the filing. Pricing will tell you how many institutions did this arithmetic before the roadshow and how many did it after.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case assumes the compute commitments are a liability, but they may be the moat. If recursive self-improvement is real and arrives on the timeline Anthropic's engineers believe, $417 billion in pre-committed capacity is the asset that lets Anthropic scale faster than any competitor who has to negotiate hardware access in real time. Revenue growing from $1.2 billion in H1 2025 to $16.3 billion in H1 2026 is not a company that is standing still, and the early backers who got in at spring 2023 prices are not wrong that the underlying business has compounded at a rate that justifies aggressive fixed-cost bets. The governance lockout is real, but dual-class structures at Alphabet and Meta did not prevent those companies from generating returns for public shareholders.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The revenue trajectory in the S-1 is genuinely extraordinary. Built In's summary of the filing shows H1 2026 revenue of $16.3 billion against $1.2 billion in H1 2025 — roughly a fourteen-times increase year over year in the first half alone. Business Insider notes that Spark Capital, the first institutional firm to lead a round in spring 2023, owns more than 1% of the company and could see that stake worth tens of billions. That is a real venture outcome, and it is worth separating from the question of what the IPO entry offers.</p>
+<p>The entry question is where the arithmetic gets uncomfortable. Annualizing H1 revenue gives roughly $33 billion. The compute commitment is $417 billion. That ratio — about 12.6 times run-rate revenue in contracted hardware spend — means Anthropic is not funding growth from cash flow or even from a reasonable projection of near-term cash flow. It is funding growth from the belief that the models will improve fast enough, and the revenue will compound fast enough, to service obligations that dwarf anything the current business can cover. The Verge's Elizabeth Lopatto framed this precisely: slowing down is the thing that kills you, because the fixed-cost base is already locked in. The S-1 is not a growth story with some risk factors appended. The risk factors are the business model.</p>
+<p>The Project North Star detail sharpens this. The $63 billion financing — which will lease Broadcom hardware to Anthropic starting in 2027 — nearly fell apart. Hock Tan, Broadcom's CEO, stepped in personally and accepted higher interest rates to keep lenders at the table. Lenders who believe a deal is straightforwardly money-good do not require a CEO intervention and a rate concession. They require those things when the underlying credit is genuinely uncertain: a pre-profit borrower whose primary product was suspended globally by a Commerce Department directive in June and only restored on July 1. That suspension is not a hypothetical risk. It happened, it is in the S-1, and the government retains the same authority to do it again.</p>
+<p>The governance structure compounds the exposure. Public Class A shareholders receive economic rights but effectively no control. The seven cofounders hold 50.1% of votes through a Class F share that carries no economic interest — meaning the people with the most votes have the least financial skin in the outcome of those votes. The Long-Term Benefit Trust, which elects most of the board, is the same structure flagged in the October 19 note: a wholly-owned LLC with no payout obligation and no independent board. Investors buying ANT in November are writing a check to fund $417 billion in compute commitments into a governance structure explicitly designed to insulate the decision-makers from shareholder pressure.</p>
+<p>Valuation estimates cited in the Built In summary run as high as $2 trillion, though final pricing is not set. The October 16 note recorded that the San Francisco investor day had already repriced the deal down to roughly $1.5 trillion. How far that number moves between now and the November debut will be the clearest signal of how many institutional buyers ran the fixed-cost arithmetic before the roadshow rather than during it.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-26.html#story-3-pigment-raised-250-million-at-2-3-billion-and-didn-t-mention">Pigment raised $250 million at $2.3 billion and didn't mention revenue once.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-1-openevidence-is-a-pharma-ad-network-dressed-as-a-clinical-to">OpenEvidence is a pharma ad network dressed as a clinical tool, valued at $15 billion on a drug discovery story that hasn't started.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-2-legora-raised-at-8-8-billion-while-harvey-sits-at-15-5-billi">Legora raised at $8.8 billion while Harvey sits at $15.5 billion on the same revenue line.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-mistral-dropped-le-chonk-s-weights-and-stopped-pretending-it" data-bucket="tech-ai" data-tags="Open Source,Cybersecurity,Europe">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">Open Source</span>
+<span class="tag">Cybersecurity</span>
+<span class="tag">Europe</span>
+    </div>
+    <h2>Mistral dropped Le Chonk's weights and stopped pretending it's chasing OpenAI.</h2>
+    <div class="story-source"><a href="https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/" target="_blank" rel="noopener" title="Mistral releases weights for its trillion-parameter AI model, targeting cybersecurity | TechCrunch">techcrunch.com</a></div>
+    <ul class="tldr">
+      <li>Mistral Large 4, a trillion-parameter open-weight model, is now live on Hugging Face and deployable on-premises — no API dependency, no foreign state can revoke access</li>
+<li>ML4 uses 47% fewer tokens per task than GLM-5.3, the Chinese open-weight model previously considered the benchmark for cyber work, making it meaningfully cheaper for continuous workloads like 24/7 log scanning</li>
+<li>Mistral claims ML4 tops all open models on Artificial Analysis' Coding Agent Index for agentic coding tasks, a benchmark category directly relevant to automated threat response</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Mistral said it would drop the Le Chonk weights, and now it has — Mistral Large 4, a trillion-parameter model, live on Hugging Face and the API. We've tracked this one twice: the October 7 preview where Pierre Stock openly conceded &quot;we're not there yet on the frontier,&quot; and the October 23 piece on Beijing's move to license-gate its best open models. What's new is the positioning. Mistral isn't pitching frontier parity anymore. It's pitching sovereign cyber defense, benchmarked against GLM-5.3 at 47% fewer tokens per task.</p>
+<p>That pivot is smarter than the frontier chase it replaced. The claim that matters isn't &quot;we beat OpenAI&quot; — it's that a European-controlled, downloadable model can run on-prem to defend your own infrastructure with access Stock says &quot;can't be cut off by definition.&quot; For a European bank or a government agency that watched the US and China both move to politicize model access, that sentence is the entire sales deck. China's draft export-license regime, floated this month, makes the pitch sharper: if Beijing gates GLM and DeepSeek behind permission, Mistral becomes one of the few remaining sources of free, high-capability open weights that no foreign state can revoke.</p>
+<p>The token-efficiency number is the real weapon, not the sovereignty slogan. Cyber defense is an inference-heavy, continuous workload — you're scanning code and logs around the clock, not running one clever query. At 47% fewer tokens than GLM-5.3 for comparable output, the running cost over a year of 24/7 monitoring is where the money actually lives. Mistral is competing on cost-per-defended-endpoint, and it chose the one enterprise workload where that math compounds hardest.</p>
+<p>Here's the part that should bother the frontier labs more than it apparently does. Every open-weight release aimed at a specific high-value vertical — Nvidia's Nemotron at document extraction, TypeSafe's Jev at command classification, now Mistral at cyber — chips a named workload off the API meter and moves it on-prem, permanently. Vercel's own numbers already showed open weights eating 70% of tokens at 25% of spend. Cyber is a large, sticky, regulated budget line that was supposed to flow to Anthropic and OpenAI. Mistral is trying to convert it into a one-time download.</p>
+<p>Run that against the financing stack we've been tracking. Anthropic's $125 billion TPU lease, the $42 billion Broadcom facility behind it — those are fixed obligations underwritten against a future where enterprises keep paying per token for exactly these workloads. Each credible open-weight vertical model doesn't have to beat the frontier. It only has to be good enough that a CISO stops renewing the API line and self-hosts. That is the quiet pressure on the revenue side of a buildout whose debt side doesn't flex.</p>
+<p>One caution: &quot;state-of-the-art sovereign cyber defense&quot; is a marketing phrase, and the same open weights that let a bank defend itself let an attacker fine-tune for offense. Stock waves that off as &quot;solvable.&quot; He's describing a symmetric weapon and selling you one side of it.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Sovereign positioning is a compelling story, but a story is not a security product. Enterprise CISOs buying into a self-hosted AI defense stack are taking on the full operational burden — patching, fine-tuning, red-teaming — that a managed API service handles for them. Mistral's 47% token efficiency advantage over GLM-5.3 is real on benchmarks, but benchmark conditions rarely match the messy, heterogeneous log environments of a large bank or government agency. If the model underperforms in production, the customer owns the failure with no vendor to escalate to.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The sovereign framing is doing more structural work than it might appear. Mistral VP of Science Pierre Stock's line — that access to ML4 &quot;can't be cut off by definition&quot; because the weights are open — is aimed squarely at a specific anxiety that has been building in European and Asian institutions since roughly 2024. Both the US and China have demonstrated willingness to treat AI model access as a policy lever. China's draft export-licensing regime, floated this month, would require government approval before its most advanced models can leave the country. That would put GLM-5.3, currently one of ML4's primary benchmarking rivals in cyber work, behind a permission gate. If that regime takes effect, Mistral's pitch gets stronger without Mistral doing anything else.</p>
+<p>The token-efficiency number deserves more attention than the benchmark rankings. Cyber defense is not a use case where you run the model occasionally — it is a continuous inference workload, scanning code commits, network logs, and incident queues around the clock. At 47% fewer tokens per equivalent task compared to GLM-5.3, the cost differential compounds over a year of 24/7 operation into a number that can justify a meaningful infrastructure investment to self-host. Mistral is effectively competing on cost-per-defended-endpoint rather than on raw capability, and it has chosen the one enterprise workload where that framing is hardest to argue against.</p>
+<p>The broader pattern here is worth naming explicitly. This is the third vertical-specific open-weight release we have tracked in recent weeks: Nvidia's Nemotron targeting document extraction and structured vision work, TypeSafe AI's Jev (a lightweight decision model) capturing 35% of Vercel's paid teams by optimizing for command classification, and now Mistral going after cyber. Each of these releases does not need to beat GPT-6 or Claude Opus 5 at general reasoning. It only needs to be good enough at one specific, high-volume task that the buyer stops renewing an API subscription and self-hosts instead. That is a permanent conversion, not a trial.</p>
+<p>This matters for the financing math we have been tracking. Anthropic is carrying a $125 billion five-year TPU lease commitment, with Broadcom lending up to $42 billion against it — fixed obligations whose serviceability depends on enterprises continuing to pay per-token for exactly the kind of workloads Mistral is now targeting. Cyber defense is a large, sticky, regulated budget line. It does not churn quickly. If Mistral converts even a meaningful fraction of that spend into one-time downloads, the revenue pressure on the API-first model compounds in a way the debt side of the buildout cannot absorb.</p>
+<p>One structural risk in Mistral's own pitch deserves a direct statement rather than a footnote. Open weights are symmetric. The same model a bank downloads to detect intrusions can be fine-tuned by a threat actor to improve intrusions. Stock acknowledged this and described it as &quot;a hard problem&quot; that is nonetheless &quot;solvable.&quot; That may be true, but &quot;solvable&quot; is doing a lot of work in a sentence about a trillion-parameter model being made freely available to anyone with a Hugging Face account. The cybersecurity vertical is the one domain where the dual-use risk of open weights is not theoretical — it is the entire threat model.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-2-legora-raised-at-8-8-billion-while-harvey-sits-at-15-5-billi">Legora raised at $8.8 billion while Harvey sits at $15.5 billion on the same revenue line.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-3-beijing-just-put-a-license-gate-on-the-weapon-that-was-actua">Beijing just put a license gate on the weapon that was actually working</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-4-typesafe-ai-s-jev-reached-35-of-vercel-s-paid-teams-in-two-w">TypeSafe AI's Jev reached 35% of Vercel's paid teams in two weeks by being deliberately less capable than what it replaced.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-the-ten-year-is-at-5-and-treasury-can-t-find-buyers-for-it-n" data-bucket="financial-markets" data-tags="Rates,Treasury,Fed">
+    <div class="story-meta">
+      <span class="bucket-pill">Financial Markets &amp; Economic News</span>
+      <span class="tag">Rates</span>
+<span class="tag">Treasury</span>
+<span class="tag">Fed</span>
+    </div>
+    <h2>The ten-year is at 5% and Treasury can't find buyers for it. Next week's refunding is the real decision.</h2>
+    <div class="story-source"><a href="https://www.marketwatch.com/story/fed-s-rate-hold-sends-bond-yields-in-different-directions-2nd-update-01b5de1c" target="_blank" rel="noopener" title="Fed's Rate Hold Sends Bond Yields in Different Directions -- 2nd Update">marketwatch.com</a></div>
+    <ul class="tldr">
+      <li>December rate-hike odds jumped to 83% after the Fed held Wednesday, up from 78% the day before, per CME data</li>
+<li>The 10-year Treasury yield rose to 5.036% while the 2-year fell to 4.702% — an eight-basis-point drop — in the same session</li>
+<li>Deutsche Bank's analysis of Treasury holdings found a genuine retrenchment in demand for long-dated bonds, driven by a shrinking pool of buy-and-hold investors shifting toward shorter maturities</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>The Fed held Wednesday, December hike odds jumped to 83%, and Warsh delivered the line that actually matters: productivity is up, growth is up, and he refuses to treat growth as the cause of inflation. That's a chairman building the intellectual scaffolding to tolerate a hot economy without cutting — a hawk's framing dressed as optimism. The two-year fell eight basis points on it, the ten-year rose. The front end heard &quot;data-dependent, not reflexively tightening.&quot; The long end heard something else entirely.</p>
+<p>The curve split is the real story, and it has nothing to do with the dot plot. The ten-year sits at 5.036%, within a whisker of the 24-year highs it hit earlier this month, while the two-year drops. That's a term premium problem, not a policy problem, and the catalyst is sitting in next week's quarterly refunding announcement.</p>
+<p>Here's the mechanism everyone trading Fed odds is ignoring. Treasury sent primary dealers a questionnaire asking about &quot;structural changes in investor demand&quot; and future auction sizes. Deutsche Bank read the holdings data and found exactly what the questionnaire is fishing for — a genuine retrenchment in demand for long-dated paper, driven by a shrinking pool of buy-and-hold buyers and a preference shift toward the short end. France pulled all 129 tonnes of its gold out of the New York Fed this year; the Dutch moved 86 more. The marginal foreign official buyer of duration is not showing up.</p>
+<p>So Treasury's answer, telegraphed in that questionnaire, is to shorten the maturity profile of future issuance. Deutsche calls it a &quot;compelling case.&quot; Translate it: with borrowing needs climbing and no reliable bid for 30-year bonds at a tolerable yield, the government will fund itself increasingly at the front of the curve, where the two-year just rallied. That is Yellen's 2023 playbook — lean on bills and short coupons to avoid clearing long-end auctions at punishing yields — except now it's structural, not opportunistic, and it's being run into a 5% ten-year rather than a 4% one.</p>
+<p>Two consequences the rate-hike debate is missing. First, shortening issuance mechanically ties a rising share of US debt service to the policy rate Warsh controls — which is precisely the rate the market now expects higher in December. You cannot inflation-fight at the front end and term-out your debt at the same time; Treasury is choosing the refinancing risk to dodge the auction risk. Second, it caps how far the long end can be allowed to run, because every basis point on the 30-year now lands on a funding plan that has no appetite for it. Expect more jawboning about &quot;well-functioning markets&quot; and, if yields push higher, the quiet return of buyback programs and regulatory tweaks to manufacture demand.</p>
+<p>The December hike is a coin flip the market has already mostly made. The refunding is where fiscal dominance stops being a thesis and starts being an issuance schedule. Watch next week, not the dots.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Warsh's refusal to offer forward guidance is itself a form of restraint — markets pricing 83% December hike odds may be running ahead of a chairman who has repeatedly said he wants more data before moving. Thursday's GDP and PCE prints could easily shift that calculus, and if core PCE comes in soft, the front end rallies further and the curve steepening reverses. The Treasury shortening-issuance story is also not new: the market absorbed Yellen's 2023 bill-heavy strategy without a long-end crisis, and a repeat of that playbook, even at higher yields, may prove more manageable than the term-premium panic implies.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The curve move Wednesday was clean enough to read as a verdict. When the front end rallies and the long end sells off in the same session, the market is not reacting to one thing — it is pricing two separate regimes simultaneously. The two-year is trading Fed policy: Warsh held, he sounded tolerant of growth, and the front end relaxed slightly. The ten-year is trading something the Fed does not control, which is who actually shows up to buy a 30-year bond at auction when the weighted average maturity of outstanding debt is already near historical highs.</p>
+<p>The Deutsche Bank note — flagged in the source material — is the piece of this that deserves more attention than it is getting. Their analysis of Treasury holdings data found that buy-and-hold demand for long-dated paper has structurally retreated, not just cyclically softened. The buyers who historically absorbed duration — pension funds, foreign central banks, insurance portfolios — have either shortened their own preferences or, in the case of some foreign official holders, pulled back from US assets more broadly. The gold repatriation figures cited in the take are one data point in a broader pattern: the marginal foreign official buyer of 30-year Treasuries is less present than the issuance calendar assumes.</p>
+<p>That is the context for the Treasury questionnaire sent to primary dealers ahead of next week's quarterly refunding announcement. Primary dealers — the roughly two dozen large banks obligated to bid at Treasury auctions — are being asked directly about structural changes in investor demand and expectations for future auction sizes. That is not a routine question. It is Treasury signaling that it already knows the answer and is building the public record to justify a policy response: shortening the maturity profile of new issuance, leaning more heavily on bills and shorter coupons rather than clearing 10- and 30-year auctions at yields the funding plan cannot absorb.</p>
+<p>The fiscal arithmetic underneath this is uncomfortable. US borrowing needs are rising, not falling — the source material notes this explicitly. If Treasury funds an increasing share of that at the short end, debt service becomes more sensitive to the policy rate Warsh sets. A December hike, if it materializes, does not just tighten financial conditions in the abstract; it directly raises the cost of the government's own near-term refinancing. That feedback loop — where the inflation-fighting rate also inflates the deficit — is the mechanism through which fiscal dominance moves from academic concern to live constraint.</p>
+<p>The long-end yield, meanwhile, cannot be allowed to run freely without consequences for that same funding plan. At 5.036%, the ten-year is already within range of the 24-year highs hit earlier this month. If the refunding announcement next week fails to credibly signal issuance shortening, or if the market reads it as insufficient, another leg higher in the 30-year yield becomes the path of least resistance. That is when the language around &quot;well-functioning markets&quot; tends to reappear in official communications, and when Treasury's buyback program — which exists precisely to manage liquidity in off-the-run securities — becomes a more active tool.</p>
+<p>The December hike debate is the story everyone is covering. The refunding announcement is the one that actually sets the terms.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-19.html#story-3-warsh-has-dismantled-the-fed-s-communication-machinery-marke">Warsh has dismantled the Fed's communication machinery. Markets are still trading the old one.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-16.html#story-4-hot-inflation-data-dovish-price-reaction-the-ai-credit-compl">Hot inflation data, dovish price reaction — the AI credit complex is running Fed policy now.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-09-21.html#story-2-bond-yields-are-the-load-bearing-wall-everything-else-is-dec">Bond yields are the load-bearing wall. Everything else is decoration.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-gulf-states-put-a-sequenced-hormuz-yemen-package-on-paper-be" data-bucket="geopolitics" data-tags="Iran,Middle East,Energy">
+    <div class="story-meta">
+      <span class="bucket-pill">Geopolitics</span>
+      <span class="tag">Iran</span>
+<span class="tag">Middle East</span>
+<span class="tag">Energy</span>
+    </div>
+    <h2>Gulf states put a sequenced Hormuz-Yemen package on paper before Washington is ready to sign it.</h2>
+    <div class="story-source"><a href="https://www.theguardian.com/world/2026/oct/28/gulf-states-multipart-peace-deal-avert-renewal-us-iran-war" target="_blank" rel="noopener" title="Gulf states working on multipart peace deal to avert renewal of US-Iran war  | Middle East peace talks | The Guardian">theguardian.com</a></div>
+    <ul class="tldr">
+      <li>The Gulf plan requires Hormuz to reopen within four days of sanctions being lifted — tighter than Iran's earlier seven-day offer and the first proposal to formally link the strait to a Houthi withdrawal inside Yemen.</li>
+<li>The US is described only as 'aware of' the plan, not as its author — a meaningful distinction given Washington walked away from the Saudi-UAE seven-day offer in September.</li>
+<li>November 3 midterms are days away; the Gulf states are assembling a post-election fait accompli Trump can adopt or be blamed for rejecting.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Tenth time this section has tracked the Hormuz settlement. What's new since Sunday's mediator piece: the Gulf states have put an actual sequenced structure on paper — Hormuz reopens within four days of sanctions coming off, and the Houthis pull substantial forces back inside Yemen. That's tighter than Iran's earlier seven-day offer and, for the first time, it bolts the Yemen file onto the Hormuz file in a single multipart package.</p>
+<p>The Yemen addition is the part worth your attention, because it changes who has to deliver. Every prior draft treated the strait as a bilateral US-Iran clock — blockade comes off, tankers move. Bundling in a Houthi withdrawal means the deal only holds if Tehran can command a proxy it spent a decade insisting it doesn't fully control. That's either a genuine signal that Iran is ready to spend its Yemen card to buy sanctions relief, or it's a poison pill the Gulf states inserted knowing Iran can't guarantee Houthi behavior and will get blamed when a missile flies anyway. Given that Riyadh took a direct Houthi strike on its own airport in September, the Saudis have every reason to price Houthi withdrawal as the thing they actually need and Hormuz as the sweetener they're trading for it.</p>
+<p>Note also who's writing the terms. This is a Gulf-authored plan the US is merely &quot;aware of&quot; — not a US proposal the Gulf is implementing. Washington walked away from the Saudi-UAE seven-day offer in September because the midterm calendar made a visible concession toxic. The November 3 vote is now days away. The Gulf states aren't waiting for Trump's calendar to clear; they're assembling a deal he can either adopt after the election or be blamed for blocking.</p>
+<p>The structural point hasn't changed across ten entries: Iran keeps converting military weakness into negotiating structure, moving each hard demand off the main text and into side attachments and sequencing. The transit fee went to an annex, zero-enrichment got dropped by Vance, and now the painful concessions are back-loaded behind a four-day trigger Iran controls the timing of. The party that controls sequence controls the exit, and Iran keeps writing the sequence.</p>
+<p>What to actually watch: whether the four-day Hormuz trigger survives contact with the Yemen clause, because they run on different reliability. Sanctions relief is a switch Washington flips. A Houthi withdrawal is a negotiation Tehran has to win with its own client, on a longer and less certain timeline. If the final text keeps both on the same four-day clock, someone is lying about what they can deliver. If Yemen gets its own longer runway, that's the real tell that this is two deals stapled together — and the staple is where it breaks. Hormuz crude was still running roughly 40% below normal a fortnight ago; the oil tape, not the communiqué, will tell you whether any of this is real.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The Gulf states have structural reasons to want this deal more than either principal does, which means the terms on paper may be more optimistic than what either Washington or Tehran will actually accept. Iran's willingness to bundle a Houthi withdrawal into a single four-day package could reflect genuine leverage over its proxy — or it could be a deliberate overreach designed to produce a breakdown Iran can blame on Saudi maximalism. If Tehran never intended to deliver Houthi compliance, the Gulf-authored framing hands Iran a clean exit from the table while leaving Riyadh holding a failed framework it wrote.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The architecture of this proposal is different from everything that came before it in one specific way: it collapses two separate negotiating tracks into a single trigger. Every prior framework treated Hormuz as the bilateral US-Iran file and Yemen as a regional side conversation the Gulf states managed separately. Stapling them together means the four-day clock has to run on two completely different delivery mechanisms simultaneously. Sanctions relief is a legal instrument Washington can execute in hours. A Houthi withdrawal is a command-and-control problem Tehran has spent years publicly denying it even has the authority to solve.</p>
+<p>That denial is now the central credibility question. Iran has long maintained the Houthis are an autonomous resistance movement, not a client it directs. Accepting a deal that requires it to produce a Houthi withdrawal on a four-day timeline is an implicit admission that the relationship is closer to the latter. That admission has value to Riyadh independent of whether the withdrawal actually happens — it establishes Iran's accountability for future Houthi behavior in a way no prior agreement has. The Saudis took a direct missile strike on King Khalid International Airport in September, the first Iranian-aligned hit on Saudi civilian energy infrastructure inside the capital since the conflict began. After that, Riyadh's price for any deal was always going to include something that formally puts Houthi behavior on Iran's ledger.</p>
+<p>The sequencing question is where the deal either holds or fractures. If the final text keeps the Houthi withdrawal on the same four-day clock as the Hormuz reopening, the math doesn't work — one is a switch, the other is a negotiation. A four-day Houthi withdrawal would be, by any historical comparison, extraordinarily fast for a proxy force that has been fighting a grinding war for years and has demonstrated both the will and the capability to act independently of Tehran's preferences. If negotiators quietly extend the Yemen timeline while keeping the Hormuz trigger at four days, what looks like one deal is actually two deals with different reliability profiles running under a single headline.</p>
+<p>The broader pattern across this conflict has been Iran converting each military setback into a structural gain at the table — the transit fee moved to an annex, zero-enrichment dropped by Vice President Vance, and now the sequencing of sanctions relief written so that Iran controls when the four-day clock starts. Controlling the trigger on sanctions relief while the Houthi withdrawal runs on a longer and less certain timeline is a structurally favorable position, if Iran can get the text written that way.</p>
+<p>Hormuz crude throughput was still running roughly 40% below pre-war normal as of the week ended October 7, per data tracked in this section two weeks ago. That number, not the communiqué language, is the real-time indicator of whether any framework is translating into physical flows. Watch the oil tape in the days after November 3.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-26.html#story-4-iran-is-selling-washington-an-exit-one-mediator-at-a-time-an">Iran is selling Washington an exit one mediator at a time, and the brokers are getting expensive.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-4-nato-s-top-general-just-made-american-absence-the-base-case-">NATO's top general just made American absence the base case, not the contingency.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-12.html#story-2-hormuz-flows-are-40-below-normal-and-the-calendar-guarantees">Hormuz flows are 40% below normal and the calendar guarantees three more weeks of it.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-83-of-family-offices-named-a-successor-only-27-wrote-down-ho" data-bucket="wealth-planning" data-tags="Governance,Family Office,Succession,Alternatives">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">Governance</span>
+<span class="tag">Family Office</span>
+<span class="tag">Succession</span>
+<span class="tag">Alternatives</span>
+    </div>
+    <h2>83% of family offices named a successor. Only 27% wrote down how the money leaves.</h2>
+    <div class="story-source"><a href="https://www.ai-cio.com/news/demographics-market-complexity-are-changing-family-offices/" target="_blank" rel="noopener" title="Demographics, Market Complexity are Changing Family Offices">ai-cio.com</a></div>
+    <ul class="tldr">
+      <li>Bank of America's 'Building for Generations' study finds 59% of family offices plan to increase private equity and private company investments over the next three years, deepening illiquidity at the same time heir counts are rising.</li>
+<li>Sports ownership is held by 40% of family offices overall, with millennial and Gen Z principals invested at 27% versus 16% for boomers — assets with committee-gated secondary markets and long lockup horizons.</li>
+<li>Only 27% of families have a trust distribution policy in place, against 83% who have named a successor — a 56-point governance gap that sits directly in the path of rising generational cash demands.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>This is the fourth pass through the BofA &quot;Building for Generations&quot; study in two weeks, and the number worth stopping on is the governance gap: 83% of these families have named a successor to run the office, but only 27% have a trust distribution policy. That's not a rounding difference. That's a 56-point hole between deciding who holds the keys and deciding how the money actually comes out.</p>
+<p>Everyone reads the headline numbers as a professionalization story — more offices, more advisers, more direct deals, 40% now holding sports stakes. Fine. But look at what the study is quietly describing on the liability side. Simonds says cash needs rise generation over generation because the next generation is simply larger. More heirs, more claimants, more mouths pulling distributions from the same trust. And the assets those distributions have to come out of are getting more concentrated and more illiquid at exactly the same time: direct deals, operating companies, PE funds, and now a minority stake in a hockey team that takes a league ownership committee eighteen months to approve a sale of.</p>
+<p>Put those two facts next to the ones we've already covered this month. 59% of these families plan to add more private equity and private companies over three years. 47% of the ones that tried to exit a private position this year couldn't. So the portfolio is getting less liquid, the heir count is getting larger, the distribution demands are rising — and 73% of these families have no written rule for how those distributions get decided. That isn't a planning oversight. That's the setup for a forced sale at the worst possible price, which Simonds names outright: breaking up a concentrated asset to generate liquidity &quot;can be very expensive.&quot;</p>
+<p>The sports trend is the same mistake wearing a better jersey. Millennial and Gen Z principals are in at 27% versus 16% for boomers, and leagues have loosened minority-stake rules to let them in. What the younger cohort is buying is a trophy asset with a thin, committee-gated secondary market and a 10–15 year typical lockup horizon — the single hardest thing to split across a growing number of heirs when the trust needs cash. They are loading the balance sheet with precisely the asset class that resists the liquidity event the demographics guarantee is coming.</p>
+<p>The advisory industry reads this as a tailwind — more complexity, more CFOs, more CPAs, more fees. For the families, the honest framing is that they've solved the easy governance question (who's in charge) and skipped the expensive one (how money leaves the structure without a fire sale). A $3M-plus operating budget buys you a professional office. It does not, by itself, buy you a distribution policy. Until that 27% number moves, the next decade of this cohort isn't an allocation problem. It's a liquidity-mismatch problem waiting for a death, a divorce, or a down market to crystallize it.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The professionalization trend is real and the advisory infrastructure is catching up fast. Families with operating budgets above $3 million are actively recruiting CFOs and CPAs, governance frameworks are being formalized under genuine compliance pressure, and 64% are already using structured family meetings to align investment priorities. The distribution-policy gap may look alarming in aggregate, but for many of these offices the founding generation is still active, the trust structures are still simple enough to manage informally, and the urgency to formalize only sharpens when a transition is actually imminent — which is precisely when most families do act.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Bank of America study is careful to frame all of this as a professionalization story, and in one narrow sense it is: more offices are hiring, more are formalizing governance, and Charles Simonds, BofA's family office strategist, is right that the pressure to bring in professional staff is intensifying. But the data the report surfaces points toward a structural mismatch that professionalization alone does not fix.</p>
+<p>The mechanism is straightforward. Each generational transition expands the number of beneficiaries drawing on the same asset base. A founder's two children become four grandchildren and then eight great-grandchildren, each with legitimate claims on distributions. The assets those claims have to be satisfied from, meanwhile, are moving in the opposite direction on the liquidity spectrum. Direct investments in private companies, co-investments alongside PE sponsors, operating company stakes, and now minority positions in professional sports franchises all share the same characteristic: they cannot be partially liquidated on short notice without either a formal sale process or a significant price concession.</p>
+<p>The sports ownership data is worth dwelling on. Four in ten family offices hold sports investments today, and the generational skew — 27% of millennial and Gen Z principals invested versus 16% of boomers — means the cohort with the longest investment horizon ahead of it is also the cohort most aggressively adding the asset class least suited to meeting future distribution demands. Professional sports leagues have loosened minority-stake ownership rules to allow more private capital in, which has made entry easier. Exit is a different matter: league ownership committees retain approval rights over transfers, and the secondary market for minority stakes in sports franchises is thin by design. Simonds flags the broader version of this problem directly — breaking up a concentrated asset to generate liquidity can be very expensive — but the sports case is an extreme instance of it.</p>
+<p>Layering in figures from earlier coverage in this series sharpens the picture further. Separate survey data published earlier this month found that 47% of family offices that attempted to exit a private-market fund position this year could not complete the exit as planned. That figure comes from a different survey than the BofA study, so the populations are not identical, but the directional read is consistent: the exit environment for the asset classes these families are adding to is already stressed, and the families are adding more.</p>
+<p>The 27% distribution-policy figure is the number that ties it together. A named successor answers the question of who runs the office. A distribution policy answers the question of how cash reaches beneficiaries when the portfolio is illiquid, the family is larger than it was, and the assets that would need to be sold to generate that cash are the ones nobody wants to sell at a discount. Without that policy, the decision gets made under pressure — at a death, a divorce, or a sustained market drawdown — which is precisely when the price of forced liquidity is highest. Simonds notes that family members tend to pay closest attention around major transitions or liquidity events, but that reacting in the moment is the more expensive approach. The governance gap the BofA data describes is, in that sense, a deferred cost with a compounding rate.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-26.html#story-2-family-offices-are-levering-up-into-assets-they-already-cann">Family offices are levering up into assets they already cannot exit</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-4-first-generation-family-offices-are-buying-into-the-exit-log">First-generation family offices are buying into the exit logjam they keep complaining about</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-3-singapore-family-offices-fired-the-banker-and-kept-the-banke">Singapore family offices fired the banker and kept the banker's trade</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
