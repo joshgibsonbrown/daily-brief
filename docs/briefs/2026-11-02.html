@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Monday, November 2, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Monday, November 2, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="private-markets" aria-pressed="false">Private Markets</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+<button type="button" class="tab" data-bucket="tech-ai" aria-pressed="false">Tech &amp; AI</button>
+<button type="button" class="tab" data-bucket="geopolitics" aria-pressed="false">Geopolitics</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="AI" aria-pressed="false">AI</button>
+<button type="button" class="tag-filter" data-tag="AI Funding" aria-pressed="false">AI Funding</button>
+<button type="button" class="tag-filter" data-tag="Buyouts" aria-pressed="false">Buyouts</button>
+<button type="button" class="tag-filter" data-tag="Credit" aria-pressed="false">Credit</button>
+<button type="button" class="tag-filter" data-tag="Energy" aria-pressed="false">Energy</button>
+<button type="button" class="tag-filter" data-tag="Fintech" aria-pressed="false">Fintech</button>
+<button type="button" class="tag-filter" data-tag="Hormuz" aria-pressed="false">Hormuz</button>
+<button type="button" class="tag-filter" data-tag="IPO" aria-pressed="false">IPO</button>
+<button type="button" class="tag-filter" data-tag="Infrastructure" aria-pressed="false">Infrastructure</button>
+<button type="button" class="tag-filter" data-tag="Iran" aria-pressed="false">Iran</button>
+<button type="button" class="tag-filter" data-tag="Midterms" aria-pressed="false">Midterms</button>
+<button type="button" class="tag-filter" data-tag="OpenAI" aria-pressed="false">OpenAI</button>
+<button type="button" class="tag-filter" data-tag="Private Credit" aria-pressed="false">Private Credit</button>
+<button type="button" class="tag-filter" data-tag="Secondaries" aria-pressed="false">Secondaries</button>
+<button type="button" class="tag-filter" data-tag="Venture" aria-pressed="false">Venture</button>
+<button type="button" class="tag-filter" data-tag="Wealth Tech" aria-pressed="false">Wealth Tech</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-openai-cut-its-ask-from-30-billion-to-20-billion-and-is-now-" data-bucket="iconiq-portfolio" data-tags="OpenAI,AI,IPO">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">OpenAI</span>
+<span class="tag">AI</span>
+<span class="tag">IPO</span>
+    </div>
+    <h2>OpenAI cut its ask from $30 billion to $20 billion and is now pitching family offices the institutions just passed on.</h2>
+    <div class="story-source"><a href="https://thenextweb.com/news/openai-funding-round-20bn-target-cut-ft" target="_blank" rel="noopener" title="OpenAI cuts its funding round to $20bn after raising $11bn, WSJ reports">thenextweb.com</a></div>
+    <ul class="tldr">
+      <li>The round opened at $30 billion at a $1.4 trillion valuation; it has been cut to $20 billion at $1.25 trillion, with the first close expected to land below even that reduced target.</li>
+<li>Anthropic — which filed its IPO this week targeting a valuation of at least $1.5 trillion — posted $11.6 billion in Q2 revenue and a small operating profit; OpenAI's Q2 revenue was $6.7 billion with widening operating losses.</li>
+<li>UAE state-backed fund MGX is expected to be among the largest backers; SoftBank, Founders Fund, Coatue, Sequoia, and Andreessen Horowitz have also indicated plans to invest.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>OpenAI just told investors it wants money from Singapore family offices. That's the real content of this week's funding headlines: the round that started at $30 billion and a $1.4 trillion valuation has been cut to $20 billion at $1.25 trillion, the &quot;first close&quot; will land below even that reduced target, and after large institutions showed &quot;tepid&quot; interest, OpenAI is now turning to high-net-worth individuals and family offices to fill the gap. If you run capital for a UHNW desk, you are the gap.</p>
+<p>Think about what that sequencing says. The smart, sophisticated money — the funds that have done this before, that can model compute obligations and discount a pre-IPO mark — looked at $1.4 trillion and passed. Some of the committed investors then cut their allocations before the Friday deadline. The response was not to reprice to clear the market. It was to shave the headline valuation by roughly 10% and go find a less sophisticated, more dispersed buyer base that competes on access rather than diligence. When the institutional bid softens and the offer rotates toward private wealth at a barely-moved price, the price is not the clearing price. It's the price that lets the last round's marks survive.</p>
+<p>Put it next to what the same reporting says about the competitor. Anthropic doubled quarterly revenue to $11.6 billion in Q2 and posted a small operating profit; OpenAI's revenue grew about 18% to $6.7 billion with widening operating losses. Anthropic has filed to go public at $1.5 trillion or more and plans to list this month; OpenAI is talking about early next year. So the lower-revenue, loss-widening company is raising privately at $1.25 trillion from family offices, while the higher-revenue, profitable one is going to the public market first. The pre-IPO private round is usually where the easy money sits. Here it's the harder sell.</p>
+<p>The structural point is who ends up holding the 2026 AI marks. For the last two years the mechanism was: private round sets a mark, the mark justifies the next private round, and eventually the public market validates the whole stack. That chain just broke a link. Institutions declined to validate $1.4 trillion, and rather than let the public market be the first external price test, OpenAI is inserting a tranche of private-wealth capital at a defended valuation ahead of a listing. If the IPO reprices — and after Alphabet fell 12% on earnings and the broader AI selloff, that is a live risk — the family offices who came in at $1.25 trillion are the ones who marked the top from the inside.</p>
+<p>MGX and the UAE consortium can wear that as a strategic position. A Singapore family office writing a financial check at the same valuation the institutions just walked from is buying the illiquidity, the governance you don't control, and the job of defending last year's number. The polite word for being asked after the professionals said no is &quot;access.&quot; The accurate word is &quot;exit liquidity.&quot;</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>A $1.25 trillion valuation on a company planning to IPO as early as next year is not obviously wrong — pre-IPO rounds routinely carry an illiquidity discount, and the family office and UHNW market is large enough to close the gap without implying distress. More importantly, OpenAI's revenue trajectory and brand dominance in consumer AI give it a credible path to growing into the number before the public market sets a price. If the IPO lands above $1.25 trillion — which is plausible if AI sentiment recovers and the listing is timed well — the institutions that passed will look like they blinked.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The sequencing here matters more than the headline cut. OpenAI originally pitched $30 billion at $1.4 trillion. Sophisticated institutional investors — funds with the infrastructure to model compute obligations, stress-test revenue growth, and compare the mark against Anthropic's public filing — looked at that number and showed what the WSJ described as tepid interest. Some who had already committed then reduced their allocations before the Friday deadline. The company's response was to trim the valuation by roughly 10% and extend the round toward a buyer base that competes on access rather than on financial diligence. That is a meaningful distinction. Family offices and high-net-worth individuals are not unsophisticated as a class, but they are more dispersed, less coordinated, and more likely to weight the prestige of the name over the precision of the mark. The round is being restructured to exploit exactly that difference.</p>
+<p>The Anthropic comparison sharpens the problem. Based on figures cited in the source reporting, Anthropic more than doubled its quarterly revenue to $11.6 billion in Q2 and recorded a small operating profit. OpenAI grew revenue roughly 18% over the same period to $6.7 billion and widened its operating losses. Anthropic has filed publicly for an IPO targeting a valuation of at least $1.5 trillion and plans to list this month. OpenAI is targeting early next year. The company with lower revenue and deteriorating margins is raising privately at $1.25 trillion while the more profitable competitor goes to the public market first and at a higher ask. In a normal cycle, the private round is the easier capital — patient, relationship-driven, less scrutinized. Here the private round is the one that couldn't clear.</p>
+<p>The broader context is what this does to the valuation chain that has sustained AI private markets for the past two years. The mechanism worked like this: a private round sets a mark, that mark anchors the next round, and eventually a public listing validates the stack. Each link in the chain required the next buyer to accept the previous buyer's price as a floor. Institutions just declined to do that at $1.4 trillion. Rather than let the public market be the first external price test — which would at least be a real clearing mechanism — OpenAI is inserting a tranche of private capital at a defended price ahead of the listing. That tranche now absorbs the repricing risk that would otherwise fall on the IPO.</p>
+<p>Alphabet's shares fell 12% on earnings the same week this round was being finalized, and the broader AI stock selloff is the live backdrop for whatever OpenAI's IPO roadshow will face. If public market sentiment has shifted enough that a profitable Anthropic is pricing its IPO carefully, the risk that OpenAI's listing reprices below $1.25 trillion is real, not theoretical. The family offices writing checks at the current valuation are not getting a discount for that risk. They are absorbing it at a price the institutions already declined.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-30.html#story-0-anthropic-s-s-1-asks-public-investors-to-fund-417-billion-in">Anthropic's S-1 asks public investors to fund $417 billion in compute they won't control.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-26.html#story-3-pigment-raised-250-million-at-2-3-billion-and-didn-t-mention">Pigment raised $250 million at $2.3 billion and didn't mention revenue once.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-1-openevidence-is-a-pharma-ad-network-dressed-as-a-clinical-to">OpenEvidence is a pharma ad network dressed as a clinical tool, valued at $15 billion on a drug discovery story that hasn't started.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-wall-street-is-finally-asking-what-happens-when-the-revenue-" data-bucket="tech-ai" data-tags="Infrastructure,Credit,AI Funding">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">Infrastructure</span>
+<span class="tag">Credit</span>
+<span class="tag">AI Funding</span>
+    </div>
+    <h2>Wall Street is finally asking what happens when the revenue curve never crosses the debt-service line.</h2>
+    <div class="story-source"><a href="https://www.wsj.com/finance/the-new-bottleneck-in-americas-ai-build-out-a-shortage-of-cheap-money-0c14c84d" target="_blank" rel="noopener" title="Wall Street Is Starting to Call the Shots in America's AI ...">wsj.com</a></div>
+    <ul class="tldr">
+      <li>Lenders are demanding tougher covenants and asking questions they skipped a year ago, with explicit concern that hyperscaler and startup AI profits won't arrive on the promised schedule</li>
+<li>The WSJ identifies a grassroots political backlash to data centers as a new project-delay risk — every permit fight extends the gap between chip order and first revenue while interest accrues</li>
+<li>The shift follows a capital structure that Van Nieuwerburgh's Brookings work pegged at 3.63% of US GDP annually through 2032, much of it hidden in leases and special-purpose vehicles that kept leverage off balance sheets</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>This is the funding side of a story this brief has been tracking from the revenue side for a month. The WSJ reports that the money is finally getting choosy: lenders demanding tougher covenants, investors asking questions they didn't ask a year ago, and the new worry list now includes a grassroots backlash to data centers that can delay projects and an explicit doubt that hyperscaler and startup AI profits arrive on the promised schedule.</p>
+<p>The missing piece Wall Street is now pricing is the one this brief has flagged repeatedly: the cost of a token keeps falling, and the fixed obligations stacked against it don't flex. Broadcom lent Anthropic up to $42 billion against a $125 billion five-year TPU lease. AMD and TSMC are writing three-to-five-year wafer and packaging commitments. Those are take-or-pay structures underwritten on 2024 assumptions about pricing power, and the pricing power is evaporating in real time — open weights now move more than 70% of tokens through Vercel's gateway on roughly 25% of the spend, and Nvidia itself is publishing free models that cannibalize its own customers' API revenue. When the output price compresses faster than the cost base, the gap gets filled with equity, and the lender is the one who decides when.</p>
+<p>So the shift in terms isn't lenders getting cautious at the margin. It's the capital structure repricing the probability that the revenue curve crosses the debt-service curve on time. Choosier terms means wider spreads, tighter covenants, and more structures where the financier — Broadcom, a private-credit fund, whoever — holds a conversion right or a first-lien on the GPUs if the cash doesn't show. Van Nieuwerburgh's Brookings work already put this buildout at 3.63% of US GDP a year through 2032, half again the railroad boom at peak, much of it funded off-balance-sheet through leases and SPVs precisely so the leverage stays invisible. Choosier lenders are the mechanism that drags it back onto someone's balance sheet.</p>
+<p>Two groups absorb the repricing. The weak hands — second-tier neocloud operators and data-center developers without a hyperscaler anchor — lose access to cheap money first, and their half-built sites become distressed assets the disciplined buyers pick up at cents on the dollar in 2028. The strong hands — Microsoft, the ones who can self-fund the gap or borrow at investment-grade spreads — consolidate. The grassroots data-center backlash the WSJ names is the accelerant: every permit delay lengthens the window between chip order and first revenue, and interest accrues across that whole gap whether or not a single token gets sold.</p>
+<p>The useful trade here isn't to short the buildout, which is real and durable. It's to be the capital that shows up when the covenant trips — the GPU collateral, the distressed-site equity, the refinancing that the original lenders no longer want to extend. Discipline arriving late in a boom is not a slowdown. It's the setup for the best vintage of the cycle.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bull case is that tighter terms are a sign of a maturing market, not a collapsing one — covenant discipline is what separates a correction from a crisis, and the hyperscalers anchoring most large data-center deals still carry investment-grade credit and genuine revenue. If Microsoft, Google, and Amazon are the counterparties on the long-term leases, the credit risk is theirs, and their balance sheets can absorb a delay in AI monetization that would sink a neocloud operator. Choosier lenders may simply be repricing the second tier while the first tier keeps building at pace.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The mechanism the WSJ is describing has a specific shape: it is not a funding freeze, it is a terms migration. Capital is still available, but the price of that capital now reflects risks that were being underwritten on faith twelve months ago. The two risks the article names are worth separating because they operate on different timelines.</p>
+<p>The profit-timing doubt is slow-moving. Anthropic and OpenAI have not published revenue figures that would let an outside lender independently verify that the debt-service math closes. What lenders can observe is the token-price trajectory, and that trajectory is compressing. Open-weight models are handling the majority of token volume at a fraction of the cost of closed-model APIs, and Nvidia's own free model releases are accelerating that compression from the supply side. A lender underwriting a five-year lease in 2024 assumed a pricing environment that no longer exists, and the covenant tightening is the mechanism by which that assumption gets repriced into the existing capital stack.</p>
+<p>The data-center backlash is faster-moving and more localized, but its financial effect is the same: it lengthens the interval between capital deployment and first revenue. A permit fight that adds six months to a data-center commissioning timeline is not a rounding error when the construction loan is accruing interest across that entire gap. The WSJ frames this as a grassroots political phenomenon, which it is, but the financial translation is straightforward — any delay that pushes first-token revenue past a covenant test date forces a renegotiation, and the lender holds the leverage in that conversation.</p>
+<p>The off-balance-sheet structure of the buildout matters here. As this brief noted when Van Nieuwerburgh's Brookings paper landed, Meta and Microsoft have both been funding capital expenditure beyond operating cash flow through leases, joint ventures, and special-purpose vehicles. Those structures were designed to keep debt ratios presentable. Choosier lenders are the mechanism that forces the leverage back into the open — tighter covenants on new deals mean the next refinancing can't roll into the same SPV structure, and the debt shows up somewhere on someone's consolidated balance sheet.</p>
+<p>The distress opportunity the take identifies is real but early. The assets most exposed are second-tier neocloud operators — companies that built or leased data-center capacity without a hyperscaler anchor tenant — and independent data-center developers who took on construction debt assuming they could refinance into cheaper long-term paper once the site was operational. If permit delays and tighter spreads hit simultaneously, some of those sites stall mid-construction. The GPU collateral in those deals is liquid; the real estate and power infrastructure is not. Whoever holds the first lien on the GPUs is in a better position than whoever holds the land.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-30.html#story-1-mistral-dropped-le-chonk-s-weights-and-stopped-pretending-it">Mistral dropped Le Chonk's weights and stopped pretending it's chasing OpenAI.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-26.html#story-2-family-offices-are-levering-up-into-assets-they-already-cann">Family offices are levering up into assets they already cannot exit</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-3-beijing-just-put-a-license-gate-on-the-weapon-that-was-actua">Beijing just put a license gate on the weapon that was actually working</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-secondaries-raised-a-record-16-billion-in-a-week-by-selling-" data-bucket="private-markets" data-tags="Secondaries,Buyouts,Private Credit">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Secondaries</span>
+<span class="tag">Buyouts</span>
+<span class="tag">Private Credit</span>
+    </div>
+    <h2>Secondaries raised a record $16 billion in a week by selling liquidity, not returns.</h2>
+    <div class="story-source"><a href="https://hedgeco.net/news/11/2026/a-record-flagship-is-not-a-fundraising-recovery.html" target="_blank" rel="noopener" title="A Record Flagship Is Not a Fundraising Recovery | HedgeCo Insights">hedgeco.net</a>, <a href="https://www.privateequityinternational.com/secondaries-report/" target="_blank" rel="noopener" title="Buyouts Secondaries | Special Report">privateequityinternational.com</a>, <a href="https://newsletter.capitalarbitrage.co/p/cvc-just-closed-a-10b-secondaries-fund-after-targeting-only-7b" target="_blank" rel="noopener" title="CVC Just Closed a $10B Secondaries Fund After Targeting Only $7B">newsletter.capitalarbitrage.co</a>, <a href="https://www.pops4.com/markets/articles/pantheon-2026-10-31t00-2" target="_blank" rel="noopener" title="Pantheon closes $6B secondaries fund at 171% of target as LP urgency accelerates — Markets Edge · Huang Goodman">pops4.com</a></div>
+    <ul class="tldr">
+      <li>CVC's Secondary Opportunities Fund VI closed at $10 billion against a $7 billion target — half the capital from investors who had never backed the firm before.</li>
+<li>Pantheon's Global Secondaries Fund VIII closed at $6 billion against a $3.5 billion target, its largest secondaries raise, with significant new money from Asia and the Middle East.</li>
+<li>Galaxy Research counted just three new crypto venture funds closed in Q3 2026, the fewest since 2019, raising about $1.3 billion at a median fund size of $71 million — the same week the flagship closes printed.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>This is the fourth or fifth time secondaries fundraising has come up in three weeks, but the data has sharpened enough to say something the earlier takes couldn't. CVC closed Secondary Opportunities Fund VI at $10 billion against a $7 billion target, with half the capital from new LPs. Pantheon took in $6 billion against $3.5 billion. CVC's own deck shows the program-level weighted average net IRR across funds I through V is about 17% — and one of those funds, SOF III, returned 8%. They raised $10 billion anyway, oversubscribed, in a market where general PE fundraising is still frozen.</p>
+<p>The usual way to read this is demand for a good asset class. That's backwards. A fund posting an 8% vintage doesn't get oversubscribed because LPs are chasing alpha. It gets oversubscribed because LPs are buying the one product that converts a stuck position into a wire transfer. Carlo Pirzio-Biroli says the quiet part — &quot;several trillions of capital trapped in unsold private equity holdings.&quot; The money isn't underwriting CVC's skill. It's renting CVC's balance sheet as an exit ramp.</p>
+<p>Here's the squeeze nobody running these raises will state plainly. We've already covered that LP-led discounts tightened from 18-22% in 2023 to 10-14% now, and that quality buyout interests clear around 90% of NAV. Jefferies' own data confirms the discount is gone. So the buyer's historical edge — buying diversified exposure at 70-80 cents and riding it to par — is being competed away by exactly the wall of capital these record closes represent. You now have $10 billion funds raised on 17% blended track records, deploying into a market where the entry discount has halved. The forward returns on this vintage of secondaries capital are going to disappoint, and the disappointment is mathematically baked in the day the fund closes above target.</p>
+<p>The structural point is that secondaries has quietly swapped jobs. It used to be the distressed sleeve — where you went to buy mistakes cheap. It is now the primary clearing mechanism for an asset class whose front door, the IPO and strategic-sale market, is jammed. Hamilton Lane's Erik Hirsch said it outright last month: public markets can't absorb the sub-$1-billion companies sponsors actually own. So the exit has migrated to a private auction where the seller is forced and the buyer is flush. That compresses discounts toward zero, which is to say the buyer is increasingly paying fair value for someone else's liquidity problem and calling it a strategy.</p>
+<p>If you're allocating here, separate the two things the pitch deliberately fuses. CVC and Pantheon are genuinely trusted operators, and a liquidity product in a liquidity drought is a real business. But the return you're being sold — the historical 17% — was earned in a discount regime that these very inflows are destroying. Underwrite the 10-14% discount environment you're actually entering, not the 18-22% one the track record was built on. The oversubscription is the warning, not the endorsement.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bull case is that scale and relationships are genuinely what secondaries investing requires at this stage of the market. CVC's program-level blended net IRR of roughly 17% across five funds, including the 8% vintage, is a real number earned across multiple cycles — and the managers who built the deal-flow networks and LP relationships to source quality positions at scale are exactly the ones who should be raising the most capital. If the exit market stays jammed for another two to three years, a $10 billion fund with 200-plus institutional LPs and half its capital from new relationships has more sourcing surface area than any prior vintage, which could offset tighter entry discounts through sheer deal volume and selectivity.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The week's fundraising data is best understood as two separate markets running in parallel and being reported as one. At the top, Advent International (a Boston-based global buyout firm) closed GPE XI at close to $27 billion, above its $26 billion target, and raised more than $3 billion for a new mid-market strategy alongside it. The firm's pitch leaned heavily on realized cash — about $13 billion returned across 27 businesses so far in 2026. Clayton, Dubilier &amp; Rice, another large-cap buyout sponsor, gathered roughly $20 billion for Fund XIII in about six months, twice the pace of Fund XII in 2023, against a $26 billion target and a $28.5 billion hard cap documented in Pennsylvania pension filings. Several existing LPs reportedly increased their commitments. Ares Management held a first close of more than $8 billion across its Senior Direct Lending Fund IV and a new open-ended vehicle called Ares Senior Direct Lending Core, the latter already 80% of its target and carrying about $15 billion of investable capital including leverage. Every one of those closes came from an established franchise with a distribution record. None of them signals that the broader fundraising market has reopened. The contrast is the Galaxy Research data: three new crypto venture funds closed in the third quarter, the fewest since 2019, raising about $1.3 billion total at a median fund size of $71 million. Later-stage companies absorbed about 76% of the capital invested in the category. The pattern is identical across asset classes — capital is not leaving private markets, it is consolidating around the largest platforms and the most proven names, and newer or smaller managers are being starved out. The secondaries dynamic adds a structural layer on top of that concentration story. Pantheon's raise drew significant new capital from Asia and the Middle East, which is notable because those LP bases have historically been slower to adopt secondaries as a tool. Their arrival suggests the liquidity pressure is now broad enough to push institutional investors who previously sat out the secondaries market into it. Pantheon did not disclose pricing on its deals, which matters: a $6 billion pool chasing LP stakes and continuation vehicles in a market where discounts have already compressed from 18-22% to 10-14% has less room to generate the returns its track record implies. The Ares pairing of a vintage fund with a perpetual open-ended vehicle is worth flagging separately. Offering both structures simultaneously lets a large platform retain LP capital without forcing a fresh vintage decision — the LP who is uncertain about committing to a new closed-end fund can park capital in the evergreen sleeve instead. That further tilts flows toward platforms that can offer both products, and it makes the fundraising totals harder to compare across managers who only offer one. The practical test for any allocator reviewing 2026 and 2027 commitment budgets is to map how much is going to managers already in the book, and whether the new mid-market sleeves and evergreen vehicles actually add different exposure or repackage the same franchise relationships. A record close confirms a manager is trusted. It does not confirm the portfolio is diversified, and in a market where the biggest raises are all drawing from the same distribution-proven sponsor pool, the diversification question is the one most likely to go unasked.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-26.html#story-0-stale-marks-zombie-holds-and-fifteen-year-cvs-are-three-name">Stale marks, zombie holds, and fifteen-year CVs are three names for the same problem.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-26.html#story-1-ilpa-s-cv-rulebook-normalizes-the-practice-it-was-meant-to-p">ILPA's CV rulebook normalizes the practice it was meant to police.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-0-continuation-fund-volume-dropped-50-in-a-year-and-the-buyers">Continuation fund volume dropped 50% in a year and the buyers are calling it a false narrative.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-schwab-handed-nevis-the-ria-distribution-channel-most-startu" data-bucket="iconiq-portfolio" data-tags="Wealth Tech,Fintech,Venture">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Wealth Tech</span>
+<span class="tag">Fintech</span>
+<span class="tag">Venture</span>
+    </div>
+    <h2>Schwab handed Nevis the RIA distribution channel most startups spend five years trying to crack.</h2>
+    <div class="story-source"><a href="https://www.axios.com/pro/fintech-deals/2026/10/31/fintech-deals-nevis-mubadala-opay" target="_blank" rel="noopener" title="Nevis' $70M; Apollo's Mubadala stake; OPay sets IPO terms">axios.com</a></div>
+    <ul class="tldr">
+      <li>Nevis raised $70M in a Series B led by EQT Ventures, bringing total funding to $110M — ICONIQ, Sequoia, and Ribbit all increased existing positions</li>
+<li>Charles Schwab joined as both a new investor and a strategic partner, with a confirmed integration focus on client onboarding workflows it describes as running across disconnected systems</li>
+<li>The round announcement disclosed no valuation and no revenue figures — the investor roster was the headline the company chose to lead with</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Nevis, a New York startup building software to automate the back office of wealth management firms, raised $70 million in a Series B led by EQT Ventures, bringing total funding to $110 million. ICONIQ, Sequoia, and Ribbit all increased their existing commitments. The piece of this round that actually matters isn't the money or the venture names — it's Charles Schwab writing a check and signing a strategic partnership the same week.</p>
+<p>Schwab doesn't invest in software vendors as a hobby. It custodies trillions for registered investment advisors, and the single most painful part of that relationship is onboarding — the document collection, account opening, and asset transfers that Schwab itself describes as running across a tangle of disconnected systems. By taking an equity stake in Nevis and wiring it into priority advisor workflows, Schwab is effectively deciding to buy its way out of building this itself. That's a distribution channel most startups spend five years and a sales army trying to pry open, handed to Nevis as a founding condition of the round.</p>
+<p>The risk sits on the other side of that same fact. When your largest strategic investor is also your most important integration partner and the gatekeeper to the RIA channel you're selling into, your enterprise value becomes a function of Schwab's roadmap, not your own. Schwab disclosed neither the size of its stake nor the valuation on the round — and the absence of a valuation number on a Series B that leads with its investor roster usually means the step-up wasn't the headline the company wanted to sell. We saw the same framing with Pigment last week: name the sponsors, bury the revenue.</p>
+<p>The broader move here is worth watching. Custodians and the incumbents they serve are quietly outsourcing their AI build to venture-funded startups rather than compete for the engineering talent to do it internally. Schwab, Fidelity, and the rest can't ship agentic onboarding software at startup speed, so they're taking minority positions in the companies that can and binding them with partnership terms. For Nevis, that's a moat and a leash at once. If the Schwab integration lands, this is a company with privileged access to the largest RIA custody base in the US and a credible path to being acquired outright by the same partner. If Schwab's priorities shift — or it decides onboarding automation is strategic enough to own — Nevis is a feature with a cap table.</p>
+<p>The honest read on a $70 million round into a thin-margin workflow tool is that the custodian relationship is the whole thesis. Underwrite Schwab's commitment, not the AI-agent language in the press release, and you've priced this correctly.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The Schwab relationship is a feature, not a flaw. Custodians have historically been slow to build internally and even slower to kill vendor relationships once they're embedded in advisor workflows — the stickiness runs both ways. If Nevis executes on the onboarding integration and expands into meeting prep and client servicing, as the Schwab announcement suggests, the dependency becomes mutual: Schwab's advisors start relying on Nevis tooling, and Schwab's switching costs rise in lockstep with Nevis's. A minority equity stake with partnership terms is not the same as a product roadmap veto.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Schwab angle deserves more unpacking than the funding number. Schwab's announcement on October 28 — two days after the round closed — identified client onboarding as the first integration priority, describing a process that spans document collection, account opening, and asset transfers across systems that don't talk to each other. That is not a peripheral problem. For registered investment advisors, onboarding friction is the single largest operational drag on growth: every hour a new client spends in paperwork limbo is an hour the advisor isn't managing assets or closing the next relationship. Schwab custodies for a substantial share of the US RIA market, and it is effectively telling that entire channel that Nevis is the preferred fix.</p>
+<p>The governance structure of the round reinforces how seriously both sides are treating this. Carolina Brochado, partner and head of EQT Ventures, is joining the Nevis board. Kaushik Subramanian becomes a board observer. These are not passive check-writers — EQT Ventures is a growth-stage fund with a hands-on operational model, and putting its head of the fund on the board signals this is a priority position, not a portfolio filler.</p>
+<p>The missing valuation is worth sitting with. A Series B that has EQT leading, Sequoia and Ribbit doubling down, and Charles Schwab writing a strategic check is a round with genuine signal behind it. Companies that are proud of their step-up say the number. The fact that neither Nevis nor EQT disclosed a post-money valuation — and that the supplementary reporting confirms no valuation was shared — suggests the multiple on prior invested capital was not the story the company wanted investors pricing off. That's a data point, not a verdict, but it fits a pattern: when the distribution story is strong enough, founders sometimes prefer to let the partnership headline do the work rather than anchor a number that might look modest relative to peers.</p>
+<p>Zoom out and the pattern across the wealth-tech stack becomes legible. Large custodians and brokerage platforms are structurally unable to compete for the engineering talent required to ship agentic workflow software at the pace the market now expects. The alternative — buying a finished product from a startup and binding it with partnership terms — lets them move faster and keeps the build risk off their own balance sheet. The tradeoff is that they cede some control over the product roadmap and hand the startup a distribution advantage that compounds with every new advisor integration. Nevis is not the only company benefiting from this dynamic, but the Schwab relationship is one of the cleaner examples of it in the current cycle.</p>
+<p>The honest ceiling case for Nevis is straightforward: if the onboarding integration works and expands into the adjacent workflows Schwab named — meeting preparation, ongoing client servicing — Nevis becomes infrastructure for the RIA channel rather than a point solution. At that stage, the acquisition math for Schwab starts to look more attractive than the partnership math. The floor case is equally clear: a single strategic partner who controls your primary distribution channel and has not disclosed the size of its stake can reshape your roadmap priorities without ever touching your cap table.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-30.html#story-0-anthropic-s-s-1-asks-public-investors-to-fund-417-billion-in">Anthropic's S-1 asks public investors to fund $417 billion in compute they won't control.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-26.html#story-3-pigment-raised-250-million-at-2-3-billion-and-didn-t-mention">Pigment raised $250 million at $2.3 billion and didn't mention revenue once.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-23.html#story-1-openevidence-is-a-pharma-ad-network-dressed-as-a-clinical-to">OpenEvidence is a pharma ad network dressed as a clinical tool, valued at $15 billion on a drug discovery story that hasn't started.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-iran-s-two-day-hormuz-offer-is-a-closing-bid-not-a-concessio" data-bucket="geopolitics" data-tags="Iran,Hormuz,Energy,Midterms">
+    <div class="story-meta">
+      <span class="bucket-pill">Geopolitics</span>
+      <span class="tag">Iran</span>
+<span class="tag">Hormuz</span>
+<span class="tag">Energy</span>
+<span class="tag">Midterms</span>
+    </div>
+    <h2>Iran's two-day Hormuz offer is a closing bid, not a concession.</h2>
+    <div class="story-source"><a href="https://www.aljazeera.com/news/liveblog/2026/11/1/iran-war-live-araghchi-says-talks-under-way-on-2-day-plan-to-reopen-hormuz" target="_blank" rel="noopener" title="Iran war live: Araghchi says talks under way on 2-day plan to reopen Hormuz | US-Israel war on Iran News | Al Jazeera">aljazeera.com</a></div>
+    <ul class="tldr">
+      <li>Tehran has compressed its strait-reopening timeline from seven days in September to four days on October 30 to two days now — each cut timed to the US electoral calendar.</li>
+<li>Iran's foreign minister Araghchi called the US dialogue offer 'a positive step' as an Iranian delegation sat in Doha, while Trump publicly said he is 'not in that much of a hurry' to close a deal.</li>
+<li>The US has been a reactor, not an author, across three consecutive proposal cycles — the Saudi-UAE seven-day offer, the Gulf four-day package, and now Iran's two-day plan — none of which Washington drafted.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Eighth time on the Hormuz settlement in six weeks. Since the October 30 Gulf package — four-day reopening tied to a Houthi withdrawal — the timeline has tightened again: Tehran now floats a two-day plan to reopen the strait, and the midterms it was engineered to front-run are tomorrow. That's the only real delta, and it's a telling one.</p>
+<p>Watch what Iran compressed. In September it was seven days. On October 30 the Gulf states put four on paper. Now Araghchi is talking two. The number isn't a concession — it's a signal that Tehran has decided the deal closes after November 3, not before, and it's bidding the reopening window down to make Washington's yes look cheap and its no look indefensible. You don't offer a two-day reopening when you think you still need the leverage of a closed strait. You offer it when you've concluded the strait is worth more reopened on your terms than closed on anyone else's.</p>
+<p>The accompanying noise — &quot;devastating strikes,&quot; &quot;killing ground,&quot; &quot;epic resilience&quot; — is for the domestic audience and the eventual victory narrative, not for the negotiating table. Trump's &quot;not in that much of a hurry&quot; is the same move from the other side: he can't be seen accepting an Iranian-timed deal the weekend before an election, so he slow-walks in public while the delegation sits in Doha. Both men are managing the optics of a settlement they've already decided to make. The drama is the packaging.</p>
+<p>The structural point everyone keeps underweighting: the US stopped being the author of this process somewhere around September. Washington walked away from the Saudi-UAE seven-day offer, got handed a Gulf four-day package it was merely &quot;aware of,&quot; and is now reacting to an Iranian two-day proposal. Three straight iterations where someone else drafts and Washington responds. The mediators — Qatar, Saudi, the UAE, now Pakistan — aren't carrying messages anymore; they're writing the terms and daring Trump to reject them in front of the oil market. That's a real erosion of American agency in its own exit, and it will show up later as a settlement whose enforcement mechanism nobody in Washington actually designed.</p>
+<p>For anyone with exposure to the shipping, insurance, or energy complex: the trade here isn't the reopening headline, it's the gap between a two-day political promise and the weeks it takes war-risk premiums, rerouted tankers, and skittish crews to actually normalize flow. Hormuz ran 40% below normal through October even during supposed recoveries. A signed deal reopens the strait on paper long before throughput and insurance rates mean-revert. The announcement will be priced in a day; the physical normalization will lag by a month, and the basis between those two is where the money is. Post-election, expect a deal dressed as Iranian magnanimity and American resolve. It'll be neither — just two politicians finally agreeing to stop paying for a war they both want behind them.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The rhetorical escalation coming out of Tehran — 'devastating strikes,' 'killing ground,' 'epic resilience' — may not be purely domestic theater. Iran's military still controls the physical chokepoint, and a two-day reopening promise is only as good as the enforcement mechanism behind it. If Washington signs onto a settlement whose terms were written by Qatari and Saudi mediators, with no US-designed verification architecture, Iran retains the ability to re-close the strait the moment the next sanctions dispute flares. A bad deal that collapses in six months leaves the US in a worse negotiating position than the one it is in today.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The compression of the reopening window — seven days, four days, two days — is the most structurally important data point in this story, and it is being read almost entirely backwards in public commentary. The instinct is to treat a shorter timeline as a sign of Iranian desperation or goodwill. It is neither. It is a pricing move. Tehran is making the cost of American agreement look trivially low precisely because it has concluded the deal will close after the November 3 midterms, not before. A two-day reopening offer costs Iran almost nothing if the strait reopens on its terms; it costs Washington a great deal in the form of a settlement it did not design and cannot credibly claim as a win.</p>
+<p>The Doha channel is worth watching closely. Qatar has hosted Iranian delegations before, most recently as a message-carrier during earlier rounds of indirect talks. What has changed is the function: the Gulf states are no longer relaying positions, they are originating them. The October 30 Gulf package — a four-day reopening tied to a Houthi withdrawal from Yemen, the first proposal to formally link those two tracks — was assembled without Washington as a co-author. The US was described only as 'aware of' that plan. Now Iran is responding to it with a counter that tightens the timeline further. The US is two steps removed from its own exit negotiation.</p>
+<p>That agency gap will matter most not at the moment of announcement but in the months after. Enforcement of any Hormuz settlement requires someone to verify that Iranian-aligned forces are actually standing down in Yemen, that tanker passage is genuinely unimpeded, and that war-risk insurance markets have a credible basis for repricing. None of those mechanisms appear to have been designed by Washington, because Washington has not been in the room where the terms were set. The mediators — Qatar, Saudi Arabia, the UAE, and now Pakistan as a named channel — have every incentive to get a deal signed and claim the diplomatic credit. They have much less incentive to build the enforcement architecture that makes the deal durable.</p>
+<p>The physical normalization lag is the most underappreciated near-term dynamic for anyone tracking energy or shipping markets. Hormuz throughput averaged 8.5 million barrels per day in the week ended October 7 — roughly 40% below pre-war normal — even during periods when the political temperature had briefly cooled. A signed agreement will move headline prices within hours. It will not move war-risk insurance premiums, tanker routing decisions, or crew availability on the same schedule. Shipping operators who rerouted around the Cape of Good Hope signed contracts; those contracts do not unwind on a politician's announcement. The gap between the political signal and the physical reality of normalized flow is likely measured in weeks to a month, not days. That basis — between the announcement price and the throughput-normalized price — is where the actual market dislocation lives in the near term.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-30.html#story-3-gulf-states-put-a-sequenced-hormuz-yemen-package-on-paper-be">Gulf states put a sequenced Hormuz-Yemen package on paper before Washington is ready to sign it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-26.html#story-4-iran-is-selling-washington-an-exit-one-mediator-at-a-time-an">Iran is selling Washington an exit one mediator at a time, and the brokers are getting expensive.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-10-14.html#story-4-nato-s-top-general-just-made-american-absence-the-base-case-">NATO's top general just made American absence the base case, not the contingency.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
