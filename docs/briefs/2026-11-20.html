@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Friday, November 20, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Friday, November 20, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+<button type="button" class="tab" data-bucket="wealth-planning" aria-pressed="false">Family Office &amp; Wealth Planning</button>
+<button type="button" class="tab" data-bucket="tech-ai" aria-pressed="false">Tech &amp; AI</button>
+<button type="button" class="tab" data-bucket="geopolitics" aria-pressed="false">Geopolitics</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="AI" aria-pressed="false">AI</button>
+<button type="button" class="tag-filter" data-tag="China" aria-pressed="false">China</button>
+<button type="button" class="tag-filter" data-tag="Credit Markets" aria-pressed="false">Credit Markets</button>
+<button type="button" class="tag-filter" data-tag="Credit Risk" aria-pressed="false">Credit Risk</button>
+<button type="button" class="tag-filter" data-tag="Cybersecurity" aria-pressed="false">Cybersecurity</button>
+<button type="button" class="tag-filter" data-tag="ECB" aria-pressed="false">ECB</button>
+<button type="button" class="tag-filter" data-tag="Equities" aria-pressed="false">Equities</button>
+<button type="button" class="tag-filter" data-tag="Hyperscalers" aria-pressed="false">Hyperscalers</button>
+<button type="button" class="tag-filter" data-tag="Indo-Pacific" aria-pressed="false">Indo-Pacific</button>
+<button type="button" class="tag-filter" data-tag="Insurance" aria-pressed="false">Insurance</button>
+<button type="button" class="tag-filter" data-tag="LBO" aria-pressed="false">LBO</button>
+<button type="button" class="tag-filter" data-tag="Leveraged Finance" aria-pressed="false">Leveraged Finance</button>
+<button type="button" class="tag-filter" data-tag="Liquidity" aria-pressed="false">Liquidity</button>
+<button type="button" class="tag-filter" data-tag="NATO" aria-pressed="false">NATO</button>
+<button type="button" class="tag-filter" data-tag="Russia" aria-pressed="false">Russia</button>
+<button type="button" class="tag-filter" data-tag="SaaS" aria-pressed="false">SaaS</button>
+<button type="button" class="tag-filter" data-tag="Thoma Bravo" aria-pressed="false">Thoma Bravo</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-credit-markets-reopened-for-software-lbos-but-only-for-one-k" data-bucket="iconiq-portfolio" data-tags="LBO,Credit Markets,SaaS,Insurance">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">LBO</span>
+<span class="tag">Credit Markets</span>
+<span class="tag">SaaS</span>
+<span class="tag">Insurance</span>
+    </div>
+    <h2>Credit markets reopened for software LBOs — but only for one kind of software company.</h2>
+    <div class="story-source"><a href="https://pitchbook.com/news/articles/investors-pounce-on-ccc-intelligent-solutions-lbo-loan-proving-appetite-for-comfortable-software-deals-in-age-of-ai" target="_blank" rel="noopener" title="Investors pounce on CCC Intelligent Solutions LBO debt, proving appetite for 'comfortable' software deals in age of AI - PitchBook">pitchbook.com</a></div>
+    <ul class="tldr">
+      <li>The $2.85 billion CCC financing — split across a $650 million bond and a $2.2 billion term loan — drew $7 billion in orders on the bond tranche alone, forcing yields down from 9% talk to 8.625%.</li>
+<li>Moody's rates pro forma leverage at 7.7x, projecting a drop to 6x by year-end 2027 — a deleveraging path that hinges on RSU payouts rolling off and operating leverage materializing on schedule.</li>
+<li>CCC generates 96% of revenue from recurring subscriptions and charges by network transaction rather than per user, the structural feature that separated it from the software LBOs the loan market has been rejecting for months.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>CCC Intelligent Solutions — the Chicago auto-claims software company GTCR and Elliott are taking private at a $6.1 billion enterprise value — just priced the first LBO-linked software financing since the AI scare shut that market. The $2.85 billion package came seven-times oversubscribed on the bonds alone, and both tranches tightened hard: the notes landed at 8.625% from roughly 9% talk, the term loan at S+375 from S+425, and both traded up in the aftermarket.</p>
+<p>The interesting part isn't that it cleared. It's what cleared it. A portfolio manager spelled out the thesis in one line: CCC is the &quot;comfortable&quot; end of tech where AI disruption and seat compression aren't an issue. Read that against what the leveraged loan market has been doing for months — refusing to touch software LBOs on the fear that a language model vaporizes per-seat SaaS revenue. The credit market has now sorted software into two buckets, and it's willing to lever one of them to 7.7x and nothing of the other.</p>
+<p>What put CCC in the safe bucket is structural, not narrative. 96% recurring revenue, but more importantly it doesn't sell seats — it runs a network-and-transaction model sitting between insurers, repair shops, parts suppliers and automakers. You can't disintermediate an industry utility with a chatbot; the value is the connections, not the headcount using the software. That's the actual test the loan desks are now applying, and it's a better one than &quot;is there AI in the demo.&quot; Workflow tools that charge by the login are now funding-market lepers. Infrastructure that charges by the transaction is levered cheaply.</p>
+<p>The warning sits in the leverage math. Moody's pegs pro forma leverage at 7.7x today, projected to fall to 6x by year-end 2027 — a two-year deleveraging story that depends entirely on RSU payouts rolling off and operating leverage showing up on schedule. GTCR and Elliott structured for optionality: step-downs at 5x or on IPO, a dividend blocker, a loan-heavy stack they can reprice early. That's a sponsor betting on a fast exit or refinancing, not a long hold. Githesh Ramamurthy and Tim Welsh rolling equity into Mozart Topco rather than cashing out their full stakes at $7.75 is the comfort signal creditors leaned on — though note Halper Sadeh is now sniffing around exactly that, arguing insiders get benefits ordinary holders don't. That probe is boilerplate for any take-private and will likely go nowhere, but it names the real tension: a $7.75 cash price with a sponsor already pre-selling a cheap refi is a floor, not a fair value.</p>
+<p>The useful takeaway is the sorting mechanism itself. If the debt market has reopened only for software that can prove it isn't seat-based, then the repricing in private software isn't uniform — it's a bifurcation. Transaction-model and network businesses are about to command a financing premium that per-seat SaaS can no longer access, and that gap will show up in entry multiples long before it shows up in any revenue line.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The 'comfortable software' thesis depends on the P&amp;C insurance industry staying structurally stable — and it may not. Insurers are under severe pressure from catastrophic loss events, and a wave of carrier exits or consolidations could shrink the network CCC sits at the center of. At 7.7x leverage with a two-year deleveraging timeline, there is very little room for revenue softness before the interest coverage math breaks. The market may be rewarding CCC's current model without fully pricing the risk that its customer base contracts faster than its debt does.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The mechanics of how this deal got structured tell you as much as the pricing does. GTCR and Elliott deliberately kept the bulk of the financing — $2.2 billion of the $2.85 billion — in the floating-rate term loan rather than locking into fixed bonds. Bond buyers complained about being crowded out, but the sponsors had a clear reason: the term loan is cheaper to reprice or pay down early, and the structure includes 25 basis point margin step-downs that trigger automatically when CCC hits 5x first-lien net leverage or completes an IPO. Each step-down saves up to $5.5 million per year without requiring a fee or a lender negotiation. That is a sponsor building an exit ramp into the financing itself, not a long-hold playbook.</p>
+<p>The $500 million of perpetual preferred equity sitting alongside the debt is worth noting too, though the source material doesn't specify its terms. Preferred equity in an LBO stack typically carries a higher cost than senior debt but sits below it in the capital structure, giving sponsors flexibility to avoid cash interest payments in lean periods. Combined with the undrawn $325 million revolving credit facility, GTCR and Elliott have built in meaningful liquidity cushion for the deleveraging period Moody's is projecting.</p>
+<p>The Halper Sadeh investigation — a plaintiff law firm examining whether the $7.75 per share price shortchanges public shareholders — is a standard feature of take-private transactions and rarely produces material outcomes. But the underlying question it raises is legitimate: CCC's CEO Githesh Ramamurthy and President Tim Welsh rolled equity into the post-buyout entity rather than cashing out entirely, which creditors read as a confidence signal. If insiders believed $7.75 was full value, rolling equity would be irrational. The fact that they rolled suggests they expect the private entity to be worth more — which is exactly what Halper Sadeh is pointing at, even if their legal theory goes nowhere.</p>
+<p>Zooming out, the CCC deal is the first data point in what will become a visible bifurcation in private software valuations. For the past several quarters, leveraged loan desks have been applying a blunt AI-disruption discount to software broadly — refusing to finance LBOs where a language model could plausibly replace the per-seat license revenue. CCC passed that screen because its value isn't in the software interface; it's in the network of insurers, repair shops, parts suppliers, and automakers that have built workflows around CCC's platform. Replacing the interface with AI doesn't dissolve the network — it might even strengthen it if CCC embeds AI into its own transaction layer.</p>
+<p>The practical consequence is that entry multiples for transaction-model and network-infrastructure software businesses are about to diverge sharply from those for seat-based SaaS. Sponsors who can finance at 7.7x leverage will pay more at entry than sponsors who can't finance at all. That gap in available leverage translates directly into a gap in what buyers can bid, which means the valuation discount on per-seat SaaS isn't just a sentiment story — it's being enforced by the capital structure of every deal that does and doesn't get done. CCC's aftermarket performance, with the term loan breaking above par and bonds touching 102.5, will make that case louder to every credit committee that sees the trading data.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-1-anthropic-lists-thursday-and-takes-five-years-of-venture-ret">Anthropic lists Thursday and takes five years of venture returns with it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-16.html#story-1-stripe-bought-parafin-to-lend-inside-platforms-it-doesn-t-pr">Stripe bought Parafin to lend inside platforms it doesn't process payments for.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-09.html#story-0-anthropic-spent-3-4-billion-to-jump-a-generator-queue-not-to">Anthropic spent $3.4 billion to jump a generator queue, not to buy power</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-proofpoint-paid-a-52-premium-for-varonis-and-still-got-five-" data-bucket="iconiq-portfolio" data-tags="Cybersecurity,Leveraged Finance,Thoma Bravo">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Cybersecurity</span>
+<span class="tag">Leveraged Finance</span>
+<span class="tag">Thoma Bravo</span>
+    </div>
+    <h2>Proofpoint paid a 52% premium for Varonis and still got five times covered on the debt.</h2>
+    <div class="story-source"><a href="https://pitchbook.com/news/articles/proofpoint-high-yield-bonds-gain-in-trading-as-software-debt-issuers-benefit-from-record-anthropic-ipo" target="_blank" rel="noopener" title="Proofpoint high-yield bonds gain in trading as software debt issuers benefit from record Anthropic IPO - PitchBook">pitchbook.com</a></div>
+    <ul class="tldr">
+      <li>Proofpoint drew more than $6 billion in orders for a $1.25 billion note offering, pricing tightened to 8.50% from initial low-9% talk, and the bonds broke immediately to 101.75.</li>
+<li>Thoma Bravo funded more than $4 billion of the $6.3 billion Varonis acquisition with common equity — a deliberate choice that earned Proofpoint a Moody's upgrade to B2 and kept pro forma leverage in survivable territory.</li>
+<li>Pro forma leverage is projected to spike into the mid-8x range in 2027 before falling toward mid-6x in 2028, contingent on low-teens revenue growth and free cash flow exceeding $350 million once one-time integration costs clear.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Thoma Bravo just printed $1.25 billion of five-year secured notes at 8.50% to fund Proofpoint's $6.3 billion purchase of Varonis, and the book was five times covered. The bonds broke to 101.75 and the term loan add-on wrapped at par. On its own that's a routine LBO financing. What makes it worth flagging is the sales pitch management used to tighten pricing by half a point: Proofpoint is positioned not as a software company threatened by AI, but as a company that gets paid more because of it.</p>
+<p>That framing is doing real work. CCC Intelligent Solutions priced 8.625% seven-year paper into a $2.85 billion package and it's trading at 102.5. Cloud Software Group — Citrix and TIBCO, the legacy stuff lenders actually fear — had to pay 10% and move its Arctera business into the collateral pool to get buyers comfortable. The spread between those two prints is the entire AI-software credit thesis in one picture: if you can tell a story about AI-driven threats creating demand for your product, you fund at 8.5%; if AI is coming for your install base, you fund at 10% and pledge more assets.</p>
+<p>Here's what I'd actually watch. Proofpoint's pro forma leverage spikes into the mid-8x range in 2027, and the path back down to mid-6x by 2028 rests on two assumptions: low-teens top-line growth and $350 million-plus of free cash flow once Varonis's public-company overhead and one-time RSU payouts roll off. The growth number is the fragile one. Data-security demand is genuinely real right now — enterprises are terrified of what their own AI deployments leak — but &quot;AI threat tailwind&quot; is exactly the kind of narrative that gets underwritten at the top of a sentiment cycle and tested at the bottom. The book was five times covered the same week Anthropic priced the largest tech IPO in history at a $1.5 trillion valuation. That is not a coincidence; the Anthropic print reopened risk appetite across the whole software complex, and Proofpoint rode the window.</p>
+<p>The structural point: Thoma Bravo put more than $4 billion of common equity into a $6.3 billion deal. That's a 52% premium to Varonis's pre-rumor price funded mostly with equity, which tells you the sponsor is paying up for consolidation in data security and deliberately keeping the debt load survivable rather than squeezing maximum leverage. That's a defensive posture dressed as an offensive acquisition. The Moody's upgrade to B2 is the reward for that discipline.</p>
+<p>For anyone holding the paper: you're being paid 8.50% to bet that AI increases security budgets faster than it commoditizes security software. That's a reasonable bet today. The risk is that the same AI tailwind narrative that got this deal funded at par is the first thing to reprice when the Anthropic aftermarket wobbles — and five years is a long time to hold a thesis built on a sentiment window that opened this week.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The AI-threat tailwind for data security is not just a narrative — it reflects a structural shift in enterprise risk. As companies deploy AI tools internally, the attack surface for data exfiltration genuinely expands, and Varonis's data-security posture management platform addresses exactly that exposure. Demand for this category was accelerating before Proofpoint made its move, and combining it with Proofpoint's email and human-security layer creates a platform that is harder for a point-solution competitor to displace. The 52% acquisition premium may look steep today, but if data-security budgets compound at the rate enterprises are currently projecting, the growth assumptions embedded in this deal are conservative rather than heroic.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The most instructive data point in this deal is not the Proofpoint print itself — it is the spread between Proofpoint and Cloud Software Group. Both companies came to market in the same week, both carrying B-range ratings, both facing the same lender question about generative AI's effect on enterprise software. Cloud Software Group, which owns Citrix and TIBCO, had to price its $2 billion offering at 10% and move its Arctera data-management business into the restricted collateral group to get buyers across the line. Proofpoint priced 150 basis points tighter and pledged nothing extra. That gap is entirely explained by which side of the AI story each company sits on.</p>
+<p>CCC Intelligent Solutions — an insurance-technology platform — ran the same playbook as Proofpoint, pricing $650 million of 8.625% seven-year paper into a $2.85 billion LBO package that was massively oversubscribed, with bonds trading at 102.5 the following morning. Three deals, three different AI narratives, three meaningfully different clearing prices. The credit market is now explicitly pricing AI positioning, not just cash flow coverage.</p>
+<p>The Anthropic IPO backdrop matters here and deserves to be named directly. Anthropic priced at $83 a share — above its $70–$78 range — raising $81.3 billion and valuing the company at roughly $1.5 trillion on a fully diluted basis, making it the largest tech IPO by capital raised according to PitchBook data. That print landed the same week Proofpoint was building its order book, and the timing is not incidental. A $1.5 trillion AI valuation clearing in the public market signals to leveraged-loan and high-yield buyers that the AI growth story has institutional endorsement at the highest level. Risk appetite across the software complex widened in real time, and Proofpoint's syndicate captured that window.</p>
+<p>The leverage trajectory is where the thesis gets stress-tested. The path from mid-8x in 2027 to mid-6x in 2028 requires two things to happen simultaneously: one-time costs — synergy charges and cash payouts for unvested Varonis employee restricted stock units — have to roll off on schedule, and top-line growth has to sustain in the low-teens. The cost roll-off is largely mechanical and within management's control. The revenue growth assumption is not. Data-security budgets are expanding now, but enterprise software spending is notoriously cyclical, and a category that benefits from AI-driven threat anxiety is also a category whose growth rate is hard to model past a two-year horizon.</p>
+<p>Thoma Bravo's equity discipline is the structural hedge against that uncertainty. Putting more than $4 billion of common equity into a $6.3 billion transaction — at a 52% premium to Varonis's pre-announcement share price — is an unusual posture for a sponsor known for financial engineering. It signals that Thoma Bravo is prioritizing balance-sheet resilience over return amplification, which makes sense if the thesis is a multi-year platform build rather than a near-term exit. The Moody's upgrade to B2 is the direct consequence of that choice, and it meaningfully expands the buyer universe for the paper.</p>
+<p>What bondholders are actually underwriting is a five-year bet that enterprise security budgets grow faster than AI commoditizes the tools that serve them. That is a reasonable bet in November 2026. It becomes a harder bet if the Anthropic aftermarket disappoints and the sentiment window that opened this week closes just as quickly.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-1-anthropic-lists-thursday-and-takes-five-years-of-venture-ret">Anthropic lists Thursday and takes five years of venture returns with it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-16.html#story-1-stripe-bought-parafin-to-lend-inside-platforms-it-doesn-t-pr">Stripe bought Parafin to lend inside platforms it doesn't process payments for.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-09.html#story-0-anthropic-spent-3-4-billion-to-jump-a-generator-queue-not-to">Anthropic spent $3.4 billion to jump a generator queue, not to buy power</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-the-ecb-put-a-4-trillion-number-on-the-ai-debt-that-doesn-t-" data-bucket="tech-ai" data-tags="Hyperscalers,Credit Risk,ECB">
+    <div class="story-meta">
+      <span class="bucket-pill">Tech &amp; AI</span>
+      <span class="tag">Hyperscalers</span>
+<span class="tag">Credit Risk</span>
+<span class="tag">ECB</span>
+    </div>
+    <h2>The ECB put a $4 trillion number on the AI debt that doesn't appear on anyone's balance sheet.</h2>
+    <div class="story-source"><a href="https://www.ecb.europa.eu/press/financial-stability-publications/fsr/focus/2026/html/ecb.fsrbox202611_03~4fd1449eaa.en.html" target="_blank" rel="noopener" title="The debt financing of AI and its implications for financial stability">ecb.europa.eu</a></div>
+    <ul class="tldr">
+      <li>Big tech's off-balance-sheet commitments exceeded $4 trillion as of Q2 2026 — larger than the same firms' entire on-balance-sheet liability stack, per the ECB's November Financial Stability Review.</li>
+<li>Free cash flow turned negative for most US hyperscalers in 2026 as AI capital expenditure outpaced operating cash flows, forcing a turn to external debt and off-balance-sheet structures.</li>
+<li>Hyperscaler credit spreads have widened versus equally-rated corporate issuers, particularly at longer maturities — a signal that bond markets are already discounting the ratings agencies' assessments.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Third time this section has gone at the AI debt structure since November 2 — and the ECB just put numbers on the thing we and the WSJ were circling. The November Financial Stability Review says big tech's off-balance-sheet commitments now exceed $4 trillion as of Q2 2026, larger than their entire on-balance-sheet liability stack. That is the delta: the hidden leverage isn't a footnote risk anymore, it's the majority of the capital structure, and a central bank is now saying so in print.</p>
+<p>The mechanism the ECB spells out is the part worth your attention, because it's the piece that makes the whole edifice fragile in a way the credit ratings don't capture. Hyperscalers sign long-dated commitments to use the infrastructure that data-center developers and chip owners build. Those developers pledge the resulting cash flows to banks, bond desks and private credit to borrow against. Under US accounting rules, the hyperscaler's commitment never shows up as its own debt. So Microsoft, Amazon and the rest get the economic obligation of leverage with none of the leverage appearing on their books. Free cash flow already went negative for most US hyperscalers in 2026. The debt that funded that gap is sitting in special-purpose vehicles the ratings agencies are treating gently.</p>
+<p>Then there's the circularity, which is the genuinely dangerous bit. Chipmakers finance the purchases of the service providers who buy their chips. Each side books the other's financing-driven demand as organic revenue. Nvidia's reported demand is partly a function of Nvidia's own financing decisions. Stack equity stakes on top — the ECB notes that unrealized valuation gains on private AI-lab holdings are now a rising share of hyperscaler net income — and you have an ecosystem where revenue, asset values and earnings are all partly reflections of each other. When one node marks down, the shock doesn't stay contained. It transmits through the same wires that inflated everyone on the way up.</p>
+<p>The duration mismatch is what turns a slowdown into impairment. The ECB says bluntly that the maturity of hyperscaler debt exceeds the economic life of much of the physical capital it funded — advanced chips with a one-to-three-year useful life financed by bonds running out a decade or more. You are borrowing thirty-year money to buy an asset that's scrap in three. That only works if monetization arrives on schedule and keeps arriving. Cheaper open-weight competition — the exact dynamic this section has tracked all month, from Mistral Large 4 to Microsoft's own MAI models at 5% of Claude's cost — is precisely the force that breaks the revenue assumption.</p>
+<p>Markets are already quietly front-running the agencies: hyperscaler credit spreads have widened versus equally-rated corporates, most at the long end. That gap is the bond market saying it trusts the ratings less than the ratings trust themselves. If you hold investment-grade credit and assume the AI names are the safe ballast in the book, re-read that spread. The equity story and the credit story have decoupled, and the credit side is the one telling the truth.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case assumes monetization stalls, but hyperscalers are not speculative startups — they generate enormous operating cash flows from cloud, advertising, and enterprise software that predate the AI buildout entirely. Those legacy businesses provide a real debt-service cushion that a pure AI-infrastructure company would not have. And if the AI investment does pay off at scale, the duration mismatch the ECB flags becomes irrelevant: you refinance long-dated debt against a much larger earnings base, which is exactly what every successful infrastructure cycle in history has looked like from the outside during construction.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The ECB's framing is careful but the implication is pointed: rating agencies are being too gentle. The report notes that credit spreads on hyperscaler bonds have widened relative to equally-rated corporate issuers, and that the widening is most pronounced at the long end of the maturity curve. That is the bond market doing its own analysis and arriving at a different answer than Moody's or S&amp;P. When spreads diverge from ratings at the long end specifically, it usually means investors are pricing in a scenario where the collateral — in this case, AI infrastructure — doesn't hold its value over the life of the debt. The ECB makes that concern explicit: market intelligence it cites puts the economic life of advanced AI chips at one to three years, while the bonds funding those chips run considerably longer.</p>
+<p>The off-balance-sheet structure the ECB describes works like this. A hyperscaler signs a long-term contract committing to use a data center or a fleet of chips. The owner of that infrastructure takes the contracted cash flows to a bank, a bond desk, or a private credit fund and borrows against them. The hyperscaler has an economic obligation — it must pay — but under US accounting standards that obligation is not recorded as a liability on its own balance sheet. The ECB estimates total commitments of this kind across the big tech group exceeded $4 trillion as of Q2 2026, which is larger than the same companies' combined on-balance-sheet debt. The leverage is real; it is just invisible to anyone reading the standard financial statements.</p>
+<p>The circularity problem compounds this. Chipmakers — Nvidia and Broadcom are named in the ECB's chart — finance the purchases of the cloud providers and AI labs that buy their chips. The cloud provider books rising chip-driven revenue; the chipmaker books rising demand. But a portion of that demand exists because the chipmaker itself provided the financing to generate it. Neither side's reported revenue is fully independent of the other's financing decisions. Layer in the equity stakes — the ECB notes that unrealized valuation gains on private AI-lab holdings are a growing share of hyperscaler net income — and the circularity extends to earnings as well. Anthropic is specifically named in the ECB's data, which is notable given that the ECB says it sourced Anthropic figures from an IPO filing, suggesting Anthropic had filed an S-1 by the time this report was compiled.</p>
+<p>The stress transmission path the ECB sketches is worth mapping concretely. Suppose open-weight competition — Mistral Large 4, Microsoft's own MAI models priced at a fraction of frontier costs, the domestic Chinese models this section has tracked — compresses the revenue that hyperscalers expected to earn from their AI infrastructure. Utilization falls short of projections. The off-balance-sheet commitments, which were sized against optimistic revenue assumptions, start to look like liabilities rather than assets. As those commitments are gradually recognized on balance sheets — which accounting rules require when the underlying assets are impaired — leverage ratios jump. Credit ratings follow. The firms that borrowed against hyperscaler cash-flow commitments face collateral stress simultaneously, because the same revenue shortfall that hits the hyperscaler hits the data-center developer or chip lessor whose loan was backed by that commitment. The ECB's phrase for this is circular amplification, and the wiring for it is already in place.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-2-microsoft-built-the-cheap-substitute-and-owns-the-store-wher">Microsoft built the cheap substitute and owns the store where OpenAI sells.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-16.html#story-3-china-is-buying-nvidia-chips-it-can-t-legally-have-and-train">China is buying Nvidia chips it can't legally have and training models that don't need them.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-09.html#story-1-inkling-2-small-beats-claude-sonnet-5-on-enterprise-tasks-an">Inkling 2 Small beats Claude Sonnet 5 on enterprise tasks and will soon be free to self-host.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-family-offices-rotated-into-stocks-and-called-it-a-hedge-the" data-bucket="wealth-planning" data-tags="Equities,AI,Liquidity">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">Equities</span>
+<span class="tag">AI</span>
+<span class="tag">Liquidity</span>
+    </div>
+    <h2>Family offices rotated into stocks and called it a hedge. The math doesn't hold.</h2>
+    <div class="story-source"><a href="https://www.cnbc.com/2026/11/19/family-offices-moved-more-money-into-stocks-but-hedged-ai-risk.html" target="_blank" rel="noopener" title="Family offices moved more money into stocks, but hedged AI risk">cnbc.com</a></div>
+    <ul class="tldr">
+      <li>Public equity allocations rose to 36.4% of family office portfolios in Q3 2026, up from 33.6% in 2024, per the CNBC Family Office Portfolio Tracker covering $1.4 trillion in assets across hundreds of single-family offices</li>
+<li>Tech sits at 28% of their equity versus 40% of the S&amp;P 500, with the gap filled by financials at 18% — nearly double the index weight of 11%</li>
+<li>Real estate fell to 7.2% from 9.4% year-over-year, private equity dropped for a second straight quarter to 6.4%, and cash grew to 8.6% as offices built a liquidity buffer</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>The CNBC Family Office Portfolio Tracker, built on Addepar data covering more than $1.4 trillion across hundreds of single-family offices, says the group pushed public equity to 36.4% of portfolios in Q3, up from 33.6% in 2024. The framing is that family offices are &quot;fading the AI trade&quot; — tech is 40% of the S&amp;P but only 28% of their equity, with the difference parked in financials at 18% versus the index's 11%.</p>
+<p>Call this what it is: a story about a hedge that isn't one. Overweighting financials to offset AI risk only works if bank earnings are uncorrelated to the AI capex cycle. They aren't. The regional and money-center balance sheets now underwriting data center construction, GPU leasing, and the private-credit paper funding both are long the exact same bet, one layer removed. If the hyperscaler capex story cracks, the financials carrying that credit exposure don't cushion the equity book — they move with it, on a lag. A 10-point tech underweight bought with a 7-point financials overweight is not diversification. It's the same trade wearing a different jacket.</p>
+<p>What's genuinely moving is quieter and more interesting. Alts fell to 47% from 48.5%, real estate collapsed to 7.2% from 9.4%, hedge funds dropped to 7.5%, PE fell for a second straight quarter to 6.4%, and private companies ticked down to 15.7%. Cash crept to 8.6% and fixed income rose for a third straight quarter to 8.1%. Strip out the valuation markdowns and the picture is a cohort rotating out of things it cannot easily sell and into things it can. That squares with everything this section has tracked for a month — the exit logjam, the 47% of offices that couldn't complete a private-markets sale this year. When your illiquid sleeve won't clear, the liquid sleeve grows by default, and the tracker reads it as conviction. Poirier himself flags that the fixed-income response to a historic rate move has been &quot;more muted&quot; than even the five-year average. That's not patience. That's a book that can't reprice as fast as the market did.</p>
+<p>The thing worth underwriting against is the correlation these portfolios are quietly accumulating. Public equity is up, financials are up, and the private book is marked gently down rather than sold — so the measured diversification is partly an artifact of what hasn't been forced to clear. A family office that is 36% stocks, 18% of that in banks levered to the AI credit cycle, 15.7% in direct private holdings it can't exit, and holding 8.6% cash as its stated correction buffer, is far more concentrated on a single macro factor than the asset-class labels suggest.</p>
+<p>The useful move here is not to copy the rotation. It's to run your own book against the scenario where AI capex disappoints and ask how much of your &quot;hedge&quot; is actually the same position. For most family offices reading this, the honest answer is: more than the tracker implies.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The financials overweight isn't purely an AI hedge — banks also benefit from sustained higher rates, deregulation tailwinds, and a steeper yield curve that has nothing to do with hyperscaler capex. If the AI buildout slows but rates stay elevated, financials could outperform tech precisely because their earnings base is broader than data-center lending. A family office running an 18% financials allocation may be making a macro rates call that happens to look like an AI hedge, and that call could be right for reasons entirely independent of whether Nvidia's next earnings quarter disappoints.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Addepar data — aggregated and anonymized across hundreds of single-family offices, not a survey of stated intentions — is more reliable than most wealth-management research precisely because it reflects actual portfolio weights rather than what principals say they plan to do. That makes the quiet signals in the alts sleeve worth taking seriously.</p>
+<p>Real estate's drop from 9.4% to 7.2% is the sharpest single-category move in the tracker. The source material attributes it to higher interest rates driving down valuations in real estate portfolios and funds, which is the polite version of a more uncomfortable dynamic: a meaningful portion of that decline is likely mark-to-model compression rather than realized sales. Family offices aren't exiting real estate at scale — the exit logjam this section has tracked for weeks makes that structurally difficult — they're watching the marks drift lower while the positions stay on the books. The same logic applies to private equity at 6.4% and private companies at 15.7%, both of which declined modestly. Modest declines in illiquid sleeves during a period when exits are difficult are not evidence of disciplined reallocation. They're evidence of assets that haven't been forced to clear.</p>
+<p>The fixed-income data point is underappreciated. Holdings rose for a third straight quarter to 8.1%, but Addepar CEO Eric Poirier specifically noted that the response to a historic rise in rates has been more muted than even the five-year average. For a cohort managing multigenerational capital, that is a striking underreaction. It suggests either that family offices are genuinely comfortable holding duration risk at current yield levels, or — more likely — that the reallocation into fixed income is constrained by the illiquidity of the assets they'd need to sell to fund it. You can't rotate into Treasuries if your PE and real estate positions won't clear.</p>
+<p>The cash position at 8.6% is described in the source material as dry powder for a correction. That framing is plausible, but 8.6% cash against a book that is 36% public equity, 15.7% direct private holdings, and 6.4% PE is a thin buffer if correlation across those sleeves spikes simultaneously. The public equity and financials positions are liquid; the private book is not. In a stress scenario where public markets sell off and private marks follow on a lag, the 8.6% cash reserve gets consumed quickly before the illiquid sleeve can contribute anything to rebalancing.</p>
+<p>What the tracker is capturing, in aggregate, is a cohort that has become more liquid at the margin — more stocks, more cash, more fixed income — while the illiquid sleeve has shrunk partly by design and partly by the market's refusal to provide exit liquidity. The asset-class labels suggest diversification. The underlying factor exposure, particularly the shared dependence on a continued AI and credit expansion, suggests something considerably more concentrated.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-1-anthropic-lists-thursday-and-takes-five-years-of-venture-ret">Anthropic lists Thursday and takes five years of venture returns with it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-3-the-estate-tax-exemption-is-permanent-the-tools-that-make-it">The estate tax exemption is permanent. The tools that make it useful are not.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-16.html#story-2-family-offices-chasing-seed-stage-returns-are-buying-duratio">Family offices chasing seed-stage returns are buying duration their governance cannot support</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-trump-ran-the-quad-and-the-putin-xi-trilateral-in-the-same-w" data-bucket="geopolitics" data-tags="China,Russia,Indo-Pacific,NATO">
+    <div class="story-meta">
+      <span class="bucket-pill">Geopolitics</span>
+      <span class="tag">China</span>
+<span class="tag">Russia</span>
+<span class="tag">Indo-Pacific</span>
+<span class="tag">NATO</span>
+    </div>
+    <h2>Trump ran the Quad and the Putin-Xi trilateral in the same week. Both moves were intentional.</h2>
+    <div class="story-source"><a href="https://apnews.com/article/trump-xi-putin-quad-asia-meetings-c679cf7a85872a0ebc202540f6fedaf7" target="_blank" rel="noopener" title="Trump shows off his varied foreign policy approaches in Asia | AP News">apnews.com</a></div>
+    <ul class="tldr">
+      <li>Trump held a Quad summit in Manila with Japan, Australia and India — a partnership explicitly designed to counter China — then met Xi and Putin two days later in an unprecedented trilateral billed as exploring 'new opportunities'</li>
+<li>The trilateral placed a sitting US president in the same room with Moscow and Beijing as co-equals, a geometry with direct implications for Ukraine's security posture and European leverage</li>
+<li>Washington ranked Europe fourth among its strategic priorities in October — behind the Indo-Pacific, homeland and Western Hemisphere — and the trilateral deepens that demotion without a formal announcement</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Trump spent one week in Asia running two incompatible playbooks: a Quad huddle in Manila with Japan, Australia and India built explicitly to box in China, then a trilateral with Xi and Putin two days later pitched as &quot;new opportunities&quot; among men he called friends. The press is reading this as incoherence — the president freelancing, no strategy, mood over doctrine.</p>
+<p>That reading is lazy, and it misprices what's happening. The Quad and the trilateral aren't contradictory positions. They're the two halves of a deliberate pricing structure. The Quad is the hard floor — the standing threat that keeps Tokyo, Canberra and Delhi paying into the alliance and keeps Beijing's risk premium elevated. The trilateral is the offer counter: a seat at a great-power table that lets Xi and Putin believe the floor is negotiable. You maintain both so the other side never knows which one is real. That's not confusion. That's a man who prices optionality for a living running the same move on geopolitics.</p>
+<p>What actually moved this week is the Putin-Xi-Trump geometry. A sitting US president convening Moscow and Beijing in the same room, as co-equals, is the thing to watch — because it quietly demotes everyone not in the room. Europe already learned this in October, when Washington ranked it fourth behind the Indo-Pacific, the homeland and the Western Hemisphere. A trilateral that treats Putin as a legitimate interlocutor on &quot;a range of important issues&quot; is Ukraine's security guarantee getting repriced in real time, without Kyiv or Brussels at the table. The Quad partners should notice too: if Trump will sit warmly with Xi 48 hours after an anti-China summit, the Quad is a bargaining chip, not a covenant.</p>
+<p>The structural point allocators should carry out of this: American foreign policy is converting from a system of standing commitments into a book of revocable options, and the switching cost between friend and rival has gone to near zero. That is great for US leverage and terrible for anyone pricing long-dated exposure off the assumption that an alliance is permanent. Japanese and Korean defense procurement, European energy security, Taiwan semiconductor concentration — all of it was underwritten on the premise that Washington's posture is sticky. It isn't anymore. The same president books Shenzhen and Miami summits with Xi while arming the Quad, and means both.</p>
+<p>The mistake the market keeps making is treating each Trump pivot as the signal and the previous one as noise. They're all signal. He is deliberately refusing to let any counterparty lock in his position, because an unresolved posture extracts more than a committed one. The cost lands on the smaller players who need certainty to plan — the allies, not the rivals. If you hold assets whose value depends on a fixed read of where Washington stands, the volatility you saw this week is the base case now, not the anomaly.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The simpler explanation for this week's optics is that Trump genuinely has no unified doctrine — that the Quad meeting and the trilateral reflect competing factions inside the administration rather than a coherent pricing strategy. If that's right, then the 'optionality' framing flatters what is actually bureaucratic incoherence, and counterparties who treat the ambiguity as deliberate will misread the moments when Washington is simply improvising. Allies who hedge too aggressively on the assumption that every commitment is revocable may accelerate the very fragmentation they're trying to price.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Manila-to-trilateral sequence is worth slowing down on, because the sequencing itself is the message. The Quad meeting came first — a structured, multilateral format with three US treaty partners or close security partners, framed around a shared concern about Chinese regional power. Then, 48 hours later, Trump sat warmly with the leader of the country the Quad exists to check. That ordering matters. It means every Quad partner watched their alliance get used as a backdrop for the next meeting.</p>
+<p>The trilateral format is the genuinely novel element here. US presidents have met Chinese and Russian leaders bilaterally, sometimes in close succession at multilateral forums like the G20. A deliberate three-way convening — where Moscow and Beijing are seated as co-equal interlocutors alongside Washington — has no obvious post-Cold War precedent. The symbolic weight of that seating arrangement is not subtle: it reconstitutes something closer to great-power concert diplomacy, the 19th-century European model where major powers managed the international order among themselves and smaller states absorbed the outcomes.</p>
+<p>For Ukraine, the practical implication is direct. Any framework in which Putin sits as a legitimate peer discussing 'a range of very important issues' with the US president is a framework in which the terms of the Ukraine conflict are, at minimum, available for discussion without Ukrainian representation. Kyiv's security guarantees — already thin after the collapse of the Budapest Memorandum framework — are being repriced in a room Kyiv isn't in. Brussels faces the same problem one level up: European security architecture built on the assumption of a Washington that treats Moscow as an adversary, not an interlocutor, is now underwritten by an assumption that no longer holds.</p>
+<p>The Quad partners face a subtler version of the same exposure. Japan, Australia and India each made domestic political investments in the Quad framework — defense spending commitments, technology-sharing arrangements, public positioning against Chinese regional assertiveness. If Trump will convene warmly with Xi 48 hours after an anti-China summit, the question each of those capitals has to answer is whether the Quad is a durable security architecture or a negotiating prop Washington will trade away when the bilateral math with Beijing improves. The source material doesn't resolve that question. But the week's sequencing raises it loudly.</p>
+<p>The broader pattern this week reinforces is one this brief has tracked since October: Washington is systematically reducing the stickiness of its commitments across every theater simultaneously. Europe ranked fourth. The Quad used as a price-setter for a Xi meeting. Putin welcomed as a trilateral co-equal. Each move individually has a plausible tactical rationale. Taken together, they describe a foreign policy architecture that has shifted from standing alliances — which are expensive to maintain but cheap to rely on — toward a portfolio of revocable options that extract maximum flexibility for Washington at the cost of maximum uncertainty for everyone else. The allies absorb that uncertainty directly. The rivals, perversely, benefit from it: an unpredictable Washington is harder to deter against, but it's also harder to provoke into a committed response.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-0-noveon-capital-is-buying-china-s-best-private-assets-at-40-5">Noveon Capital is buying China's best private assets at 40-50% discounts because Western buyers have left the room.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-16.html#story-3-china-is-buying-nvidia-chips-it-can-t-legally-have-and-train">China is buying Nvidia chips it can't legally have and training models that don't need them.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-09.html#story-4-mbappe-didn-t-even-name-mao-real-madrid-apologized-anyway">Mbappe didn't even name Mao. Real Madrid apologized anyway.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
