@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Wednesday, November 25, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Wednesday, November 25, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="private-markets" aria-pressed="false">Private Markets</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+<button type="button" class="tab" data-bucket="wealth-planning" aria-pressed="false">Family Office &amp; Wealth Planning</button>
+<button type="button" class="tab" data-bucket="financial-markets" aria-pressed="false">Financial Markets &amp; Economic News</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="AI Agents" aria-pressed="false">AI Agents</button>
+<button type="button" class="tag-filter" data-tag="AI Capex" aria-pressed="false">AI Capex</button>
+<button type="button" class="tag-filter" data-tag="Asia" aria-pressed="false">Asia</button>
+<button type="button" class="tag-filter" data-tag="Compliance" aria-pressed="false">Compliance</button>
+<button type="button" class="tag-filter" data-tag="Credit" aria-pressed="false">Credit</button>
+<button type="button" class="tag-filter" data-tag="Enterprise" aria-pressed="false">Enterprise</button>
+<button type="button" class="tag-filter" data-tag="Equities" aria-pressed="false">Equities</button>
+<button type="button" class="tag-filter" data-tag="Europe" aria-pressed="false">Europe</button>
+<button type="button" class="tag-filter" data-tag="Fed Policy" aria-pressed="false">Fed Policy</button>
+<button type="button" class="tag-filter" data-tag="Secondaries" aria-pressed="false">Secondaries</button>
+<button type="button" class="tag-filter" data-tag="Singapore" aria-pressed="false">Singapore</button>
+<button type="button" class="tag-filter" data-tag="Small-Cap" aria-pressed="false">Small-Cap</button>
+<button type="button" class="tag-filter" data-tag="Tax Policy" aria-pressed="false">Tax Policy</button>
+<button type="button" class="tag-filter" data-tag="Venture" aria-pressed="false">Venture</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-anthropic-is-down-27-from-its-open-in-four-sessions-and-the-" data-bucket="iconiq-portfolio" data-tags="">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      
+    </div>
+    <h2>Anthropic is down 27% from its open in four sessions and the institutions that got shut out aren't buying the dip.</h2>
+    <div class="story-source"><a href="https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups/" target="_blank" rel="noopener" title="Anthropic shares fall below IPO price, a worrying sign for AI startups">techcrunch.com</a></div>
+    <ul class="tldr">
+      <li>Anthropic closed at $81.91 on Tuesday — below its $83 IPO price — after opening at $111.50 just four trading days earlier, a 27% decline from the open.</li>
+<li>The IPO raised $81.3 billion, was seven times oversubscribed, and left roughly half of institutional bidders empty-handed; those same institutions are not stepping in now that shares trade at a discount.</li>
+<li>At roughly $80 a share, Anthropic trades at approximately 21.5 times annualized Q3 sales on a business that posted a $536 million operating loss last quarter.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Fourth time on Anthropic in two weeks, and the delta is simple: the stock that opened at $111.50 on Thursday closed below its $83 IPO price on Tuesday, at $81.91. That's a 27% decline from the open in four trading sessions, and it means the underwriters — who priced at $83 to leave room for a pop — now watch the thing trade through the level they thought was conservative.</p>
+<p>The number that matters isn't the price, it's the valuation multiple at that price. At roughly $80 a share, Anthropic trades at about 21.5 times annualized Q3 sales, on a business that posted a $536 million operating loss last quarter. That's the figure the market is now actively rejecting, in real time, in front of an audience of every late-stage AI company waiting to file. The IPO was seven times oversubscribed. Half the institutions that bid got nothing. And those same institutions, now that shares are available at a discount to the offer, are not stepping in. That's the part worth sitting with — the scarcity bid evaporated the moment scarcity ended.</p>
+<p>Here's what this does to the private book. Menlo and Lightspeed are each sitting on roughly $25 billion of locked-up stock; Bessemer on about $10 billion. Those marks were struck against an IPO price that the market has now repudiated. Every crossover fund holding a 2024–2025 AI position — the marks that explained venture's 17.8% first-half rebound after a five-year stretch that returned 6.19% total — is holding a comp that just printed below cost on day four. The rebound was almost entirely AI marks. Anthropic's tape is now the reference price for all of them, and it's pointing down.</p>
+<p>The second effect lands on the next filer. Databricks read this correctly last week by marking itself up to roughly $225 billion in private talks rather than letting a public book do it — a company at a $7 billion run rate growing 70–80%, choosing to stay dark precisely so no aftermarket could do to it what it's now doing to Anthropic. Expect that to become the default. The IPO window everyone assumed Anthropic was prying open may have just been nailed shut for anyone whose revenue multiple needs a believer rather than a buyer.</p>
+<p>Don't over-read a four-day tape — lockups haven't expired, and a frontier lab with Nvidia, Google, and Microsoft on the cap table is not Pets.com. But the entire bull case for this listing was that public investors would ratify private AI marks and release the backlog of venture paper into cash. For four days they've done the opposite. The useful question isn't whether Anthropic is a bargain at 21.5x sales. It's which crossover fund has to explain to its LPs why the asset it marked up in Q3 is the public comp dragging the rest of the book down in Q4.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>Four trading days is not a verdict. The IPO was the largest in history at $93.5 billion raised, the order book was seven times oversubscribed, and analysts covering the stock remain broadly bullish on Anthropic's ability to capture a large addressable market. Lockup periods mean the most informed holders — Menlo, Lightspeed, Bessemer — cannot sell, so the current tape reflects only a thin slice of marginal buyers, not a full price discovery process. A stock that opens at a 34% premium to offer and then corrects back through the offer price is behaving exactly as IPO research predicts for heavily hyped listings; Jay Ritter's work on more than 9,000 U.S. listings since 1980 shows this pattern is common and does not reliably predict long-run underperformance.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The mechanism worth understanding is how the scarcity premium in an oversubscribed IPO interacts with aftermarket supply. When half the institutions that bid for Anthropic got nothing, those firms were not signaling they valued the stock at $111.50 — they were signaling they wanted exposure at $83 and accepted the opening print as the cost of entry. Once the stock opened above $111 and then began sliding, the rational move for those sidelined institutions was to wait. The longer the slide continued, the more it validated waiting. By Tuesday, the stock had passed through the offer price — the level underwriters chose specifically because it was supposed to be conservative — and the buyers who had been locked out were still not stepping in. That sequencing is what makes the four-day tape meaningful even before lockups expire.</p>
+<p>The broader damage is to the comp set. Crossover funds — large asset managers that invest in both private and public markets — have been marking their late-stage AI positions against the assumption that a public market would eventually ratify those valuations. Anthropic's IPO was supposed to be the moment of ratification. Instead, it is now the reference price pointing in the wrong direction. Venture capital returned 17.8% in the first half of 2026 after a five-year stretch that returned just 6.19% total, and that rebound was almost entirely driven by AI marks. Anthropic's aftermarket performance is now the most visible public data point against which those marks get measured, and it is printing below the offer price that was itself below the private marks.</p>
+<p>Databricks, the data and AI platform that passed a $7 billion annualized revenue run rate as of August and is growing at 70 to 80 percent annually, appears to have read this dynamic correctly. Rather than file for a public offering, it entered talks last week to raise several billion dollars privately at roughly $225 billion — a 20% markup from its August valuation — keeping price discovery inside a controlled room rather than exposing it to a public book that just repriced Anthropic by 27% in four sessions. That choice looks prescient now. A company that needs its revenue multiple to be believed rather than simply bought can afford to stay private; a company that needed the IPO to generate liquidity for its investors cannot.</p>
+<p>Nvidia's simultaneous selloff adds context without changing the Anthropic-specific story. Nvidia fell more than 7% on Tuesday, giving back a portion of the more than 30% gain it posted Monday after Jensen Huang was reinstated as CEO following his earlier ouster. The broader AI trade has been volatile for weeks over concerns about the feasibility of a multitrillion-dollar infrastructure buildout, and Anthropic's debut landed into that instability rather than above it. The company had roughly $895 billion in aggregate infrastructure commitments as of its amended S-1, with $69.8 billion due within twelve months of September 30, 2026 — a capital consumption profile that the market is now pricing at 21.5 times sales on a business still running deep operating losses. The analysts who remain bullish are not wrong that the addressable market is large. The market is asking whether Anthropic can convert that market into reliable operating profit before the capital runs out, and four days of tape suggest it does not yet have a confident answer.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-23.html#story-0-anthropic-raised-93-5-billion-and-lost-20-of-its-open-price-">Anthropic raised $93.5 billion and lost 20% of its open price in two sessions.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-23.html#story-1-databricks-marks-itself-up-20-in-private-rather-than-let-the">Databricks marks itself up 20% in private rather than let the public market do it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-20.html#story-1-proofpoint-paid-a-52-premium-for-varonis-and-still-got-five-">Proofpoint paid a 52% premium for Varonis and still got five times covered on the debt.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-sierra-doubled-its-valuation-in-six-months-and-the-pricing-m" data-bucket="iconiq-portfolio" data-tags="AI Agents,Enterprise,Venture">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">AI Agents</span>
+<span class="tag">Enterprise</span>
+<span class="tag">Venture</span>
+    </div>
+    <h2>Sierra doubled its valuation in six months and the pricing model explains why.</h2>
+    <div class="story-source"><a href="https://thenextweb.com/news/sierra-1-75b-series-f-30b-valuation-ai-agents" target="_blank" rel="noopener" title="Sierra raises $1.75B at a $30B valuation for AI customer service agents">thenextweb.com</a></div>
+    <ul class="tldr">
+      <li>Sierra raised $1.75B at a $30B valuation — nearly double the $15.8B it carried in May — with Greenoaks and Lightspeed leading and every prior lead investor returning.</li>
+<li>Annual recurring revenue crossed $400M in October, roughly two and a half years after launch, with nearly half of Fortune 50 companies now signed as customers.</li>
+<li>Guardian handed Sierra 1 million dental calls a year, and Sierra's agents can now process card payments through Stripe — expanding from resolution into transaction execution.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Sierra, the AI customer service company co-founded by Bret Taylor, just raised $1.75B at a $30B valuation — roughly double the $15.8B it carried in May, six months ago. Annual recurring revenue crossed $400M in October, and every prior lead — Benchmark, Sequoia, Greenoaks, GV, Tiger — came back in. On the surface this is a generic AI-euphoria markup. It isn't, and the reason is buried in the pricing model.</p>
+<p>Sierra charges for outcomes — a resolved ticket, a paid insurance claim — not per seat or per token. That one choice is why this round is underwritable at 75x revenue while Anthropic, which raised at a $1.4 trillion IPO and promptly lost 20% of its open price in 36 hours, is not. The entire bear case on frontier labs is that token revenue is a cost pass-through with negative operating leverage: every dollar of inference sold consumes most of a dollar of compute. Sierra sits one layer up and inverts that. When the underlying model gets cheaper, Sierra's cost of delivering a resolved claim falls while its price — pegged to the customer's own economics, not to tokens — holds. It is structurally short the thing Anthropic is long. Model deflation is a tailwind to Sierra's gross margin and a headwind to the labs it runs on top of.</p>
+<p>Watch who the customers are. Taylor's blog names BNY (1784), Cigna (1792), JPMorgan (1799), Guardian, HSBC, Singtel — the oldest, most regulated balance sheets on earth, and Guardian just handed over a million dental calls a year. These are not pilot buyers chasing a demo. They are procurement organizations that will only sign when the vendor eats the delivery risk. Outcome pricing is what unlocks that signature, because the buyer pays for a result they can audit rather than a capability they have to trust. That is the actual moat here — not the agent quality, which Decagon and Salesforce's $3.6B Fin acquisition will match, but the commercial contract that lets a 240-year-old bank deploy without a token-consumption spreadsheet.</p>
+<p>The risk the markup ignores: outcome pricing is wonderful on the way up and brutal if a better model commoditizes resolution. If a resolved customer-service interaction becomes a feature inside the model layer itself — and OpenAI, whose board Taylor chairs, has every incentive to push there — Sierra's premium compresses from both ends at once. Six months to double is the kind of velocity that stops being a growth signal and starts being a late-cycle one. Canva, a different ICONIQ-adjacent name, was marked from $42B to roughly $30B in the same window these rounds were printing upward.</p>
+<p>The defensible read is that Sierra is the cleanest way to own AI's enterprise adoption without owning the labs' capex problem. The round is priced as if that's permanent. It's priced as if the model layer stays a supplier and never becomes a competitor. On current trajectory, that assumption has maybe eighteen months of shelf life.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>A 75x revenue multiple on a customer-service automation business assumes Sierra's outcome-pricing moat is durable, but the CX agent space is crowding fast: Salesforce paid $3.6B for Fin in June, Decagon is valued at $4.5B per TechCrunch, and every frontier lab has a direct incentive to bundle resolution capability into the model layer itself. If the cost of a resolved interaction collapses to near-zero at the model level, Sierra's outcome-priced contracts reprice downward in the next renewal cycle — and at $30B, there is no margin for that conversation.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The structural argument for Sierra starts with who is actually signing contracts. Taylor's blog lists BNY (founded 1784), Cigna (1792), JPMorgan (1799), HSBC, Wells Fargo, Guardian, and Santander — institutions whose procurement processes are designed to eliminate vendor risk, not chase capability demos. The only commercial model that clears a 240-year-old bank's legal and compliance review is one where the vendor absorbs delivery risk entirely. Outcome pricing — pay per resolved ticket, per paid insurance claim — does exactly that. The buyer audits a result, not a token count. That contract structure is what converts a regulated enterprise from a pilot customer into a production deployment, and it is why Guardian handed over a million dental calls annually rather than running a proof of concept.</p>
+<p>The financial mechanics compound that advantage as model costs fall. When Sierra's underlying inference gets cheaper — and it will, because that is the direction every frontier lab is moving — Sierra's cost of delivering a resolved claim drops while its price, anchored to the customer's own economics, holds or rises. Gross margin expands without a renegotiation. Compare that to a per-token business, where falling model prices flow straight through to revenue. Sierra is structurally positioned to benefit from the same deflationary pressure that is compressing the labs it runs on top of.</p>
+<p>The revenue trajectory reinforces the case. Sierra crossed $400M ARR in October, roughly 30 months after launch, after doubling its run-rate within five months according to TechCrunch. The customer list spans financial services, healthcare, insurance, and telecommunications — sectors with high call volumes, high cost-per-interaction, and strong regulatory incentives to document outcomes. Guardian's dental call contract is a template: a defined, auditable transaction type, a large volume, and a clear cost baseline Sierra can undercut while charging for results.</p>
+<p>The expansion into payment execution — Sierra agents can now take card payments through Stripe — matters beyond the headline. Resolution is a cost-reduction story. Payments are a revenue-generation story. An agent that closes a service call and then processes a renewal or an upgrade is no longer just a support tool; it is a sales channel. That repositions Sierra's value proposition from operational efficiency to revenue impact, which is a different and larger conversation in an enterprise budget cycle.</p>
+<p>The competitive pressure is real and accelerating. Salesforce's $3.6B acquisition of Fin in June signals that the largest CRM incumbent views this space as existential rather than adjacent. Zendesk is reportedly moving toward outcome-based pricing itself, which narrows Sierra's commercial differentiation even if the product gap persists. And the risk Taylor and Bavor acknowledged in their blog post — that AI investment won't deliver adequate returns — applies to Sierra's own investors as much as to the labs. At $30B on $400M of ARR, the round is priced for continued dominance, not for a market where every major software vendor is building the same contract structure.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-23.html#story-0-anthropic-raised-93-5-billion-and-lost-20-of-its-open-price-">Anthropic raised $93.5 billion and lost 20% of its open price in two sessions.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-23.html#story-1-databricks-marks-itself-up-20-in-private-rather-than-let-the">Databricks marks itself up 20% in private rather than let the public market do it.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-20.html#story-1-proofpoint-paid-a-52-premium-for-varonis-and-still-got-five-">Proofpoint paid a 52% premium for Varonis and still got five times covered on the debt.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-2-seine-capital-bought-15-secondaries-deals-at-a-50-average-di" data-bucket="private-markets" data-tags="Secondaries,Europe,Small-Cap">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Secondaries</span>
+<span class="tag">Europe</span>
+<span class="tag">Small-Cap</span>
+    </div>
+    <h2>Seine Capital bought 15 secondaries deals at a 50% average discount by going where the big funds cannot follow.</h2>
+    <div class="story-source"><a href="https://www.secondaryscoop.com/p/the-market-really-plays-in-the-buyers" target="_blank" rel="noopener" title="&quot;The market really plays in the buyer's favor&quot;: inside Seine Capital's small-cap secondaries strategy">secondaryscoop.com</a></div>
+    <ul class="tldr">
+      <li>Seine Capital Liquidity Solutions closed at $180 million — 20% above its $150 million target — with deals sized $3–$15 million each, a range where Moyne says competing bidders number three or fewer.</li>
+<li>Every deal is underwritten to a hard floor of 2x return, 25% IRR, and full cost-basis return within three years — with no leverage and no capital-call credit line of any kind.</li>
+<li>Two pre-close SPVs are running at roughly 2.5x combined, a second deal fully realized above 3x, and Fund I DPI is already above 25% excluding transactions closed in the past six to seven weeks.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Fabrice Moyne, who built the secondaries business at Paris firm Mantra before leaving in 2022, closed his own debut fund this spring at $180 million — Seine Capital Liquidity Solutions, 20% over its $150 million target. The pitch is the opposite of everything this section has covered for a month: no leverage, not even a capital-call line, deals of $3–15 million each, average LP-stake discounts of exactly 50%, and roughly 15 transactions done in a corner of the market where he says the only competitors are three or fewer buyers he mostly already knows.</p>
+<p>Set this against the record. CVC closed $10 billion, Pantheon $6 billion, secondaries raised $139.4 billion in a year and are sitting on dry powder that needs to deploy. That wall of capital is why discounts in the core market have compressed to single and low double digits — buyers are competing the edge away. Seine is doing something structurally different: it is deliberately sitting where the big funds can't deploy without blowing their deal-count math. A $25 billion secondaries fund cannot write $5 million checks; the diligence cost per dollar is suicidal. So the small end stays undersubscribed, and the 50% discount is a liquidity premium being paid to the only buyer who bothered to show up.</p>
+<p>The part worth copying is the DPI discipline. Every deal underwritten to 2x, 25% IRR, and cost-basis-back within three years. His early marks — two pre-close SPVs at ~2.5x combined, a second deal fully realized above 3x, Fund I DPI already above 25% — are cash, not paper. Compare that to the continuation-vehicle machine this brief keeps flagging: 40 CV filings in twelve months, only 15 reporting any sales, ~$4.1 billion actually closed. The entire large-cap secondaries complex is manufacturing volume while returning almost nothing. Seine's whole thesis is that the mature-fund tail — years seven to twelve, past where most buyers trade — is where real distributions come from, and that leverage in the mid and mega funds is quietly doing the work the underlying assets won't.</p>
+<p>His leverage point deserves to be read by every LP writing a big secondaries check this year. When you bridge capital calls and lever the portfolio, early distributions pay the lender before they pay you. The DPI shows up in the GP's deck and never reaches your account. Strip the leverage out of a lot of mid-sized secondaries returns, Moyne argues, and the numbers stop being attractive. That is a specific, testable claim against the exact funds printing record closes.</p>
+<p>The catch is scale. A strategy whose edge is that nobody else can afford the diligence does not compound into a $20 billion platform — the moment Seine gets big, it becomes the crowd it's exploiting. &quot;Leader of small-cap secondaries globally&quot; and &quot;50% discounts from a thin field&quot; are in tension. The honest version of this fund stays small, keeps its DPI religion, and hands back cash. Which, right now, almost nobody in secondaries is actually doing.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The small-cap secondaries edge is real but fragile in a different direction than scale: it depends entirely on information asymmetry that sophisticated LPs are actively trying to close. As more capital chases the small end — Noveon Capital is already targeting $5–$50 million deals in Asia on a similar logic — the 'three or fewer bidders' dynamic compresses faster than fund size alone would predict. And a strategy that screens 200 GP-led deals to do one, while running zero statistical analysis on every underlying company, has a hard ceiling on deployment speed that makes the three-year DPI target structurally dependent on a benign exit environment Seine cannot control.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The structural logic here is simple and almost never acted on. A $25 billion secondaries fund has a fixed cost to underwrite any deal — legal, diligence, travel, IC time. Spread that across a $5 million ticket and the math is punishing. So the large platforms set informal minimums, the small end of the market goes underserved, and a buyer willing to do the work at that scale collects a liquidity premium that has nothing to do with asset quality. Moyne is explicit about this: Seine either has exclusivity from day one through proprietary sourcing, or it enters a process with no more than three other bidders. That is a different competitive environment than the one CVC and Pantheon are operating in, where a $10 billion close means competing for the same large LP stakes against a dozen well-capitalized platforms.</p>
+<p>The fund's positioning within the fund lifecycle reinforces the pricing advantage. Most secondary volume — Moyne puts it between years three and eight of a fund's life — trades when there is still meaningful uncertainty about outcomes. Seine deliberately buys later, typically between years seven and twelve, when the underlying portfolio is mature enough to model company by company. Smaller GPs, he notes, share more in writing than they give their own LPs, which means Seine is often underwriting with better information than the seller has formally distributed. That is not a replicable edge at scale; it is a function of the relationship dynamic between a small buyer and a small manager who wants the deal done quietly.</p>
+<p>The no-leverage stance is the most pointed implicit critique of the broader market. In a levered secondaries fund, early distributions from the portfolio go to service the debt before they reach LPs. The DPI the GP reports is real; the DPI the LP receives is deferred. Moyne's argument — that stripping leverage out of many mid-sized secondaries funds would make the returns look substantially less attractive — is a specific claim that any LP can test by asking their existing managers to restate performance on an unlevered basis. Few will volunteer that restatement. The fact that Seine has committed to its LPs in writing that it will not use leverage in Fund I is a governance choice that makes the comparison auditable.</p>
+<p>The early performance figures are worth taking seriously precisely because they are cash. The two pre-close SPVs returning more than 1x DPI and sitting at roughly 2.5x combined, and the second fund transaction fully realized above 3x, are distributions, not marks. In a market where this brief has tracked 40 continuation vehicle filings in twelve months with only 15 reporting any sales, actual cash returned to LPs is the scarce output. Seine's three-year DPI target is designed to force deal selection toward assets with near-term exit visibility — single-asset GP-leds where a dividend recapitalization is expected within three years, or multi-asset deals where one or two companies should sell early. That screen eliminates most of the market, which is exactly the point.</p>
+<p>The tension Moyne has not fully resolved is between the ambition — 'leader of small-cap secondaries globally' — and the structural source of the returns. The 50% average discount exists because the market is thin and the buyer is small. A second fund at $500 million changes the deal-count math only modestly; a third fund at $1 billion starts to require either larger tickets or a much bigger team running parallel processes. At some size, Seine becomes the demand that closes the discount. The honest version of this strategy is a series of deliberately small funds that stay inside the inefficiency rather than growing past it. Whether that is what Moyne is actually building, or whether the global-leader ambition eventually pulls the fund size up into the competitive range, is the question Fund II will answer.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-0-noveon-capital-is-buying-china-s-best-private-assets-at-40-5">Noveon Capital is buying China's best private assets at 40-50% discounts because Western buyers have left the room.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-4-mid-market-pe-captured-40-of-fundraising-by-making-the-fund-">Mid-market PE captured 40% of fundraising by making the fund itself a side door to fee-free deals.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-16.html#story-0-ares-moved-3-6-billion-in-private-credit-into-a-new-vehicle-">Ares moved $3.6 billion in private credit into a new vehicle where the loans never have to clear.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-3-singapore-s-family-office-tax-arbitrage-is-over-substance-is" data-bucket="wealth-planning" data-tags="Singapore,Tax Policy,Asia,Compliance">
+    <div class="story-meta">
+      <span class="bucket-pill">Family Office &amp; Wealth Planning</span>
+      <span class="tag">Singapore</span>
+<span class="tag">Tax Policy</span>
+<span class="tag">Asia</span>
+<span class="tag">Compliance</span>
+    </div>
+    <h2>Singapore's family office tax arbitrage is over. Substance is the new price of admission.</h2>
+    <div class="story-source"><a href="https://www.businesstimes.com.sg/companies-markets/asias-wealthy-face-mounting-tax-scrutiny-over-cross-border-wealth-structures" target="_blank" rel="noopener" title="Asia's wealthy face mounting tax scrutiny over cross-border wealth structures  - The Business Times">businesstimes.com.sg</a></div>
+    <ul class="tldr">
+      <li>Pillar Two's 15% global minimum tax applies to multinational groups with consolidated annual revenue of at least €750 million, and Singapore's rules took effect for financial years beginning January 1, 2025 — meaning operating billionaires who kept the family investment vehicle and the business under one ownership tree are already in scope.</li>
+<li>Tax advisers warn that a family office entity labelled as an exempt investment vehicle does not automatically stay outside Pillar Two if consolidation rules assess ownership, control, and accounting across the whole group structure.</li>
+<li>Singapore is expected to hold its competitive position, but the emphasis is shifting from achieving a low effective tax rate to demonstrating genuine economic substance — real decisions made in-country, documented and defensible year after year.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>The pitch that sold Singapore's single-family office boom was simple: light-touch regulation, a 13O or 13U tax exemption, and a passport out of whatever your home jurisdiction was doing to your capital. More than 2,000 tax-incentivised structures later, tax advisers are now flagging what the brochure left out — if your family office sits inside a group that also holds the operating business, Pillar Two's 15% global minimum tax can reach into it.</p>
+<p>The mechanism matters more than the headline rate. The 15% minimum bites at €750 million of consolidated group revenue, so this isn't a problem for the family that moved €200 million of liquid assets into a 13O vehicle. It's a problem for exactly the profile Singapore spent five years recruiting: the operating billionaire who kept the family's investment pot and the multinational business under one ownership tree because that's how the wealth was actually built. Wyn James at IQ-EQ puts his finger on it — families treat &quot;the business&quot; and &quot;the family's money&quot; as separate pots, but consolidation rules assess ownership, control and accounting across the whole structure. The exempt investment vehicle doesn't stay exempt just because you labelled it that way.</p>
+<p>Here's the part the residency-strategy crowd is underpricing. The entire value proposition of the last decade was rate arbitrage — get your effective rate low, prove you live here, done. Pillar Two quietly kills the arbitrage at the top end and replaces it with a substance test. Vikna Rajah at Rajah &amp; Tann says the quiet part plainly: don't expect higher rates, expect &quot;continued emphasis on economic substance.&quot; Translated, the question stops being &quot;what rate did you achieve&quot; and becomes &quot;can you prove, year after year, that real decisions get made where you say they do.&quot; That's a recurring compliance liability, not a one-time structuring fee, and it compounds against families whose decision-making actually still happens in Jakarta, Mumbai or Shenzhen while the paperwork says Singapore.</p>
+<p>This connects directly to what we flagged last month — the Asian single-family office with beneficiaries in Asia and a portfolio parked in US tech and SpaceX. The asset-liability mismatch was always visible. The new wrinkle is that the structural mismatch — where the money sits versus where the substance genuinely lives — now carries a tax price, not just a governance one. LGT's Sebastian Goeres is blunt about the downside: enough uncertainty about one structure and you can undo thirty or forty years of successful business with one mistake.</p>
+<p>The practical trade is a repricing of structuring itself. The cheap, aggressive, multi-jurisdictional wrapper that worked in 2020 is becoming a contingent liability that needs staffing, documentation and defensible local activity. Foundations in the DIFC, corporate succession vehicles, genuine on-the-ground teams — these cost more and look less clever, which is precisely why they survive the next decade. The families that win from here aren't the ones with the lowest rate. They're the ones who can prove they earned it.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The €750 million consolidated revenue threshold is genuinely high, and most families who set up Singapore structures in the last five years sit well below it — the 13O and 13U exemptions remain intact for the vast majority of single-family offices holding liquid assets. Singapore's Monetary Authority has also consistently signalled that increased compliance standards are meant to reinforce the jurisdiction's credibility, not drive capital away, and the city-state's legal and banking infrastructure still outcompetes most regional alternatives for families relocating from less stable jurisdictions. For the operating billionaire who actually does run a lean Singapore-based team making real investment decisions, the substance test is a paperwork burden, not an existential threat.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The structural problem runs deeper than a single tax rule. For years, the pitch to wealthy Asian families was essentially jurisdictional: move residency, park assets in a tax-incentivised vehicle, and let the rate differential do the work. That logic assumed the family office and the operating business could be treated as genuinely separate — different pots, different rules. Pillar Two collapses that assumption at the top end by looking through to consolidated group ownership, which is exactly how most operating billionaires actually hold their wealth. The investment vehicle and the business were never truly separate; they just had separate labels.</p>
+<p>Ben Cooke of Dominion, an international trust and corporate services provider, made the point at a conference earlier this month: European and US-style compliance is moving into Asian jurisdictions that historically offered lighter regulatory environments to attract foreign capital. That shift is structural, not cyclical. The information-sharing architecture — beneficial ownership registries, automatic exchange of financial account data between tax authorities — means the arbitrage that worked in 2015 is increasingly visible to the home jurisdiction the family nominally left behind. Simon Poh at NUS Business School notes that tighter offshore tax rules, beneficial ownership transparency, and international information exchange have together brought far more scrutiny to cross-border wealth taxation than existed even five years ago.</p>
+<p>The choice of legal vehicle is also being re-examined. Trusts have dominated succession planning across Asia partly because they are familiar and partly because Singapore's trust law is well-developed. But as Cooke notes, trusts are legal arrangements rather than separate legal entities, which creates complications when banks need to understand and service the structure across multiple jurisdictions. In the Dubai International Financial Centre, Hermione Harrison of MH/Q argues that foundations — which are separate legal entities — can work better precisely because they are easier for counterparties to recognise and deal with. The practical implication is that families optimising purely for cost and simplicity in 2020 may now be holding structures that are harder to defend, harder to bank, and harder to document as substantive.</p>
+<p>The substance requirement is the part that changes the economics most durably. A one-time structuring fee is a sunk cost. Demonstrating genuine economic substance — real decision-making in Singapore, staffed operations, documented investment processes — is a recurring operating cost that scales with the complexity of the group. IQ-EQ's Wyn James frames the new question precisely: it is no longer about what rate a family achieved, but whether they can prove the substance behind the structure, year after year. That is a fundamentally different compliance posture, and it favours families who invested early in genuine local infrastructure over those who treated the Singapore office as a mailbox with a good address.</p>
+<p>LGT's Sebastian Goeres captures the downside risk in terms that should concentrate minds: enough uncertainty about a structure's treatment, and a family can undo thirty or forty years of successful business with a single mistake. That is not a theoretical concern. The families most exposed are those whose actual decision-making still happens in Jakarta, Mumbai, or Shenzhen while the documentation says Singapore — a gap that was always a governance risk and is now a quantifiable tax risk as well.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-20.html#story-3-family-offices-rotated-into-stocks-and-called-it-a-hedge-the">Family offices rotated into stocks and called it a hedge. The math doesn't hold.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-0-noveon-capital-is-buying-china-s-best-private-assets-at-40-5">Noveon Capital is buying China's best private assets at 40-50% discounts because Western buyers have left the room.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-3-the-estate-tax-exemption-is-permanent-the-tools-that-make-it">The estate tax exemption is permanent. The tools that make it useful are not.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-4-the-fed-is-treating-the-nasdaq-selloff-as-a-policy-tool-not-" data-bucket="financial-markets" data-tags="Fed Policy,Equities,AI Capex,Credit">
+    <div class="story-meta">
+      <span class="bucket-pill">Financial Markets &amp; Economic News</span>
+      <span class="tag">Fed Policy</span>
+<span class="tag">Equities</span>
+<span class="tag">AI Capex</span>
+<span class="tag">Credit</span>
+    </div>
+    <h2>The Fed is treating the Nasdaq selloff as a policy tool, not a problem to solve.</h2>
+    <div class="story-source"><a href="https://www.axios.com/2026/11/23/fed-markets-interest-rates" target="_blank" rel="noopener" title="How the Fed will react to wobbling markets">axios.com</a></div>
+    <ul class="tldr">
+      <li>Goldman Sachs estimates the recent tightening in financial conditions is equivalent to a full percentage point of Fed rate hikes — and, if sustained, would shave 0.5 percentage points off GDP growth over the next year.</li>
+<li>Governor Lisa Cook said in Chile on Friday that financial conditions are 'too accommodative,' the AI buildout hasn't been curtailed, and equity prices are still supporting consumer spending — framing a falling market as a desired outcome.</li>
+<li>The S&amp;P 500 fell 3.7% on Friday before rebounding 4.1% Monday morning, leaving the index down roughly 5% for November even after the bounce.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>This is the ninth time this section has worked the Warsh Fed since September, and the frame has now fully inverted. A year ago a 5% November drawdown in the S&amp;P plus a 3.7% Friday plunge plus widening high-yield spreads would have had the strategists penciling in a dovish pivot. Instead Goldman's David Mericle is arguing that a deeper equity selloff would *reduce* the need for hikes — because the thing selling off, AI capex, is the thing the Fed believes is driving the inflation it can't shake. Governor Lisa Cook said the quiet part in Chile on Friday: financial conditions are &quot;too accommodative,&quot; the AI buildout hasn't been curtailed, and equity prices are propping up consumer spending. Read that as a policymaker treating a falling Nasdaq as a desired outcome, not a problem to fix.</p>
+<p>Here's the mechanism everyone trained on the 2010s keeps missing. The Fed put wasn't charity — it worked because inflation was dead, so the Fed could ease into any wobble for free. That option has a price now, and the price is a stubborn 3%-handle core PCE. So the strike has moved far out of the money. Goldman pegs the recent tightening at a full percentage point of equivalent hikes; the Fed's response is to bank that as free policy work and keep its December 9 hike all but locked. The market is doing the Fed's tightening for it, and Warsh is happy to watch.</p>
+<p>What makes this episode different from the last three disruptions — the Iran war in March, liberation-day tariffs, the 2022 campaign — is the bond reaction. This time Treasuries rallied as stocks fell, yields dropped on scary days, the classic inverse. That looks like the old flight-to-safety reflex, but it's worse than that. Bonds are rallying on the bet that an AI-led equity crash forces easing. The same crowd long the AI trade is long the duration hedge against the AI trade unwinding. If the selloff resumes, both legs pay off only if the Fed blinks — and Cook and Williams are telling you in plain English they'd rather let it run.</p>
+<p>So the pivot everyone is positioning for is priced against a Fed that has explicitly reclassified an AI capex deflation as a feature. The level where Warsh actually flinches is not the S&amp;P down 5% in a month with high-yield spreads barely twitching. It's a spillover into the labor market and a genuine credit seize-up — the reverse repo is drained to zero and the liquidity buffer is gone, so if IG spreads crack, they crack fast and the Fed's hand is forced in a hurry. Until then, the people buying this dip as a pre-pivot entry are front-running a put the Fed has quietly stopped writing. Watch Williams at the Bronx close today: if his &quot;healthy normalization&quot; language survives contact with a 4% rally and a 3.7% crash in the same week, the message is that the floor is much lower than the tape assumes.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The Fed's comfort with tightening financial conditions has a hard ceiling: if the AI equity selloff bleeds into broad credit markets and the labor market softens, the calculus flips fast. The reverse repo facility is drained to zero and the prior liquidity buffer is gone, meaning IG spread widening — if it comes — won't be gradual. A Fed that has spent two years rebuilding inflation credibility cannot afford to be seen as the institution that let a credit seize-up run because it was ideologically committed to cooling one sector, and the political pressure from a White House that has already demanded 1% rates would be overwhelming at that point.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Goldman framing is worth sitting with, because it represents a genuine structural shift in how the Fed's reaction function is being communicated. David Mericle's note doesn't just say the Fed can tolerate the selloff — it says a deeper AI-led equity decline would actively reduce the need for further hikes, because AI demand is one of the identified drivers of the inflation the Fed cannot get below 3%. That is a central bank explicitly welcoming sector-specific asset deflation as a substitute for its own policy action. The last time the Fed was this comfortable watching a specific asset class correct was the housing unwind in 2006 and 2007, and that comparison should make anyone nervous about how well-contained the Fed believes this is.</p>
+<p>The bond market's behavior is the most important signal in the source material, and it cuts both ways. Treasuries rallied on the scary days last week — yields fell when stocks fell — which looks like the classic flight-to-safety trade that has historically preceded Fed easing cycles. But the mechanism here is different. Bonds are rallying on the thesis that an AI-led equity crash eventually forces the Fed's hand, not on any current dovish signal from the Fed itself. Governor Cook's Chile speech and New York Fed President John Williams's 'normalization' framing from six days ago are both pointing in the opposite direction. The bond buyers are essentially pricing a Fed pivot that Fed officials are actively talking against.</p>
+<p>This creates a specific vulnerability. The investors long AI equities who are also long duration as a hedge are running a trade that only pays on both legs if the Fed blinks. If the Fed doesn't blink — if Williams holds his 'healthy normalization' language at the Bronx event today despite a week that included both a 3.7% crash and a 4.1% rebound — then the duration hedge is mispriced and the equity put is mispriced simultaneously. That is a painful unwind.</p>
+<p>The three prior disruptions the source material cites — the Iran war in March, the liberation-day tariffs in April 2025, and the 2022 tightening campaign — all featured a breakdown in the traditional stock-bond inverse relationship, which is precisely why they were so damaging. This episode has restored that inverse, which feels reassuring but may be the wrong lesson. The inverse is back because markets believe the Fed will eventually ease. The Fed is telling you it won't, at least not at current drawdown levels, because the thing selling off is the thing it wants to cool.</p>
+<p>The December 9 hike is effectively locked per the source material, and most officials are signaling one or two more in 2027. Against that backdrop, the 100 basis points of equivalent tightening Goldman has already measured in financial conditions is being banked as free work — progress toward a destination the Fed was going to reach anyway, just delivered by the market instead of by the committee. The level that actually changes the calculus is not a 5% monthly drawdown with high-yield spreads barely moving. It is a genuine spillover into payrolls and a credit market seizure. Until that threshold is crossed, buying this dip as a pre-pivot entry is front-running a policy response the Fed has explicitly said it is not writing.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-20.html#story-3-family-offices-rotated-into-stocks-and-called-it-a-hedge-the">Family offices rotated into stocks and called it a hedge. The math doesn't hold.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-16.html#story-4-treasuries-are-cushioning-equities-again-the-cushion-is-buil">Treasuries are cushioning equities again. The cushion is built on a bear steepener.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-09.html#story-3-cloud-builders-spent-116-of-cash-flow-on-capex-last-quarter-">Cloud builders spent 116% of cash flow on capex last quarter. The IG market is the only thing keeping that math alive.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
