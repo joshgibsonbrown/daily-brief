@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Brief — Friday, November 27, 2026</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elevated: #14171b;
+    --border: #262a30;
+    --text: #e8e8e6;
+    --text-dim: #9aa0a6;
+    --accent: #e0a458;
+    --accent-dim: #7a5a30;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 16px 16px 64px; }
+  header { padding: 16px 0 8px; }
+  header h1 { font-size: 1.4rem; margin: 0 0 2px; }
+  header .date { color: var(--text-dim); font-size: 0.9rem; }
+  .tabs, .tag-filters {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tabs { border-bottom: 1px solid var(--border); }
+  .tab, .tag-filter {
+    flex: 0 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .tab.active, .tag-filter.active {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .tag-filter[disabled] {
+    opacity: 0.3;
+    cursor: default;
+  }
+  .story {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .story:last-child { border-bottom: none; }
+  .story-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .bucket-pill {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: rgba(224, 164, 88, 0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .tag {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 8px;
+  }
+  .story h2 { font-size: 1.2rem; line-height: 1.35; margin: 0 0 8px; }
+  .story-source { font-size: 0.8rem; color: var(--text-dim); margin: 0 0 14px; }
+  .story-source a { color: var(--text-dim); }
+  .story-source a:hover { color: var(--text); }
+  .story h3 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 18px 0 8px; }
+  .story h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin: 16px 0 6px; }
+  .tldr { margin: 0 0 4px; padding-left: 20px; }
+  .tldr li { margin-bottom: 6px; font-size: 0.95rem; }
+  .take p, .other-side p, .say-more-content p { margin: 0 0 12px; font-size: 0.95rem; }
+  .other-side { border-left: 2px solid var(--accent-dim); padding-left: 12px; }
+  details.say-more { margin-top: 16px; }
+  summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .say-more-content { margin-top: 12px; }
+  .related ul { padding-left: 20px; margin: 0; }
+  .related a { color: var(--text-dim); font-size: 0.85rem; word-break: break-word; }
+  .story.hidden { display: none; }
+  .no-match { color: var(--text-dim); font-size: 0.9rem; padding: 40px 0; margin: 0; }
+  .no-match button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  footer { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding-top: 24px; }
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Daily Brief</h1>
+    <div class="date">Friday, November 27, 2026</div>
+  </header>
+
+  <nav class="tabs" aria-label="Filter by section">
+    <button type="button" class="tab active" data-bucket="all" aria-pressed="true">All</button>
+<button type="button" class="tab" data-bucket="private-markets" aria-pressed="false">Private Markets</button>
+<button type="button" class="tab" data-bucket="iconiq-portfolio" aria-pressed="false">ICONIQ Portfolio Companies</button>
+  </nav>
+
+  <nav class="tag-filters" aria-label="Filter by tag">
+    <button type="button" class="tag-filter active" data-tag="all" aria-pressed="true">All tags</button>
+<button type="button" class="tag-filter" data-tag="Europe" aria-pressed="false">Europe</button>
+<button type="button" class="tag-filter" data-tag="Fundraising" aria-pressed="false">Fundraising</button>
+<button type="button" class="tag-filter" data-tag="Secondaries" aria-pressed="false">Secondaries</button>
+<button type="button" class="tag-filter" data-tag="Valuations" aria-pressed="false">Valuations</button>
+<button type="button" class="tag-filter" data-tag="Venture" aria-pressed="false">Venture</button>
+<button type="button" class="tag-filter" data-tag="Voice AI" aria-pressed="false">Voice AI</button>
+  </nav>
+
+  <main id="stories">
+    
+  <article class="story" id="story-0-elevenlabs-wants-33-billion-in-q1-while-its-reference-asset-" data-bucket="iconiq-portfolio" data-tags="Voice AI,Venture,Valuations">
+    <div class="story-meta">
+      <span class="bucket-pill">ICONIQ Portfolio Companies</span>
+      <span class="tag">Voice AI</span>
+<span class="tag">Venture</span>
+<span class="tag">Valuations</span>
+    </div>
+    <h2>ElevenLabs wants $33 billion in Q1 while its reference asset trades below IPO price.</h2>
+    <div class="story-source"><a href="https://www.bloomberg.com/news/articles/2026-11-25/elevenlabs-in-early-talks-for-2027-funding-at-33-billion-value" target="_blank" rel="noopener" title="ElevenLabs in Early Talks for 2027 Funding at $33 Billion Valuation - Bloomberg">bloomberg.com</a></div>
+    <ul class="tldr">
+      <li>ARR grew from $600M to $700M in roughly two months — $100M of added run-rate that is real, but the $33B target values that revenue at approximately 47 times annualized sales.</li>
+<li>The $22B September valuation came from an employee tender offer, not a primary round — meaning the $11B markup to $33B has no intervening liquidity event behind it.</li>
+<li>Investors are being explicitly pitched on Anthropic's $107.3B IPO as validation; Anthropic's stock has since fallen 27% from its open and closed below its IPO price.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>ElevenLabs is in early talks to raise at $33 billion in the first quarter of 2027 — a 50% markup on the $22 billion it carried in September, when it did an employee tender rather than a true primary round. The number is cute by design: the company sets valuations in multiples of 11 to match its name. That alone should tell you the price is being chosen for aesthetics, not discovered by a competitive process.</p>
+<p>The thing worth staring at is the revenue. ARR went from $600 million in September to $700 million now — $100 million of added run-rate in roughly two months, genuinely fast. But the multiple on that run-rate is the whole story. At $33 billion on $700 million, you're paying roughly 47 times annualized revenue. Compare that to the peers in ElevenLabs' own neighborhood: Synthesia at $4 billion on ~$140 million (about 29x), Mistral at €21 billion on ~$400 million (roughly 50x in euros). ElevenLabs isn't an outlier on multiple — it's priced exactly where the current voice-and-model cohort is clearing. Which is the point. Nothing here is being independently underwritten. The whole cohort is re-rating off a single public print.</p>
+<p>That print is Anthropic. Its $107.3 billion IPO is the explicit reason cited for why investors might lean into this round early — the windfall for early backers, the proof that private AI marks can convert to public liquidity. Except look at what we've actually watched over the last two weeks: Anthropic opened at $111.50 and closed Tuesday at $81.91, below its IPO price, 27% off the open, with half the institutions that got shut out declining to buy the discount. The reference asset the entire private AI complex is marking against lost a fifth of its value in its first week as a public company. ElevenLabs' bankers are using the IPO that happened, not the stock that's trading.</p>
+<p>Here's the structural problem for anyone writing a check into Q1. The gap between the $22 billion tender in September and a $33 billion primary in early 2027 is $11 billion of fresh markup with no new liquidity event to validate it — just four months of ARR growth and a vibe borrowed from a deal that's now underwater. Staniszewski has floated IPO prep for 2028. So this round is the last fully private mark before the public market gets to vote, and the public market just told you how it votes on AI businesses still posting losses at 20-to-40x sales.</p>
+<p>The move for a Singapore allocator being offered Q1 allocation isn't to pass on ElevenLabs — the revenue trajectory is real and voice-agent infrastructure is a defensible layer. It's to price the round off the company's fundamentals and the Anthropic aftermarket, not off the Anthropic IPO headline. If the number comes in at 11x something because it rhymes with the name, that's branding charged back to your LPs. Make them justify the 47x on the revenue, not the multiple of 11.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bear case on the multiple ignores what ElevenLabs actually is inside the AI stack. Voice-agent infrastructure — realistic synthetic voices powering games, audiobooks, and autonomous agents — is a narrow, defensible layer that most frontier labs are not competing on directly. At $700M ARR growing fast enough to add $100M in two months, ElevenLabs may be approaching the scale where revenue multiples compress quickly on their own. If the company hits $1.2B ARR by the time a 2028 IPO arrives, 47x today becomes something closer to 27x on forward revenue — and the Anthropic IPO, whatever its aftermarket wobbles, did prove that private AI marks can convert to public liquidity at scale.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The valuation mechanics here are worth unpacking because they reveal something about how private AI pricing actually works right now. ElevenLabs sets its valuations in multiples of 11 — $22 billion in September, $33 billion now — as a deliberate nod to its name. That is a branding decision being embedded into the cap table. The number is not the output of a competitive book-building process; it is chosen in advance and then a process is run to clear it. Some investors are already pushing to start that process sooner than Q1, which suggests demand exists, but demand at a pre-selected price is not the same thing as price discovery.</p>
+<p>The revenue growth underneath the ask is genuine. Going from $600M to $700M ARR in roughly two months implies an annualized growth rate that would be exceptional at any scale, let alone for a company founded in London in 2022 by Mati Staniszewski and Piotr Dabkowski. Voice AI — synthetic speech realistic enough for games, audiobooks, and increasingly for autonomous AI agents handling customer calls — is a category with real enterprise pull, and $700M in ARR is not a speculative number.</p>
+<p>But the multiple is being set by cohort, not by fundamentals. The supplementary reporting puts Synthesia, a London-based video AI company, at $4 billion on roughly $140 million in ARR — about 29 times revenue. Mistral, the French model maker, was valued at €21 billion in September on ARR that had passed $400 million earlier in 2026 — roughly 50 times in euros. ElevenLabs at 47 times sits squarely in the middle of that band. The cohort is internally consistent. What the cohort is doing, collectively, is re-rating off a single public data point: Anthropic's IPO.</p>
+<p>The problem is which Anthropic number you use. The $107.3 billion IPO is the one cited in the source reporting as the reason investors might accelerate into this round. But Anthropic the stock is a different object than Anthropic the IPO. As covered in this brief over the past week, Anthropic opened at $111.50 and has since closed below its $83 IPO price — a 27% decline from the open, with institutions that were shut out of the deal declining to buy the dip. The private AI complex is marking against the headline that happened, not the price that is trading.</p>
+<p>For anyone being offered Q1 allocation, the practical question is what happens to a $33 billion mark if Anthropic continues to drift and the public market's revealed preference for AI businesses at 20-to-40x sales on negative operating margins becomes the reference frame rather than the IPO pop. ElevenLabs' CEO has indicated the company could begin IPO preparation in 2028. That means this round is almost certainly the final fully private mark — the last price set before public investors get a vote. The gap between that vote and the current ask is where the risk lives, and right now the public market is telling you exactly how it votes.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-25.html#story-0-anthropic-is-down-27-from-its-open-in-four-sessions-and-the-">Anthropic is down 27% from its open in four sessions and the institutions that got shut out aren't buying the dip.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-25.html#story-1-sierra-doubled-its-valuation-in-six-months-and-the-pricing-m">Sierra doubled its valuation in six months and the pricing model explains why.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-23.html#story-0-anthropic-raised-93-5-billion-and-lost-20-of-its-open-price-">Anthropic raised $93.5 billion and lost 20% of its open price in two sessions.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+
+  <article class="story" id="story-1-golding-is-tripling-its-secondaries-fund-size-into-the-one-m" data-bucket="private-markets" data-tags="Secondaries,Europe,Fundraising">
+    <div class="story-meta">
+      <span class="bucket-pill">Private Markets</span>
+      <span class="tag">Secondaries</span>
+<span class="tag">Europe</span>
+<span class="tag">Fundraising</span>
+    </div>
+    <h2>Golding is tripling its secondaries fund size into the one market condition that punishes scale.</h2>
+    <div class="story-source"><a href="https://www.altassets.net/private-equity-news/by-region/europe-by-region/western-europe-europe-by-region/germany-western-europe-europe-by-region/golding-said-to-target-e750m-for-new-secondaries-fund-almost-triple-debut-fund-size.html" target="_blank" rel="noopener" title="Golding said to target €750m for new secondaries fund, almost triple ...">altassets.net</a></div>
+    <ul class="tldr">
+      <li>Golding Capital Partners is reportedly targeting €750 million for its third dedicated PE secondaries fund — 2.7 times the €280 million raised for its debut vehicle less than five years ago.</li>
+<li>The €750 million target is reported, not closed, with no first-close date disclosed — meaning the firm has roughly €470 million more capital to deploy than its predecessor.</li>
+<li>Separately, Lexington reportedly hit $3 billion for its debut single-asset continuation fund, double its original fundraising ambitions, on the same day Golding's target was reported.</li>
+    </ul>
+    <div class="take">
+      <h3>The take</h3>
+      <p>Golding Capital Partners, a German mid-market alternatives manager, is reportedly targeting €750 million for its third dedicated PE secondaries fund — 2.7 times the €280 million it raised for a debut vehicle less than five years ago. That's a reported target, not a close, with no first-close date disclosed. On its own it's a single European raise and barely news.</p>
+<p>What makes it worth a paragraph is the shape of the number against everything else in this bucket over the past month. The dominant story in secondaries right now is bifurcation by size, not direction. At one end you have the record $139 billion secondaries funds raised last year sitting on dry powder with nowhere disciplined to put it, chasing GP-led continuation vehicles where the manager and the lead buyer set the price between themselves — see Ares' €3.3 billion credit continuation fund and TPG's TGS II. At the other end you have Seine closing at $180 million buying $3-15 million LP stakes at 50% discounts precisely because fewer than three bidders show up. Golding tripling its debut size is a bet that the mid-tier — €280 million to €750 million — is where LP money wants to live next.</p>
+<p>The question the raise answers for the firm and dodges for the LP is deployment discipline. A €750 million vehicle has to find roughly €470 million more in deals than the €280 million predecessor, into a market where LP-led pricing has firmed as that record dry powder competes for a shrinking set of cleanly-priced books. Scaling a secondaries fund 2.7x in under five years is easy to raise and hard to deploy at the same discount that made the first fund work. The margin that generates returns in secondaries is the gap between what a stressed LP will accept and what the next bidder will pay, and every euro of new capital in the format narrows it.</p>
+<p>So the thing to interrogate before writing a commitment is not whether Golding can raise €750 million — appetite for secondaries is the one thing not in doubt right now — but whether its sourcing edge survives a near-tripling of check size. Golding's historical advantage, like Seine's, is operating below where the Ardians and Lexingtons of the world bother to look. A €750 million fund starts writing bigger tickets into deals that now have four or five bidders instead of two. That's a different business than the one that built the track record, and the LP is being asked to underwrite the old discount on the new scale. The fundraise is a vote of confidence from the GP's fee line. Whether it's one for the LP's net return depends entirely on where that incremental €470 million actually gets deployed, and that detail is exactly what the reported target doesn't tell you.</p>
+    </div>
+    <div class="other-side">
+      <h3>The other side</h3>
+      <p>The bull case for scaling a mid-market secondaries platform is that LP demand for the format is structurally durable and the deal universe grows with it — more PE assets are aging into secondary territory every year, and a manager with a proven sourcing network can expand deal flow faster than check size. Golding tripling its target in under five years also reflects genuine LP conviction, not just GP ambition, and a larger fund gives the firm the balance sheet to lead on slightly larger transactions without abandoning the mid-market entirely. If the team has built proprietary relationships with European LP sellers — pension funds, insurance companies, family offices rotating out of older vintages — those relationships may generate deal flow that doesn't get competitively bid regardless of fund size.</p>
+    </div>
+    <details class="say-more">
+      <summary>Say more &rarr;</summary>
+      <div class="say-more-content">
+        <p>The Lexington data point buried in the same day's reporting deserves more attention than it's getting. Lexington — one of the largest dedicated secondaries managers globally — reportedly hit $3 billion for its debut single-asset continuation fund, double its original fundraising ambitions. That's a different product from Golding's LP-stake secondaries strategy, but the two data points together describe the same underlying condition: LP appetite for secondaries exposure is so strong right now that managers are raising well above target across the size spectrum, from Golding's mid-market LP-stake vehicle to Lexington's institutional-scale continuation fund.</p>
+<p>The problem is that appetite and returns are not the same variable. The record $139 billion raised by secondaries funds last year — covered in this brief's November 9 entry — created a dry powder overhang that is already compressing the pricing discipline that historically made the format work. When more capital chases the same set of motivated sellers, the discount a buyer can extract narrows. That's the mechanical risk Golding is walking into at €750 million that it didn't face at €280 million.</p>
+<p>The mid-market secondaries edge — the one Seine Capital demonstrated by closing at $180 million and buying LP stakes at 50% average discounts with fewer than three competing bidders per deal — is explicitly a function of being too small for the large platforms to bother with. Seine's deals run $3 to $15 million each. A €750 million fund cannot be filled with tickets that size without running hundreds of transactions, which is operationally implausible. So Golding's average ticket size will grow, and with it the number of competing bidders on each deal. That's not a speculation about strategy drift — it's arithmetic.</p>
+<p>What the source material doesn't tell us, and what matters most, is where Golding's second fund landed relative to its debut. The jump from fund one to fund three is reported as nearly 2.7x, but the second fund's size isn't disclosed in the available reporting. If the progression was €280 million, then something in the €400-500 million range, then €750 million, that's a more measured scaling curve than the headline implies. If the second fund was closer to the debut in size, the jump to €750 million is more abrupt and the deployment question is sharper.</p>
+<p>The broader structural point is that European mid-market secondaries is a less crowded lane than US mid-market secondaries, and Golding's German base may give it genuine sourcing advantages among European LP sellers who prefer a local counterparty. That's a real edge. The question is whether it's an edge that scales to €750 million or one that gets arbitraged away as Golding's own success draws attention to the opportunity. Every secondaries manager that has grown from mid-market to large-market has faced this transition, and the track record of maintaining vintage-one returns at vintage-three scale is not encouraging across the asset class.</p>
+        <div class="related">
+          <h4>Related</h4>
+          <ul>
+            <li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-25.html#story-2-seine-capital-bought-15-secondaries-deals-at-a-50-average-di">Seine Capital bought 15 secondaries deals at a 50% average discount by going where the big funds cannot follow.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-0-noveon-capital-is-buying-china-s-best-private-assets-at-40-5">Noveon Capital is buying China's best private assets at 40-50% discounts because Western buyers have left the room.</a></li>
+<li><a href="https://joshgibsonbrown.github.io/daily-brief/briefs/2026-11-18.html#story-4-mid-market-pe-captured-40-of-fundraising-by-making-the-fund-">Mid-market PE captured 40% of fundraising by making the fund itself a side door to fee-free deals.</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </article>
+    <p class="no-match" role="status" hidden>
+      No stories match this combination.
+      <button type="button" class="clear-filters">Show all stories</button>
+    </p>
+  </main>
+
+  <footer>
+    <a href="https://joshgibsonbrown.github.io/daily-brief/archive.html">Archive</a>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var currentBucket = "all";
+    var currentTag = "all";
+    var stories = Array.prototype.slice.call(document.querySelectorAll(".story"));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+    var tagFilters = Array.prototype.slice.call(document.querySelectorAll(".tag-filter"));
+    var noMatch = document.querySelector(".no-match");
+    var clearButton = document.querySelector(".clear-filters");
+
+    function storyTags(el) {
+      return (el.dataset.tags || "").split(",").filter(Boolean);
+    }
+
+    function inBucket(el, bucket) {
+      return bucket === "all" || el.dataset.bucket === bucket;
+    }
+
+    function buttonFor(buttons, key, value) {
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].dataset[key] === value) return buttons[i];
+      }
+      return null;
+    }
+
+    function setActive(buttons, active) {
+      buttons.forEach(function (b) {
+        var on = b === active;
+        b.classList.toggle("active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+
+    // The section tabs and the tag chips are ANDed, and each day carries only five
+    // stories, so most pairings select nothing. Offering a tag only when some story in
+    // the current section actually carries it is what keeps the page from going blank.
+    function tagAvailable(tag) {
+      if (tag === "all") return true;
+      return stories.some(function (el) {
+        return inBucket(el, currentBucket) && storyTags(el).indexOf(tag) !== -1;
+      });
+    }
+
+    function syncTagAvailability() {
+      tagFilters.forEach(function (btn) {
+        btn.disabled = !tagAvailable(btn.dataset.tag);
+      });
+    }
+
+    function applyFilters() {
+      var visible = 0;
+      stories.forEach(function (el) {
+        var match =
+          inBucket(el, currentBucket) &&
+          (currentTag === "all" || storyTags(el).indexOf(currentTag) !== -1);
+        el.classList.toggle("hidden", !match);
+        if (match) visible++;
+      });
+      if (noMatch) noMatch.hidden = visible > 0;
+    }
+
+    function selectBucket(bucket) {
+      currentBucket = bucket;
+      setActive(tabs, buttonFor(tabs, "bucket", bucket));
+      // Changing section can strand the active tag on stories that are no longer shown.
+      if (!tagAvailable(currentTag)) selectTag("all");
+      syncTagAvailability();
+    }
+
+    function selectTag(tag) {
+      currentTag = tag;
+      setActive(tagFilters, buttonFor(tagFilters, "tag", tag));
+    }
+
+    // Filter state lives in the query string, never the fragment: the archive and the
+    // "Related" lists deep-link to #story-… anchors on this page, and rewriting the
+    // fragment would break them.
+    function saveState() {
+      if (!window.history || !window.history.replaceState) return;
+      var params = [];
+      if (currentBucket !== "all") params.push("section=" + encodeURIComponent(currentBucket));
+      if (currentTag !== "all") params.push("tag=" + encodeURIComponent(currentTag));
+      try {
+        window.history.replaceState(
+          null,
+          "",
+          window.location.pathname + (params.length ? "?" + params.join("&") : "") + window.location.hash,
+        );
+      } catch (err) {
+        // Some browsers refuse replaceState on file:// URLs; filtering still works.
+      }
+    }
+
+    function restoreState() {
+      if (!window.location.search) return;
+      var params = {};
+      window.location.search
+        // Doubled backslash on purpose: this script is emitted from a TypeScript
+        // template literal, which would otherwise eat the escape and ship /^?/.
+        .replace(/^\?/, "")
+        .split("&")
+        .forEach(function (pair) {
+          var kv = pair.split("=");
+          if (kv[0]) params[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1] || "");
+        });
+      var tab = params.section ? buttonFor(tabs, "bucket", params.section) : null;
+      if (tab) selectBucket(params.section);
+      var tag = params.tag ? buttonFor(tagFilters, "tag", params.tag) : null;
+      if (tag && !tag.disabled) selectTag(params.tag);
+    }
+
+    tabs.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        selectBucket(btn.dataset.bucket);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    tagFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.disabled) return;
+        selectTag(btn.dataset.tag);
+        applyFilters();
+        saveState();
+      });
+    });
+
+    if (clearButton) {
+      clearButton.addEventListener("click", function () {
+        selectBucket("all");
+        selectTag("all");
+        applyFilters();
+        saveState();
+      });
+    }
+
+    restoreState();
+    syncTagAvailability();
+    applyFilters();
+  })();
+</script>
+</body>
+</html>
